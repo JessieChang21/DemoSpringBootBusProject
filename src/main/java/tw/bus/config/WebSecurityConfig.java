@@ -28,9 +28,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 		 .authorizeRequests()
-		 .antMatchers(HttpMethod.GET, "/users/**").authenticated() //表示限定/users/**範圍的GET請求都要驗證
+		 .antMatchers(HttpMethod.GET, "/members/**").authenticated() //表示限定/users/**範圍的GET請求都要驗證
 		 .antMatchers(HttpMethod.GET).permitAll()				   //除前面限制外，其他所有GET請求無條件允許呼叫執行
-		 .antMatchers(HttpMethod.POST, "/users/**").authenticated()
+		 .antMatchers(HttpMethod.POST, "/members/**").authenticated()
 		 .antMatchers(HttpMethod.POST).permitAll()
 		 .anyRequest().authenticated()			//anyRequest()任何請求都要求authenticated()驗證，會對剩下的進行設定建議放在最後
 		 .and()

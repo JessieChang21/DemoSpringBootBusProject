@@ -18,14 +18,14 @@ public class UserProfilesController {
 	private UserProfilesService uService;
 
 	// 加密密碼
-	@PostMapping("/createuserprofiles.controller")
+	@PostMapping("/createempolyees.controller")
 	public UserProfiles processCreateUserProfilesAction(@RequestBody UserProfiles uProfiles) {
 		String encodePwd = new BCryptPasswordEncoder().encode(uProfiles.getPassword());
 		uProfiles.setPassword(encodePwd);
 		return uService.createUserProfile(uProfiles);
 	}
 
-	@PostMapping("/userprofilesQueryByName.controller")
+	@PostMapping("/empolyeesQueryByName.controller")
 	public UserProfiles processQueryByName() {
 		UserProfiles uProfiles = uService.findByName("louis");
 		boolean result = new BCryptPasswordEncoder().matches("test123", uProfiles.getPassword());
@@ -34,7 +34,7 @@ public class UserProfilesController {
 	}
 
 	// 取得登入成功後使用者名稱
-	@GetMapping("/userprofilesPrincipalQuery.controller")
+	@GetMapping("/empolyeesPrincipalQuery.controller")
 	public String processPrincipalQuery(Principal p) {
 		String userName = p.getName();
 		System.out.println("result:" + userName);
