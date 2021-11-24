@@ -15,13 +15,15 @@
 <h1 align="center">歡迎</h1><br>
 <div align="center">
 <%-- <c:url value = 'logout'/> --%>
-	<a href="<c:url value = '/members/membersmain.controller'/>" class="btn btn-primary"> 查詢會員資料 </a><br>
+	<a href="<c:url value = '/members/membersmain.controller'/>" class="btn btn-primary"> 查詢/新增會員資料 </a><br>
+	<hr>
+	<a href="<c:url value = '/logout'/>" class="btn btn-primary"> 員工登出 </a><br>
 	<hr>
 	   	
 	<br>
-	<a href="<c:url value = '/register/membersregister.controller'/>" class="btn btn-primary"> 註冊 </a><br><br>
+<%-- 	<a href="<c:url value = '/register/membersregister.controller'/>" class="btn btn-primary"> 會員註冊 </a><br><br> --%>
 	
-	<a href="<c:url value = '/logout'/>" class="btn btn-primary"> 登出 </a><br>
+	
 
 </body>
 </html>
