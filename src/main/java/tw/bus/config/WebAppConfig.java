@@ -18,11 +18,11 @@ public class WebAppConfig implements WebMvcConfigurer {
 		registry.addViewController("/logout/page").setViewName("logout");
 	}
 
-	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/css/**").addResourceLocations("WEB-INF/resources/css/");
-		registry.addResourceHandler("/javascripts/**").addResourceLocations("WEB-INF/resources/javascripts/");
-	}
+//	@Override
+//	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//		registry.addResourceHandler("/css/**").addResourceLocations("WEB-INF/resources/css/");
+//		registry.addResourceHandler("/javascripts/**").addResourceLocations("WEB-INF/resources/javascripts/");
+//	}
 	
 	
     

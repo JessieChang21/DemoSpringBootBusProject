@@ -26,7 +26,7 @@ table {
 	<br />
 	<div>符合班次:</div>
 	<br />
-	<form action="bookTicket.controller" method="POST">
+	<form action="/bookTicket" method="POST">
 		<table border="1">
 			<tr>
 				<th>車次編號</th>

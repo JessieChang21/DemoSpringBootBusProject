@@ -23,7 +23,7 @@ table {
 	<h3>訂票成功</h3>
 	<div>您的訂票資訊如下:</div>
 	<br />
-	<form action="deleteTicket.controller" method="POST">
+	<form action="/deleteTicket" method="POST">
 		<table border="1">
 			<tr>
 				<th>訂票代號</th>
