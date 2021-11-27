@@ -6,8 +6,9 @@
 <head>
 <meta charset="UTF-8">
 
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="/webjars/jquery/3.1.1-1/jquery.min.js"></script>
+
 <title>Query Route</title>
 <script type="text/javascript">
 	$.noConflict();
@@ -132,6 +133,14 @@
 			<td>
 				<div style="color:#FF0000; font-size:60%">${errors.sameStation}</div>
 			</td>
+		</tr>
+			
+		<tr>
+			<td><input type="date" name="date"/></td>
+		</tr>
+		
+		<tr>
+			<td><input type="time" name="time"/></td>
 		</tr>
 		<tr>
 			<td><button type="submit" value="queryRoute">送出</button></td>

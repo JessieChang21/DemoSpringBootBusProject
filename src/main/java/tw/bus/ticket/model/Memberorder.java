@@ -9,14 +9,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+//import javax.validation.constraints.NotBlank;
 
 import org.springframework.stereotype.Component;
+//import org.springframework.validation.annotation.Validated;
 
 @Entity @Table(name="memberorder")
 @Component
+//@Validated
 public class Memberorder {
 	@Id @Column(name="orderid")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@NotBlank
 	private Integer orderid;
 	
 //	其他功能尚未完成，暫時寫@Transient

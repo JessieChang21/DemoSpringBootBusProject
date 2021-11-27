@@ -9,7 +9,7 @@
 </head>
 <body>
 <h3>查詢訂票資訊</h3>
-<form action="queryMemberOrder.controller" method="post">
+<form action="/queryMemberOrder" method="post">
 	<table>
 		<tr>
 			<td>請輸入訂票代號(共6碼):</td>

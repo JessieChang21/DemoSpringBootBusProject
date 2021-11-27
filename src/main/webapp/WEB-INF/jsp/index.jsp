@@ -7,12 +7,16 @@
 <head>
 <meta charset="BIG5">
 <title>SpringBootHomework</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
- 
+  <link rel='stylesheet' href='/webjars/bootstrap/3.3.7/css/bootstrap.min.css'>
+  <link rel="icon" href="images/bus.svg" type="image/x-icon" />
+
+  <link rel="stylesheet" href="/webjars/font-awesome/5.13.0/css/all.min.css"></link>
 </head>
 <body>
 <br>
-<h1 align="center">第二組-客運訂票</h1><br>
+<h1 align="center">第二組-客運訂票<i class="fas fa-bus"></i></h1><br>
+
+
 <div align="center">
 	<c:choose>
 		<c:when test='${empty membername}'>
