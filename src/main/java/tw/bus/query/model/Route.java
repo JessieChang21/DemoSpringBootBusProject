@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-@Entity @Table(name="route")
+@Entity @Table(name="Routes")
 @Component
 public class Route {
 	@Id @Column(name="ROUTEID")
