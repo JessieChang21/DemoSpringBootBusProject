@@ -1,4 +1,4 @@
-package tw.bus.members.controller;
+package tw.bus.membersmanagement.controller;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import tw.bus.members.model.Members;
 import tw.bus.members.model.MembersService;
-
 
 
 @Controller
@@ -46,6 +46,8 @@ public class MembersController {
 	@PostMapping("/insert") 
 	@ResponseBody
 	public Members processInsertAction(@RequestBody Members m) {
+		String encodePwd = new BCryptPasswordEncoder().encode(m.getMemberpwd());
+		m.setMemberpwd(encodePwd);
 		return mService.insertMembers(m);
 	}
 	
