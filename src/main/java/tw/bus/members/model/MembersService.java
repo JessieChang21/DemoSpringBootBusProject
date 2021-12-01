@@ -9,6 +9,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import tw.bus.exception.UserNotFoundException;
+
+
 @Service
 @Transactional
 public class MembersService {
@@ -42,6 +45,15 @@ public class MembersService {
 	
 	public void deleteMembersById(Long id) {
 		memberRpo.deleteById(id);
+	}
+
+	public Members findByEmail(String email) {
+		Optional<Members> opl = memberRpo.findByEmail(email);
+		 
+		 if(opl.isEmpty()) {
+			 throw new UserNotFoundException("Can't find user!");
+		 }
+		 return opl.get();
 	}
 
 }

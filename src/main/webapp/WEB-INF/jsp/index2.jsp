@@ -159,14 +159,30 @@ input:hover{
 									<ul>
 										<li><a href="#">Item One</a></li>
 										<li><a href="#">Item Two</a></li>
-									</ul></li>
-							</ul></li>
-						<li><c:choose>
-								<c:when test='${empty membername}'>
-									<a href="login/page"> 員工登入(可CRUD會員資料) </a>
-									<br>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<c:choose>
+								<c:when test='${empty members.membername}'>
+									<li class="menu-has-children"><a href="#"> 會員 </a>
+										<ul>
+											<li><a href="login/page">會員登入</a></li>
+											<li><a href="register/membersregister.controller">註冊</a></li>
+										</ul>
+									</li>
 								</c:when>
-							</c:choose></li>
+								<c:when test='${! empty members.membername}'>
+									<li class="menu-has-children"><a href="#">${members.membername} ,您好</a>
+										<ul>
+											<li><a href="elements.html">會員資料</a></li>
+											<li><a href="/logout">登出</a></li>
+										</ul>
+									</li>
+								</c:when>
+							</c:choose>
+						</li>
 					</ul>
 				</nav>
 				<!-- #nav-menu-container -->

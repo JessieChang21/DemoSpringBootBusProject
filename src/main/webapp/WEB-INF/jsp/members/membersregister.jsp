@@ -6,99 +6,55 @@
 <meta charset="UTF-8">
 <title>Members Register</title>
 <link rel="stylesheet" href="/css/memberssystem.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-    	load();
-    });
-    
-    function load(){   
- 		    	 var table = $('#addmembers');
- 		    	 table.append("<tr id='mtitle'><th>idnumber</th><th>membername</th><th>memberpwd</th><th>phone</th><th>birthday</th><th>gender</th><th>adress</th><th>email</th>");
- 		    	 var tr = "<tr align='center'>" + 
- 		    	 		 "<td><input id='idnumber' type='text'/></td>" +
- 		    	         "<td><input id='membername' type='text'/></td>" +
- 		    	         "<td><input id='memberpwd' type='password'></td>" +
- 		    	         "<td><input id='phone' type='text'></td>" +
- 		    	         "<td><input id='birthday' type='text'></td>" +
- 		    	         "<td><input id='gender' type='text'></td>" +
- 		    	         "<td><input id='adress' type='text'></td>" +
- 		    	      	 "<td><input id='email' type='text'></td>" +
- 		    	      	 
-						 "<td><button id='quickInput' type='button' value='quickInput' onclick='quickInput()'>surprise</button></td>" +
- 		    	         "<td><button id='addmember' type='button' value='addmember' onclick='sendMembers()'>save</button></td>" +
- 		    	         "</tr>";
- 		    	 table.append(tr);
-
-    }
-    
-    function sendMembers(){
-    	var idnumber = $('#idnumber').val();
-    	var membername = $('#membername').val();
-    	var memberpwd = $('#memberpwd').val();
-    	var phone = $('#phone').val();
-    	var birthday = $('#birthday').val();
-    	var gender = $('#gender').val();
-    	var adress = $('#adress').val();
-    	var email = $('#email').val();
-    	
-    	var params = {
-    	    "idNumber":idnumber,
-    		"membername":membername,
-    		"memberpwd":memberpwd,
-    		"phone":phone,
-    		"birthday":birthday,
-    		"gender":gender,
-    		"adress":adress,
-    		"email":email
-        }
-    	
-    	$.ajax({
-    	   type:'post',
-    	   url:'insert',
-    	   dataType:'JSON',
-    	   contentType:'application/json',
-    	   data:JSON.stringify(params),
-    	   success: function(data){
-    		   console.log(data);
-    		   $('#feedback').html("新增成功");
-    	   }
-    	});
-    }
-    
-    let index = 0;
-    var idnum= ["A274967322", 'A289262174', 'A120475611', 'A173478968', 'A118785817', 'A161615166',  'A280326855']; 
-    var names= ["張君雅", '成佳英', '姜哲', '曹尚佑', '吳一男', '張德秀',  '韓美女'];
-    var gender= ["女", '女', '男', '男', '男', '男',  '女'];
-    
-    function quickInput(){
-    	document.getElementById('idnumber').value = idnum[index];
-    	document.getElementById('membername').value = names[index];
-    	document.getElementById('memberpwd').value = 'test123';
-    	document.getElementById('phone').value = '0999-777-777';
-    	document.getElementById('birthday').value = '2011-11-11';
-    	document.getElementById('gender').value = gender[index];
-    	document.getElementById('adress').value = '台北市大安區';
-    	document.getElementById('email').value = 'abc123@gmail.com';
-    	
-    	index++;
-        if (index >= names.length) {
-        	index = 0 ;
-    	}
-    	
-    }
-</script>
 </head>
 <body>
-<div id="membersListTitle">InserMembers</div>
-<div align="center">
-	<table id="addmembers" border="1"></table>
-	<%-- <input id="pid" type="hidden" value="${pid}"> --%>
-</div>
-<div id="feedback" align="center"></div>
-<br><br>
-<div align="center">
-	<a href="/" class="btn btn-primary" > 首頁 </a>
+<div style = float:right>
+	<div id="membersListTitle">快速註冊</div>
+	<form method="POST" action="/register/insert">
+	<div>
+		<label for="email" data-lang="輸入帳號">登入帳號</label>
+		<div >
+			<input id="email" path='email' name="email" placeholder="請輸入電子信箱" type="text" value="" />
+<!-- 			<form:errors path="email" cssClass="error" /> -->
+		</div>    
+	</div>
+	<div>
+		<label for="memberpwd" data-lang="輸入密碼(至少8碼)">登入密碼(至少8碼)</label>
+		<div>
+			<input id="memberpwd" path='memberpwd' name="memberpwd" placeholder="請輸入密碼" type="password" value="" />
+<!-- 			<form:errors path="memberpwd" cssClass="error" /> -->
+		</div>
+	</div>
+	<div>
+		<label for="memberpwd2" data-lang="再次輸入密碼">再次輸入密碼</label>
+		<div>
+			<input id="memberpwd2" path='memberpwd2' name="memberpwd2" placeholder="請再次輸入密碼" type="password" value="" /><br>
+		</div><br>
+<!-- 		<div> -->
+<!-- 			<form:errors path="memberpwd2" cssClass="error" /> -->
+<!-- 		</div> -->
+	</div>
+	<div>
+		<label for="membername" data-lang="輸入姓名">姓名</label>
+		<div>
+			<input id="membername" path='membername' name="membername" placeholder="請輸入姓名" type="text" value="" />
+<!-- 			<form:errors path="membername" cssClass="error" /> -->
+		</div>
+	</div>
+	<div>
+		<input data-val="true" data-val-required="isAgree 欄位是必要項。" id="agree" name="isAgree" style="width: 18px; height: 18px;" type="checkbox" value="true" /><input name="QM.isAgree" type="hidden" value="false" />
+		<label for="agree" data-lang="我同意">我同意</label><a href="#.pdf" target="_blank">XXX隱私權政策與服務條款</a>
+	</div>
+	<div id="btnArea" align="center">
+ 	 	<input type="submit" name="submit" id="submit" value="儲存"/>
+  		<input type="reset" name="cancel" id="cancel" value="重填">
+	</div>
+	<div id="feedback" align="center"></div>
+	<br><br>
+	<div align="center">
+		<a href="/" class="btn btn-primary" > 首頁 </a>
+	</div>
+</form>
 </div>
 </body>
 </html>
