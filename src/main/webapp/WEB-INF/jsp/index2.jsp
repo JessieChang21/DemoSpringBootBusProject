@@ -166,11 +166,11 @@ input:hover{
 						<li>
 							<c:choose>
 								<c:when test='${empty members.membername}'>
-									<li class="menu-has-children"><a href="#"> 會員 </a>
-										<ul>
-											<li><a href="login/page">會員登入</a></li>
-											<li><a href="register/membersregister.controller">註冊</a></li>
-										</ul>
+									<li class="menu-has-children"><a href="login/page"> 登入註冊 </a>
+<!-- 										<ul> -->
+<!-- 											<li><a href="login/page">會員登入</a></li> -->
+<!-- 											<li><a href="register/membersregister.controller">註冊</a></li> -->
+<!-- 										</ul> -->
 									</li>
 								</c:when>
 								<c:when test='${! empty members.membername}'>
