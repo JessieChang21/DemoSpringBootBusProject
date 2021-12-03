@@ -123,9 +123,9 @@ input:hover {
 				   $.each(data, function(i,n){
 					   
 					   var tr = "<tr height='50px' align='center'>" + 
-					            "<td><font color='black'>" + n.ancategory + " </font>"  + "</td>" + 
-					            "<td ><a href='"+ /ann01/+n.id + "'>" +  n.antitle +"</a>" + "</td>" +
-					            "<td ><font color='black'>" + n.registerdate + "</font>" + "</td>" + "</tr>";    
+					            "<td style='background-color: white;'><font color='black'>" + n.ancategory + " </font>"  + "</td>" + 
+					            "<td style='background-color: white;'><a href='"+ /ann01/+n.id + "'>" +  n.antitle +"</a>" + "</td>" +
+					            "<td style='background-color: white;'><font color='black'>" + n.registerdate + "</font>" + "</td>" + "</tr>";    
 					            
 					   table.append(tr);
 				   });			   
@@ -149,7 +149,7 @@ input:hover {
 <meta charset="UTF-8">
 <!-- Site Title -->
 <title>Travel</title>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700"
 	rel="stylesheet">
@@ -166,7 +166,7 @@ input:hover {
 <link rel="stylesheet" href="/travelista/css/owl.carousel.css">
 <link rel="stylesheet" href="/travelista/css/main.css">
 </head>
-<body>
+<body style="background-color: #F2F2F2;">
 	<header id="header">
 		<div class="header-top">
 			<div class="container">
@@ -191,8 +191,7 @@ input:hover {
 		<div class="container main-menu">
 			<div class="row align-items-center justify-content-between d-flex">
 				<div id="logo">
-					<a href="index.html"><img src="/travelista/img/logo.png" alt=""
-						title="" /></a>
+					<a href="/2"><span style="color: #f8b600;font-family:Microsoft JhengHei ;font-weight: bold;font-size:1.8em;text-align: end;font-style: italic;"><i class="fas fa-bus-alt"></i>  無事坐Bus</span></a>
 				</div>
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
@@ -216,12 +215,26 @@ input:hover {
 										<li><a href="#">Item Two</a></li>
 									</ul></li>
 							</ul></li>
-						<li><c:choose>
-								<c:when test='${empty membername}'>
-									<a href="login/page"> 員工登入(可CRUD會員資料) </a>
-									<br>
+						<li><li>
+							<c:choose>
+								<c:when test='${empty members.membername}'>
+									<li class="menu-has-children"><a href="login/page"> 登入註冊 </a>
+<!-- 										<ul> -->
+<!-- 											<li><a href="login/page">會員登入</a></li> -->
+<!-- 											<li><a href="register/membersregister.controller">註冊</a></li> -->
+<!-- 										</ul> -->
+									</li>
 								</c:when>
-							</c:choose></li>
+								<c:when test='${! empty members.membername}'>
+									<li class="menu-has-children"><a href="#">${members.membername} ,您好</a>
+										<ul>
+											<li><a href="elements.html">會員資料</a></li>
+											<li><a href="/logout">登出</a></li>
+										</ul>
+									</li>
+								</c:when>
+							</c:choose>
+						</li>
 					</ul>
 				</nav>
 			</div>
@@ -267,7 +280,7 @@ input:hover {
 						action="<c:url value='/showannbycate'/>">
 						<input name='ancategory' type='hidden' type='text' value='異動'>
 						<input type='submit'
-							style="width: 200px; height: 40px; border: 2px blue none; background-color: white; font-size: 130%"
+							style="width: 200px; height: 40px; border: 2px blue none; background-color:white; font-size: 130%"
 							value='異動'>
 					</form></td>
 			</tr>
@@ -293,9 +306,7 @@ input:hover {
 				<button id="myPage" value="${i}" onclick="change(${i})">${i}</button>
 			</c:forEach>
 		</p>
-		<p>
-			<a href="<c:url value='/2'/>">回首頁</a>
-		</p>
+		
 	</div>
 	<!-- Start insurence-one Area -->
 	<section class="insurence-one-area section-gap"></section>
