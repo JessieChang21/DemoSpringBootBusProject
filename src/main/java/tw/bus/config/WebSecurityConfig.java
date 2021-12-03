@@ -22,9 +22,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private AuthUserDetailsService userDetailsService;
 	
-	@Autowired
-    @Qualifier("myAuthenticationSuccessHandler")
-    private AuthenticationSuccessHandler successHandler;
+//	@Autowired
+//    @Qualifier("myAuthenticationSuccessHandler")
+//    private AuthenticationSuccessHandler successHandler;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -53,8 +53,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		 .csrf().disable() 						// 為不使用CSRF防跨站請求偽造防護
 		 .formLogin() 							//formLogin(): 啟用Spring Security預設的登入頁面
 		 .loginPage("/login/page")				//loginPage(): 自行設定登入頁面
-//		 .defaultSuccessUrl("/web");            //defaultSuccessUrl(): 設定登入成功頁面網  
-		 .successHandler(successHandler);
+		 .defaultSuccessUrl("/web");            //defaultSuccessUrl(): 設定登入成功頁面網  
+//		 .successHandler(successHandler);
 	}
 
 	@Override
