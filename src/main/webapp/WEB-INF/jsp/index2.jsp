@@ -61,7 +61,7 @@ table tr:last-child td:last-child {
 border-bottom-right-radius: 12px;
 }
 a{ text-decoration:none} a:hover{ text-decoration:underline}
-a:visited {
+#aa:visited {
 color:blue;
 }
 #Title1 {
@@ -94,7 +94,7 @@ input:hover{
 <meta charset="UTF-8">
 <!-- Site Title -->
 <title>Travel</title>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700"
 	rel="stylesheet">
@@ -136,8 +136,7 @@ input:hover{
 		<div class="container main-menu">
 			<div class="row align-items-center justify-content-between d-flex">
 				<div id="logo">
-					<a href="/2"><img src="/travelista/img/logo.png" alt=""
-						title="" /></a>
+					<a href="/2"><span style="color: #f8b600;font-family:Microsoft JhengHei ;font-weight: bold;font-size:1.8em;text-align: end;font-style: italic;"><i class="fas fa-bus-alt"></i>  無事坐Bus</span></a>
 				</div>
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
@@ -301,6 +300,68 @@ input:hover{
 	</section>
 	<!-- End banner Area -->
 
+	
+
+	<!-- Start price Area -->
+	<section class="price-area section-gap">
+		
+				<div class="container">
+		            <div class="row d-flex justify-content-center">
+		                <div class="menu-content pb-70 col-lg-8">
+		                    <div class="title text-center">
+		                        <h1 class="mb-10">熱門目的地</h1>
+		                        <p>我們都生活在一個屬於年輕人的時代，生活步調變得非常的快速</p>
+		                    </div>
+		                </div>
+		            </div>						
+					<div class="row">
+						<div class="col-lg-4">
+							<div class="single-destination relative">
+								<div class="thumb relative">
+									<div class="overlay overlay-bg"></div>
+									<!-- <img class="img-fluid" src="img/d1.jpg" alt=""> -->
+									<img class="img-fluid" src="/travelista/images/Jiufen.jpg" alt="">
+								</div>
+								<div class="desc">	
+									<a href="#" class="price-btn">$150</a>			
+									<h4>黃金福隆線</h4>
+									<p>九份</p>			
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="single-destination relative">
+								<div class="thumb relative">
+									<div class="overlay overlay-bg"></div>
+									<img class="img-fluid" src="/travelista/images/greenReef.jpg" alt="">
+								</div>
+								<div class="desc">	
+									<a href="#" class="price-btn">$250</a>			
+									<h4>皇冠北海岸線</h4>
+									<p>老梅</p>			
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="single-destination relative">
+								<div class="thumb relative">
+									<div class="overlay overlay-bg"></div>
+									<img class="img-fluid" src="/travelista/images/tea.jpg" alt="">
+								</div>
+								<div class="desc">	
+									<a href="#" class="price-btn">$350</a>			
+									<h4>東眼山線</h4>
+									<p>大溪老茶廠</p>			
+								</div>
+							</div>
+						</div>												
+					</div>
+				</div>	
+			
+			<!-- End popular-destination Area -->
+	</section>
+	<!-- End price Area -->
+	
 	<!-- Start popular-destination Area -->
 	<section class="popular-destination-area section-gap">
 		<div class="container">
@@ -308,134 +369,37 @@ input:hover{
 				<div class="menu-content pb-70 col-lg-8">
 					<div class="title text-center">
 						<h1 class="mb-10">最新消息</h1>
-						<p>We all live in an age that belongs to the young at heart.
-							Life that is becoming extremely fast, day.</p>
+						<p>時刻關注網站即時消息</p>
 					</div>
-					
 				</div>
 			</div>
-			<div class="row">
-				<div id="table_wrap" align='center'>
-						<table id="showlaf">
-							<tr height='45px'>
-								<th width='350'>類別</th>
-								<th width='350'>主旨</th>
-								<th width='350'>公告時間</th>
-							</tr>
-							<c:forEach var="an" items="${list}">
-								<tr height='40px' align='center'>
-									<td width='250'>${an.ancategory}</td>
-									<td><a href="<c:url value='/ann01/${an.id}'/>">${an.antitle}</a></td>
-									<td><fmt:formatDate value="${an.registerdate}"
-											type="date" dateStyle="short" /></td>
-								</tr>
-							</c:forEach>
-						</table>
-					</div>
+		</div>
+		<div id="table_wrap" align='center'>
+			<table id="showlaf">
+				<tr height='45px'>
+					<th width='450'><font color='black'>類別</font></th>
+					<th width='450'><font color='black'>主旨</font></th>
+					<th width='450'><font color='black'>公告時間</font></th>
+				</tr>
+				<c:forEach var="an" items="${list}">
+					<tr height='40px' align='center'>
+						<td><font color='black'>${an.ancategory}</font></td>
+						<td><a id="aa" href="<c:url value='/ann01/${an.id}'/>">${an.antitle}</a></td>
+						<td><font color='black'><fmt:formatDate
+									value="${an.registerdate}" type="date" dateStyle="short" /></font></td>
+					</tr>
+				</c:forEach>
+			</table>
+			<BR /> <BR />
+			<div id="nav">
+				<p align='center' height="50px">
+					<a id="more" href="<c:url value='/showAnnouncement'/>">了解更多</a>
+				</p>
 			</div>
-			<div id="nav" align='center'>
-						
-								<p height="50px"><a id="more"
-									href="<c:url value='/showAnnouncement'/>">了解更多</a></p>
-							
-					</div>
 		</div>
 	</section>
 	<!-- End popular-destination Area -->
-
-
-	<!-- Start price Area -->
-	<section class="price-area section-gap">
-		<div class="container">
-			<div class="row d-flex justify-content-center">
-				<div class="menu-content pb-70 col-lg-8">
-					<div class="title text-center">
-						<h1 class="mb-10">We Provide Affordable Prices</h1>
-						<p>Well educated, intellectual people, especially scientists
-							at all times demonstrate considerably.</p>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-4">
-					<div class="single-price">
-						<h4>Cheap Packages</h4>
-						<ul class="price-list">
-							<li class="d-flex justify-content-between align-items-center">
-								<span>New York</span> <a href="#" class="price-btn">$1500</a>
-							</li>
-							<li class="d-flex justify-content-between align-items-center">
-								<span>Maldives</span> <a href="#" class="price-btn">$1500</a>
-							</li>
-							<li class="d-flex justify-content-between align-items-center">
-								<span>Sri Lanka</span> <a href="#" class="price-btn">$1500</a>
-							</li>
-							<li class="d-flex justify-content-between align-items-center">
-								<span>Nepal</span> <a href="#" class="price-btn">$1500</a>
-							</li>
-							<li class="d-flex justify-content-between align-items-center">
-								<span>Thiland</span> <a href="#" class="price-btn">$1500</a>
-							</li>
-							<li class="d-flex justify-content-between align-items-center">
-								<span>Singapore</span> <a href="#" class="price-btn">$1500</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="single-price">
-						<h4>Luxury Packages</h4>
-						<ul class="price-list">
-							<li class="d-flex justify-content-between align-items-center">
-								<span>New York</span> <a href="#" class="price-btn">$1500</a>
-							</li>
-							<li class="d-flex justify-content-between align-items-center">
-								<span>Maldives</span> <a href="#" class="price-btn">$1500</a>
-							</li>
-							<li class="d-flex justify-content-between align-items-center">
-								<span>Sri Lanka</span> <a href="#" class="price-btn">$1500</a>
-							</li>
-							<li class="d-flex justify-content-between align-items-center">
-								<span>Nepal</span> <a href="#" class="price-btn">$1500</a>
-							</li>
-							<li class="d-flex justify-content-between align-items-center">
-								<span>Thiland</span> <a href="#" class="price-btn">$1500</a>
-							</li>
-							<li class="d-flex justify-content-between align-items-center">
-								<span>Singapore</span> <a href="#" class="price-btn">$1500</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="single-price">
-						<h4>Camping Packages</h4>
-						<ul class="price-list">
-							<li class="d-flex justify-content-between align-items-center">
-								<span>New York</span> <a href="#" class="price-btn">$1500</a>
-							</li>
-							<li class="d-flex justify-content-between align-items-center">
-								<span>Maldives</span> <a href="#" class="price-btn">$1500</a>
-							</li>
-							<li class="d-flex justify-content-between align-items-center">
-								<span>Sri Lanka</span> <a href="#" class="price-btn">$1500</a>
-							</li>
-							<li class="d-flex justify-content-between align-items-center">
-								<span>Nepal</span> <a href="#" class="price-btn">$1500</a>
-							</li>
-							<li class="d-flex justify-content-between align-items-center">
-								<span>Thiland</span> <a href="#" class="price-btn">$1500</a>
-							</li>
-							<li class="d-flex justify-content-between align-items-center">
-								<span>Singapore</span> <a href="#" class="price-btn">$1500</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End price Area -->
+	
 
 
 	<!-- Start other-issue Area -->

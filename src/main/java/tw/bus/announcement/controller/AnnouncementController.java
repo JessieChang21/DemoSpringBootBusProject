@@ -94,11 +94,18 @@ public class AnnouncementController {
 		return "/announcement/showAnn";
 	}
 	
-	@GetMapping("/showAnnouncement2")
+	@GetMapping("/2")
 	public String findtop3(Model m) {
 		List<Announcement> list = announcementService.findtop3();
 		m.addAttribute("list",list);
 		return "/index2";
+	}
+	
+	@GetMapping("/login/page")
+	public String findtop3_2(Model m) {
+		List<Announcement> list = announcementService.findtop3();
+		m.addAttribute("list",list);
+		return "/login";
 	}
 	
 	@GetMapping("/showAnnouncement1")
@@ -178,11 +185,7 @@ public class AnnouncementController {
 		Timestamp ts = new Timestamp(System.currentTimeMillis());
 		announcement.setRegisterdate(ts);
 		
-		announcement = announcementService.findById(id);
-		String oldimages = announcement.getAnimages();
-		
 		String animages_file1 = mf2.getOriginalFilename();
-		
 		String realPath = request.getServletContext().getRealPath(".");
 		String saveDirPath1 = realPath + "\\animages\\";
 		File saveDirPathFile1 = new File(realPath);
@@ -192,11 +195,7 @@ public class AnnouncementController {
 		if (StringUtils.isNotBlank(mf2.getOriginalFilename())) {
 			mf2.transferTo(savePathFile1);
 		} //圖片
-		if(mf2.isEmpty()) {
-			announcement.setAnimages(oldimages);
-		}else {
-			announcement.setAnimages(animages_file1);
-		}
+		announcement.setAnimages(animages_file1);
 		
 		announcementService.update(announcement);
 		return "redirect:/insertOK";

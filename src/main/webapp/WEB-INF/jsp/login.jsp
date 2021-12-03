@@ -60,7 +60,7 @@ table tr:last-child td:last-child {
 border-bottom-right-radius: 12px;
 }
 a{ text-decoration:none} a:hover{ text-decoration:underline}
-a:visited {
+#aa:visited {
 color:blue;
 }
 #Title1 {
