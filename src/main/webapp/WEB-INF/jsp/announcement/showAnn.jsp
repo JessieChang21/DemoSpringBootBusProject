@@ -199,7 +199,12 @@ input:hover {
 						<li><a href="about.html">About</a></li>
 						<li><a href="packages.html">Packages</a></li>
 						<li><a href="hotels.html">Hotels</a></li>
-						<li><a href="/showAnnouncement">最新消息</a></li>
+						<li class="menu-has-children"><a href="">旅客服務</a>
+							<ul>
+								<li><a href="/showAnnouncement">最新消息</a></li>
+								<li><a href="/showlostandfound">失物招領</a></li>
+
+							</ul></li>
 						<li class="menu-has-children"><a
 							href="queryRoutemain.controller">查詢車次&訂購車票</a>
 							<ul>

@@ -58,6 +58,12 @@ public class LostAndFoundController {
 		m.addAttribute("list", list);
 		return "/lostandfound/showLAF";
 	}
+	@GetMapping("/showlostandfound2")
+	public String findAll1(Model m) {
+		List<LostAndFound> list = lostAndFoundService.findAll();
+		m.addAttribute("list", list);
+		return "/lostandfound/showLAF1";
+	}
 	
 	
 	@GetMapping("/updatelostandfound/{id}")

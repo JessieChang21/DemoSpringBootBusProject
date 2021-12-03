@@ -13,70 +13,95 @@ table {
 	border-collapse: collapse;
 }
 
-#table_wrap > table {
-font-size: 16px;
-text-align: center;
-margin: 0 auto;
-border-collapse: separate;
-border-spacing: 0;
-border: 2px #000;
+#table_wrap>table {
+	font-size: 16px;
+	text-align: center;
+	margin: 0 auto;
+	border-collapse: separate;
+	border-spacing: 0;
+	border: 2px #000;
 }
-table thead tr,table tbody tr {
-height: 50px;
-line-height: 50px;
-/*background-color: pink;*/
-}
-table tr th:first-child,table tr td:first-child {/*設定table左邊邊框*/
-border-left: 2px solid #eaeaea;
-}
-table tr th:last-child,table tr td:last-child {/*設定table右邊邊框*/
-border-right: 2px solid #eaeaea;
-}
-table tr td:first-child,
-table tr td:nth-child(2),
-table tr td:nth-child(3),
-table tr td:last-child{/*設定table表格每列底部邊框*/
-border-bottom: 2px solid #eaeaea;
-}
-table tr:last-child td:first-child,
-table tr:last-child td:nth-child(2),
-table tr:last-child td:nth-child(3),
-table tr:last-child td:last-child{/!*設定table表格最後一列底部邊框*!/
-border-bottom: 2px solid #000;
-}
-table tr th {
-background-color: orange;
 
+table thead tr, table tbody tr {
+	height: 50px;
+	line-height: 50px;
+	/*background-color: pink;*/
 }
+
+table tr th:first-child, table tr td:first-child { /*設定table左邊邊框*/
+	border-left: 2px solid #eaeaea;
+}
+
+table tr th:last-child, table tr td:last-child { /*設定table右邊邊框*/
+	border-right: 2px solid #eaeaea;
+}
+
+table tr td:first-child, table tr td:nth-child(2), table tr td:nth-child(3),
+	table tr td:last-child { /*設定table表格每列底部邊框*/
+	border-bottom: 2px solid #eaeaea;
+}
+
+table tr:last-child td:first-child, table tr:last-child td:nth-child(2),
+	table tr:last-child td:nth-child(3), table tr:last-child td:last-child
+	{ /!*設定table表格最後一列底部邊框 *!/ border-bottom:2pxsolid#000;
+	
+}
+
+table tr th {
+	background-color: orange;
+}
+
 table tr:first-child th:first-child {
-border-top-left-radius: 12px;
+	border-top-left-radius: 12px;
 }
+
 table tr:first-child th:last-child {
-border-top-right-radius: 12px;
+	border-top-right-radius: 12px;
 }
+
 table tr:last-child td:first-child {
-border-bottom-left-radius: 12px;
+	border-bottom-left-radius: 12px;
 }
+
 table tr:last-child td:last-child {
-border-bottom-right-radius: 12px;
+	border-bottom-right-radius: 12px;
 }
-a{ text-decoration:none} a:hover{ text-decoration:underline}
+
+a {
+	text-decoration: none
+}
+
+a:hover {
+	text-decoration: underline
+}
+
 #aa:visited {
-color:blue;
+	color: blue;
 }
+
 #Title1 {
 	margin: auto;
 	font-size: 25px;
 	font-weight: bold;
 	text-align: center;
 }
-input:hover{
-  background-color:	#F1E1FF;
-  text-decoration:underline;
-}
-#more:hover{background-color:	#F1E1FF;}
-#nav { display: block; text-align:right; font-family: 'PT Sans', sans-serif; font-size:14px; font-weight:bold;}
 
+input:hover {
+	background-color: #F1E1FF;
+	text-decoration: underline;
+}
+
+#more:hover {
+	background-color: #F1E1FF;
+}
+
+#nav {
+	display: block;
+	text-align: right;
+	font-family: 'PT Sans', sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+}
 </style>
 
 <!-- Mobile Specific Meta -->
@@ -94,7 +119,8 @@ input:hover{
 <meta charset="UTF-8">
 <!-- Site Title -->
 <title>Travel</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700"
 	rel="stylesheet">
@@ -136,7 +162,9 @@ input:hover{
 		<div class="container main-menu">
 			<div class="row align-items-center justify-content-between d-flex">
 				<div id="logo">
-					<a href="/2"><span style="color: #f8b600;font-family:Microsoft JhengHei ;font-weight: bold;font-size:1.8em;text-align: end;font-style: italic;"><i class="fas fa-bus-alt"></i>  無事坐Bus</span></a>
+					<a href="/2"><span
+						style="color: #f8b600; font-family: Microsoft JhengHei; font-weight: bold; font-size: 1.8em; text-align: end; font-style: italic;"><i
+							class="fas fa-bus-alt"></i> 無事坐Bus</span></a>
 				</div>
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
@@ -144,7 +172,12 @@ input:hover{
 						<li><a href="about.html">About</a></li>
 						<li><a href="packages.html">Packages</a></li>
 						<li><a href="hotels.html">Hotels</a></li>
-						<li><a href="/showAnnouncement">最新消息</a></li>
+						<li class="menu-has-children"><a href="">旅客服務</a>
+							<ul>
+								<li><a href="/showAnnouncement">最新消息</a></li>
+								<li><a href="/showlostandfound">失物招領</a></li>
+
+							</ul></li>
 						<li class="menu-has-children"><a
 							href="queryRoutemain.controller">查詢車次&訂購車票</a>
 							<ul>
@@ -158,30 +191,24 @@ input:hover{
 									<ul>
 										<li><a href="#">Item One</a></li>
 										<li><a href="#">Item Two</a></li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<c:choose>
+									</ul></li>
+							</ul></li>
+						<li><c:choose>
 								<c:when test='${empty members.membername}'>
-									<li class="menu-has-children"><a href="login/page"> 登入註冊 </a>
-<!-- 										<ul> -->
-<!-- 											<li><a href="login/page">會員登入</a></li> -->
-<!-- 											<li><a href="register/membersregister.controller">註冊</a></li> -->
-<!-- 										</ul> -->
-									</li>
+									<li class="menu-has-children"><a href="login/page">
+											登入註冊 </a> <!-- 										<ul> --> <!-- 											<li><a href="login/page">會員登入</a></li> -->
+										<!-- 											<li><a href="register/membersregister.controller">註冊</a></li> -->
+										<!-- 										</ul> --></li>
 								</c:when>
 								<c:when test='${! empty members.membername}'>
-									<li class="menu-has-children"><a href="#">${members.membername} ,您好</a>
+									<li class="menu-has-children"><a href="#">${members.membername}
+											,您好</a>
 										<ul>
 											<li><a href="elements.html">會員資料</a></li>
 											<li><a href="/logout">登出</a></li>
-										</ul>
-									</li>
+										</ul></li>
 								</c:when>
-							</c:choose>
-						</li>
+							</c:choose></li>
 					</ul>
 				</nav>
 				<!-- #nav-menu-container -->
@@ -300,68 +327,69 @@ input:hover{
 	</section>
 	<!-- End banner Area -->
 
-	
+
 
 	<!-- Start price Area -->
 	<section class="price-area section-gap">
-		
-				<div class="container">
-		            <div class="row d-flex justify-content-center">
-		                <div class="menu-content pb-70 col-lg-8">
-		                    <div class="title text-center">
-		                        <h1 class="mb-10">熱門目的地</h1>
-		                        <p>我們都生活在一個屬於年輕人的時代，生活步調變得非常的快速</p>
-		                    </div>
-		                </div>
-		            </div>						
-					<div class="row">
-						<div class="col-lg-4">
-							<div class="single-destination relative">
-								<div class="thumb relative">
-									<div class="overlay overlay-bg"></div>
-									<!-- <img class="img-fluid" src="img/d1.jpg" alt=""> -->
-									<img class="img-fluid" src="/travelista/images/Jiufen.jpg" alt="">
-								</div>
-								<div class="desc">	
-									<a href="#" class="price-btn">$150</a>			
-									<h4>黃金福隆線</h4>
-									<p>九份</p>			
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="single-destination relative">
-								<div class="thumb relative">
-									<div class="overlay overlay-bg"></div>
-									<img class="img-fluid" src="/travelista/images/greenReef.jpg" alt="">
-								</div>
-								<div class="desc">	
-									<a href="#" class="price-btn">$250</a>			
-									<h4>皇冠北海岸線</h4>
-									<p>老梅</p>			
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="single-destination relative">
-								<div class="thumb relative">
-									<div class="overlay overlay-bg"></div>
-									<img class="img-fluid" src="/travelista/images/tea.jpg" alt="">
-								</div>
-								<div class="desc">	
-									<a href="#" class="price-btn">$350</a>			
-									<h4>東眼山線</h4>
-									<p>大溪老茶廠</p>			
-								</div>
-							</div>
-						</div>												
+
+		<div class="container">
+			<div class="row d-flex justify-content-center">
+				<div class="menu-content pb-70 col-lg-8">
+					<div class="title text-center">
+						<h1 class="mb-10">熱門目的地</h1>
+						<p>我們都生活在一個屬於年輕人的時代，生活步調變得非常的快速</p>
 					</div>
-				</div>	
-			
-			<!-- End popular-destination Area -->
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="single-destination relative">
+						<div class="thumb relative">
+							<div class="overlay overlay-bg"></div>
+							<!-- <img class="img-fluid" src="img/d1.jpg" alt=""> -->
+							<img class="img-fluid" src="/travelista/images/Jiufen.jpg" alt="">
+						</div>
+						<div class="desc">
+							<a href="#" class="price-btn">$150</a>
+							<h4>黃金福隆線</h4>
+							<p>九份</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="single-destination relative">
+						<div class="thumb relative">
+							<div class="overlay overlay-bg"></div>
+							<img class="img-fluid" src="/travelista/images/greenReef.jpg"
+								alt="">
+						</div>
+						<div class="desc">
+							<a href="#" class="price-btn">$250</a>
+							<h4>皇冠北海岸線</h4>
+							<p>老梅</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="single-destination relative">
+						<div class="thumb relative">
+							<div class="overlay overlay-bg"></div>
+							<img class="img-fluid" src="/travelista/images/tea.jpg" alt="">
+						</div>
+						<div class="desc">
+							<a href="#" class="price-btn">$350</a>
+							<h4>東眼山線</h4>
+							<p>大溪老茶廠</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- End popular-destination Area -->
 	</section>
 	<!-- End price Area -->
-	
+
 	<!-- Start popular-destination Area -->
 	<section class="popular-destination-area section-gap">
 		<div class="container">
@@ -399,7 +427,7 @@ input:hover{
 		</div>
 	</section>
 	<!-- End popular-destination Area -->
-	
+
 
 
 	<!-- Start other-issue Area -->

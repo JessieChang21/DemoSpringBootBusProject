@@ -2,39 +2,140 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 <head>
 <style type="text/css">
-
-.new_con {
-	width: 1000px;
-	margin: 0px auto;
-	font-family: Microsoft JhengHei;
-	color: #2d2929;
-	border: 1px solid rgba(0, 0, 0, 0.0);
-	padding: 0px;
+table {
+	margin: auto;
+	width: 70%;
+	border-collapse: collapse;
 }
 
-.new_block {
-	margin: 10px auto 20px auto;
-	padding: 50px;
+#table_wrap>table {
+	font-size: 16px;
+	text-align: center;
+	margin: 0 auto;
+	border-collapse: separate;
+	border-spacing: 0;
+	border: 2px #000;
 }
 
-.news_txt {
-	font-size: 1em;
-	line-height: 1.8;
-	border: 3px dashed #cacaca;
-	font-family: Microsoft JhengHei;
-	padding: 32px;
-	border-radius: 12px;
-	position: relative;
+table thead tr, table tbody tr {
+	height: 50px;
+	line-height: 50px;
+	/*background-color: pink;*/
+}
+
+table tr th:first-child, table tr td:first-child { /*設定table左邊邊框*/
+	border-left: 2px solid #eaeaea;
+}
+
+table tr th:last-child, table tr td:last-child { /*設定table右邊邊框*/
+	border-right: 2px solid #eaeaea;
+}
+
+table tr td:first-child, table tr td:nth-child(2), table tr td:nth-child(3),
+	table tr td:last-child { /*設定table表格每列底部邊框*/
+	border-bottom: 2px solid #eaeaea;
+}
+
+table tr:last-child td:first-child, table tr:last-child td:nth-child(2),
+	table tr:last-child td:nth-child(3), table tr:last-child td:last-child
+	{ /!*設定table表格最後一列底部邊框 *!/ border-bottom:2pxsolid#000;
+	
+}
+
+table tr th {
+	background-color: #f8b600;
+}
+
+table tr:first-child th:first-child {
+	border-top-left-radius: 12px;
+}
+
+table tr:first-child th:last-child {
+	border-top-right-radius: 12px;
+}
+
+table tr:last-child td:first-child {
+	border-bottom-left-radius: 12px;
+}
+
+table tr:last-child td:last-child {
+	border-bottom-right-radius: 12px;
+}
+
+a {
+	text-decoration: none
+}
+
+a:hover {
+	text-decoration: underline
+}
+
+a:visited {
+	color: blue;
+}
+
+#Title1 {
+	margin: auto;
+	font-size: 25px;
+	font-weight: bold;
+	text-align: center;
+}
+
+input:hover {
+	background-color: #F1E1FF;
+	text-decoration: underline;
 }
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+<script type="text/javascript">
+   var indexPage=1;
+   $(document).ready(function(){
+	   load(indexPage);
+   });
+   
+   function change(page){
+	   indexPage = page;
+	   load(indexPage);
+   }
+   
+   function load(indexPage){
+	   $.ajax({
+		   type:'post',
+		   url:'/queryByPage2/' + indexPage,
+		   dataType:'JSON',
+		   contentType:'application.json',
+		   success: function(data){
+			   console.log('success:' + data);
+			   var json = JSON.stringify(data,null,4);
+			   console.log('json:' + json);
+			   $('#showlaf').empty("");
+			   if(data==null){
+				   $('table').prepend("<tr><td colspan='2'>暫無資料</td></tr>");;
+			   }else{
+				   var table = $('#showlaf');
+				   table.append("<tr height='50px'><th width='150'><font color='black'>路線編號</th><th width='150'><font color='black'>物品名稱</th><th width='150'><font color='black'>拾獲地點</th><th width='150'><font color='black'>拾獲時間</th></tr>");
+				   
+				   $.each(data, function(i,n){
+					   
+					   var tr = "<tr height='50px' align='center'>" + 
+					            "<td><font color='black'>" + n.itbussnumber  + "</td>" +
+					            "<td><font color='black'>" + n.itname +  "</td>"+
+					            "<td><font color='black'>" +  n.itplace + "</td>" +
+					            "<td><font color='black'>" + n.itdate +  "</td>"+
+					            "</tr>";    
+					            
+					   table.append(tr);
+				   });			   
+			   }
+		   }
+	   });
+   }
+</script>
 <!-- Mobile Specific Meta -->
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -67,7 +168,7 @@
 <link rel="stylesheet" href="/travelista/css/owl.carousel.css">
 <link rel="stylesheet" href="/travelista/css/main.css">
 </head>
-<body>
+<body style="background-color: #F2F2F2;">
 	<header id="header">
 		<div class="header-top">
 			<div class="container">
@@ -121,7 +222,7 @@
 										<li><a href="#">Item Two</a></li>
 									</ul></li>
 							</ul></li>
-						<li>
+						<li><li>
 							<c:choose>
 								<c:when test='${empty members.membername}'>
 									<li class="menu-has-children"><a href="login/page"> 登入註冊 </a>
@@ -154,10 +255,10 @@
 		<div class="container">
 			<div class="row d-flex align-items-center justify-content-center">
 				<div class="about-content col-lg-12">
-					<h1 class="text-white">最新消息</h1>
+					<h1 class="text-white">失物招領</h1>
 					<p class="text-white link-nav">
 						<a href="/2">首頁 </a> <span class="lnr lnr-arrow-right"></span>
-						<a href="/showAnnouncement"> 最新消息</a>
+						<a href="/showlostandfound"> 失物招領</a>
 					</p>
 				</div>
 			</div>
@@ -165,33 +266,47 @@
 		
 	</section>
 	<!-- End banner Area -->
-	<c:forEach var="an" items="${ann01}">
-		<section class="new_block">
-			<div style="text-align: center;">
-				<hr>
-				<h1>${an.antitle}</h1>
-				<span><font color='black'><fmt:formatDate value="${an.registerdate}" type="date"
-						dateStyle="long" /></font></span>
-				<hr>
-			</div>
-			<p>&nbsp;</p>
-			
-			<div class="new_con">
-				<c:choose>
-					<c:when test="${empty an.animages}">
-						<p align="center" class="news_txt"><font size="5" color='black'>${an.ancontent}<BR /></font>
-						</p>
-					</c:when>
-					<c:otherwise>
-						<p align="center" class="news_txt"><font size="5" color='black'>${an.ancontent}<BR /></font>
-							<img id="output1" width="100%" height="100%" src="../animages/${an.animages}">
-						</p>
-					</c:otherwise>
-				</c:choose>
-			</div>
-		</section>
-	</c:forEach>
-	
+	<BR/><BR/><BR/>
+	<div id="table_wrap" style="float:left;margin-left:70px">
+	<table id="table_wrap">
+		<tr>
+			<th style="background-color:#E6CAFF;font-size:140%" align="center" width="300px" height="200px" >失物招領<BR/>遺失月份</th>
+		</tr>
+			<tr>
+				<td style="background-color:white;"><form method='POST'
+					action="<c:url value='/showlafbydate'/>">
+					<input name='itdate' type='hidden' type='text' value='2021/11'>
+					<input type='submit' style="width:200px;height:40px;border:2px blue none;background-color:white;font-size:130%" value='十一月份'>
+					</form>
+				</td></tr>
+			<tr>
+				<td style="background-color:white;"><form method='POST'
+					action="<c:url value='/showlafbydate'/>">
+					<input name='itdate' type='hidden' type='text' value='2021/10'>
+					<input type='submit' style="width:200px;height:40px;border:2px blue none;background-color:white;font-size:130%" value='十月份'>
+					</form>
+				</td></tr>
+				<tr>
+				<td style="background-color:white;"><form method='POST'
+					action="<c:url value='/showlafbydate'/>">
+					<input name='itdate' type='hidden' type='text' value='2021/9'>
+					<input type='submit' style="width:200px;height:40px;border:2px blue none;background-color:white;font-size:130%" value='九月份'><br>
+				</form></td>
+			</tr>
+	</table>
+	</div>
+	<div id="table_wrap"  align="center">
+	<table id="showlaf"></table><BR/>
+	</div>
+	<div align="center" >
+<%-- 			<td>Total Pages:${totalPages} Total Records:${totalElements}</td> --%>
+			<p ><c:forEach var="i"
+					begin="1" end="${totalPages}" step="1">
+					<button id="myPage" value="${i}" onclick="change(${i})">${i}</button>
+				</c:forEach>
+			</p>
+	</div>
+
 	<!-- Start insurence-one Area -->
 	<section class="insurence-one-area section-gap"></section>
 	<!-- End insurence-one Area -->
