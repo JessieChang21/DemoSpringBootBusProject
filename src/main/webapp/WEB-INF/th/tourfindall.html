@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="BIG5">
+<title>Tour Test</title>
+</head>
+<body>
+	<h2>查詢所有套票</h2>
+	<form action="">
+		<table bgcolor="#ffe4c4" border="1">
+			<tr th:each="item:${Tour}">
+				<td th:text="${item}"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
