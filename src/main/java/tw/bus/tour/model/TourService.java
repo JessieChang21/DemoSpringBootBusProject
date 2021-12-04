@@ -16,8 +16,8 @@ public class TourService {
 	public List<Tour> findAll() {
 		return tRepository.findAll();
 	}
-	public List<Tour> findById() {
-		return tRepository.findById();
+	public Tour findById(String editId) {
+		return tRepository.findById(editId);
 	}
 	public List<Tour> findByCurDate() {
 		return tRepository.findByCurDate();

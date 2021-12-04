@@ -31,10 +31,10 @@
 					<td>${Tour.discountPrice}</td>
 					<td style="text-align: center">${Tour.fk_tour_routeId}</td>
 					<td style="text-align: center">${Tour.tourContent}</td>
-					<td style="text-align: center">${Tour.tourSaleStart}&emsp到&emsp${Tour.tourSaleEnd}</td>
-					<td style="text-align: center">${Tour.tourUseStart}&emsp到&emsp${Tour.tourUseEnd}</td>
+					<td style="text-align: center">${Tour.tourSaleStart}&emsp;到&emsp;${Tour.tourSaleEnd}</td>
+					<td style="text-align: center">${Tour.tourUseStart}&emsp;到&emsp;${Tour.tourUseEnd}</td>
 					<td><img width='60' height='72' src="<c:url value='URL' />"/></td>
-					<td><a class='editlink' href="">編輯</a></td>
+					<td><a class='editlink' href="/tourEdit?editId=${Tour.tourId}">編輯</a></td>
 					<td><a class='deletelink' href="">刪除</a></td>
 				</tr>
 			</c:forEach>
