@@ -22,6 +22,8 @@ public class WebAppConfig implements WebMvcConfigurer {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/css/**").addResourceLocations("WEB-INF/resources/css/");
 		registry.addResourceHandler("/javascripts/**").addResourceLocations("WEB-INF/resources/javascripts/");
+		
+		
 	}
 	
 	

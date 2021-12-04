@@ -25,32 +25,37 @@ public class BookTicketController {
 		this.totalService = totalService;
 	}
 
+	@PostMapping(path="/bookTicketByTripName.controller")
+	public String processbookTicketByTripName(@RequestParam("tripname") String tripname ,Model m) {
+		System.out.println("controller tripname :"+ tripname);
+		return "/queryAndBookTicket/queryRouteByMap2"; // 地圖查詢第二步
+	}
 
 
-	@PostMapping(path = "/bookTicket.controller")
-	public String processAction(@RequestParam("bookBus") String busnumber ,Model m) {
-		
-		Totalbus totalBus = totalService.findById(busnumber);
-		
-		if (totalBus!=null) {			
-			Memberorder memberorder = new Memberorder();
-			
-			memberorder.setBusnumber(totalBus.getBusnumber());
-			memberorder.setInitialstation(totalBus.getInitialstation());
-			memberorder.setFinalstation(totalBus.getFinalstation());
-			memberorder.setInitialtime(totalBus.getInitialtime());
-			memberorder.setTraveltime(totalBus.getTraveltime());
-			
-			moService.insert(memberorder);
-				
-			SimpleDateFormat myFmt =new SimpleDateFormat("HH:mm:ss");
-			memberorder.setFormatinitaltime(myFmt.format(totalBus.getInitialtime()));
-			m.addAttribute("insertMemberOrder",memberorder);
-			return "/queryAndBookTicket/bookTicketSuccess";
-		}else {
-			System.out.println("totalBus=null");
-			return "/queryAndBookTicket/queryRoute";
-		}
-		
-		}
+//	@PostMapping(path = "/bookTicket.controller")
+//	public String processAction(@RequestParam("bookBus") String busnumber ,Model m) {
+//		
+//		Totalbus totalBus = totalService.findById(busnumber);
+//		
+//		if (totalBus!=null) {			
+//			Memberorder memberorder = new Memberorder();
+//			
+//			memberorder.setBusnumber(totalBus.getBusnumber());
+//			memberorder.setInitialstation(totalBus.getInitialstation());
+//			memberorder.setFinalstation(totalBus.getFinalstation());
+//			memberorder.setInitialtime(totalBus.getInitialtime());
+//			memberorder.setTraveltime(totalBus.getTraveltime());
+//			
+//			moService.insert(memberorder);
+//				
+//			SimpleDateFormat myFmt =new SimpleDateFormat("HH:mm:ss");
+//			memberorder.setFormatinitaltime(myFmt.format(totalBus.getInitialtime()));
+//			m.addAttribute("insertMemberOrder",memberorder);
+//			return "/queryAndBookTicket/bookTicketSuccess";
+//		}else {
+//			System.out.println("totalBus=null");
+//			return "/queryAndBookTicket/queryRoute";
+//		}
+//		
+//		}
 }
