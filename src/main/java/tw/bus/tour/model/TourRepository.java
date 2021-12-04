@@ -12,4 +12,6 @@ public interface TourRepository extends JpaRepository<Tour, Integer> {
 	public Tour findById(String editId);
 	@Query(value = "SELECT * FROM Tour WHERE tourSaleStart < GETDATE() AND tourUseEnd > GETDATE()", nativeQuery = true)
 	public List<Tour> findByCurDate();
+//	@Query(value = "Delete from Tour Where tourId = ?", nativeQuery = true)
+//	public void deleteCurId(Integer editId);
 }

@@ -30,13 +30,13 @@ public class Tour {
 	@Column(name = "tourContent")
 	private String tourContent;
 	@Column(name = "tourSaleStart")
-	private Date tourSaleStart;
+	private String tourSaleStart;
 	@Column(name = "tourSaleEnd")
-	private Date tourSaleEnd;
+	private String tourSaleEnd;
 	@Column(name = "tourUseStart")
-	private Date tourUseStart;
+	private String tourUseStart;
 	@Column(name = "tourUseEnd")
-	private Date tourUseEnd;
+	private String tourUseEnd;
 	@Column(name = "tourURL")
 	private String tourURL;
 
@@ -88,35 +88,35 @@ public class Tour {
 		this.tourContent = tourContent;
 	}
 
-	public Date getTourSaleStart() {
+	public String getTourSaleStart() {
 		return tourSaleStart;
 	}
 
-	public void setTourSaleStart(Date tourSaleStart) {
+	public void setTourSaleStart(String tourSaleStart) {
 		this.tourSaleStart = tourSaleStart;
 	}
 
-	public Date getTourSaleEnd() {
+	public String getTourSaleEnd() {
 		return tourSaleEnd;
 	}
 
-	public void setTourSaleEnd(Date tourSaleEnd) {
+	public void setTourSaleEnd(String tourSaleEnd) {
 		this.tourSaleEnd = tourSaleEnd;
 	}
 
-	public Date getTourUseStart() {
+	public String getTourUseStart() {
 		return tourUseStart;
 	}
 
-	public void setTourUseStart(Date tourUseStart) {
+	public void setTourUseStart(String tourUseStart) {
 		this.tourUseStart = tourUseStart;
 	}
 
-	public Date getTourUseEnd() {
+	public String getTourUseEnd() {
 		return tourUseEnd;
 	}
 
-	public void setTourUseEnd(Date tourUseEnd) {
+	public void setTourUseEnd(String tourUseEnd) {
 		this.tourUseEnd = tourUseEnd;
 	}
 

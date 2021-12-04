@@ -22,4 +22,11 @@ public class TourService {
 	public List<Tour> findByCurDate() {
 		return tRepository.findByCurDate();
 	}
+	public void deleteById(Integer editId) {
+		tRepository.deleteById(editId);
+//		tRepository.deleteCurId(editId);
+	}
+	public void insertData(Tour model ) {
+		tRepository.save(model);
+	}
 }
