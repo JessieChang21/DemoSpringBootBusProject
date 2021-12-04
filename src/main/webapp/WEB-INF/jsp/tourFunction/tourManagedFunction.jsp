@@ -28,9 +28,8 @@
 			<td><textarea id="insertname" rows="" cols=""></textarea></td>
 			<td><input id="insertPrice" value=""></td>
 			<td><input id="insertdPrice" value=""></td>
-			<td><input id="insertRouteId" value="">
-				
-				<!--  <select  id="insertRouteId">
+			<td><input id="insertRouteId" value=""> 
+			<!--  <select  id="insertRouteId">
 				
 				  <option value="0">Volvo</option>
 				  <option value="1">Saab</option>
@@ -38,15 +37,18 @@
 				  <option value="3">Audi</option>
 				  
 				</select>
-				-->
-			</td>
+				--></td>
 			<td><textarea id="insertContent" rows="" cols=""></textarea></td>
-			<td style="text-align: center"><input id="insertSaleS"
-				type="date" value=""><br>到<br> <input
-				id="insertSaleE" type="date" value=""></td>
-			<td style="text-align: center"><input id="insertUseS"
-				type="date" value=""><br>到<br> <input
-				id="insertUseE" type="date" value=""></td>
+			<td style="text-align: center">
+				<input id="insertSaleS"	type="date" value="">
+				<br>到<br>
+				<input id="insertSaleE" type="date" value="">
+			</td>
+			<td style="text-align: center">
+			<input id="insertUseS"		type="date" value="">
+				<br>到<br> 
+				<input id="insertUseE"  type="date" value="">
+			</td>
 			<td><input id="insertIMGURL" value=""></td>
 			<td><button onclick="insertNewData()">新增</button></td>
 
@@ -54,23 +56,24 @@
 		<c:forEach var='Tour' items='${TourList}'>
 			<tr>
 				<td style="text-align: center">${Tour.tourId}</td>
-				<td><textarea id="upName${Tour.tourId}">${Tour.tourName}</textarea></td>
-				<td><input id="upPrice${Tour.tourId}" value="${Tour.tourPrice}"></td>
-				<td><input id="updisPrice${Tour.tourId}"
-					value="${Tour.discountPrice}"></td>
-				<td style="text-align: center"><input
-					id="upRouteId${Tour.tourId}" value="${Tour.fk_tour_routeId}"></td>
-				<td style="text-align: center"><textarea
-						id="upContent${Tour.tourId}">${Tour.tourContent}</textarea></td>
-				<td style="text-align: center"><input id="upSS${Tour.tourId}"
-					value="${Tour.tourSaleStart}"><br>到<br> <input
-					id="upSE${Tour.tourId}" value="${Tour.tourSaleEnd}"></td>
-				<td style="text-align: center"><input id="upUS${Tour.tourId}"
-					value="${Tour.tourUseStart}"><br>到<br> <input
-					id="upUE${Tour.tourId}" value="${Tour.tourUseEnd}"></td>
-				<td><input id="upIMGURL${Tour.tourId}" Value="${Tour.tourURL}">
-
-					<img width='60' height='72' src="<c:url value='URL' />" /></td>
+				<td><textarea 	id="upName${Tour.tourId}">${Tour.tourName}</textarea></td>
+				<td><input 		id="upPrice${Tour.tourId}" 		value="${Tour.tourPrice}"></td>
+				<td><input 		id="updisPrice${Tour.tourId}" 	value="${Tour.discountPrice}"></td>
+				<td><input 		id="upRouteId${Tour.tourId}" 	value="${Tour.fk_tour_routeId}"></td>
+				<td><textarea 	id="upContent${Tour.tourId}">${Tour.tourContent}</textarea></td>
+				<td style="text-align: center">
+					<input 		id="upSS${Tour.tourId}" 		value="${Tour.tourSaleStart}" type="text" style="text-align:center">
+					<br>到<br>
+					<input 		id="upSE${Tour.tourId}" 		value="${Tour.tourSaleEnd}">
+				</td>
+				<td style="text-align: center">
+					<input 		id="upUS${Tour.tourId}" 		value="${Tour.tourUseStart}">
+					<br>到<br>
+					<input 		id="upUE${Tour.tourId}" 		value="${Tour.tourUseEnd}">
+				</td>
+				<td><input 		id="upIMGURL${Tour.tourId}" 	Value="${Tour.tourURL}">
+					<img width='60' height='72' src="<c:url 	value='static/images/tour/tourimages${Tour.tourId}.jpg' />" />
+				</td>
 				<td><button onclick="update(${Tour.tourId})">修改</button></td>
 				<td><button onclick="deleteData(${Tour.tourId})">刪除</button></td>
 			</tr>
@@ -92,8 +95,7 @@
 			goUrl = goUrl + "&tourUseStart="+ $('#upUS'+tourId).val();
 			goUrl = goUrl + "&tourUseEnd="+ $('#upUE'+tourId).val();
 			goUrl = goUrl + "&tourURL="+ $('#upIMGURL'+tourId).val();
-			
-			location.href=goUrl
+		location.href=goUrl
 	}
 	
 	function insertNewData (){
@@ -105,7 +107,6 @@
 			goUrl = goUrl + "&discountPrice="+ $('#insertdPrice').val();
 			goUrl = goUrl + "&fk_tour_routeId="+ $('#insertRouteId').val();
 			goUrl = goUrl + "&tourContent="+ $('#insertContent').val();
-			
 			//goUrl = goUrl + "&tourSaleStart="+ new Date($('#insertSaleS').val()).getTime();
 			//goUrl = goUrl + "&tourSaleEnd="+ new Date($('#insertSaleE').val()).getTime();
 			//goUrl = goUrl + "&tourUseStart="+ new Date($('#insertUseS').val()).getTime();
@@ -114,9 +115,7 @@
 			goUrl = goUrl + "&tourSaleEnd="+ $('#insertSaleE').val();
 			goUrl = goUrl + "&tourUseStart="+ $('#insertUseS').val();
 			goUrl = goUrl + "&tourUseEnd="+ $('#insertUseE').val();
-			
 			goUrl = goUrl + "&tourURL="+ $('#insertIMGURL').val();
-
 		location.href=goUrl
 		
 	}
