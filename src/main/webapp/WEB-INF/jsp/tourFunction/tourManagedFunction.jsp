@@ -33,7 +33,7 @@
 			<th>套票名稱</th>
 			<th>套票原價</th>
 			<th>優惠售價</th>
-			<th>適用路線ID</th>
+			<th>適用路線</th>
 			<th>套票內容</th>
 			<th>販售時間</th>
 			<th>使用時間</th>
@@ -42,20 +42,18 @@
 		</tr>
 		<tr>
 			<td></td>
-			<td><textarea id="insertname" rows="" cols=""></textarea></td>
+			<td><textarea id="insertname" 	  		   style="text-align:center ; width: 150px; height: 100px"></textarea></td>
 			<td><input    id="insertPrice"   value=""  style="text-align:center ; width: 45px;"></td>
 			<td><input    id="insertdPrice"  value=""  style="text-align:center ; width: 45px;"></td>
-			<td><input    id="insertRouteId" value=""  style="text-align:center ; width: 45px;"> 
-			<!--  <select  id="insertRouteId">
-				
-				  <option value="0">Volvo</option>
-				  <option value="1">Saab</option>
-				  <option value="2">Mercedes</option>
-				  <option value="3">Audi</option>
-				  
+			<td>
+				<!--<input    id="insertRouteId" value=""  style="text-align:center ; width: 45px;"> -->
+				<select id="insertRouteId">
+					<c:forEach var='Routes' items='${RoutesList}'>
+						<option value="${Routes.routeId}">${Routes.tripName}</option>
+					</c:forEach>
 				</select>
-				--></td>
-			<td><textarea id="insertContent" rows="" cols=""></textarea></td>
+			</td>
+			<td><textarea id="insertContent" style="height: 100px;width: 300px;resize: none;"></textarea></td>
 			<td style="text-align: center">
 				<input id="insertSaleS"	type="date" value="" type="text" style="text-align:center">
 				<br>到<br>
@@ -73,11 +71,21 @@
 		<c:forEach var='Tour' items='${TourList}'>
 			<tr>
 				<td style="text-align: center">${Tour.tourId}</td>
-				<td><textarea 	id="upName${Tour.tourId}">${Tour.tourName}</textarea></td>
+				<td><input 		id="upName${Tour.tourId}"	    value="${Tour.tourName}"  		style="text-align:center ; width: 150px;"></td>
 				<td><input 		id="upPrice${Tour.tourId}" 		value="${Tour.tourPrice}"       style="text-align:center ; width: 45px;"></td>
 				<td><input 		id="updisPrice${Tour.tourId}" 	value="${Tour.discountPrice}"   style="text-align:center ; width: 45px;"></td>
-				<td><input 		id="upRouteId${Tour.tourId}" 	value="${Tour.fk_tour_routeId}" style="text-align:center ; width: 45px;"></td>
-				<td><textarea 	id="upContent${Tour.tourId}">${Tour.tourContent}</textarea></td>
+				<td>
+					<!--<input 		id="upRouteId${Tour.tourId}" 	value="${Tour.fk_tour_routeId}" style="text-align:center ; width: 45px;">-->
+					<select id="upRouteId${Tour.tourId}">
+						<c:forEach var='Routes' items='${RoutesList}'>
+							<c:if test="${ Tour.fk_tour_routeId} === '${Routes.routeId}'">
+							<option value="" selected>1111111</option>
+							</c:if>
+							<option value="${Routes.routeId}">${Routes.tripName}</option>
+						</c:forEach>
+					</select>
+				</td>
+				<td><textarea 	id="upContent${Tour.tourId}" 	style="height: 100px;width: 300px;resize: none;">${Tour.tourContent}</textarea></td>
 				<td style="text-align: center">
 					<input 		id="upSS${Tour.tourId}" 		value="${Tour.tourSaleStart}" type="text" style="text-align:center ; width: 136px">
 					<br>到<br>

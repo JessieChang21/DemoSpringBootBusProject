@@ -9,10 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
 import tw.bus.tour.model.Tour;
 import tw.bus.tour.model.TourService;
+
 
 @Controller
 public class TourController {
@@ -23,10 +22,13 @@ public class TourController {
 	@GetMapping(path="/tourfindall")
 	public String processFindAllAction( Model m) {
 		m.addAttribute("TourList", tService.findAll());
-//		m.addAllAttributes(tService.findAll());
+		m.addAttribute("RoutesList",tService.findRoutes());
 		return "/tourFunction/tourManagedFunction";
 	}
-	
+//	@GetMapping(path="/testtourfindall.controller")
+//	public List<Tour> processTestFindAllAction() {
+//		return  tService.findAll();
+//	}
 	
 	@GetMapping(path="/tourEdit")
 	public String processSelectById(String editId , Model m) {

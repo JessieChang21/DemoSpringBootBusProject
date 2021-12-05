@@ -12,9 +12,15 @@ import org.springframework.stereotype.Service;
 public class TourService {
 	@Autowired
 	private TourRepository tRepository;
+	@Autowired
+	private RoutesRepository rRepository;
+	
 
 	public List<Tour> findAll() {
 		return tRepository.findAll();
+	}
+	public List<Routes> findRoutes() {
+		return rRepository.findRoutes();
 	}
 	public Tour findById(String editId) {
 		return tRepository.findById(editId);
