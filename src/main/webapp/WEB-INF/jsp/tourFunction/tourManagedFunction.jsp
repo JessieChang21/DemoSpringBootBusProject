@@ -6,16 +6,33 @@
 <html>
 <head>
 <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+<style type="text/css">
+	table {
+		border: 1px solid white;
+	}
+	
+	table th {
+		border: 1px solid white;
+		padding: 5px;
+		color: gold;
+	}
+	
+	table td {
+		border: 1px solid white;
+		padding: 5px;
+		color: black;
+	}
+</style>
 <meta charset="UTF-8">
 <title>TOUR Managed Function Part</title>
 </head>
 <body>
-	<table>
+	<table style="text-align: center">
 		<tr>
 			<th>套票ID</th>
 			<th>套票名稱</th>
 			<th>套票原價</th>
-			<th>套票優惠售價</th>
+			<th>優惠售價</th>
 			<th>適用路線ID</th>
 			<th>套票內容</th>
 			<th>販售時間</th>
@@ -26,9 +43,9 @@
 		<tr>
 			<td></td>
 			<td><textarea id="insertname" rows="" cols=""></textarea></td>
-			<td><input id="insertPrice" value=""></td>
-			<td><input id="insertdPrice" value=""></td>
-			<td><input id="insertRouteId" value=""> 
+			<td><input    id="insertPrice"   value=""  style="text-align:center ; width: 45px;"></td>
+			<td><input    id="insertdPrice"  value=""  style="text-align:center ; width: 45px;"></td>
+			<td><input    id="insertRouteId" value=""  style="text-align:center ; width: 45px;"> 
 			<!--  <select  id="insertRouteId">
 				
 				  <option value="0">Volvo</option>
@@ -57,22 +74,23 @@
 			<tr>
 				<td style="text-align: center">${Tour.tourId}</td>
 				<td><textarea 	id="upName${Tour.tourId}">${Tour.tourName}</textarea></td>
-				<td><input 		id="upPrice${Tour.tourId}" 		value="${Tour.tourPrice}" style="width: 45px;"></td>
-				<td><input 		id="updisPrice${Tour.tourId}" 	value="${Tour.discountPrice}"></td>
-				<td><input 		id="upRouteId${Tour.tourId}" 	value="${Tour.fk_tour_routeId}"></td>
+				<td><input 		id="upPrice${Tour.tourId}" 		value="${Tour.tourPrice}"       style="text-align:center ; width: 45px;"></td>
+				<td><input 		id="updisPrice${Tour.tourId}" 	value="${Tour.discountPrice}"   style="text-align:center ; width: 45px;"></td>
+				<td><input 		id="upRouteId${Tour.tourId}" 	value="${Tour.fk_tour_routeId}" style="text-align:center ; width: 45px;"></td>
 				<td><textarea 	id="upContent${Tour.tourId}">${Tour.tourContent}</textarea></td>
 				<td style="text-align: center">
-					<input 		id="upSS${Tour.tourId}" 		value="${Tour.tourSaleStart}" type="text" style="text-align:center">
+					<input 		id="upSS${Tour.tourId}" 		value="${Tour.tourSaleStart}" type="text" style="text-align:center ; width: 136px">
 					<br>到<br>
-					<input 		id="upSE${Tour.tourId}" 		value="${Tour.tourSaleEnd}"   type="text" style="text-align:center">
+					<input 		id="upSE${Tour.tourId}" 		value="${Tour.tourSaleEnd}"   type="text" style="text-align:center ; width: 136px">
 				</td>
 				<td style="text-align: center">
-					<input 		id="upUS${Tour.tourId}" 		value="${Tour.tourUseStart}"  type="text" style="text-align:center">
+					<input 		id="upUS${Tour.tourId}" 		value="${Tour.tourUseStart}"  type="text" style="text-align:center ; width: 136px">
 					<br>到<br>
-					<input 		id="upUE${Tour.tourId}" 		value="${Tour.tourUseEnd}"    type="text" style="text-align:center">
+					<input 		id="upUE${Tour.tourId}" 		value="${Tour.tourUseEnd}"    type="text" style="text-align:center ; width: 136px">
 				</td>
-				<td><input 		id="upIMGURL${Tour.tourId}" 	Value="${Tour.tourURL}">
-					<img width='60' height='72' src="<c:url 	value='/static/images/tour/tourimages${Tour.tourId}.jpg' />" />
+				<td>
+					<input 		id="upIMGURL${Tour.tourId}" 	Value="${Tour.tourURL}"><br>
+					<img width='60' height='72' src="/images/tour/tourimages${Tour.tourId}.jpg"/>
 				</td>
 				<td><button onclick="update(${Tour.tourId})">修改</button></td>
 				<td><button onclick="deleteData(${Tour.tourId})">刪除</button></td>
