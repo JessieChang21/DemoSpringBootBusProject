@@ -268,8 +268,8 @@ input:hover {
 	<div id="table_wrap" style="float: left; margin-left: 70px">
 		<table id="table_wrap">
 			<tr>
-				<th style="background-color: #E6CAFF; font-size: 140%"
-					align="center" width="300px" height="200px">訊息類型</th>
+				<th style="background-color: #f8b600; font-size: 140%"
+					align="center" width="300px" height="100px">訊息類型</th>
 			</tr>
 			<tr>
 				<td style="background-color: white;"><form method='POST'

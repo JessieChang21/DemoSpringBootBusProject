@@ -22,6 +22,7 @@ public class WebAppConfig implements WebMvcConfigurer {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/travelista/**").addResourceLocations("classpath:/static/travelista/");
+		registry.addResourceHandler("/ServerSide/**").addResourceLocations("classpath:/static/ServerSide/");
 		registry.addResourceHandler("/animages/**").addResourceLocations("/animages/");
 	}
 	
