@@ -227,8 +227,8 @@ input:hover {
 	<div id="table_wrap" style="float: left; margin-left: 70px">
 		<table id="table_wrap">
 			<tr>
-				<th style="background-color: #E6CAFF; font-size: 140%"
-					align="center" width="300px" height="200px">訊息類型</th>
+				<th style="background-color: #f8b600; font-size: 140%"
+					align="center" width="300px" height="100px">訊息類型</th>
 			</tr>
 			<tr>
 				<td style="background-color: white;"><form method='POST'
@@ -260,10 +260,11 @@ input:hover {
 			<tr>
 				<td style="background-color: white;"><a id="aaa" style="font-size: 130%; color:black" href="<c:url value='/showAnnouncement' />">全部</a></td>
 			</tr>
+			
 		</table>
 		
 	</div>
-	<BR/><BR/><BR/>
+	
 	<div id="table_wrap" align='center'>
 			<table id="showlaf">
 				<tr height='45px'>
@@ -282,7 +283,7 @@ input:hover {
 			</table>
 			
 		</div>
-	
+	<BR/><BR/><BR/><BR/><BR/><BR/>
 	<!-- Start insurence-one Area -->
 	<section class="insurence-one-area section-gap"></section>
 	<!-- End insurence-one Area -->

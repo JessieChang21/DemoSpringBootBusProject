@@ -19,17 +19,24 @@ public class BaseController {
 	
 	@GetMapping("/3")
 	public String index2() {
-		return "index3";
+		return "/announcement/index3";
 	}
-//	
-//	@GetMapping("/")
-//	public String index() {
-//		return "index2";
-//	}
+	@GetMapping("/example")
+	public String example() {
+		return "example";
+	}
+	@GetMapping("/serverexample")
+	public String example2() {
+		return "serverexample";
+	}
 	
 	@GetMapping("/insertOK")
 	public String insertOK() {
 		return "success";
+	}
+	@GetMapping("/server")
+	public String serverindex() {
+		return "serverindex";
 	}
 	
 	
