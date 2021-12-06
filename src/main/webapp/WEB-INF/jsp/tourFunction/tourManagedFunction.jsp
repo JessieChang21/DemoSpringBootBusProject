@@ -96,8 +96,8 @@
 					<input 		id="upUE${Tour.tourId}" 		value="${Tour.tourUseEnd}"    type="text" style="text-align:center ; width: 136px">
 				</td>
 				<td>
-					<input 		id="upIMGURL${Tour.tourId}" 	Value="${Tour.tourURL}"><br>
 					<img width='60' height='72' src="/images/tour/tourimages${Tour.tourId}.jpg"/>
+					<input 		id="upIMGURL${Tour.tourId}" 	Value="${Tour.tourURL}"><br>
 				</td>
 				<td><button onclick="update(${Tour.tourId})">修改</button></td>
 				<td><button onclick="deleteData(${Tour.tourId})">刪除</button></td>
