@@ -24,8 +24,8 @@ public class LoginMembersService {
 //		 return opl.get();
 //	}
 	
-	public LoginMembers findByEmail(String email) {
-		 Optional<LoginMembers> opl = uResp.findByEmail(email);
+	public LoginMembers findByUsername(String username) {
+		 Optional<LoginMembers> opl = uResp.findByUsername(username);
 		 
 		 if(opl.isEmpty()) {
 			 throw new UserNotFoundException("Can't find user!");
@@ -33,7 +33,8 @@ public class LoginMembersService {
 		 return opl.get();
 	}
 	
-	public LoginMembers createUserProfile(LoginMembers uProfiles) {
-		return uResp.save(uProfiles);
+	public LoginMembers createUserProfile(LoginMembers lmembers) {
+		return uResp.save(lmembers);
 	}
+
 }

@@ -9,25 +9,36 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-@Entity @Table(name = "Members")
+@Entity 
+@Table(name = "Members")
 @Component
 public class LoginMembers {
 	
 	@Id @Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-//	@Column(name = "NAME")
-//	private String name;
-	
+
 	@Column(name = "EMAIL")
-	private String email;
+	private String username;
 	
 	@Column(name = "MEMBERPWD")
 	private String password;
 	
-//	@Column(name = "PHONE")
-//	private String phone;
+	boolean rememberme;
+
+	
+	public LoginMembers() {
+
+	}
+
+
+	public LoginMembers(String username, String password, boolean rememberme) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.rememberme = rememberme;
+	}
+
 
 	public int getId() {
 		return id;
@@ -37,12 +48,12 @@ public class LoginMembers {
 		this.id = id;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setEmail(String emailaddress) {
-		this.email = emailaddress;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -53,4 +64,14 @@ public class LoginMembers {
 		this.password = password;
 	}
 
+
+	public boolean isRememberme() {
+		return rememberme;
+	}
+
+
+	public void setRememberme(boolean rememberme) {
+		this.rememberme = rememberme;
+	}
+	
 }
