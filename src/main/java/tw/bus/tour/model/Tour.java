@@ -23,8 +23,8 @@ public class Tour {
 	private int tourPrice;
 	@Column(name = "discountPrice")
 	private int discountPrice;
-	@Column(name = "fk_tour_routeId")
-	private String fk_tour_routeId;
+	@Column(name = "fk_routes_routeId")
+	private String fk_routes_routeId;
 	@Column(name = "tourContent")
 	private String tourContent;
 	@Column(name = "tourSaleStart")
@@ -70,12 +70,12 @@ public class Tour {
 		this.discountPrice = discountPrice;
 	}
 
-	public String getFk_tour_routeId() {
-		return fk_tour_routeId;
+	public String getFk_routes_routeId() {
+		return fk_routes_routeId;
 	}
 
-	public void setFk_tour_routeId(String fk_tour_routeId) {
-		this.fk_tour_routeId = fk_tour_routeId;
+	public void setFk_routes_routeId(String fk_routes_routeId) {
+		this.fk_routes_routeId = fk_routes_routeId;
 	}
 
 	public String getTourContent() {

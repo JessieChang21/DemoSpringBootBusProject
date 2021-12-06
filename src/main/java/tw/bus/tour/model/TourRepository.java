@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface TourRepository extends JpaRepository<Tour, Integer> {
-	@Query(value = "SELECT * FROM tour LEFT JOIN  Routes ON tour.fk_tour_routeId = Routes.routeId", nativeQuery = true)
+	@Query(value = "SELECT * FROM tour LEFT JOIN  Routes ON tour.fk_routes_routeId = Routes.routeId", nativeQuery = true)
 	public List<Tour> findAll();
 
 	@Query(value = "Select * from Tour Where tourId = ?", nativeQuery = true)

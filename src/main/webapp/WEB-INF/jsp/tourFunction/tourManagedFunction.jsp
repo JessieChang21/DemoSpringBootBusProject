@@ -18,7 +18,7 @@
 	}
 	
 	table td {
-		border: 1px solid white;
+		border: 1px solid BLACK;
 		padding: 5px;
 		color: black;
 	}
@@ -38,11 +38,11 @@
 			<th>販售時間</th>
 			<th>使用時間</th>
 			<th>縮圖</th>
-			<th>資料維護</th>
+			<th colspan="2">資料維護</th>
 		</tr>
 		<tr>
 			<td></td>
-			<td><textarea id="insertname" 	  		   style="text-align:center ; width: 150px; height: 100px"></textarea></td>
+			<td><textarea id="insertname" 	  		   style="text-align:left ; width: 200px; height: 50px;resize: none"></textarea></td>
 			<td><input    id="insertPrice"   value=""  style="text-align:center ; width: 45px;"></td>
 			<td><input    id="insertdPrice"  value=""  style="text-align:center ; width: 45px;"></td>
 			<td>
@@ -53,7 +53,7 @@
 					</c:forEach>
 				</select>
 			</td>
-			<td><textarea id="insertContent" style="height: 100px;width: 300px;resize: none;"></textarea></td>
+			<td><textarea id="insertContent" style="height: 100px;width: 300px;"></textarea></td>
 			<td style="text-align: center">
 				<input id="insertSaleS"	type="date" value="" type="text" style="text-align:center">
 				<br>到<br>
@@ -66,22 +66,21 @@
 			</td>
 			<td><input id="insertIMGURL" value=""></td>
 			<td><button onclick="insertNewData()">新增</button></td>
-
+			<td></td>
 		</tr>
 		<c:forEach var='Tour' items='${TourList}'>
 			<tr>
 				<td style="text-align: center">${Tour.tourId}</td>
-				<td><input 		id="upName${Tour.tourId}"	    value="${Tour.tourName}"  		style="text-align:center ; width: 150px;"></td>
+				<td><input 		id="upName${Tour.tourId}"	    value="${Tour.tourName}"  		style="text-align:center ; width: 200px;"></td>
 				<td><input 		id="upPrice${Tour.tourId}" 		value="${Tour.tourPrice}"       style="text-align:center ; width: 45px;"></td>
 				<td><input 		id="updisPrice${Tour.tourId}" 	value="${Tour.discountPrice}"   style="text-align:center ; width: 45px;"></td>
 				<td>
-					<!--<input 		id="upRouteId${Tour.tourId}" 	value="${Tour.fk_tour_routeId}" style="text-align:center ; width: 45px;">-->
 					<select id="upRouteId${Tour.tourId}">
 						<c:forEach var='Routes' items='${RoutesList}'>
-							<c:if test="${ Tour.fk_tour_routeId} === '${Routes.routeId}'">
-							<option value="" selected>1111111</option>
-							</c:if>
 							<option value="${Routes.routeId}">${Routes.tripName}</option>
+							<c:if test="${Tour.fk_routes_routeId == Routes.routeId}">
+							<option value="${Routes.routeId}" selected="selected">${Routes.tripName}</option>
+							</c:if>
 						</c:forEach>
 					</select>
 				</td>
@@ -114,7 +113,7 @@
 			goUrl = goUrl + "&tourName="+ $('#upName'+tourId).val();
 			goUrl = goUrl + "&tourPrice="+ $('#upPrice'+tourId).val();
 			goUrl = goUrl + "&discountPrice="+ $('#updisPrice'+tourId).val();
-			goUrl = goUrl + "&fk_tour_routeId="+ $('#upRouteId'+tourId).val();
+			goUrl = goUrl + "&fk_routes_routeId="+ $('#upRouteId'+tourId).val();
 			goUrl = goUrl + "&tourContent="+ $('#upContent'+tourId).val();
 			goUrl = goUrl + "&tourSaleStart="+ $('#upSS'+tourId).val();
 			goUrl = goUrl + "&tourSaleEnd="+ $('#upSE'+tourId).val();
@@ -131,7 +130,7 @@
 			goUrl = goUrl + "&tourName="+ $('#insertname').val();
 			goUrl = goUrl + "&tourPrice="+ $('#insertPrice').val();
 			goUrl = goUrl + "&discountPrice="+ $('#insertdPrice').val();
-			goUrl = goUrl + "&fk_tour_routeId="+ $('#insertRouteId').val();
+			goUrl = goUrl + "&fk_routes_routeId="+ $('#insertRouteId').val();
 			goUrl = goUrl + "&tourContent="+ $('#insertContent').val();
 			//goUrl = goUrl + "&tourSaleStart="+ new Date($('#insertSaleS').val()).getTime();
 			//goUrl = goUrl + "&tourSaleEnd="+ new Date($('#insertSaleE').val()).getTime();

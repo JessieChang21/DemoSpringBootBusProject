@@ -60,7 +60,7 @@ public class TourController {
 			@RequestParam("tourName") String tourName,
 			@RequestParam("tourPrice") Integer tourPrice,
 			@RequestParam("discountPrice") Integer discountPrice,
-			@RequestParam("fk_tour_routeId") String fk_tour_routeId,
+			@RequestParam("fk_routes_routeId") String fk_routes_routeId,
 			@RequestParam("tourContent") String tourContent,
 			@RequestParam("tourSaleStart") String tourSaleStart,
 			@RequestParam("tourSaleEnd") String tourSaleEnd,
@@ -76,7 +76,7 @@ public class TourController {
 		insertData.setTourName(tourName);
 		insertData.setTourPrice(tourPrice);
 		insertData.setDiscountPrice(discountPrice);
-		insertData.setFk_tour_routeId(fk_tour_routeId);
+		insertData.setFk_routes_routeId(fk_routes_routeId);
 		insertData.setTourContent(tourContent);
 		insertData.setTourSaleStart(tourSaleStart);
 		insertData.setTourSaleEnd(tourSaleEnd);
