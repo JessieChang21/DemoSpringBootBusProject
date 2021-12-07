@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Email;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -39,35 +40,47 @@ public class Members {
 	@Column(name = "ADRESS")
 	private String adress;
 	
-//	@Column(name = "AGE")
-//	private Integer age;
+	@Column(name = "AGE")
+	private Integer age;
 	
-//	@Column(name = "FILENAME")
-//	private String fileName;
-//	
-//	@Column(name = "MIMETYPE")
-//	private String mimeType;
-//	
-//	@Column(name = "MEMBERIMAGE")
-//	private Blob memberImage;
+	@Column(name = "FILENAME")
+	private String fileName;
 	
-//	@Transient
-//	MultipartFile memberMultipartFile;
+	@Column(name = "MIMETYPE")
+	private String mimeType;
+	
+	@Column(name = "MEMBERIMAGE")
+	private Blob memberImage;
+	
+	@Transient
+	MultipartFile memberMultipartFile;
 	
 	@Transient
 	String memberpwd2;
+	
+	@Transient
+	String agreecheckbox;
+	
+	@Transient
+	String emailcheck;
+	
+	@Transient
+	String emailcheck2;
+	
+	@Transient
+	boolean rememberme;
 
 	public Members() {
 		
 	}
 
-	public Members(Long id, String email, String membername, String memberpwd, String memberpwd2) {
-		this.id = id;
-		this.email = email;
-		this.membername = membername;
-		this.memberpwd = memberpwd;
-		this.memberpwd2 = memberpwd2;
-	}
+//	public Members(Long id, String email, String membername, String memberpwd, String memberpwd2) {
+//		this.id = id;
+//		this.email = email;
+//		this.membername = membername;
+//		this.memberpwd = memberpwd;
+//		this.memberpwd2 = memberpwd2;
+//	}
 
 
 //	public Members(Long id, String email, String membername, String memberpwd, String gender, 
@@ -84,44 +97,44 @@ public class Members {
 //		this.memberImage = memberImage;
 //	}
 
-//	public Integer getAge() {
-//		return age;
-//	}
-//
-//
-//	public void setAge(Integer age) {
-//		this.age = age;
-//	}
+	public Integer getAge() {
+		return age;
+	}
 
 
-//	public String getFileName() {
-//		return fileName;
-//	}
-//
-//
-//	public void setFileName(String fileName) {
-//		this.fileName = fileName;
-//	}
-//
-//
-//	public String getMimeType() {
-//		return mimeType;
-//	}
-//
-//
-//	public void setMimeType(String mimeType) {
-//		this.mimeType = mimeType;
-//	}
-//
-//
-//	public Blob getMemberImage() {
-//		return memberImage;
-//	}
-//
-//
-//	public void setMemberImage(Blob memberImage) {
-//		this.memberImage = memberImage;
-//	}
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+
+	public String getFileName() {
+		return fileName;
+	}
+
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+
+	public String getMimeType() {
+		return mimeType;
+	}
+
+
+	public void setMimeType(String mimeType) {
+		this.mimeType = mimeType;
+	}
+
+
+	public Blob getMemberImage() {
+		return memberImage;
+	}
+
+
+	public void setMemberImage(Blob memberImage) {
+		this.memberImage = memberImage;
+	}
 
 
 	public String getMembername() {
@@ -182,27 +195,85 @@ public class Members {
 		this.memberpwd2 = memberpwd2;
 	}
 
-//	public MultipartFile getMemberMultipartFile() {
-//		return memberMultipartFile;
-//	}
-//
-//
-//	public void setMemberMultipartFile(MultipartFile memberMultipartFile) {
-//		this.memberMultipartFile = memberMultipartFile;
-//	}
+	
+	
+	public MultipartFile getMemberMultipartFile() {
+		return memberMultipartFile;
+	}
 
+
+	public void setMemberMultipartFile(MultipartFile memberMultipartFile) {
+		this.memberMultipartFile = memberMultipartFile;
+	}
+
+
+	public String getAgreecheckbox() {
+		return agreecheckbox;
+	}
+
+	public void setAgreecheckbox(String agreecheckbox) {
+		this.agreecheckbox = agreecheckbox;
+	}
+
+	public String getEmailcheck() {
+		return emailcheck;
+	}
+
+	public void setEmailcheck(String emailcheck) {
+		this.emailcheck = emailcheck;
+	}
+
+	public String getEmailcheck2() {
+		return emailcheck2;
+	}
+
+	public void setEmailcheck2(String emailcheck2) {
+		this.emailcheck2 = emailcheck2;
+	}
+
+	public boolean isRememberme() {
+		return rememberme;
+	}
+
+	public void setRememberme(boolean rememberMe) {
+		this.rememberme = rememberMe;
+	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Members [email=");
+		builder.append("Members [id=");
+		builder.append(id);
+		builder.append(", email=");
 		builder.append(email);
 		builder.append(", membername=");
 		builder.append(membername);
 		builder.append(", memberpwd=");
 		builder.append(memberpwd);
+		builder.append(", gender=");
+		builder.append(gender);
+		builder.append(", adress=");
+		builder.append(adress);
+		builder.append(", age=");
+		builder.append(age);
+		builder.append(", fileName=");
+		builder.append(fileName);
+		builder.append(", mimeType=");
+		builder.append(mimeType);
+		builder.append(", memberImage=");
+		builder.append(memberImage);
+		builder.append(", memberMultipartFile=");
+		builder.append(memberMultipartFile);
 		builder.append(", memberpwd2=");
 		builder.append(memberpwd2);
+		builder.append(", agreecheckbox=");
+		builder.append(agreecheckbox);
+		builder.append(", emailcheck=");
+		builder.append(emailcheck);
+		builder.append(", emailcheck2=");
+		builder.append(emailcheck2);
+		builder.append(", rememberme=");
+		builder.append(rememberme);
 		builder.append("]");
 		return builder.toString();
 	}

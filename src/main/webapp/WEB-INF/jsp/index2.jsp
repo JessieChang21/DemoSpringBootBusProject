@@ -195,17 +195,15 @@ input:hover {
 							</ul></li>
 						<li><c:choose>
 								<c:when test='${empty members.membername}'>
-									<li class="menu-has-children"><a href="login/page">
-											登入註冊 </a> <!-- 										<ul> --> <!-- 											<li><a href="login/page">會員登入</a></li> -->
-										<!-- 											<li><a href="register/membersregister.controller">註冊</a></li> -->
-										<!-- 										</ul> --></li>
+									<li class="menu-has-children"><a href="/register/membersregister.controller">登入註冊 </a></li>
 								</c:when>
 								<c:when test='${! empty members.membername}'>
-									<li class="menu-has-children"><a href="#">${members.membername}
+									<li class="menu-has-children"><a href="#"><img height='30px'width='30px' Style="border-radius:50%"
+                src="<c:url value='/getMemberImage?id=${members.id}' />">&ensp;${members.membername}
 											,您好</a>
 										<ul>
-											<li><a href="elements.html">會員資料</a></li>
-											<li><a href="/logout">登出</a></li>
+											<li><a href="/updatemembers.controller">會員資料</a></li>
+											<li><a href="/logingout">登出</a></li>
 										</ul></li>
 								</c:when>
 							</c:choose></li>
