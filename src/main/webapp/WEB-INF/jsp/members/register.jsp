@@ -135,6 +135,56 @@ input:hover {
 <link rel="stylesheet" href="/travelista/css/animate.min.css">
 <link rel="stylesheet" href="/travelista/css/owl.carousel.css">
 <link rel="stylesheet" href="/travelista/css/main.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	load();
+});
+
+function load(){
+	$('#emailcheckdiv').empty("");
+	var span = $('#emailcheckdiv');
+	span.append("<button id='emailcheckbut' type='button' value='emailcheckbut' class='primary-btn' onclick='emailcheckclick()'>emailcheck</button>")
+		   }
+
+function emailcheckclick(){
+	
+	var email = $('#email').val()
+	
+	var params = {"email":email}
+	console.log(params);
+	$.ajax({
+    	   type:'POST',
+    	   url:'sendeMail',
+    	   dataType:'JSON',
+    	   contentType:'application/json',
+    	   data:JSON.stringify(params),
+    	   success: function(data){
+    		   console.log(data);
+    		   console.log(data['random']);
+    		   $('#emailcheck2').val(data['random']);
+    	   }
+    	});
+	}
+	
+// $('#logemail').on("blur",function(){
+// 	var email = $(this).val();
+// 	var params = {"logemail":email}
+// 	$.ajax({
+//     	   type:'POST',
+//     	   url:'getusername',
+//     	   dataType:'JSON',
+//     	   contentType:'application/json',
+//     	   data:JSON.stringify(params),
+//     	   success: function(data){
+//     		   console.log(data);
+//     		   console.log(data['membername']);
+//     		   $('#username').val(data['membername']);
+//     	   }
+//     	});
+// })
+</script>
 </head>
 <body>
 	<header id="header">
@@ -194,7 +244,7 @@ input:hover {
 							</ul></li>
 						<li><c:choose>
 								<c:when test='${empty members.membername}'>
-									<li class="menu-has-children"><a href="/register/membersregister.controller">註冊</a></li>
+									<li class="menu-has-children"><a href="/login/page">登入</a></li>
 								</c:when>
 								<c:when test='${! empty members.membername}'>
 									<li class="menu-has-children"><a href="#"><img height='30px'width='30px' Style="border-radius:50%"
@@ -229,37 +279,49 @@ input:hover {
 				<div class="col-lg-4 col-md-6 banner-right">
 					<ul class="nav nav-tabs" id="myTab" role="tablist">
 						<li class="nav-item"><a class="nav-link active"
-							id="login-tab" data-toggle="tab" href="#login" role="tab"
-							aria-controls="flight" aria-selected="true">登入</a></li>
+							id="register-tab" data-toggle="tab" href="#register" role="tab"
+							aria-controls="flight" aria-selected="true">快速註冊</a></li>
 					</ul>
 					<div class="tab-content" id="registerTabContent">
-						<div class="tab-pane fade show active" id="login" role="tabpanel"
+						<div class="tab-pane fade show active" id="register" role="tabpanel"
 							aria-labelledby="register-tab">
-							<form class="form-wrap" method="post" action="/login/page">
+							<form:form class="form-wrap123" method="POST" modelAttribute="members" >
+								<form:input id="email" path='email' placeholder="請輸入電子信箱" type="text" value="" class="form-control"/>
+<!-- 										<br> -->
+								<form:errors path="email" cssClass="error" />
 								<br>
-<%-- 									<form:input path="logemail" id="logemail" type="text"  --%>
-<!-- 									class="form-control" placeholder="email "/>	 -->
-<!-- 									name="username"  -->
-<!-- 									onfocus="this.placeholder = ''"  -->
-<!-- 									onblur="this.placeholder = 'email '"  -->
-									<input id="username" name="username" type="text" 
-									class="form-control" placeholder="email" />
-									 
-									<br>
-									<input name="password" type="text"
-									class="form-control" placeholder="password " /> 
-<!-- 									name="password" -->
-<!-- 									onfocus="this.placeholder = ''" -->
-<!-- 									onblur="this.placeholder = 'password '"  -->
-<!-- 									<br> -->
-<%-- 									<form:errors  path="invalidCredentials" cssClass="error" /> --%>
-<!-- 									<br> -->
-<%-- 									<form:checkbox path="rememberMe" />記住我 --%>
-									
-									<br><br>
-<!-- 									<button class="primary-btn" type="submit" value="login">Login</button> -->
-									<input class="primary-btn" type="submit" value="登入"/>
-							</form>
+								<form:input  path='memberpwd'  placeholder="請輸入密碼(至少8碼)" type="password" value="" class="form-control" />
+<!-- 										<br> -->
+								<form:errors path="memberpwd" cssClass="error" />
+								<br>
+								<form:input path='memberpwd2' placeholder="請再次輸入密碼" type="password" value="" class="form-control"/>
+<!-- 										<br> -->
+								<form:errors path="memberpwd2" cssClass="error" />
+								<br>
+								<form:input path='membername' placeholder="請輸入姓名" type="text" value="" class="form-control"/>
+<!-- 										<br> -->
+								<form:errors path="membername" cssClass="error" />
+								<br>
+								<span id="emailcheckdiv"></span>
+								<form:input id='emailcheck' path='emailcheck' type="text" value="" placeholder="請輸入驗證碼" class="form-control123" maxlength="6" />
+								
+<!-- 										<br> -->
+								<form:errors path="emailcheck" cssClass="error" /><br>
+								<form:input id='emailcheck2' path='emailcheck2' type="text" value="" style="visibility:hidden"/>
+								<br>
+								<form:checkbox path='agreecheckbox' style="width: 18px; height: 18px;" value="true" />
+								<label for="agree" data-lang="我同意">我同意</label><a href="#.pdf" target="_blank">XXX隱私權政策與服務條款</a>
+<!-- 										<br> -->
+								<form:errors path="agreecheckbox" cssClass="error" />
+					
+								<div id="btnArea" align="center">
+							 	 	<input class="primary-btn" type="submit" value="儲存"/>
+<!-- 							 	 	<a href="/register/membersaddregister.controller" class="primary-btn text-uppercase">儲存</a> -->
+							  		<input class="primary-btn" type="reset" value="重填">
+								</div>
+								<div id="feedback" align="center"></div>
+								
+							</form:form>
 						</div>
 					</div>
 						

@@ -19,7 +19,7 @@ import javax.sql.rowset.serial.SerialException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -60,11 +60,11 @@ public class Registercontroller {
 	
 	@GetMapping("/membersregister.controller")
 	public String processMembersAddAction(Model m) {
-		LoginMembers lmembers = new LoginMembers();
+//		LoginMembers lmembers = new LoginMembers();
 		Members members = new Members();
-		m.addAttribute("lmembers",lmembers);
+//		m.addAttribute("lmembers",lmembers);
 		m.addAttribute("members",members);
-		return "login";
+		return "members/register";
 	}
 	
 	@PostMapping("/membersregister.controller") 
@@ -77,13 +77,13 @@ public class Registercontroller {
 			System.out.println(bindingResult.getAllErrors());
 			LoginMembers lmembers = new LoginMembers();
 			m.addAttribute("lmembers",lmembers);
-			return "login";
+			return "members/register";
 		}
 		if (mService.existsByEmail(members.getEmail())) {
 			bindingResult.rejectValue("email", "", "帳號已存在，請重新輸入");
 			LoginMembers lmembers = new LoginMembers();
 			m.addAttribute("lmembers",lmembers);
-			return "login";
+			return "members/register";
 		}
 		
 		byte[] b = null;
@@ -111,7 +111,9 @@ public class Registercontroller {
 		members.setFileName("NoImage.png");
 		members.setMimeType("image/png");
 		members.setAge(1);
-		members.setMemberpwd(getMD5Endocing(EncodePwdUtil.encryptString(members.getMemberpwd())));
+//		members.setMemberpwd(getMD5Endocing(EncodePwdUtil.encryptString(members.getMemberpwd())));
+//		String encodePwd = new BCryptPasswordEncoder().encode(members.getMemberpwd());
+		members.setMemberpwd(new BCryptPasswordEncoder().encode(members.getMemberpwd()));
 		System.out.println("membersout = "+members);
 		mService.insertMembers(members);
 		session.setAttribute("members",members);

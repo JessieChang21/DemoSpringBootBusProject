@@ -182,7 +182,7 @@ input:hover {
 							</ul></li>
 						<li><c:choose>
 								<c:when test='${empty members.membername}'>
-									<li class="menu-has-children"><a href="/register/membersregister.controller">登入註冊 </a></li>
+									<li class="menu-has-children"><a href="/login/page">登入&ensp;/&ensp;註冊 </a></li>
 								</c:when>
 								<c:when test='${! empty members.membername}'>
 									<li class="menu-has-children"><a href="#"><img height='30px'width='30px' Style="border-radius:50%"

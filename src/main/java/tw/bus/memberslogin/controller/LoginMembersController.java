@@ -311,7 +311,7 @@ public class LoginMembersController {
 		String nextPath = (String)session.getAttribute("requestURI");
 		if (nextPath == null) {
 			nextPath = request.getContextPath();
-			return "members/updatemembers";
+			return "index2";
 		}
 		return "redirect: " + nextPath;
 	}
