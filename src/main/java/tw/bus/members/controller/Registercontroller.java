@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import javax.sql.rowset.serial.SerialBlob;
@@ -238,7 +239,7 @@ public class Registercontroller {
 	@ResponseBody
 	public Map sendEmail(@RequestBody Map<String, String> o
 //			,Model model
-			) {
+			) throws MessagingException {
 		// 註冊的前置作業，你要自行完成
 		// 假設前端會送一Email Address來後端，本範例將假設放在參數：emailAddress內
 //		Map<String, String> map = (Map<String, String>) session.getAttribute("randomCode");
@@ -252,7 +253,7 @@ public class Registercontroller {
 		String random = randomCode();
 //		map.put(random, random);
 		System.out.println("random=" + random);
-		senderService.sendEmail(email, "歡迎您註冊成為 無事坐BUS 的會員", "請於10分鐘內輸入驗證碼 : " + 
+		senderService.sendMineEmail(email, "歡迎您註冊成為 無事坐BUS 的會員", "請於10分鐘內輸入驗證碼 : " + 
 				random + "<br>");
 //		model.addAttribute("random", random);
 		o.put("random", random);
