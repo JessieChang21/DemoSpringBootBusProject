@@ -47,7 +47,7 @@
 			<td><input    id="insertdPrice"  value=""  style="text-align:center ; width: 45px;"></td>
 			<td>
 				<!--<input    id="insertRouteId" value=""  style="text-align:center ; width: 45px;"> -->
-				<select id="insertRouteId">
+				<select id="insertRouteId" style="text-align: center;">
 					<c:forEach var='Routes' items='${RoutesList}'>
 						<option value="${Routes.routeId}">${Routes.tripName}</option>
 					</c:forEach>
@@ -69,18 +69,18 @@
 			<td></td>
 		</tr>
 		<c:forEach var='Tour' items='${TourList}'>
-			<tr>
+			<tr id="TourData" class="">
 				<td style="text-align: center">${Tour.tourId}</td>
 				<td><input 		id="upName${Tour.tourId}"	    value="${Tour.tourName}"  		style="text-align:center ; width: 200px;"></td>
 				<td><input 		id="upPrice${Tour.tourId}" 		value="${Tour.tourPrice}"       style="text-align:center ; width: 45px;"></td>
 				<td><input 		id="updisPrice${Tour.tourId}" 	value="${Tour.discountPrice}"   style="text-align:center ; width: 45px;"></td>
 				<td>
-					<select id="upRouteId${Tour.tourId}">
+					<select id="upRouteId${Tour.tourId}" style="text-align: center;">
 						<c:forEach var='Routes' items='${RoutesList}'>
-							<option value="${Routes.routeId}">${Routes.tripName}</option>
 							<c:if test="${Tour.fk_routes_routeId == Routes.routeId}">
 							<option value="${Routes.routeId}" selected="selected">${Routes.tripName}</option>
 							</c:if>
+							<option value="${Routes.routeId}">${Routes.tripName}</option>
 						</c:forEach>
 					</select>
 				</td>
@@ -96,8 +96,8 @@
 					<input 		id="upUE${Tour.tourId}" 		value="${Tour.tourUseEnd}"    type="text" style="text-align:center ; width: 136px">
 				</td>
 				<td>
-					<img width='60' height='72' src="/images/tour/tourimages${Tour.tourId}.jpg"/>
-					<input 		id="upIMGURL${Tour.tourId}" 	Value="${Tour.tourURL}"><br>
+					<img width='60' height='72' src="/images/tour/tourimages${Tour.tourId}.jpg"/><br>
+					<div id="upIMGURL${Tour.tourId}" >tourimages${Tour.tourId}</div>
 				</td>
 				<td><button onclick="update(${Tour.tourId})">修改</button></td>
 				<td><button onclick="deleteData(${Tour.tourId})">刪除</button></td>
@@ -142,11 +142,11 @@
 			goUrl = goUrl + "&tourUseEnd="+ $('#insertUseE').val();
 			goUrl = goUrl + "&tourURL="+ $('#insertIMGURL').val();
 		location.href=goUrl
-		
 	}
 	function deleteData(tourId){
 		var goURL = "/tourDelete?editId="+tourId;
 		location.href=goURL;
 	}
+	function
 </script>
 </html>

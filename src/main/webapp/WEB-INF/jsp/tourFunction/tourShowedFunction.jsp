@@ -155,7 +155,19 @@ table {
 			</ul>
 		</div>
 		<div class="content">
-			<div class="left">1</div>
+			<div class="left">
+			<table>
+			<tr>
+			<th>北</th>
+			<th>中</th>
+			<th>南</th>
+			<th>東</th>
+			</tr>
+			<tr>
+			<td></td>
+			</tr>
+			</table>
+			</div>
 			<div class="center">2</div>
 			<div class="right">3</div>
 		</div>
