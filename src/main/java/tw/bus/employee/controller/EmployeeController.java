@@ -80,8 +80,7 @@ public class EmployeeController {
 	}
 	
 	@PostMapping("/employeeInsert2") 
-	@ResponseBody
-	public Employee processInsertAction2(@RequestParam("id") String id,
+	public String processInsertAction2(@RequestParam("id") String id,
 			@RequestParam("employeename") String employeename,
 			@RequestParam("gender") String gender,
 			@RequestParam("jobid") String jobid,
@@ -99,12 +98,12 @@ public class EmployeeController {
 		System.out.println(formatter.format(date));
 		e.setEnterdate(formatter.format(date));
 		e.setSeniority(0);
-		return eService.insertEmployee(e);
+		eService.insertEmployee(e);
+		return "employee/employeeQueryAll";
 	}
 	
 	@PostMapping("employeeUpdate") 
-	@ResponseBody
-	public Employee processUpdateAction(@RequestBody Employee e) {
+	public String processUpdateAction(@RequestBody Employee e) {
 		e.setGroupid("A");
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
@@ -112,8 +111,8 @@ public class EmployeeController {
 		System.out.println(formatter.format(date));
 		e.setEnterdate(formatter.format(date));
 		e.setSeniority(0);
-		return eService.updateEmployee(e);
-		//return "employee/employeeQueryAll";
+		eService.updateEmployee(e);
+		return "employee/employeeQueryAll";
 	}
 	
 	@PostMapping("employeeDelete") 
