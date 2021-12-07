@@ -38,7 +38,7 @@
 <!-- 				<th>乘車時間</th> -->
 <!-- 				<th>訂票</th> -->
 <!-- 			</tr> -->
->>>>>>> forhw
+
 
 
 <%-- 			<c:forEach var="aBean" items="${resultTotalBus}"> --%>

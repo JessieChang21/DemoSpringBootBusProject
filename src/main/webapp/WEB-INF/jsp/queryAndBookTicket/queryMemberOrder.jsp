@@ -18,7 +18,6 @@
 <!-- 			</tr> -->
 <!-- 			<tr> -->
 <!-- 				<td><button type="submit" value="login">送出</button></td> -->
->>>>>>> forhw
 
 <!-- 			</tr> -->
 <!-- 		</table> -->

@@ -8,80 +8,88 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-//import javax.validation.constraints.NotBlank;
-
 import org.springframework.stereotype.Component;
-//import org.springframework.validation.annotation.Validated;
 
-@Entity @Table(name="memberorder")
+@Entity @Table(name="memberorder2")
 @Component
-//@Validated
-public class Memberorder {
-	@Id @Column(name="orderid")
+public class Memberorder2 {
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	@NotBlank
+	private Integer oid;
+	
+	@Column(name="ORDERID")
 	private Integer orderid;
 	
-//	其他功能尚未完成，暫時寫@Transient
-	@Transient
-	private String memberid;
+	@Column(name="EMAIL")
+	private String email;
 	
-	@Column(name="busnumber")
-	private String busnumber;
+	@Column(name="BUSNUMBER")
+	private Integer busnumber;
 	
-	@Column(name="initialstation")
+	@Column(name="INITIALSTATION")
 	private String initialstation;
 	
-	@Column(name="finalstation")
+	@Column(name="FINALSTATION")
 	private String finalstation;
 	
-	@Transient
-	private java.util.Date traveldate;
+	@Column(name="TRAVELDATE")
+	private String traveldate;
+//	private Date traveldate;
 	
-	@Column(name="initialtime")
-	private java.util.Date initialtime;
+	@Column(name="INITIALTIME")
+	private Date initialtime;
 	
-	@Transient
-	private String formatinitaltime;
-	
-	@Column(name="traveltime")
+	@Column(name="TRAVELTIME")
 	private String traveltime;
 	
-	@Transient
+	@Column(name="TICKETTYPE")
 	private String tickettype;
-	@Transient
+	
+	@Column(name="PRICE")
 	private Integer price;
-	@Transient
+	
+	@Column(name="SEAT")
 	private Integer seat;
-	@Transient
+	
+	@Column(name="ORDERQTY")
 	private Integer orderqty;
 	
-	public Memberorder() {
+	@Column(name="ORDERDATE")
+	private Date orderdate;
+	
+	public Memberorder2() {
 		
 	}
-	
-	
-	public Memberorder(Integer orderid, String busnumber, String initialstation, String finalstation, Date initialtime,
-			String formatinitaltime, String traveltime) {
+
+	public Memberorder2(Integer oid, Integer orderid, String email, Integer busnumber, String initialstation,
+			String finalstation, String traveldate, Date initialtime, String traveltime, String tickettype,
+			Integer price, Integer seat, Integer orderqty, Date orderdate) {
 		super();
+		this.oid = oid;
 		this.orderid = orderid;
+		this.email = email;
 		this.busnumber = busnumber;
 		this.initialstation = initialstation;
 		this.finalstation = finalstation;
+		this.traveldate = traveldate;
 		this.initialtime = initialtime;
-		this.formatinitaltime = formatinitaltime;
 		this.traveltime = traveltime;
+		this.tickettype = tickettype;
+		this.price = price;
+		this.seat = seat;
+		this.orderqty = orderqty;
+		this.orderdate = orderdate;
 	}
-
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Memberorder [orderid=");
+		builder.append("Memberorder2 [oid=");
+		builder.append(oid);
+		builder.append(", orderid=");
 		builder.append(orderid);
-		builder.append(", memberid=");
-		builder.append(memberid);
+		builder.append(", email=");
+		builder.append(email);
 		builder.append(", busnumber=");
 		builder.append(busnumber);
 		builder.append(", initialstation=");
@@ -92,8 +100,6 @@ public class Memberorder {
 		builder.append(traveldate);
 		builder.append(", initialtime=");
 		builder.append(initialtime);
-		builder.append(", formatinitaltime=");
-		builder.append(formatinitaltime);
 		builder.append(", traveltime=");
 		builder.append(traveltime);
 		builder.append(", tickettype=");
@@ -104,141 +110,124 @@ public class Memberorder {
 		builder.append(seat);
 		builder.append(", orderqty=");
 		builder.append(orderqty);
+		builder.append(", orderdate=");
+		builder.append(orderdate);
 		builder.append("]");
 		return builder.toString();
 	}
 
+	public Integer getOid() {
+		return oid;
+	}
+
+	public void setOid(Integer oid) {
+		this.oid = oid;
+	}
 
 	public Integer getOrderid() {
 		return orderid;
 	}
 
-
 	public void setOrderid(Integer orderid) {
 		this.orderid = orderid;
 	}
 
-
-	public String getMemberid() {
-		return memberid;
+	public String getEmail() {
+		return email;
 	}
 
-
-	public void setMemberid(String memberid) {
-		this.memberid = memberid;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-
-	public String getBusnumber() {
+	public Integer getBusnumber() {
 		return busnumber;
 	}
 
-
-	public void setBusnumber(String busnumber) {
+	public void setBusnumber(Integer busnumber) {
 		this.busnumber = busnumber;
 	}
-
 
 	public String getInitialstation() {
 		return initialstation;
 	}
 
-
 	public void setInitialstation(String initialstation) {
 		this.initialstation = initialstation;
 	}
-
 
 	public String getFinalstation() {
 		return finalstation;
 	}
 
-
 	public void setFinalstation(String finalstation) {
 		this.finalstation = finalstation;
 	}
 
-
-	public java.util.Date getTraveldate() {
+	public String getTraveldate() {
 		return traveldate;
 	}
 
-
-	public void setTraveldate(java.util.Date traveldate) {
+	public void setTraveldate(String traveldate) {
 		this.traveldate = traveldate;
 	}
 
-
-	public java.util.Date getInitialtime() {
+	public Date getInitialtime() {
 		return initialtime;
 	}
 
-
-	public void setInitialtime(java.util.Date initialtime) {
+	public void setInitialtime(Date initialtime) {
 		this.initialtime = initialtime;
 	}
-
-
-	public String getFormatinitaltime() {
-		return formatinitaltime;
-	}
-
-
-	public void setFormatinitaltime(String formatinitaltime) {
-		this.formatinitaltime = formatinitaltime;
-	}
-
 
 	public String getTraveltime() {
 		return traveltime;
 	}
 
-
 	public void setTraveltime(String traveltime) {
 		this.traveltime = traveltime;
 	}
-
 
 	public String getTickettype() {
 		return tickettype;
 	}
 
-
 	public void setTickettype(String tickettype) {
 		this.tickettype = tickettype;
 	}
 
-
-	public int getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
-
 
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
 
-
-	public int getSeat() {
+	public Integer getSeat() {
 		return seat;
 	}
-
 
 	public void setSeat(Integer seat) {
 		this.seat = seat;
 	}
 
-
-	public int getOrderqty() {
+	public Integer getOrderqty() {
 		return orderqty;
 	}
-
 
 	public void setOrderqty(Integer orderqty) {
 		this.orderqty = orderqty;
 	}
 
-	
+	public Date getOrderdate() {
+		return orderdate;
+	}
+
+	public void setOrderdate(Date orderdate) {
+		this.orderdate = orderdate;
+	}
+
 	
 	
 	
