@@ -203,7 +203,7 @@ input:hover {
 											,您好</a>
 										<ul>
 											<li><a href="/updatemembers.controller">會員資料</a></li>
-											<li><a href="/logingout">登出</a></li>
+											<li><a href="/logout">登出</a></li>
 										</ul></li>
 								</c:when>
 							</c:choose></li>

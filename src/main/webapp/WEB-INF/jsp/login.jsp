@@ -218,7 +218,7 @@ input:hover{
                 src="<c:url value='/getMemberImage?id=${members.id}' />">&ensp;${members.membername} ,您好</a>
 										<ul>
 											<li><a href="elements.html">會員資料</a></li>
-											<li><a href="/logingout">登出</a></li>
+											<li><a href="/logout">登出</a></li>
 										</ul>
 									</li>
 								</c:when>
@@ -247,16 +247,18 @@ input:hover{
 					<div class="tab-content" id="loginTabContent">
 						<div class="tab-pane fade show active" id="login" role="tabpanel"
 							aria-labelledby="login-tab">
-							<form:form class="form-wrap" modelAttribute="lmembers" method="post" action="/login">
+							<form class="form-wrap" method="post" action="/register/membersregister.controller">
 								<br>
-									<form:input path="username" type="text" 
-									class="form-control" placeholder="email "/>	
+<%-- 									<form:input path="logemail" id="logemail" type="text"  --%>
+<!-- 									class="form-control" placeholder="email "/>	 -->
 <!-- 									name="username"  -->
 <!-- 									onfocus="this.placeholder = ''"  -->
 <!-- 									onblur="this.placeholder = 'email '"  -->
+									<input id="username" name="username" type="text" 
+									class="form-control" placeholder="email" />
 									 
 									<br>
-									<form:input path="password" type="text"
+									<input name="password" type="text"
 									class="form-control" placeholder="password " /> 
 <!-- 									name="password" -->
 <!-- 									onfocus="this.placeholder = ''" -->
@@ -264,12 +266,12 @@ input:hover{
 <!-- 									<br> -->
 <%-- 									<form:errors  path="invalidCredentials" cssClass="error" /> --%>
 <!-- 									<br> -->
-									<form:checkbox path="rememberme" />記住我
+<%-- 									<form:checkbox path="rememberMe" />記住我 --%>
 									
 									<br><br>
 <!-- 									<button class="primary-btn" type="submit" value="login">Login</button> -->
 									<input class="primary-btn" type="submit" value="登入"/>
-							</form:form>
+							</form>
 						</div>
 					</div>
 				</div>

@@ -177,6 +177,7 @@ span.error {
 							</ul>
 						</li>
 						<li>
+					
 							<c:choose>
 								<c:when test='${empty members.membername}'>
 									<li class="menu-has-children"> 登入註冊
@@ -190,13 +191,13 @@ span.error {
 									<li class="menu-has-children"><a href="#"><img height='30px'width='30px' Style="border-radius:50%"
                 src="<c:url value='/getMemberImage?id=${members.id}' />">&ensp;${members.membername} ,您好</a>
 										<ul>
-											<li><a href="elements.html">會員資料</a></li>
-											<li><a href="/logingout">登出</a></li>
+											<li><a href="#update">會員資料</a></li>
+											<li><a href="/logout">登出</a></li>
 										</ul>
 									</li>
 								</c:when>
 							</c:choose>
-						</li>
+						
 					</ul>
 				</nav>
 				<!-- #nav-menu-container -->
@@ -234,10 +235,10 @@ span.error {
 								<br>
 								<form:input path="membername" name="membername" type="text" value="${members.membername}" class="form-control" readonly="readonly"/>
 								<br>
-								<div class="radio">請選擇性別: 
-								<label><form:radiobutton path="gender" name="gender" value="男" /> 男 </label>
-								<label><form:radiobutton path="gender" value="女" /> 女 </label> 
-								<label><form:radiobutton path="gender" value="保密" checked="true"/> 保密 </label> </div>
+								<div class="radio" >請選擇性別: 
+								<label><form:radiobutton path="gender" name="gender" value="${members.gender}" /> 男 </label>
+								<label><form:radiobutton path="gender" value="${members.gender}" /> 女 </label> 
+								<label><form:radiobutton path="gender" value="${members.gender}" checked="true"/> 保密 </label> </div>
 								<br>
 								<form:select path="age" name="age" value="${members.age}" class="form-control"> 
 								<option value="1">--請選擇--</option> <option value="2">10歲以下</option> <option value="3">10歲至20歲</option > <option value="4">20歲至30歲</option> <option value="5">30歲至40歲</option>
