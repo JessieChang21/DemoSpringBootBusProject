@@ -9,6 +9,7 @@
 <style type="text/css">
 	table {
 		border: 1px solid white;
+		border-collapse:collapse; /*重要*/
 	}
 	
 	table th {
@@ -18,9 +19,15 @@
 	}
 	
 	table td {
-		border: 1px solid BLACK;
+		border: 1px solid white;
 		padding: 5px;
 		color: black;
+		background-color: white;
+	}
+	.expiredtour td{
+		border: 1px solid red;
+		padding: 5px;
+		background-color: red;
 	}
 </style>
 <meta charset="UTF-8">
@@ -40,7 +47,50 @@
 			<th>縮圖</th>
 			<th colspan="2">資料維護</th>
 		</tr>
-		<tr>
+		<c:forEach var='Tour' items='${TourList}'>
+		<c:if test="${Tour.tourUseEnd.compareTo(crdate)<0}">
+		<tr id="ExpiredData" class="expiredtour">
+		</c:if>
+		<c:if test="false">
+		<tr id="TourData" >
+		</c:if>
+				<td style="text-align: center">${Tour.tourId}</td>
+				<td><input 		id="upName${Tour.tourId}"	    value="${Tour.tourName}"  		style="text-align:center ; width: 200px;"></td>
+				<td><input 		id="upPrice${Tour.tourId}" 		value="${Tour.tourPrice}"       style="text-align:center ; width: 45px;"></td>
+				<td><input 		id="updisPrice${Tour.tourId}" 	value="${Tour.discountPrice}"   style="text-align:center ; width: 45px;"></td>
+				<td>
+					<select id="upRouteId${Tour.tourId}" style="text-align: center;">
+						<c:forEach var='Routes' items='${RoutesList}'>
+							<c:if test="${Tour.fk_routes_routeId == Routes.routeId}">
+							<option value="${Routes.routeId}" selected="selected">${Routes.tripName}</option>
+							</c:if>
+							<c:if test="${Tour.fk_routes_routeId != Routes.routeId}">
+							<option value="${Routes.routeId}">${Routes.tripName}</option>
+							</c:if>
+						</c:forEach>
+					</select>
+				</td>
+				<td><textarea 	id="upContent${Tour.tourId}" 	style="height: 100px;width: 300px;resize: none;">${Tour.tourContent}</textarea></td>
+				<td style="text-align: center">
+					<input 		id="upSS${Tour.tourId}" 		value="${Tour.tourSaleStart}" type="date" style="text-align:center ; width: 125px">
+					<br>到<br>
+					<input 		id="upSE${Tour.tourId}" 		value="${Tour.tourSaleEnd}"   type="date" style="text-align:center ; width: 125px">
+				</td>
+				<td style="text-align: center">
+					<input 		id="upUS${Tour.tourId}" 		value="${Tour.tourUseStart}"  type="date" style="text-align:center ; width: 125px">
+					<br>到<br>
+					<input 		id="upUE${Tour.tourId}" 		value="${Tour.tourUseEnd}"    type="date" style="text-align:center ; width: 125px">
+				</td>
+				<td>
+					<img width='60' height='72' src="/images/tour/tourimages${Tour.tourId}.jpg"/><br>
+					<input id="upIMGURL${Tour.tourId}" value="*/tour/tourimages${Tour.tourId}" style ="width: 130px">
+				</td>
+				<td><button onclick="update(${Tour.tourId})">修改</button></td>
+				<td><button onclick="deleteData(${Tour.tourId})">刪除</button></td>
+		</tr>		
+		</c:forEach>
+		
+		<tr id="InsertTourData">
 			<td></td>
 			<td><textarea id="insertname" 	  		   style="text-align:left ; width: 200px; height: 50px;resize: none"></textarea></td>
 			<td><input    id="insertPrice"   value=""  style="text-align:center ; width: 45px;"></td>
@@ -55,54 +105,19 @@
 			</td>
 			<td><textarea id="insertContent" style="height: 100px;width: 300px;"></textarea></td>
 			<td style="text-align: center">
-				<input id="insertSaleS"	type="date" value="" type="text" style="text-align:center">
+				<input id="insertSaleS"	type="date" value="" type="text" style="text-align:center ; width: 125px">
 				<br>到<br>
-				<input id="insertSaleE" type="date" value="" type="text" style="text-align:center">
+				<input id="insertSaleE" type="date" value="" type="text" style="text-align:center ; width: 125px">
 			</td>
 			<td style="text-align: center">
-			<input id="insertUseS"		type="date" value="" type="text" style="text-align:center">
+			<input id="insertUseS"		type="date" value="" type="text" style="text-align:center ; width: 125px">
 				<br>到<br> 
-				<input id="insertUseE"  type="date" value="" type="text" style="text-align:center">
+				<input id="insertUseE"  type="date" value="" type="text" style="text-align:center ; width: 125px">
 			</td>
-			<td><input id="insertIMGURL" value=""></td>
+			<td><select id="insertIMGURL" ></select></td>
 			<td><button onclick="insertNewData()">新增</button></td>
 			<td></td>
 		</tr>
-		<c:forEach var='Tour' items='${TourList}'>
-			<tr id="TourData" class="">
-				<td style="text-align: center">${Tour.tourId}</td>
-				<td><input 		id="upName${Tour.tourId}"	    value="${Tour.tourName}"  		style="text-align:center ; width: 200px;"></td>
-				<td><input 		id="upPrice${Tour.tourId}" 		value="${Tour.tourPrice}"       style="text-align:center ; width: 45px;"></td>
-				<td><input 		id="updisPrice${Tour.tourId}" 	value="${Tour.discountPrice}"   style="text-align:center ; width: 45px;"></td>
-				<td>
-					<select id="upRouteId${Tour.tourId}" style="text-align: center;">
-						<c:forEach var='Routes' items='${RoutesList}'>
-							<c:if test="${Tour.fk_routes_routeId == Routes.routeId}">
-							<option value="${Routes.routeId}" selected="selected">${Routes.tripName}</option>
-							</c:if>
-							<option value="${Routes.routeId}">${Routes.tripName}</option>
-						</c:forEach>
-					</select>
-				</td>
-				<td><textarea 	id="upContent${Tour.tourId}" 	style="height: 100px;width: 300px;resize: none;">${Tour.tourContent}</textarea></td>
-				<td style="text-align: center">
-					<input 		id="upSS${Tour.tourId}" 		value="${Tour.tourSaleStart}" type="text" style="text-align:center ; width: 136px">
-					<br>到<br>
-					<input 		id="upSE${Tour.tourId}" 		value="${Tour.tourSaleEnd}"   type="text" style="text-align:center ; width: 136px">
-				</td>
-				<td style="text-align: center">
-					<input 		id="upUS${Tour.tourId}" 		value="${Tour.tourUseStart}"  type="text" style="text-align:center ; width: 136px">
-					<br>到<br>
-					<input 		id="upUE${Tour.tourId}" 		value="${Tour.tourUseEnd}"    type="text" style="text-align:center ; width: 136px">
-				</td>
-				<td>
-					<img width='60' height='72' src="/images/tour/tourimages${Tour.tourId}.jpg"/><br>
-					<div id="upIMGURL${Tour.tourId}" >tourimages${Tour.tourId}</div>
-				</td>
-				<td><button onclick="update(${Tour.tourId})">修改</button></td>
-				<td><button onclick="deleteData(${Tour.tourId})">刪除</button></td>
-			</tr>
-		</c:forEach>
 	</table>
 </body>
 <script>
@@ -120,7 +135,7 @@
 			goUrl = goUrl + "&tourUseStart="+ $('#upUS'+tourId).val();
 			goUrl = goUrl + "&tourUseEnd="+ $('#upUE'+tourId).val();
 			goUrl = goUrl + "&tourURL="+ $('#upIMGURL'+tourId).val();
-		location.href=goUrl
+		location.href=goUrl;
 	}
 	
 	function insertNewData (){
@@ -147,6 +162,6 @@
 		var goURL = "/tourDelete?editId="+tourId;
 		location.href=goURL;
 	}
-	function
+	
 </script>
 </html>
