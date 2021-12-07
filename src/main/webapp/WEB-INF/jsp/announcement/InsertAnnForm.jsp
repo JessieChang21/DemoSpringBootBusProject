@@ -413,7 +413,7 @@ p {
 											<td>
 												<p>
 													<BR />主旨：
-												<p /> <form:input path="antitle" class="mytext" /> <form:errors
+												<p /> <form:input path="antitle" class="mytext" value='${param.antitle}' /> <form:errors
 													path="antitle" cssClass="error" />
 											</td>
 										</tr>
@@ -422,10 +422,12 @@ p {
 												<p>
 													<BR> 類別：
 													<form:select style="font-size:20px" path="ancategory">
+														<option value="" selected="selected">請選擇公告類別</option>
 														<option value="營運公告">營運公告</option>
 														<option value="活動公告">異動公告</option>
 														<option value="活動公告">活動公告</option>
-													</form:select>
+													</form:select><form:errors
+													path="ancategory" cssClass="error" />
 												</p>
 											</td>
 										</tr>
