@@ -19,15 +19,20 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import tw.bus.members.model.Members;
 import tw.bus.members.model.MembersService;
+import tw.bus.membersmanagement.model.QueryMembers;
+import tw.bus.membersmanagement.model.QueryMembersService;
 
 
 @Controller
-@RequestMapping("/members")
+//@RequestMapping("/members")
 @SessionAttributes(names = {"totalPages", "totalElememnts"})
 public class MembersController {
 
 	@Autowired
 	private MembersService mService;
+	
+	@Autowired
+	private QueryMembersService qService;
 	
 	@GetMapping("/membersmain.controller")
 	public String processMembersMainAction() {
@@ -62,12 +67,12 @@ public class MembersController {
 		mService.deleteMembersById(id);
 	}
 	
-	@PostMapping("/queryByPage/{pageNo}")
+	@PostMapping("/membersqueryByPage/{pageNo}")
 	@ResponseBody
-	public List<Members> processQueryByPage(@PathVariable("pageNo") int pageNo, Model m){
-		int pageSize = 2;
+	public List<QueryMembers> processQueryByPage(@PathVariable("pageNo") int pageNo, Model m){
+		int pageSize = 3;
 		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
-		Page<Members> page = mService.findAllByPage(pageable);
+		Page<QueryMembers> page = qService.findAllByPage(pageable);
 		m.addAttribute("totalPages", page.getTotalPages());
 		m.addAttribute("totalElements", page.getTotalElements());
 		return page.getContent();

@@ -156,7 +156,7 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="/membersmain.controller">
                     <i class="fas fa-light fa-address-book"></i>
                     <span>會員管理</span></a>
             </li>
