@@ -12,20 +12,18 @@ import org.springframework.stereotype.Component;
 public class Job {
 	
 	@Id
-	private String JobID;
-	private String JobName;
-	public String getJobID() {
-		return JobID;
+	private String jobid;
+	private String jobname;
+	public String getJobid() {
+		return jobid;
 	}
-	public void setJobID(String jobID) {
-		JobID = jobID;
+	public void setJobid(String jobid) {
+		this.jobid = jobid;
 	}
-	public String getJobName() {
-		return JobName;
+	public String getJobname() {
+		return jobname;
 	}
-	public void setJobName(String jobName) {
-		JobName = jobName;
+	public void setJobname(String jobname) {
+		this.jobname = jobname;
 	}
-	
-	
 }
