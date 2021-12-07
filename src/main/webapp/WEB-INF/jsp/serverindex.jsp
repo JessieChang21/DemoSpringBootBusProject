@@ -93,6 +93,7 @@
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
+           
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities2"
                     aria-expanded="true" aria-controls="collapseUtilities2">
@@ -108,6 +109,11 @@
                     
                     </div>
                 </div>
+            </li>
+             <li class="nav-item active">
+                <a class="nav-link" href="tables.html">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>套票管理</span></a>
             </li>
 
             <!-- Divider -->
