@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -13,82 +12,95 @@ table {
 	border-collapse: collapse;
 }
 
-#table_wrap > table {
-font-size: 16px;
-text-align: center;
-margin: 0 auto;
-border-collapse: separate;
-border-spacing: 0;
-border: 2px #000;
+#table_wrap>table {
+	font-size: 16px;
+	text-align: center;
+	margin: 0 auto;
+	border-collapse: separate;
+	border-spacing: 0;
+	border: 2px #000;
 }
-table thead tr,table tbody tr {
-height: 50px;
-line-height: 50px;
-/*background-color: pink;*/
-}
-table tr th:first-child,table tr td:first-child {/*設定table左邊邊框*/
-border-left: 2px solid #eaeaea;
-}
-table tr th:last-child,table tr td:last-child {/*設定table右邊邊框*/
-border-right: 2px solid #eaeaea;
-}
-table tr td:first-child,
-table tr td:nth-child(2),
-table tr td:nth-child(3),
-table tr td:last-child{/*設定table表格每列底部邊框*/
-border-bottom: 2px solid #eaeaea;
-}
-table tr:last-child td:first-child,
-table tr:last-child td:nth-child(2),
-table tr:last-child td:nth-child(3),
-table tr:last-child td:last-child{/!*設定table表格最後一列底部邊框*!/
-border-bottom: 2px solid #000;
-}
-table tr th {
-background-color: orange;
 
+table thead tr, table tbody tr {
+	height: 50px;
+	line-height: 50px;
+	/*background-color: pink;*/
 }
+
+table tr th:first-child, table tr td:first-child { /*設定table左邊邊框*/
+	border-left: 2px solid #eaeaea;
+}
+
+table tr th:last-child, table tr td:last-child { /*設定table右邊邊框*/
+	border-right: 2px solid #eaeaea;
+}
+
+table tr td:first-child, table tr td:nth-child(2), table tr td:nth-child(3),
+	table tr td:last-child { /*設定table表格每列底部邊框*/
+	border-bottom: 2px solid #eaeaea;
+}
+
+table tr:last-child td:first-child, table tr:last-child td:nth-child(2),
+	table tr:last-child td:nth-child(3), table tr:last-child td:last-child
+	{ /!*設定table表格最後一列底部邊框 *!/ border-bottom:2pxsolid#000;
+	
+}
+
+table tr th {
+	background-color: orange;
+}
+
 table tr:first-child th:first-child {
-border-top-left-radius: 12px;
+	border-top-left-radius: 12px;
 }
+
 table tr:first-child th:last-child {
-border-top-right-radius: 12px;
+	border-top-right-radius: 12px;
 }
+
 table tr:last-child td:first-child {
-border-bottom-left-radius: 12px;
+	border-bottom-left-radius: 12px;
 }
+
 table tr:last-child td:last-child {
-border-bottom-right-radius: 12px;
+	border-bottom-right-radius: 12px;
 }
-a{ text-decoration:none} a:hover{ text-decoration:underline}
-a:visited {
-color:blue;
+
+a {
+	text-decoration: none
 }
+
+a:hover {
+	text-decoration: underline
+}
+
+#aa:visited {
+	color: blue;
+}
+
 #Title1 {
 	margin: auto;
 	font-size: 25px;
 	font-weight: bold;
 	text-align: center;
 }
-input:hover{
-  background-color:	#F1E1FF;
-  text-decoration:underline;
-}
-#more:hover{background-color:	#F1E1FF;}
-#nav { display: block; text-align:right; font-family: 'PT Sans', sans-serif; font-size:14px; font-weight:bold;}
 
-span.error {
-	color: red;
-	display: inline-block;
-	font-size: 10pt;
+input:hover {
+	background-color: #F1E1FF;
+	text-decoration: underline;
 }
 
-.error {
-	color: red;
-	display: inline-block;
-	font-size: 10pt;
+#more:hover {
+	background-color: #F1E1FF;
 }
 
+#nav {
+	display: block;
+	text-align: right;
+	font-family: 'PT Sans', sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+}
 </style>
 
 <!-- Mobile Specific Meta -->
@@ -106,7 +118,8 @@ span.error {
 <meta charset="UTF-8">
 <!-- Site Title -->
 <title>Travel</title>
-
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700"
 	rel="stylesheet">
@@ -123,6 +136,55 @@ span.error {
 <link rel="stylesheet" href="/travelista/css/owl.carousel.css">
 <link rel="stylesheet" href="/travelista/css/main.css">
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	load();
+});
+
+function load(){
+	$('#emailcheckdiv').empty("");
+	var span = $('#emailcheckdiv');
+	span.append("<button id='emailcheckbut' type='button' value='emailcheckbut' class='primary-btn' onclick='emailcheckclick()'>emailcheck</button>")
+		   }
+
+function emailcheckclick(){
+	
+	var email = $('#email').val()
+	
+	var params = {"email":email}
+	console.log(params);
+	$.ajax({
+    	   type:'POST',
+    	   url:'sendeMail',
+    	   dataType:'JSON',
+    	   contentType:'application/json',
+    	   data:JSON.stringify(params),
+    	   success: function(data){
+    		   console.log(data);
+    		   console.log(data['random']);
+    		   $('#emailcheck2').val(data['random']);
+    	   }
+    	});
+	}
+	
+// $('#logemail').on("blur",function(){
+// 	var email = $(this).val();
+// 	var params = {"logemail":email}
+// 	$.ajax({
+//     	   type:'POST',
+//     	   url:'getusername',
+//     	   dataType:'JSON',
+//     	   contentType:'application/json',
+//     	   data:JSON.stringify(params),
+//     	   success: function(data){
+//     		   console.log(data);
+//     		   console.log(data['membername']);
+//     		   $('#username').val(data['membername']);
+//     	   }
+//     	});
+// })
+</script>
 </head>
 <body>
 	<header id="header">
@@ -149,16 +211,22 @@ span.error {
 		<div class="container main-menu">
 			<div class="row align-items-center justify-content-between d-flex">
 				<div id="logo">
-					<a href="/2"><img src="/travelista/img/logo.png" alt=""
-						title="" /></a>
+					<a href="/2"><span
+						style="color: #f8b600; font-family: Microsoft JhengHei; font-weight: bold; font-size: 1.8em; text-align: end; font-style: italic;"><i
+							class="fas fa-bus-alt"></i> 無事坐Bus</span></a>
 				</div>
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
 						<li><a href="/2">Home</a></li>
-						<li><a href="about.html">About</a></li>
+						<li><a href="/members/membersmain.controller">About</a></li>
 						<li><a href="packages.html">Packages</a></li>
 						<li><a href="hotels.html">Hotels</a></li>
-						<li><a href="/showAnnouncement">最新消息</a></li>
+						<li class="menu-has-children"><a href="">旅客服務</a>
+							<ul>
+								<li><a href="/showAnnouncement">最新消息</a></li>
+								<li><a href="/showlostandfound">失物招領</a></li>
+
+							</ul></li>
 						<li class="menu-has-children"><a
 							href="queryRoutemain.controller">查詢車次&訂購車票</a>
 							<ul>
@@ -172,32 +240,22 @@ span.error {
 									<ul>
 										<li><a href="#">Item One</a></li>
 										<li><a href="#">Item Two</a></li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-						<li>
-					
-							<c:choose>
+									</ul></li>
+							</ul></li>
+						<li><c:choose>
 								<c:when test='${empty members.membername}'>
-									<li class="menu-has-children"> 登入註冊
-<!-- 										<ul> -->
-<!-- 											<li><a href="login/page">會員登入</a></li> -->
-<!-- 											<li><a href="register/membersregister.controller">註冊</a></li> -->
-<!-- 										</ul> -->
-									</li>
+									<li class="menu-has-children"><a href="/login/page">登入</a></li>
 								</c:when>
 								<c:when test='${! empty members.membername}'>
 									<li class="menu-has-children"><a href="#"><img height='30px'width='30px' Style="border-radius:50%"
-                src="<c:url value='/getMemberImage?id=${members.id}' />">&ensp;${members.membername} ,您好</a>
+                src="<c:url value='/getMemberImage?id=${members.id}' />">&ensp;${members.membername}
+											,您好</a>
 										<ul>
-											<li><a href="#update">會員資料</a></li>
+											<li><a href="/updatemembers.controller">會員資料</a></li>
 											<li><a href="/logout">登出</a></li>
-										</ul>
-									</li>
+										</ul></li>
 								</c:when>
-							</c:choose>
-						
+							</c:choose></li>
 					</ul>
 				</nav>
 				<!-- #nav-menu-container -->
@@ -205,63 +263,74 @@ span.error {
 		</div>
 	</header>
 	<!-- #header -->
-	
 
-<!-- 	start banner Area -->
+	<!-- start banner Area -->
 	<section class="banner-area relative">
 		<div class="overlay overlay-bg"></div>
 		<div class="container">
-			<div class="row fullscreen align-items-center justify-content-between">
-
-				<div class="col-lg-12 col-md-6 banner-right">
+			<div
+				class="row fullscreen align-items-center justify-content-between">
+				<div class="col-lg-6 col-md-6 banner-left">
+					<h6 class="text-white">踏上你的旅程</h6>
+					<h1 class="text-white">台灣巴士行</h1>
+					<p class="text-white"></p>
+					<a href="#" class="primary-btn text-uppercase">Get Started</a>
+				</div>
+				<div class="col-lg-4 col-md-6 banner-right">
 					<ul class="nav nav-tabs" id="myTab" role="tablist">
-						<li class="nav-item"><a class="nav-link active" id="update-tab"
-							data-toggle="tab" href="#update" role="tab" aria-controls="update"
-							aria-selected="true">修改資料</a></li>
+						<li class="nav-item"><a class="nav-link active"
+							id="register-tab" data-toggle="tab" href="#register" role="tab"
+							aria-controls="flight" aria-selected="true">快速註冊</a></li>
 					</ul>
+					<div class="tab-content" id="registerTabContent">
+						<div class="tab-pane fade show active" id="register" role="tabpanel"
+							aria-labelledby="register-tab">
+							<form:form class="form-wrap123" method="POST" modelAttribute="members" >
+								<form:input id="email" path='email' placeholder="請輸入電子信箱" type="text" value="" class="form-control"/>
+<!-- 										<br> -->
+								<form:errors path="email" cssClass="error" />
+								<br>
+								<form:input  path='memberpwd'  placeholder="請輸入密碼(至少8碼)" type="password" value="" class="form-control" />
+<!-- 										<br> -->
+								<form:errors path="memberpwd" cssClass="error" />
+								<br>
+								<form:input path='memberpwd2' placeholder="請再次輸入密碼" type="password" value="" class="form-control"/>
+<!-- 										<br> -->
+								<form:errors path="memberpwd2" cssClass="error" />
+								<br>
+								<form:input path='membername' placeholder="請輸入姓名" type="text" value="" class="form-control"/>
+<!-- 										<br> -->
+								<form:errors path="membername" cssClass="error" />
+								<br>
+								<span id="emailcheckdiv"></span>
+								<form:input id='emailcheck' path='emailcheck' type="text" value="" placeholder="請輸入驗證碼" class="form-control123" maxlength="6" />
+								
+<!-- 										<br> -->
+								<form:errors path="emailcheck" cssClass="error" /><br>
+								<form:input id='emailcheck2' path='emailcheck2' type="text" value="" style="visibility:hidden"/>
+								<br>
+								<form:checkbox path='agreecheckbox' style="width: 18px; height: 18px;" value="true" />
+								<label for="agree" data-lang="我同意">我同意</label><a href="#.pdf" target="_blank">XXX隱私權政策與服務條款</a>
+<!-- 										<br> -->
+								<form:errors path="agreecheckbox" cssClass="error" />
 					
-					<div class="tab-content" id="myTabContent">
-						<div class="tab-pane fade show active" id="update" role="tabpanel"
-							aria-labelledby="flight-tab">
-							<form:form class="form-wrap123" method="POST" action="/memberupdate.controller" enctype='multipart/form-data' modelAttribute="members">
-							
-								<form:input path="memberpwd" name="memberpwd" type="password" value="${members.memberpwd}" style="height:1px; visibility:hidden" readonly="readonly" />
-								<img height='100px' width='100px' Style="border-radius:50%" src="<c:url value='/getMemberImage?id=${members.id}' />">
-								<form:input path="memberMultipartFile" name="memberMultipartFile" type='file'/>
-								
-								<form:input path="id" name="id" type="id" value="${members.id}" style="height:1px; visibility:hidden" readonly="readonly" />
-								<br>	
-								<form:input path="email" name="email" type="text" value="${members.email}" class="form-control" readonly="readonly"/>
-								<br>
-								<form:input path="membername" name="membername" type="text" value="${members.membername}" class="form-control" readonly="readonly"/>
-								<br>
-								<div class="radio" >請選擇性別: 
-								<label><form:radiobutton path="gender" name="gender" value="${members.gender}" /> 男 </label>
-								<label><form:radiobutton path="gender" value="${members.gender}" /> 女 </label> 
-								<label><form:radiobutton path="gender" value="${members.gender}" checked="true"/> 保密 </label> </div>
-								<br>
-								<form:select path="age" name="age" value="${members.age}" class="form-control"> 
-								<option value="1">--請選擇--</option> <option value="2">10歲以下</option> <option value="3">10歲至20歲</option > <option value="4">20歲至30歲</option> <option value="5">30歲至40歲</option>
-								<option value="6">40歲至50歲</option><option value="7">50歲至60歲</option> <option value="8">60歲至70歲</option> <option value="9">70歲以上 </option> </form:select>
-								<br>
-								<form:input path="adress" name="adress" placeholder="請輸入地址" type="text" class="form-control"/>
-<!-- 								<br> -->
-<!-- 								<input id="memberpwd" path='memberpwd' name="memberpwd" placeholder="請輸入密碼(至少8碼)" type="password" value="" class="form-control" /> -->
-								
 								<div id="btnArea" align="center">
-							 	 	<input class="primary-btn" type="submit" name="submit" value="儲存"/>
-							  		<input class="primary-btn" type="reset" name="cancel" value="重填" />
+							 	 	<input class="primary-btn" type="submit" value="儲存"/>
+<!-- 							 	 	<a href="/register/membersaddregister.controller" class="primary-btn text-uppercase">儲存</a> -->
+							  		<input class="primary-btn" type="reset" value="重填">
 								</div>
-<!-- 								<div id="feedback" align="center"></div> -->
+								<div id="feedback" align="center"></div>
 								
 							</form:form>
 						</div>
-						
 					</div>
+						
 				</div>
 			</div>
 		</div>
 	</section>
+	<!-- End banner Area -->
+
 
 	<!-- start footer Area -->
 	<footer class="footer-area section-gap">

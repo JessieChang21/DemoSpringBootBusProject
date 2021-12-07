@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import javax.sql.rowset.serial.SerialBlob;
@@ -18,7 +19,7 @@ import javax.sql.rowset.serial.SerialException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -59,11 +60,11 @@ public class Registercontroller {
 	
 	@GetMapping("/membersregister.controller")
 	public String processMembersAddAction(Model m) {
-		LoginMembers lmembers = new LoginMembers();
+//		LoginMembers lmembers = new LoginMembers();
 		Members members = new Members();
-		m.addAttribute("lmembers",lmembers);
+//		m.addAttribute("lmembers",lmembers);
 		m.addAttribute("members",members);
-		return "login";
+		return "members/register";
 	}
 	
 	@PostMapping("/membersregister.controller") 
@@ -76,13 +77,13 @@ public class Registercontroller {
 			System.out.println(bindingResult.getAllErrors());
 			LoginMembers lmembers = new LoginMembers();
 			m.addAttribute("lmembers",lmembers);
-			return "login";
+			return "members/register";
 		}
 		if (mService.existsByEmail(members.getEmail())) {
 			bindingResult.rejectValue("email", "", "帳號已存在，請重新輸入");
 			LoginMembers lmembers = new LoginMembers();
 			m.addAttribute("lmembers",lmembers);
-			return "login";
+			return "members/register";
 		}
 		
 		byte[] b = null;
@@ -110,7 +111,9 @@ public class Registercontroller {
 		members.setFileName("NoImage.png");
 		members.setMimeType("image/png");
 		members.setAge(1);
-		members.setMemberpwd(getMD5Endocing(EncodePwdUtil.encryptString(members.getMemberpwd())));
+//		members.setMemberpwd(getMD5Endocing(EncodePwdUtil.encryptString(members.getMemberpwd())));
+//		String encodePwd = new BCryptPasswordEncoder().encode(members.getMemberpwd());
+		members.setMemberpwd(new BCryptPasswordEncoder().encode(members.getMemberpwd()));
 		System.out.println("membersout = "+members);
 		mService.insertMembers(members);
 		session.setAttribute("members",members);
@@ -238,7 +241,7 @@ public class Registercontroller {
 	@ResponseBody
 	public Map sendEmail(@RequestBody Map<String, String> o
 //			,Model model
-			) {
+			) throws MessagingException {
 		// 註冊的前置作業，你要自行完成
 		// 假設前端會送一Email Address來後端，本範例將假設放在參數：emailAddress內
 //		Map<String, String> map = (Map<String, String>) session.getAttribute("randomCode");
@@ -252,7 +255,7 @@ public class Registercontroller {
 		String random = randomCode();
 //		map.put(random, random);
 		System.out.println("random=" + random);
-		senderService.sendEmail(email, "歡迎您註冊成為 無事坐BUS 的會員", "請於10分鐘內輸入驗證碼 : " + 
+		senderService.sendMineEmail(email, "歡迎您註冊成為 無事坐BUS 的會員", "請於10分鐘內輸入驗證碼 : " + 
 				random + "<br>");
 //		model.addAttribute("random", random);
 		o.put("random", random);

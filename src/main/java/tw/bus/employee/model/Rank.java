@@ -11,19 +11,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class Rank {
 	@Id
-	private String RankID;
-	private String RankName;
-	public String getRankID() {
-		return RankID;
+	private String rankid;
+	private String rankname;
+	public String getRankid() {
+		return rankid;
 	}
-	public void setRankID(String rankID) {
-		RankID = rankID;
+	public void setRankid(String rankid) {
+		this.rankid = rankid;
 	}
-	public String getRankName() {
-		return RankName;
+	public String getRankname() {
+		return rankname;
 	}
-	public void setRankName(String rankName) {
-		RankName = rankName;
+	public void setRankname(String rankname) {
+		this.rankname = rankname;
 	}
 	
 	

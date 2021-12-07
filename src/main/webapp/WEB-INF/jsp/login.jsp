@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -13,70 +12,95 @@ table {
 	border-collapse: collapse;
 }
 
-#table_wrap > table {
-font-size: 16px;
-text-align: center;
-margin: 0 auto;
-border-collapse: separate;
-border-spacing: 0;
-border: 2px #000;
+#table_wrap>table {
+	font-size: 16px;
+	text-align: center;
+	margin: 0 auto;
+	border-collapse: separate;
+	border-spacing: 0;
+	border: 2px #000;
 }
-table thead tr,table tbody tr {
-height: 50px;
-line-height: 50px;
-/*background-color: pink;*/
-}
-table tr th:first-child,table tr td:first-child {/*設定table左邊邊框*/
-border-left: 2px solid #eaeaea;
-}
-table tr th:last-child,table tr td:last-child {/*設定table右邊邊框*/
-border-right: 2px solid #eaeaea;
-}
-table tr td:first-child,
-table tr td:nth-child(2),
-table tr td:nth-child(3),
-table tr td:last-child{/*設定table表格每列底部邊框*/
-border-bottom: 2px solid #eaeaea;
-}
-table tr:last-child td:first-child,
-table tr:last-child td:nth-child(2),
-table tr:last-child td:nth-child(3),
-table tr:last-child td:last-child{/!*設定table表格最後一列底部邊框*!/
-border-bottom: 2px solid #000;
-}
-table tr th {
-background-color: orange;
 
+table thead tr, table tbody tr {
+	height: 50px;
+	line-height: 50px;
+	/*background-color: pink;*/
 }
+
+table tr th:first-child, table tr td:first-child { /*設定table左邊邊框*/
+	border-left: 2px solid #eaeaea;
+}
+
+table tr th:last-child, table tr td:last-child { /*設定table右邊邊框*/
+	border-right: 2px solid #eaeaea;
+}
+
+table tr td:first-child, table tr td:nth-child(2), table tr td:nth-child(3),
+	table tr td:last-child { /*設定table表格每列底部邊框*/
+	border-bottom: 2px solid #eaeaea;
+}
+
+table tr:last-child td:first-child, table tr:last-child td:nth-child(2),
+	table tr:last-child td:nth-child(3), table tr:last-child td:last-child
+	{ /!*設定table表格最後一列底部邊框 *!/ border-bottom:2pxsolid#000;
+	
+}
+
+table tr th {
+	background-color: orange;
+}
+
 table tr:first-child th:first-child {
-border-top-left-radius: 12px;
+	border-top-left-radius: 12px;
 }
+
 table tr:first-child th:last-child {
-border-top-right-radius: 12px;
+	border-top-right-radius: 12px;
 }
+
 table tr:last-child td:first-child {
-border-bottom-left-radius: 12px;
+	border-bottom-left-radius: 12px;
 }
+
 table tr:last-child td:last-child {
-border-bottom-right-radius: 12px;
+	border-bottom-right-radius: 12px;
 }
-a{ text-decoration:none} a:hover{ text-decoration:underline}
+
+a {
+	text-decoration: none
+}
+
+a:hover {
+	text-decoration: underline
+}
+
 #aa:visited {
-color:blue;
+	color: blue;
 }
+
 #Title1 {
 	margin: auto;
 	font-size: 25px;
 	font-weight: bold;
 	text-align: center;
 }
-input:hover{
-  background-color:	#F1E1FF;
-  text-decoration:underline;
-}
-#more:hover{background-color:	#F1E1FF;}
-#nav { display: block; text-align:right; font-family: 'PT Sans', sans-serif; font-size:14px; font-weight:bold;}
 
+input:hover {
+	background-color: #F1E1FF;
+	text-decoration: underline;
+}
+
+#more:hover {
+	background-color: #F1E1FF;
+}
+
+#nav {
+	display: block;
+	text-align: right;
+	font-family: 'PT Sans', sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+}
 </style>
 
 <!-- Mobile Specific Meta -->
@@ -94,7 +118,8 @@ input:hover{
 <meta charset="UTF-8">
 <!-- Site Title -->
 <title>Travel</title>
-
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700"
 	rel="stylesheet">
@@ -110,41 +135,6 @@ input:hover{
 <link rel="stylesheet" href="/travelista/css/animate.min.css">
 <link rel="stylesheet" href="/travelista/css/owl.carousel.css">
 <link rel="stylesheet" href="/travelista/css/main.css">
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		load();
-	});
-	
-	function load(){
-		$('#emailcheckdiv').empty("");
-		var span = $('#emailcheckdiv');
-		span.append("<button id='emailcheckbut' type='button' value='emailcheckbut' class='primary-btn' onclick='emailcheckclick()'>emailcheck</button>")
- 		   }
-	
-	function emailcheckclick(){
-		
-		var email = $('#email').val()
-		
-		var params = {"email":email}
-		console.log(params);
-		$.ajax({
-	    	   type:'POST',
-	    	   url:'sendeMail',
-	    	   dataType:'JSON',
-	    	   contentType:'application/json',
-	    	   data:JSON.stringify(params),
-	    	   success: function(data){
-	    		   console.log(data);
-	    		   console.log(data['random']);
-	    		   $('#emailcheck2').val(data['random']);
-	    	   }
-	    	});
-		}
-
-</script>
-
 </head>
 <body>
 	<header id="header">
@@ -171,13 +161,14 @@ input:hover{
 		<div class="container main-menu">
 			<div class="row align-items-center justify-content-between d-flex">
 				<div id="logo">
-					<a href="/2"><img src="/travelista/img/logo.png" alt=""
-						title="" /></a>
+					<a href="/2"><span
+						style="color: #f8b600; font-family: Microsoft JhengHei; font-weight: bold; font-size: 1.8em; text-align: end; font-style: italic;"><i
+							class="fas fa-bus-alt"></i> 無事坐Bus</span></a>
 				</div>
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
 						<li><a href="/2">Home</a></li>
-						<li><a href="about.html">About</a></li>
+						<li><a href="/members/membersmain.controller">About</a></li>
 						<li><a href="packages.html">Packages</a></li>
 						<li><a href="hotels.html">Hotels</a></li>
 						<li class="menu-has-children"><a href="">旅客服務</a>
@@ -199,31 +190,22 @@ input:hover{
 									<ul>
 										<li><a href="#">Item One</a></li>
 										<li><a href="#">Item Two</a></li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<c:choose>
+									</ul></li>
+							</ul></li>
+						<li><c:choose>
 								<c:when test='${empty members.membername}'>
-									<li class="menu-has-children"> 登入註冊
-<!-- 										<ul> -->
-<!-- 											<li><a href="login/page">會員登入</a></li> -->
-<!-- 											<li><a href="register/membersregister.controller">註冊</a></li> -->
-<!-- 										</ul> -->
-									</li>
+									<li class="menu-has-children"><a href="/register/membersregister.controller">註冊</a></li>
 								</c:when>
 								<c:when test='${! empty members.membername}'>
 									<li class="menu-has-children"><a href="#"><img height='30px'width='30px' Style="border-radius:50%"
-                src="<c:url value='/getMemberImage?id=${members.id}' />">&ensp;${members.membername} ,您好</a>
+                src="<c:url value='/getMemberImage?id=${members.id}' />">&ensp;${members.membername}
+											,您好</a>
 										<ul>
-											<li><a href="elements.html">會員資料</a></li>
-											<li><a href="/logingout">登出</a></li>
-										</ul>
-									</li>
+											<li><a href="/updatemembers.controller">會員資料</a></li>
+											<li><a href="/logout">登出</a></li>
+										</ul></li>
 								</c:when>
-							</c:choose>
-						</li>
+							</c:choose></li>
 					</ul>
 				</nav>
 				<!-- #nav-menu-container -->
@@ -233,30 +215,38 @@ input:hover{
 	<!-- #header -->
 
 	<!-- start banner Area -->
-<section class="banner-area relative">
+	<section class="banner-area relative">
 		<div class="overlay overlay-bg"></div>
 		<div class="container">
 			<div
 				class="row fullscreen align-items-center justify-content-between">
-				<div class="col-lg-5 col-md-6 banner-left">
-					<ul class="nav nav-tabs" id="loginTab" role="tablist">
+				<div class="col-lg-6 col-md-6 banner-left">
+					<h6 class="text-white">踏上你的旅程</h6>
+					<h1 class="text-white">台灣巴士行</h1>
+					<p class="text-white"></p>
+					<a href="#" class="primary-btn text-uppercase">Get Started</a>
+				</div>
+				<div class="col-lg-4 col-md-6 banner-right">
+					<ul class="nav nav-tabs" id="myTab" role="tablist">
 						<li class="nav-item"><a class="nav-link active"
 							id="login-tab" data-toggle="tab" href="#login" role="tab"
-							aria-controls="login" aria-selected="true">登入</a></li>
+							aria-controls="flight" aria-selected="true">登入</a></li>
 					</ul>
-					<div class="tab-content" id="loginTabContent">
+					<div class="tab-content" id="registerTabContent">
 						<div class="tab-pane fade show active" id="login" role="tabpanel"
-							aria-labelledby="login-tab">
-							<form:form class="form-wrap" modelAttribute="lmembers" method="post" action="/login">
+							aria-labelledby="register-tab">
+							<form class="form-wrap" method="post" action="/login/page">
 								<br>
-									<form:input path="username" type="text" 
-									class="form-control" placeholder="email "/>	
+<%-- 									<form:input path="logemail" id="logemail" type="text"  --%>
+<!-- 									class="form-control" placeholder="email "/>	 -->
 <!-- 									name="username"  -->
 <!-- 									onfocus="this.placeholder = ''"  -->
 <!-- 									onblur="this.placeholder = 'email '"  -->
+									<input id="username" name="username" type="text" 
+									class="form-control" placeholder="email" />
 									 
 									<br>
-									<form:input path="password" type="text"
+									<input name="password" type="text"
 									class="form-control" placeholder="password " /> 
 <!-- 									name="password" -->
 <!-- 									onfocus="this.placeholder = ''" -->
@@ -264,553 +254,21 @@ input:hover{
 <!-- 									<br> -->
 <%-- 									<form:errors  path="invalidCredentials" cssClass="error" /> --%>
 <!-- 									<br> -->
-									<form:checkbox path="rememberme" />記住我
+<%-- 									<form:checkbox path="rememberMe" />記住我 --%>
 									
 									<br><br>
 <!-- 									<button class="primary-btn" type="submit" value="login">Login</button> -->
 									<input class="primary-btn" type="submit" value="登入"/>
-							</form:form>
+							</form>
 						</div>
 					</div>
-				</div>
-			</div>
-				<div class="col-lg-7 col-md-6 banner-right">
-					<ul class="nav nav-tabs" id="registerTab" role="tablist">
-						<li class="nav-item"><a class="nav-link active" id="register-tab"
-							data-toggle="tab" href="#register" role="tab" aria-controls="register"
-							aria-selected="true">快速註冊</a></li>
-					</ul>
-					
-					<div class="tab-content" id="registerTabContent">
-						<div class="tab-pane fade show active" id="register" role="tabpanel"
-							aria-labelledby="register-tab">
-							<form:form class="form-wrap" method="POST" modelAttribute="members" >
-								<form:input id="email" path='email' placeholder="請輸入電子信箱" type="text" value="" class="form-control"/>
-<!-- 										<br> -->
-								<form:errors path="email" cssClass="error" />
-								<br>
-								<form:input  path='memberpwd'  placeholder="請輸入密碼(至少8碼)" type="password" value="" class="form-control" />
-<!-- 										<br> -->
-								<form:errors path="memberpwd" cssClass="error" />
-								<br>
-								<form:input path='memberpwd2' placeholder="請再次輸入密碼" type="password" value="" class="form-control"/>
-<!-- 										<br> -->
-								<form:errors path="memberpwd2" cssClass="error" />
-								<br>
-								<form:input path='membername' placeholder="請輸入姓名" type="text" value="" class="form-control"/>
-<!-- 										<br> -->
-								<form:errors path="membername" cssClass="error" />
-								<br>
-								<span id="emailcheckdiv"></span>
-								<form:input id='emailcheck' path='emailcheck' type="text" value="" placeholder="請輸入驗證碼" class="form-control" maxlength="6" />
-								
-<!-- 										<br> -->
-								<form:errors path="emailcheck" cssClass="error" /><br>
-								<form:input id='emailcheck2' path='emailcheck2' type="text" value="" style="visibility:hidden"/>
-								<br>
-								<form:checkbox path='agreecheckbox' style="width: 18px; height: 18px;" value="true" />
-								<label for="agree" data-lang="我同意">我同意</label><a href="#.pdf" target="_blank">XXX隱私權政策與服務條款</a>
-<!-- 										<br> -->
-								<form:errors path="agreecheckbox" cssClass="error" />
-					
-								<div id="btnArea" align="center">
-							 	 	<input class="primary-btn" type="submit" value="儲存"/>
-<!-- 							 	 	<a href="/register/membersaddregister.controller" class="primary-btn text-uppercase">儲存</a> -->
-							  		<input class="primary-btn" type="reset" value="重填">
-								</div>
-								<div id="feedback" align="center"></div>
-								
-							</form:form>
-					
-					</div>
+						
 				</div>
 			</div>
 		</div>
 	</section>
 	<!-- End banner Area -->
 
-	<!-- Start popular-destination Area -->
-<!-- 	<section class="popular-destination-area section-gap"> -->
-<!-- 		<div class="container"> -->
-<!-- 			<div class="row d-flex justify-content-center"> -->
-<!-- 				<div class="menu-content pb-70 col-lg-8"> -->
-<!-- 					<div class="title text-center"> -->
-<!-- 						<h1 class="mb-10">最新消息</h1> -->
-<!-- 						<p>We all live in an age that belongs to the young at heart. -->
-<!-- 							Life that is becoming extremely fast, day.</p> -->
-<!-- 					</div> -->
-					
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div class="row"> -->
-<!-- 				<div id="table_wrap" align='center'> -->
-<!-- 						<table id="showlaf"> -->
-<!-- 							<tr height='45px'> -->
-<!-- 								<th width='350'>類別</th> -->
-<!-- 								<th width='350'>主旨</th> -->
-<!-- 								<th width='350'>公告時間</th> -->
-<!-- 							</tr> -->
-<%-- 							<c:forEach var="an" items="${list}"> --%>
-<!-- 								<tr height='40px' align='center'> -->
-<%-- 									<td width='250'>${an.ancategory}</td> --%>
-<%-- 									<td><a href="<c:url value='/ann01/${an.id}'/>">${an.antitle}</a></td> --%>
-<%-- 									<td><fmt:formatDate value="${an.registerdate}" --%>
-<%-- 											type="date" dateStyle="short" /></td> --%>
-<!-- 								</tr> -->
-<%-- 							</c:forEach> --%>
-<!-- 						</table> -->
-<!-- 					</div> -->
-<!-- 			</div> -->
-<!-- 			<div id="nav" align='center'> -->
-						
-<!-- 								<p height="50px"><a id="more" -->
-<%-- 									href="<c:url value='/showAnnouncement'/>">了解更多</a></p> --%>
-							
-<!-- 					</div> -->
-<!-- 		</div> -->
-<!-- 	</section> -->
-<!-- 	<!-- End popular-destination Area --> -->
-
-
-<!-- 	<!-- Start price Area --> -->
-<!-- 	<section class="price-area section-gap"> -->
-<!-- 		<div class="container"> -->
-<!-- 			<div class="row d-flex justify-content-center"> -->
-<!-- 				<div class="menu-content pb-70 col-lg-8"> -->
-<!-- 					<div class="title text-center"> -->
-<!-- 						<h1 class="mb-10">We Provide Affordable Prices</h1> -->
-<!-- 						<p>Well educated, intellectual people, especially scientists -->
-<!-- 							at all times demonstrate considerably.</p> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div class="row"> -->
-<!-- 				<div class="col-lg-4"> -->
-<!-- 					<div class="single-price"> -->
-<!-- 						<h4>Cheap Packages</h4> -->
-<!-- 						<ul class="price-list"> -->
-<!-- 							<li class="d-flex justify-content-between align-items-center"> -->
-<!-- 								<span>New York</span> <a href="#" class="price-btn">$1500</a> -->
-<!-- 							</li> -->
-<!-- 							<li class="d-flex justify-content-between align-items-center"> -->
-<!-- 								<span>Maldives</span> <a href="#" class="price-btn">$1500</a> -->
-<!-- 							</li> -->
-<!-- 							<li class="d-flex justify-content-between align-items-center"> -->
-<!-- 								<span>Sri Lanka</span> <a href="#" class="price-btn">$1500</a> -->
-<!-- 							</li> -->
-<!-- 							<li class="d-flex justify-content-between align-items-center"> -->
-<!-- 								<span>Nepal</span> <a href="#" class="price-btn">$1500</a> -->
-<!-- 							</li> -->
-<!-- 							<li class="d-flex justify-content-between align-items-center"> -->
-<!-- 								<span>Thiland</span> <a href="#" class="price-btn">$1500</a> -->
-<!-- 							</li> -->
-<!-- 							<li class="d-flex justify-content-between align-items-center"> -->
-<!-- 								<span>Singapore</span> <a href="#" class="price-btn">$1500</a> -->
-<!-- 							</li> -->
-<!-- 						</ul> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 				<div class="col-lg-4"> -->
-<!-- 					<div class="single-price"> -->
-<!-- 						<h4>Luxury Packages</h4> -->
-<!-- 						<ul class="price-list"> -->
-<!-- 							<li class="d-flex justify-content-between align-items-center"> -->
-<!-- 								<span>New York</span> <a href="#" class="price-btn">$1500</a> -->
-<!-- 							</li> -->
-<!-- 							<li class="d-flex justify-content-between align-items-center"> -->
-<!-- 								<span>Maldives</span> <a href="#" class="price-btn">$1500</a> -->
-<!-- 							</li> -->
-<!-- 							<li class="d-flex justify-content-between align-items-center"> -->
-<!-- 								<span>Sri Lanka</span> <a href="#" class="price-btn">$1500</a> -->
-<!-- 							</li> -->
-<!-- 							<li class="d-flex justify-content-between align-items-center"> -->
-<!-- 								<span>Nepal</span> <a href="#" class="price-btn">$1500</a> -->
-<!-- 							</li> -->
-<!-- 							<li class="d-flex justify-content-between align-items-center"> -->
-<!-- 								<span>Thiland</span> <a href="#" class="price-btn">$1500</a> -->
-<!-- 							</li> -->
-<!-- 							<li class="d-flex justify-content-between align-items-center"> -->
-<!-- 								<span>Singapore</span> <a href="#" class="price-btn">$1500</a> -->
-<!-- 							</li> -->
-<!-- 						</ul> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 				<div class="col-lg-4"> -->
-<!-- 					<div class="single-price"> -->
-<!-- 						<h4>Camping Packages</h4> -->
-<!-- 						<ul class="price-list"> -->
-<!-- 							<li class="d-flex justify-content-between align-items-center"> -->
-<!-- 								<span>New York</span> <a href="#" class="price-btn">$1500</a> -->
-<!-- 							</li> -->
-<!-- 							<li class="d-flex justify-content-between align-items-center"> -->
-<!-- 								<span>Maldives</span> <a href="#" class="price-btn">$1500</a> -->
-<!-- 							</li> -->
-<!-- 							<li class="d-flex justify-content-between align-items-center"> -->
-<!-- 								<span>Sri Lanka</span> <a href="#" class="price-btn">$1500</a> -->
-<!-- 							</li> -->
-<!-- 							<li class="d-flex justify-content-between align-items-center"> -->
-<!-- 								<span>Nepal</span> <a href="#" class="price-btn">$1500</a> -->
-<!-- 							</li> -->
-<!-- 							<li class="d-flex justify-content-between align-items-center"> -->
-<!-- 								<span>Thiland</span> <a href="#" class="price-btn">$1500</a> -->
-<!-- 							</li> -->
-<!-- 							<li class="d-flex justify-content-between align-items-center"> -->
-<!-- 								<span>Singapore</span> <a href="#" class="price-btn">$1500</a> -->
-<!-- 							</li> -->
-<!-- 						</ul> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</section> -->
-<!-- 	<!-- End price Area --> -->
-
-
-<!-- 	<!-- Start other-issue Area --> -->
-<!-- 	<section class="other-issue-area section-gap"> -->
-<!-- 		<div class="container"> -->
-<!-- 			<div class="row d-flex justify-content-center"> -->
-<!-- 				<div class="menu-content pb-70 col-lg-9"> -->
-<!-- 					<div class="title text-center"> -->
-<!-- 						<h1 class="mb-10">Other issues we can help you with</h1> -->
-<!-- 						<p>We all live in an age that belongs to the young at heart. -->
-<!-- 							Life that is.</p> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div class="row"> -->
-<!-- 				<div class="col-lg-3 col-md-6"> -->
-<!-- 					<div class="single-other-issue"> -->
-<!-- 						<div class="thumb"> -->
-<!-- 							<img class="img-fluid" src="/travelista/img/o1.jpg" alt=""> -->
-<!-- 						</div> -->
-<!-- 						<a href="#"> -->
-<!-- 							<h4>Rent a Car</h4> -->
-<!-- 						</a> -->
-<!-- 						<p>The preservation of human life is the ultimate value, a -->
-<!-- 							pillar of ethics and the foundation.</p> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 				<div class="col-lg-3 col-md-6"> -->
-<!-- 					<div class="single-other-issue"> -->
-<!-- 						<div class="thumb"> -->
-<!-- 							<img class="img-fluid" src="/travelista/img/o2.jpg" alt=""> -->
-<!-- 						</div> -->
-<!-- 						<a href="#"> -->
-<!-- 							<h4>Cruise Booking</h4> -->
-<!-- 						</a> -->
-<!-- 						<p>I was always somebody who felt quite sorry for myself, what -->
-<!-- 							I had not got compared.</p> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 				<div class="col-lg-3 col-md-6"> -->
-<!-- 					<div class="single-other-issue"> -->
-<!-- 						<div class="thumb"> -->
-<!-- 							<img class="img-fluid" src="/travelista/img/o3.jpg" alt=""> -->
-<!-- 						</div> -->
-<!-- 						<a href="#"> -->
-<!-- 							<h4>To Do List</h4> -->
-<!-- 						</a> -->
-<!-- 						<p>The following article covers a topic that has recently -->
-<!-- 							moved to center stageâat least it seems.</p> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 				<div class="col-lg-3 col-md-6"> -->
-<!-- 					<div class="single-other-issue"> -->
-<!-- 						<div class="thumb"> -->
-<!-- 							<img class="img-fluid" src="img/o4.jpg" alt=""> -->
-<!-- 						</div> -->
-<!-- 						<a href="#"> -->
-<!-- 							<h4>Food Features</h4> -->
-<!-- 						</a> -->
-<!-- 						<p>There are many kinds of narratives and organizing -->
-<!-- 							principles. Science is driven by evidence.</p> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</section> -->
-<!-- 	<!-- End other-issue Area --> -->
-
-
-<!-- 	<!-- Start testimonial Area --> -->
-<!-- 	<section class="testimonial-area section-gap"> -->
-<!-- 		<div class="container"> -->
-<!-- 			<div class="row d-flex justify-content-center"> -->
-<!-- 				<div class="menu-content pb-70 col-lg-8"> -->
-<!-- 					<div class="title text-center"> -->
-<!-- 						<h1 class="mb-10">Testimonial from our Clients</h1> -->
-<!-- 						<p>The French Revolution constituted for the conscience of the -->
-<!-- 							dominant aristocratic class a fall from</p> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div class="row"> -->
-<!-- 				<div class="active-testimonial"> -->
-<!-- 					<div class="single-testimonial item d-flex flex-row"> -->
-<!-- 						<div class="thumb"> -->
-<!-- 							<img class="img-fluid" src="/travelista/img/elements/user1.png" -->
-<!-- 								alt=""> -->
-<!-- 						</div> -->
-<!-- 						<div class="desc"> -->
-<!-- 							<p>Do you want to be even more successful? Learn to love -->
-<!-- 								learning and growth. The more effort you put into improving your -->
-<!-- 								skills, the bigger the payoff you.</p> -->
-<!-- 							<h4>Harriet Maxwell</h4> -->
-<!-- 							<div class="star"> -->
-<!-- 								<span class="fa fa-star checked"></span> <span -->
-<!-- 									class="fa fa-star checked"></span> <span -->
-<!-- 									class="fa fa-star checked"></span> <span -->
-<!-- 									class="fa fa-star checked"></span> <span class="fa fa-star"></span> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="single-testimonial item d-flex flex-row"> -->
-<!-- 						<div class="thumb"> -->
-<!-- 							<img class="img-fluid" src="/travelista/img/elements/user2.png" -->
-<!-- 								alt=""> -->
-<!-- 						</div> -->
-<!-- 						<div class="desc"> -->
-<!-- 							<p>A purpose is the eternal condition for success. Every -->
-<!-- 								former smoker can tell you just how hard it is to stop smoking -->
-<!-- 								cigarettes. However.</p> -->
-<!-- 							<h4>Carolyn Craig</h4> -->
-<!-- 							<div class="star"> -->
-<!-- 								<span class="fa fa-star checked"></span> <span -->
-<!-- 									class="fa fa-star checked"></span> <span -->
-<!-- 									class="fa fa-star checked"></span> <span class="fa fa-star"></span> -->
-<!-- 								<span class="fa fa-star"></span> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="single-testimonial item d-flex flex-row"> -->
-<!-- 						<div class="thumb"> -->
-<!-- 							<img class="img-fluid" src="/travelista/img/elements/user1.png" -->
-<!-- 								alt=""> -->
-<!-- 						</div> -->
-<!-- 						<div class="desc"> -->
-<!-- 							<p>Do you want to be even more successful? Learn to love -->
-<!-- 								learning and growth. The more effort you put into improving your -->
-<!-- 								skills, the bigger the payoff you.</p> -->
-<!-- 							<h4>Harriet Maxwell</h4> -->
-<!-- 							<div class="star"> -->
-<!-- 								<span class="fa fa-star checked"></span> <span -->
-<!-- 									class="fa fa-star checked"></span> <span -->
-<!-- 									class="fa fa-star checked"></span> <span -->
-<!-- 									class="fa fa-star checked"></span> <span class="fa fa-star"></span> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="single-testimonial item d-flex flex-row"> -->
-<!-- 						<div class="thumb"> -->
-<!-- 							<img class="img-fluid" src="/travelista/img/elements/user2.png" -->
-<!-- 								alt=""> -->
-<!-- 						</div> -->
-<!-- 						<div class="desc"> -->
-<!-- 							<p>A purpose is the eternal condition for success. Every -->
-<!-- 								former smoker can tell you just how hard it is to stop smoking -->
-<!-- 								cigarettes. However.</p> -->
-<!-- 							<h4>Carolyn Craig</h4> -->
-<!-- 							<div class="star"> -->
-<!-- 								<span class="fa fa-star checked"></span> <span -->
-<!-- 									class="fa fa-star checked"></span> <span -->
-<!-- 									class="fa fa-star checked"></span> <span class="fa fa-star"></span> -->
-<!-- 								<span class="fa fa-star"></span> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="single-testimonial item d-flex flex-row"> -->
-<!-- 						<div class="thumb"> -->
-<!-- 							<img class="img-fluid" src="/travelista/img/elements/user1.png" -->
-<!-- 								alt=""> -->
-<!-- 						</div> -->
-<!-- 						<div class="desc"> -->
-<!-- 							<p>Do you want to be even more successful? Learn to love -->
-<!-- 								learning and growth. The more effort you put into improving your -->
-<!-- 								skills, the bigger the payoff you.</p> -->
-<!-- 							<h4>Harriet Maxwell</h4> -->
-<!-- 							<div class="star"> -->
-<!-- 								<span class="fa fa-star checked"></span> <span -->
-<!-- 									class="fa fa-star checked"></span> <span -->
-<!-- 									class="fa fa-star checked"></span> <span -->
-<!-- 									class="fa fa-star checked"></span> <span class="fa fa-star"></span> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="single-testimonial item d-flex flex-row"> -->
-<!-- 						<div class="thumb"> -->
-<!-- 							<img class="img-fluid" src="/travelista/img/elements/user2.png" -->
-<!-- 								alt=""> -->
-<!-- 						</div> -->
-<!-- 						<div class="desc"> -->
-<!-- 							<p>A purpose is the eternal condition for success. Every -->
-<!-- 								former smoker can tell you just how hard it is to stop smoking -->
-<!-- 								cigarettes. However.</p> -->
-<!-- 							<h4>Carolyn Craig</h4> -->
-<!-- 							<div class="star"> -->
-<!-- 								<span class="fa fa-star checked"></span> <span -->
-<!-- 									class="fa fa-star checked"></span> <span -->
-<!-- 									class="fa fa-star checked"></span> <span class="fa fa-star"></span> -->
-<!-- 								<span class="fa fa-star"></span> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</section> -->
-<!-- 	<!-- End testimonial Area --> -->
-
-<!-- 	<!-- Start home-about Area --> -->
-<!-- 	<section class="home-about-area"> -->
-<!-- 		<div class="container-fluid"> -->
-<!-- 			<div class="row align-items-center justify-content-end"> -->
-<!-- 				<div class="col-lg-6 col-md-12 home-about-left"> -->
-<!-- 					<h1> -->
-<!-- 						Did not find your Package? <br> Feel free to ask us. <br> -->
-<!-- 						Weâll make it for you -->
-<!-- 					</h1> -->
-<!-- 					<p>inappropriate behavior is often laughed off as âboys will -->
-<!-- 						be boys,â women face higher conduct standards especially in the -->
-<!-- 						workplace. Thatâs why itâs crucial that, as women, our -->
-<!-- 						behavior on the job is beyond reproach. inappropriate behavior is -->
-<!-- 						often laughed.</p> -->
-<!-- 					<a href="#" class="primary-btn text-uppercase">request custom -->
-<!-- 						price</a> -->
-<!-- 				</div> -->
-<!-- 				<div class="col-lg-6 col-md-12 home-about-right no-padding"> -->
-<!-- 					<img class="img-fluid" src="/travelista/img/about-img.jpg" alt=""> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</section> -->
-<!-- 	<!-- End home-about Area --> -->
-
-
-<!-- 	<!-- Start blog Area --> -->
-<!-- 	<section class="recent-blog-area section-gap"> -->
-<!-- 		<div class="container"> -->
-<!-- 			<div class="row d-flex justify-content-center"> -->
-<!-- 				<div class="menu-content pb-60 col-lg-9"> -->
-<!-- 					<div class="title text-center"> -->
-<!-- 						<h1 class="mb-10">Latest from Our Blog</h1> -->
-<!-- 						<p>With the exception of Nietzsche, no other madman has -->
-<!-- 							contributed so much to human sanity as has.</p> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div class="row"> -->
-<!-- 				<div class="active-recent-blog-carusel"> -->
-<!-- 					<div class="single-recent-blog-post item"> -->
-<!-- 						<div class="thumb"> -->
-<!-- 							<img class="img-fluid" src="/travelista/img/b1.jpg" alt=""> -->
-<!-- 						</div> -->
-<!-- 						<div class="details"> -->
-<!-- 							<div class="tags"> -->
-<!-- 								<ul> -->
-<!-- 									<li><a href="#">Travel</a></li> -->
-<!-- 									<li><a href="#">Life Style</a></li> -->
-<!-- 								</ul> -->
-<!-- 							</div> -->
-<!-- 							<a href="#"><h4 class="title">Low Cost Advertising</h4></a> -->
-<!-- 							<p>Acres of Diamondsâ¦ youâve read the famous story, or at -->
-<!-- 								least had it related to you. A farmer.</p> -->
-<!-- 							<h6 class="date">31st January,2018</h6> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="single-recent-blog-post item"> -->
-<!-- 						<div class="thumb"> -->
-<!-- 							<img class="img-fluid" src="/travelista/img/b2.jpg" alt=""> -->
-<!-- 						</div> -->
-<!-- 						<div class="details"> -->
-<!-- 							<div class="tags"> -->
-<!-- 								<ul> -->
-<!-- 									<li><a href="#">Travel</a></li> -->
-<!-- 									<li><a href="#">Life Style</a></li> -->
-<!-- 								</ul> -->
-<!-- 							</div> -->
-<!-- 							<a href="#"><h4 class="title">Creative Outdoor Ads</h4></a> -->
-<!-- 							<p>Acres of Diamondsâ¦ youâve read the famous story, or at -->
-<!-- 								least had it related to you. A farmer.</p> -->
-<!-- 							<h6 class="date">31st January,2018</h6> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="single-recent-blog-post item"> -->
-<!-- 						<div class="thumb"> -->
-<!-- 							<img class="img-fluid" src="/travelista/img/b3.jpg" alt=""> -->
-<!-- 						</div> -->
-<!-- 						<div class="details"> -->
-<!-- 							<div class="tags"> -->
-<!-- 								<ul> -->
-<!-- 									<li><a href="#">Travel</a></li> -->
-<!-- 									<li><a href="#">Life Style</a></li> -->
-<!-- 								</ul> -->
-<!-- 							</div> -->
-<!-- 							<a href="#"><h4 class="title">It's Classified How To -->
-<!-- 									Utilize Free</h4></a> -->
-<!-- 							<p>Acres of Diamondsâ¦ youâve read the famous story, or at -->
-<!-- 								least had it related to you. A farmer.</p> -->
-<!-- 							<h6 class="date">31st January,2018</h6> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="single-recent-blog-post item"> -->
-<!-- 						<div class="thumb"> -->
-<!-- 							<img class="img-fluid" src="/travelista/img/b1.jpg" alt=""> -->
-<!-- 						</div> -->
-<!-- 						<div class="details"> -->
-<!-- 							<div class="tags"> -->
-<!-- 								<ul> -->
-<!-- 									<li><a href="#">Travel</a></li> -->
-<!-- 									<li><a href="#">Life Style</a></li> -->
-<!-- 								</ul> -->
-<!-- 							</div> -->
-<!-- 							<a href="#"><h4 class="title">Low Cost Advertising</h4></a> -->
-<!-- 							<p>Acres of Diamondsâ¦ youâve read the famous story, or at -->
-<!-- 								least had it related to you. A farmer.</p> -->
-<!-- 							<h6 class="date">31st January,2018</h6> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="single-recent-blog-post item"> -->
-<!-- 						<div class="thumb"> -->
-<!-- 							<img class="img-fluid" src="/travelista/img/b2.jpg" alt=""> -->
-<!-- 						</div> -->
-<!-- 						<div class="details"> -->
-<!-- 							<div class="tags"> -->
-<!-- 								<ul> -->
-<!-- 									<li><a href="#">Travel</a></li> -->
-<!-- 									<li><a href="#">Life Style</a></li> -->
-<!-- 								</ul> -->
-<!-- 							</div> -->
-<!-- 							<a href="#"><h4 class="title">Creative Outdoor Ads</h4></a> -->
-<!-- 							<p>Acres of Diamondsâ¦ youâve read the famous story, or at -->
-<!-- 								least had it related to you. A farmer.</p> -->
-<!-- 							<h6 class="date">31st January,2018</h6> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="single-recent-blog-post item"> -->
-<!-- 						<div class="thumb"> -->
-<!-- 							<img class="img-fluid" src="img/b3.jpg" alt=""> -->
-<!-- 						</div> -->
-<!-- 						<div class="details"> -->
-<!-- 							<div class="tags"> -->
-<!-- 								<ul> -->
-<!-- 									<li><a href="#">Travel</a></li> -->
-<!-- 									<li><a href="#">Life Style</a></li> -->
-<!-- 								</ul> -->
-<!-- 							</div> -->
-<!-- 							<a href="#"><h4 class="title">It's Classified How To -->
-<!-- 									Utilize Free</h4></a> -->
-<!-- 							<p>Acres of Diamondsâ¦ youâve read the famous story, or at -->
-<!-- 								least had it related to you. A farmer.</p> -->
-<!-- 							<h6 class="date">31st January,2018</h6> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</section> -->
-	<!-- End recent-blog Area -->
 
 	<!-- start footer Area -->
 	<footer class="footer-area section-gap">

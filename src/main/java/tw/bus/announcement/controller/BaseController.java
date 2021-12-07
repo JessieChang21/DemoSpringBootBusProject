@@ -32,7 +32,7 @@ public class BaseController {
 	
 	@GetMapping("/insertOK")
 	public String insertOK() {
-		return "success";
+		return "/announcement/success";
 	}
 	@GetMapping("/server")
 	public String serverindex() {

@@ -1,5 +1,6 @@
 package tw.bus.ticket.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -27,6 +29,7 @@ import tw.bus.ticket.model.ByTripname;
 import tw.bus.ticket.model.Memberorder2;
 
 @Controller
+@RequestMapping("/members")
 public class BookTicketController {
 	ObjectMapper mapper = new ObjectMapper();
 	private Integer countOrderid = 100000;
@@ -56,15 +59,12 @@ public class BookTicketController {
 //	}
 
 	// 2.1 訂購車票
-//	@PostMapping(path = "/members/bookTicket.controller")
 	@PostMapping(path = "/bookTicket.controller")
 	public String processBookAction(@RequestParam("bookBus") String busnumber,
-			@RequestParam("inputdata") String inputdata, Model m)
+			@RequestParam("inputdata") String inputdata, Model m, Principal p)
 			throws JsonMappingException, JsonProcessingException, MessagingException {
 
-//		String username = SecurityContextHolder.getContext().getAuthentication().getName();
-//		Members members = mService.findByEmail(username);
-		String useremail = "burite26@gmail.com";
+		String useremail = p.getName();
 
 		ByTripname userinput = mapper.readValue(inputdata, ByTripname.class);
 //		busnumber = 1135
@@ -126,9 +126,7 @@ public class BookTicketController {
 					memberorder.add(member);
 				} else { // 小孩
 					Memberorder2 member = new Memberorder2();
-					// 呼叫此方法一次，訂單編號都一樣
 					member.setOrderid(countOrderid);
-					// 取得使用者登入email
 					member.setEmail(useremail);
 					member.setBusnumber(totalBus.getBusnumber());
 					member.setInitialstation(totalBus.getInitialstation());
@@ -150,26 +148,25 @@ public class BookTicketController {
 			// 計算總金額
 			int totalPrice = 0;
 			for (Memberorder2 mbean : memberorder) {
-				moService.insert(mbean);
+//				moService.insert(mbean);
 				totalPrice += mbean.getPrice();
 			}
 
 // 			若新增成功: 1.totalBus remainSeat更新 2. seat相關位置刪除 3.countOrderid+1 4.寄email
 			
-			totalService.updateRemainSeat(Integer.parseInt(busnumber), newremainseat);
-			for(Integer i : seatid) {
-				seatService.deleteSeatAfterOrder(i);
-			}
+//			totalService.updateRemainSeat(Integer.parseInt(busnumber), newremainseat);
+//			for(Integer i : seatid) {
+//				seatService.deleteSeatAfterOrder(i);
+//			}
 			
 			// Send Email
 			String text;
-			String tcss = "style=\"border: 2px solid gray\"";
 			if (seat.size() == 1) {
 				text = "<html><head><style>"
 						+ " table{border-collapse: collapse; text-align: center;}"
 						+ " th,td{border: 1px solid gray;}th{background-color: darkslategray;"
 						+ "opacity: 80%; color:white}</style></head>"
-						+ "<body><h4>您的訂票資訊如下 : <h4><br>" +
+						+ "<body><h4>您的訂票資訊如下 : <h4>" +
 						"<table style=\"border-collapse: collapse; text-align: center\"> "+
 							"<tr>" + 
 								"<th>訂票編號</th>" + 
@@ -200,7 +197,7 @@ public class BookTicketController {
 						+ " table{border-collapse: collapse; text-align: center;}"
 						+ " th,td{border: 1px solid gray;} th{background-color: darkslategray;"
 						+ "opacity: 80%; color:white}</style></head>"
-						+ "<body><h4>您的訂票資訊如下 : <h4><br>" +
+						+ "<body><h4>您的訂票資訊如下 : <h4>" +
 						"<table style=\"border-collapse: collapse; text-align: center\"> "+
 							"<tr>" + 
 								"<th>訂票編號</th>" + 

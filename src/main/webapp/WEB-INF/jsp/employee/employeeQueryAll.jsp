@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=BIG5"
-	pageEncoding="BIG5"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -32,17 +31,24 @@
 				   
 				   $('#showemployees').empty("");
 				   if(data==null){
-					   $('table').prepend("<tr><td colspan='2'>¨dµL≠˚§u∏ÍÆ∆</td></tr>");;
+					   $('table').prepend("<tr><td colspan='2'>Êü•ÁÑ°Âì°Â∑•Ë≥áÊñô</td></tr>");;
 				   }else{
 					   var table = $('#showemployees');
-					   table.append("<tr id='etitle'><th>≠˚§uID</th><th>≠˚§u©m¶W</th><th>© ßO</th><th>¬æ∫Ÿ</th><th>¬æµ•</th></tr>");
+					   table.append("<tr id='etitle'><th>Âì°Â∑•ID</th><th>Âì°Â∑•ÂßìÂêç</th><th>ÊÄßÂà•</th><th>ËÅ∑Á®±</th><th>ËÅ∑Á≠â</th></tr>");
 					   $.each(data, function(i,n){
 						   var tr = "<tr align='center'>" + 
 				   			"<td><a href='employQuery.controller?pid=" + n.id + "'>" + n.id + "</a></td>" +
 						    "<td>" + n.employeename + "</td>" +
-						    "<td style='display:none'>"+ n.groupid +"</td>" +
-			    	        "<td>" + n.gender + "</td>" +
-			    	        "<td>"+ n.jobid +"</td>" +
+						    "<td style='display:none'>"+ n.groupid +"</td>"
+						    if(n.gender == "M"){
+						    	tr += "<td>Áî∑</td>"
+						    }else{
+						    	tr += "<td>Â•≥</td>"
+						    }
+			    	        //"<td>" + n.gender + "</td>" +
+			    	        var jobname = getJob(n.jobid);
+			    	        console.log('jobname:' + jobname);
+			    	        tr += "<td>"+ n.jobid +"</td>" +
 			    	        "<td>"+ n.rankid +"</td>" +
 			    	        "<td style='display:none'>"+ n.enterdate +"</td>" +
 				   	        "<td style='display:none'>"+ n.seniority +"</td>" +
@@ -54,19 +60,34 @@
 				   }
 		   });
 		   }
-	function add(){
+	function getJob(jobid){
 		$.ajax({
 			   type:'Post',
+			   url:'/employee/getJobbyid/' + jobid,
+			   dataType:'JSON',
+			   contentType:'text',
+			   success: function(data){
+				   console.log('success:' + data);
+				   var json = JSON.stringify(data,null,4);
+				   console.log('json:' + json);
+				   console.log('getJob:' + data.jobname);
+				   return data.jobname;
+				   
+			   },error: function() {console.log("error-getJob");}
+		});
+	}
+	function add(){
+		$.ajax({
+			   type:'Get',
 			   url:'/employee/employadd.controller',
 			   dataType:'JSON',
 			   contentType:'application/json',
 			   success: function(data){
 				   console.log('success:' + data);
-				   var json = JSON.stringify(data,null,4);
-				   console.log('json:' + json);
 				   }
-		});
+			   });
 	}
+	
 </script>
 </head>
 <body>
@@ -85,8 +106,8 @@
 			</tr>
 			<tr>
 				<td>
-					<button id='add' type='button' value='add' onclick='add()'>∑sºW≠˚§u</button>
-					<a href='/employee/employadd.controller' class="btn btn-primary">∑sºW≠˚§u</a>
+					<button id='add' type='button' value='add' onclick='add()'>Êñ∞Â¢ûÂì°Â∑•</button>
+					<a href='/employee/employadd.controller'  class="btn btn-primary">Êñ∞Â¢ûÂì°Â∑•</a>
 				</td>
 			</tr>
 		</table>

@@ -24,7 +24,7 @@ public class Employee {
 	private String jobid;
 	private String rankid;
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-	private Date enterdate;
+	private String enterdate;
 	private int seniority;
 	public String getId() {
 		return id;
@@ -62,10 +62,10 @@ public class Employee {
 	public void setRankid(String rankid) {
 		this.rankid = rankid;
 	}
-	public Date getEnterdate() {
+	public String getEnterdate() {
 		return enterdate;
 	}
-	public void setEnterdate(Date enterdate) {
+	public void setEnterdate(String enterdate) {
 		this.enterdate = enterdate;
 	}
 	public int getSeniority() {

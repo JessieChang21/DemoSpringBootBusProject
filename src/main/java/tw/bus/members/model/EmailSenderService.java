@@ -4,9 +4,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
@@ -23,16 +21,16 @@ public class EmailSenderService {
 //		this.mailSender = mailSender;
 //	}
 
-	public void sendEmail(String toEmail, String subject, String body) {
-		SimpleMailMessage message = new SimpleMailMessage();
-		message.setFrom(FROM);
-		message.setTo(toEmail);
-		message.setText(body);
-		message.setSubject(subject);
-		mailSender.send(message);
-		
-		System.out.println("郵件已寄出...");
-	}
+//	public void sendEmail(String toEmail, String subject, String body) {
+//		SimpleMailMessage message = new SimpleMailMessage();
+//		message.setFrom(FROM);
+//		message.setTo(toEmail);
+//		message.setText(body);
+//		message.setSubject(subject);
+//		mailSender.send(message);
+//		
+//		System.out.println("郵件已寄出...");
+//	}
 	
 	public void sendMineEmail(String toEmail, String subject, String body) throws MessagingException {
 		
@@ -47,4 +45,5 @@ public class EmailSenderService {
 		mailSender.send(message);
 		
 	}
+	
 }

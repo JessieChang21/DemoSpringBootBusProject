@@ -35,17 +35,19 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a href="/server"><span
-						style="color: WHITE; font-family: Microsoft JhengHei; font-weight: bold; font-size: 1.8em; text-align: end; font-style: italic;"><i
-							class="fas fa-bus-alt"></i> 無事坐Bus</span></a>
-
+ 			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-bus-alt"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">無事坐Bus</div>
+            </a>
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="index.html">
-                    <i class="fas fa-tachometer-alt"></i>
+                    <i class="fas fa-solid fa-address-card"></i>
                     <span>個人資料</span></a>
             </li>
 
@@ -66,9 +68,9 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
+                        <h6 class="collapse-header">車次路線管理:</h6>
+                        <a class="collapse-item" href="buttons.html">車次路線</a>
+                        <a class="collapse-item" href="cards.html">申請案</a>
                     </div>
                 </div>
             </li>
@@ -77,13 +79,13 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
+                    <i class="fas fa-solid fa-clipboard-list"></i>
                     <span>訂單管理</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
+                        <h6 class="collapse-header">訂單管理:</h6>
                         <a class="collapse-item" href="utilities-color.html">Colors</a>
                         <a class="collapse-item" href="utilities-border.html">Borders</a>
                         <a class="collapse-item" href="utilities-animation.html">Animations</a>
@@ -93,6 +95,7 @@
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
+           
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities2"
                     aria-expanded="true" aria-controls="collapseUtilities2">
@@ -108,6 +111,11 @@
                     
                     </div>
                 </div>
+            </li>
+             <li class="nav-item active">
+                <a class="nav-link" href="tables.html">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>套票管理</span></a>
             </li>
 
             <!-- Divider -->
@@ -149,7 +157,7 @@
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
                 <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa-light fa-address-book"></i>
                     <span>會員管理</span></a>
             </li>
 

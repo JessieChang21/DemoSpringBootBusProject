@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=BIG5"
-	pageEncoding="BIG5"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -10,76 +9,94 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		load();
+var indexPage = 1;
+	$(document).ready(function() {		
+		$('#gender').empty("");
+		var gender = $('#gender');
+		gender.append($("<option value='M' selected='selected'>Áî∑ÊÄß</option>"));
+		gender.append($("<option value='F'>Â•≥ÊÄß</option>"));		
+		getJob();
+		getRank();
 	});
-	function load(pid) {
-		$
-				.ajax({
-					type : 'post',
-					url : '/employee/insert',
-					dataType : 'JSON',
-					contentType : 'application/json',
-					success : function(data) {
-						console.log('success:' + data);
-						var json = JSON.stringify(data, null, 4);
-						console.log('json:' + json);
-
-						$('#showemployee').empty("");
-						var table = $('#showproduct');
-						var tr = "<tr align='center'>"
-								+ "<td><input id='ID' type='text'/></td>"
-								+ "<td><input id='EmployeeName' type='text'/></td>"
-								+ "<td><input id='groupID' type='text'/></td>"
-								+ "<td><input id='gender' type='text'/></td>"
-								+ "<td><input id='JobID' type='text'/></td>"
-								+ "<td><input id='RankID' type='text'/></td>"
-								+ "<td><button id='addemploye' type='button' value='addemploye' onclick='addemployee()'>ΩTª{∑sºW</button></td>"
-								+ "</tr>";
-						table.append(tr);
-					}
-				});
+	function getJob(){
+		$.ajax({
+			   type:'Post',
+			   url:'/employee/getJob',
+			   dataType:'JSON',
+			   contentType:'application/json',
+			   success: function(data){
+				   console.log('success:' + data);
+				   var json = JSON.stringify(data,null,4);
+				   console.log('json:' + json);
+				   var parsedObjinArray = JSON.parse(json); 
+				   $('#jobid').empty("");
+				   var jobid = $('#jobid');
+				   $.each(parsedObjinArray, function(i,n){
+					   jobid.append("<option value='"+n.jobid+"'>"+n.jobname+"</option>");
+				   });
+			   },error: function() {console.log("error-getJob");}
+		});
+	}
+	
+	function getRank(){
+		$.ajax({
+			   type:'Post',
+			   url:'/employee/getRank',
+			   dataType:'JSON',
+			   contentType:'application/json',
+			   success: function(data){
+				   console.log('success:' + data);
+				   var json = JSON.stringify(data,null,4);
+				   console.log('json:' + json);
+				   var parsedObjinArray = JSON.parse(json); 
+				   $('#rankid').empty("");
+				   var jobid = $('#rankid');
+				   $.each(parsedObjinArray, function(i,n){
+					   jobid.append("<option value='"+n.rankid+"'>"+n.rankname+"</option>");
+				   });
+			   },error: function() {console.log("error-getJob");}
+		});
 	}
 	
 	function addemployee(){
-    	var ID = $('#ID').val();
-    	var EmployeeName = $('#EmployeeName').val();
+    	var ID = $('#id').val();
+    	var EmployeeName = $('#employeename').val();
     	var groupID = $('#groupID').val();
     	var gender = $('#gender').val();
-    	var JobID = $('#JobID').val();
-    	var RankID = $('#RankID').val();
+    	var jobid = $('#jobid').val();
+    	var rankid = $('#rankid').val();
     	//var amount = parseInt(orderQuantity)*parseInt(price);
     	
-    	if($.trim(EmployeeName)==''){
-    		alert('EmployeeName is empty');
+    	if($.trim(employeename)==''){
+    		alert('employeename is empty');
     		return;
     	}
-    	if($.trim(groupID)==''){
-    		alert('groupID is empty');
+    	if($.trim(groupid)==''){
+    		alert('groupid is empty');
     		return;
     	}
     	if($.trim(gender)==''){
     		alert('gender is empty');
     		return;
     	}
-    	if($.trim(JobID)==''){
-    		alert('JobID is empty');
+    	if($.trim(jobid)==''){
+    		alert('jobid is empty');
     		return;
     	}
-    	if($.trim(RankID)==''){
-    		alert('RankID is empty');
+    	if($.trim(rankid)==''){
+    		alert('rankid is empty');
     		return;
     	}
     	
     	
     	
     	var params = {
-    	    "ID":ID,
-    		"EmployeeName":EmployeeName,
-    		"groupID":groupID,
+    	    "id":id,
+    		"employeename":employeename,
+    		"groupid":groupid,
     		"gender":gender,
-    		"JobID":JobID,
-    		"RankID":RankID
+    		"jobid":jobid,
+    		"rankid":rankid
         }
     	
     	$.ajax({
@@ -90,42 +107,43 @@
     	   data:JSON.stringify(params),
     	   success: function(data){
     		   console.log(data);
-    		   $('#feedback').html("∑sºW¶®•\");
+    		   $('#feedback').html("Êñ∞Â¢ûÊàêÂäü");
+    		   $(this).dialog("Êñ∞Â¢ûÊàêÂäü");
     	   }
     	});
     }
 </script>
 </head>
 <body>
-	<h3>≠˚§u∏ÍÆ∆</h3>
-	<form action="employeeInsert" method ="post">
+	<h3>Âì°Â∑•Ë≥áÊñô</h3>
+	<form action="employeeInsert2" method ="post">
 		<table>
 			<tr>
-				<td><label>≠˚§uΩs∏π</label></td>
-				<td><input id='ID' type='text'/></td>
+				<td><label>Âì°Â∑•Á∑®Ëôü</label></td>
+				<td><input id='id' name="id" type='text'/></td>
 			</tr>
 			<tr>
-				<td><label>≠˚§u©m¶W</label></td>
-				<td><input id='EmployeeName' type='text'/></td>
+				<td><label>Âì°Â∑•ÂßìÂêç</label></td>
+				<td><input id='employeename' name="employeename" type='text'/></td>
+			</tr>
+			<tr style='display:none'>
+				<td><label>Áæ§ÁµÑ</label></td>
+				<td><select id="groupid" name="groupid"></select></td>
 			</tr>
 			<tr>
-				<td><label>∏s≤’</label></td>
-				<td><select id="groupID" name="groupIDStation"></select></td>
+				<td><label>ÊÄßÂà•</label></td>
+				<td><select id="gender" name="gender"></select></td>
 			</tr>
 			<tr>
-				<td><label>© ßO</label></td>
-				<td><select id="gender" name="genderStation"></select></td>
+				<td><label>ËÅ∑Á®±</label></td>
+				<td><select id="jobid" name="jobid"></select></td>
 			</tr>
 			<tr>
-				<td><label>¬æ∫Ÿ</label></td>
-				<td><select id="JobID" name="JobIDStation"></select></td>
+				<td><label>ËÅ∑Á≠â</label></td>
+				<td><select id="rankid" name="rankid"></select></td>
 			</tr>
 			<tr>
-				<td><label>¬æµ•</label></td>
-				<td><select id="RankID" name="RankIDStation"></select></td>
-			</tr>
-			<tr>
-				<td><button type="submit" value="employeeadd">ΩTª{∞e•X</button></td>
+				<td><button type="submit" value="employeeadd">Á¢∫Ë™çÈÄÅÂá∫</button></td>
 			</tr>
 		</table>
 	</form>
