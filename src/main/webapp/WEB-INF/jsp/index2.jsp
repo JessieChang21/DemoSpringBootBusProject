@@ -168,30 +168,17 @@ input:hover {
 				</div>
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
-						<li><a href="/2">Home</a></li>
-						<li><a href="about.html">About</a></li>
-						<li><a href="packages.html">Packages</a></li>
-						<li><a href="hotels.html">Hotels</a></li>
-						<li class="menu-has-children"><a href="">旅客服務</a>
+						<li><a href="/2">首頁</a></li>
+						<li class="menu-has-children"><a href="">優惠活動</a>
+							<ul>
+								<li><a href="">旅遊套票</a></li>
+								
+							</ul></li>
+						<li class="menu-has-children"><a href="/showAnnouncement">最新消息</a>
 							<ul>
 								<li><a href="/showAnnouncement">最新消息</a></li>
 								<li><a href="/showlostandfound">失物招領</a></li>
 
-							</ul></li>
-						<li class="menu-has-children"><a
-							href="queryRoutemain.controller">查詢車次&訂購車票</a>
-							<ul>
-								<li><a href="queryMemberOrdermain.controller">查詢刪除訂購車票</a></li>
-
-							</ul></li>
-						<li class="menu-has-children"><a href="">Pages</a>
-							<ul>
-								<li><a href="elements.html">Elements</a></li>
-								<li class="menu-has-children"><a href="">Level 2 </a>
-									<ul>
-										<li><a href="#">Item One</a></li>
-										<li><a href="#">Item Two</a></li>
-									</ul></li>
 							</ul></li>
 						<li><c:choose>
 								<c:when test='${empty members.membername}'>
