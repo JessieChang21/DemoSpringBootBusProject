@@ -24,6 +24,10 @@ public class EmployeeService {
 		return null;
 	}
 	
+	public String findMaxId(){
+		return eResp.findMaxId();
+	}
+	
 	public List<Employee> findAll(){
 		return eResp.findAll();
 	}

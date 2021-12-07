@@ -118,7 +118,7 @@ var indexPage = 1;
 	<h3>員工資料</h3>
 	<form action="employeeInsert2" method ="post">
 		<table>
-			<tr>
+			<tr style='display:none'>
 				<td><label>員工編號</label></td>
 				<td><input id='id' name="id" type='text'/></td>
 			</tr>

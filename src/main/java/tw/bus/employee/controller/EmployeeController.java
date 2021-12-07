@@ -80,14 +80,14 @@ public class EmployeeController {
 	}
 	
 	@PostMapping("/employeeInsert2") 
-	@ResponseBody
-	public Employee processInsertAction2(@RequestParam("id") String id,
+	public String processInsertAction2(@RequestParam("id") String id,
 			@RequestParam("employeename") String employeename,
 			@RequestParam("gender") String gender,
 			@RequestParam("jobid") String jobid,
 			@RequestParam("rankid") String rankid) {
 		Employee e = new Employee();
-		e.setId(id);
+		//e.setId(id);
+		e.setId(eService.findMaxId());
 		e.setEmployeename(employeename);
 		e.setGroupid("A");
 		e.setGender(gender);
@@ -99,7 +99,8 @@ public class EmployeeController {
 		System.out.println(formatter.format(date));
 		e.setEnterdate(formatter.format(date));
 		e.setSeniority(0);
-		return eService.insertEmployee(e);
+		eService.insertEmployee(e);
+		return "employee/employeeQueryAll";
 	}
 	
 	@PostMapping("employeeUpdate") 
