@@ -55,5 +55,23 @@ public class MembersService {
 		 }
 		 return opl.get();
 	}
+	
+	public boolean existsByEmail(String email) {
+		
+		return false;
+	}
+
+	public Members findByEmailAndPassword(String username, String password) throws Exception {
+		Optional<Members> opl = memberRpo.findByEmail(username);
+		
+		if(opl.isEmpty()) {
+			 throw new UserNotFoundException("Can't find user!");
+		 }
+		if(! opl.get().getMemberpwd().equals(password)) {
+			 throw new Exception("wrong password");
+		 }
+		System.out.println("opl="+opl+"opl.get()="+opl.get());
+		return opl.get();
+	}
 
 }

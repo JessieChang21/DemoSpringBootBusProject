@@ -89,6 +89,9 @@ input:hover {
 	background-color: #F1E1FF;
 	text-decoration: underline;
 }
+td{
+ background-color: white
+ }
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -270,7 +273,7 @@ input:hover {
 	<div id="table_wrap" style="float:left;margin-left:70px">
 	<table id="table_wrap">
 		<tr>
-			<th style="background-color:#E6CAFF;font-size:140%" align="center" width="300px" height="200px" >失物招領<BR/>遺失月份</th>
+			<th style="background-color:#f8b600;font-size:140%" align="center" width="300px" height="120px" >失物招領<BR/>遺失月份</th>
 		</tr>
 			<tr>
 				<td style="background-color:white;"><form method='POST'

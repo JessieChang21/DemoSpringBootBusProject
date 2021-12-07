@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,13 +43,13 @@ public class MembersController {
 //	//http://localhost:8081/members/membersregister.controller
 	
 	
-	@PostMapping("/insert") 
-	@ResponseBody
-	public Members processInsertAction(@RequestBody Members m) {
-		String encodePwd = new BCryptPasswordEncoder().encode(m.getMemberpwd());
-		m.setMemberpwd(encodePwd);
-		return mService.insertMembers(m);
-	}
+//	@PostMapping("/insert") 
+//	@ResponseBody
+//	public Members processInsertAction(@RequestBody Members m) {
+//		String encodePwd = new BCryptPasswordEncoder().encode(m.getMemberpwd());
+//		m.setMemberpwd(encodePwd);
+//		return mService.insertMembers(m);
+//	}
 	
 	@PostMapping("/update") 
 	@ResponseBody

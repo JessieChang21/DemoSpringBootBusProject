@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 <head>
@@ -109,6 +110,41 @@ input:hover{
 <link rel="stylesheet" href="/travelista/css/animate.min.css">
 <link rel="stylesheet" href="/travelista/css/owl.carousel.css">
 <link rel="stylesheet" href="/travelista/css/main.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		load();
+	});
+	
+	function load(){
+		$('#emailcheckdiv').empty("");
+		var span = $('#emailcheckdiv');
+		span.append("<button id='emailcheckbut' type='button' value='emailcheckbut' class='primary-btn' onclick='emailcheckclick()'>emailcheck</button>")
+ 		   }
+	
+	function emailcheckclick(){
+		
+		var email = $('#email').val()
+		
+		var params = {"email":email}
+		console.log(params);
+		$.ajax({
+	    	   type:'POST',
+	    	   url:'sendeMail',
+	    	   dataType:'JSON',
+	    	   contentType:'application/json',
+	    	   data:JSON.stringify(params),
+	    	   success: function(data){
+	    		   console.log(data);
+	    		   console.log(data['random']);
+	    		   $('#emailcheck2').val(data['random']);
+	    	   }
+	    	});
+		}
+
+</script>
+
 </head>
 <body>
 	<header id="header">
@@ -178,10 +214,11 @@ input:hover{
 									</li>
 								</c:when>
 								<c:when test='${! empty members.membername}'>
-									<li class="menu-has-children"><a href="#">${members.membername} ,您好</a>
+									<li class="menu-has-children"><a href="#"><img height='30px'width='30px' Style="border-radius:50%"
+                src="<c:url value='/getMemberImage?id=${members.id}' />">&ensp;${members.membername} ,您好</a>
 										<ul>
 											<li><a href="elements.html">會員資料</a></li>
-											<li><a href="/logout">登出</a></li>
+											<li><a href="/logingout">登出</a></li>
 										</ul>
 									</li>
 								</c:when>
@@ -196,127 +233,95 @@ input:hover{
 	<!-- #header -->
 
 	<!-- start banner Area -->
-	<section class="banner-area relative">
+<section class="banner-area relative">
 		<div class="overlay overlay-bg"></div>
 		<div class="container">
 			<div
 				class="row fullscreen align-items-center justify-content-between">
-				<div class="col-lg-6 col-md-6 banner-left">
-					<h6 class="text-white">踏上你的旅程</h6>
-					<h1 class="text-white">台灣巴士行</h1>
-					<p class="text-white"></p>
-					<a href="#" class="primary-btn text-uppercase">Get Started</a>
-				</div>
-				<div class="col-lg-4 col-md-6 banner-right">
-					<ul class="nav nav-tabs" id="myTab" role="tablist">
+				<div class="col-lg-5 col-md-6 banner-left">
+					<ul class="nav nav-tabs" id="loginTab" role="tablist">
 						<li class="nav-item"><a class="nav-link active"
-							id="flight-tab" data-toggle="tab" href="#login" role="tab"
-							aria-controls="flight" aria-selected="true">登入</a></li>
-						<li class="nav-item"><a class="nav-link" id="hotel-tab"
-							data-toggle="tab" href="#register" role="tab" aria-controls="hotel"
-							aria-selected="false">快速註冊</a></li>
-<!-- 						<li class="nav-item"><a class="nav-link" id="holiday-tab" -->
-<!-- 							data-toggle="tab" href="#holiday" role="tab" -->
-<!-- 							aria-controls="holiday" aria-selected="false">Holidays</a></li> -->
+							id="login-tab" data-toggle="tab" href="#login" role="tab"
+							aria-controls="login" aria-selected="true">登入</a></li>
 					</ul>
-					<div class="tab-content" id="myTabContent">
+					<div class="tab-content" id="loginTabContent">
 						<div class="tab-pane fade show active" id="login" role="tabpanel"
-							aria-labelledby="flight-tab">
-							<form class="form-wrap" action="/login/page" method="post">
+							aria-labelledby="login-tab">
+							<form:form class="form-wrap" modelAttribute="lmembers" method="post" action="/login">
 								<br>
-								<input type="text" class="form-control" name="username"
-									placeholder="email " onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'email '"> 
+									<form:input path="username" type="text" 
+									class="form-control" placeholder="email "/>	
+<!-- 									name="username"  -->
+<!-- 									onfocus="this.placeholder = ''"  -->
+<!-- 									onblur="this.placeholder = 'email '"  -->
+									 
 									<br>
-									<input type="text"
-									class="form-control" name="password" placeholder="password "
-									onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'password '"> 
-									<br>
-									<input type="checkbox" name="remember-me">
-									RememberMe<br><br>
+									<form:input path="password" type="text"
+									class="form-control" placeholder="password " /> 
+<!-- 									name="password" -->
+<!-- 									onfocus="this.placeholder = ''" -->
+<!-- 									onblur="this.placeholder = 'password '"  -->
+<!-- 									<br> -->
+<%-- 									<form:errors  path="invalidCredentials" cssClass="error" /> --%>
+<!-- 									<br> -->
+									<form:checkbox path="rememberme" />記住我
+									
+									<br><br>
+<!-- 									<button class="primary-btn" type="submit" value="login">Login</button> -->
+									<input class="primary-btn" type="submit" value="登入"/>
+							</form:form>
+						</div>
+					</div>
+				</div>
+			</div>
+				<div class="col-lg-7 col-md-6 banner-right">
+					<ul class="nav nav-tabs" id="registerTab" role="tablist">
+						<li class="nav-item"><a class="nav-link active" id="register-tab"
+							data-toggle="tab" href="#register" role="tab" aria-controls="register"
+							aria-selected="true">快速註冊</a></li>
+					</ul>
+					
+					<div class="tab-content" id="registerTabContent">
+						<div class="tab-pane fade show active" id="register" role="tabpanel"
+							aria-labelledby="register-tab">
+							<form:form class="form-wrap" method="POST" modelAttribute="members" >
+								<form:input id="email" path='email' placeholder="請輸入電子信箱" type="text" value="" class="form-control"/>
+<!-- 										<br> -->
+								<form:errors path="email" cssClass="error" />
+								<br>
+								<form:input  path='memberpwd'  placeholder="請輸入密碼(至少8碼)" type="password" value="" class="form-control" />
+<!-- 										<br> -->
+								<form:errors path="memberpwd" cssClass="error" />
+								<br>
+								<form:input path='memberpwd2' placeholder="請再次輸入密碼" type="password" value="" class="form-control"/>
+<!-- 										<br> -->
+								<form:errors path="memberpwd2" cssClass="error" />
+								<br>
+								<form:input path='membername' placeholder="請輸入姓名" type="text" value="" class="form-control"/>
+<!-- 										<br> -->
+								<form:errors path="membername" cssClass="error" />
+								<br>
+								<span id="emailcheckdiv"></span>
+								<form:input id='emailcheck' path='emailcheck' type="text" value="" placeholder="請輸入驗證碼" class="form-control" maxlength="6" />
 								
-<!-- 									<input type="text" -->
-<!-- 									class="form-control date-picker" name="start" -->
-<!-- 									placeholder="Start " onfocus="this.placeholder = ''" -->
-<!-- 									onblur="this.placeholder = 'Start '"> <input -->
-<!-- 									type="text" class="form-control date-picker" name="return" -->
-<!-- 									placeholder="Return " onfocus="this.placeholder = ''" -->
-<!-- 									onblur="this.placeholder = 'Return '"> <input -->
-<!-- 									type="number" min="1" max="20" class="form-control" -->
-<!-- 									name="adults" placeholder="Adults " -->
-<!-- 									onfocus="this.placeholder = ''" -->
-<!-- 									onblur="this.placeholder = 'Adults '"> <input -->
-<!-- 									type="number" min="1" max="20" class="form-control" -->
-<!-- 									name="child" placeholder="Child " -->
-<!-- 									onfocus="this.placeholder = ''" -->
-<!-- 									onblur="this.placeholder = 'Child '">  -->
-									<button class="primary-btn" type="submit" value="login">Login</button>
-<!-- 									<a href="#" -->
-<!-- 									class="primary-btn text-uppercase">Search flights</a> -->
-							</form>
-						</div>
-						<div class="tab-pane fade" id="register" role="tabpanel"
-							aria-labelledby="hotel-tab">
-							<form class="form-wrap" method="POST" action="/register/insert">
-								<input type="text" class="form-control" name="email"
-									placeholder="請輸入電子郵件 " onfocus="this.placeholder = ''"
-									onblur="this.placeholder = '請輸入電子郵件 '"> 
-									<input type="text"
-									class="form-control" name="memberpwd" placeholder="請輸入密碼"
-									onfocus="this.placeholder = ''"
-									onblur="this.placeholder = '請輸入密碼 '"> 
-									<input type="text"
-									class="form-control" name="memberpwd2"
-									placeholder="請再次輸入密碼 " onfocus="this.placeholder = ''"
-									onblur="this.placeholder = '請再次輸入密碼 '"> 
-<!-- 									<input type="text"  -->
-<!-- 									class="form-control" name="return" -->
-<!-- 									placeholder="Return " onfocus="this.placeholder = ''" -->
-<!-- 									onblur="this.placeholder = '請再次輸入密碼 '">  -->
-<!-- 									class="form-control date-picker"  -->
-									<input
-									type="text" class="form-control"
-									name="membername" placeholder="請輸入姓名 "
-									onfocus="this.placeholder = ''"
-									onblur="this.placeholder = '請輸入姓名 '"> 
-<!-- 									<input -->
-<!-- 									type="number" min="1" max="20" class="form-control" -->
-<!-- 									name="child" placeholder="Child " -->
-<!-- 									onfocus="this.placeholder = ''" -->
-<!-- 									onblur="this.placeholder = 'Child '">  -->
-									<input type="submit" class="primary-btn" name="submit" id="submit" value="儲存"/>
-  									<input type="reset" class="primary-btn" name="cancel" id="cancel" value="重填">
-<!-- 									<a href="#" -->
-<!-- 									class="primary-btn text-uppercase">Search Hotels</a> -->
-							</form>
-						</div>
-<!-- 						<div class="tab-pane fade" id="holiday" role="tabpanel" -->
-<!-- 							aria-labelledby="holiday-tab"> -->
-<!-- 							<form class="form-wrap"> -->
-<!-- 								<input type="text" class="form-control" name="name" -->
-<!-- 									placeholder="From " onfocus="this.placeholder = ''" -->
-<!-- 									onblur="this.placeholder = 'From '"> <input type="text" -->
-<!-- 									class="form-control" name="to" placeholder="To " -->
-<!-- 									onfocus="this.placeholder = ''" -->
-<!-- 									onblur="this.placeholder = 'To '"> <input type="text" -->
-<!-- 									class="form-control date-picker" name="start" -->
-<!-- 									placeholder="Start " onfocus="this.placeholder = ''" -->
-<!-- 									onblur="this.placeholder = 'Start '"> <input -->
-<!-- 									type="text" class="form-control date-picker" name="return" -->
-<!-- 									placeholder="Return " onfocus="this.placeholder = ''" -->
-<!-- 									onblur="this.placeholder = 'Return '"> <input -->
-<!-- 									type="number" min="1" max="20" class="form-control" -->
-<!-- 									name="adults" placeholder="Adults " -->
-<!-- 									onfocus="this.placeholder = ''" -->
-<!-- 									onblur="this.placeholder = 'Adults '"> <input -->
-<!-- 									type="number" min="1" max="20" class="form-control" -->
-<!-- 									name="child" placeholder="Child " -->
-<!-- 									onfocus="this.placeholder = ''" -->
-<!-- 									onblur="this.placeholder = 'Child '"> <a href="#" -->
-<!-- 									class="primary-btn text-uppercase">Search Holidays</a> -->
-<!-- 							</form> -->
-<!-- 						</div> -->
+<!-- 										<br> -->
+								<form:errors path="emailcheck" cssClass="error" /><br>
+								<form:input id='emailcheck2' path='emailcheck2' type="text" value="" style="visibility:hidden"/>
+								<br>
+								<form:checkbox path='agreecheckbox' style="width: 18px; height: 18px;" value="true" />
+								<label for="agree" data-lang="我同意">我同意</label><a href="#.pdf" target="_blank">XXX隱私權政策與服務條款</a>
+<!-- 										<br> -->
+								<form:errors path="agreecheckbox" cssClass="error" />
+					
+								<div id="btnArea" align="center">
+							 	 	<input class="primary-btn" type="submit" value="儲存"/>
+<!-- 							 	 	<a href="/register/membersaddregister.controller" class="primary-btn text-uppercase">儲存</a> -->
+							  		<input class="primary-btn" type="reset" value="重填">
+								</div>
+								<div id="feedback" align="center"></div>
+								
+							</form:form>
+					
 					</div>
 				</div>
 			</div>
