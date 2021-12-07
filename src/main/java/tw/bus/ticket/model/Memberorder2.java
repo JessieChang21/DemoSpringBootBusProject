@@ -37,7 +37,7 @@ public class Memberorder2 {
 //	private Date traveldate;
 	
 	@Column(name="INITIALTIME")
-	private Date initialtime;
+	private Date initialtime; // String
 	
 	@Column(name="TRAVELTIME")
 	private String traveltime;

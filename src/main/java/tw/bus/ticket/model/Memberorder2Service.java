@@ -14,9 +14,8 @@ public class Memberorder2Service {
 	private Memberorder2Repository moResp;
 	
 	
-	public List<Memberorder2> insert(List<Memberorder2> memberorder) { 
-		moResp.saveAll(memberorder);
-		return memberorder;
+	public Memberorder2 insert(Memberorder2 memberorder) { 
+		return moResp.save(memberorder);
 	}
 
 	public void deleteByOrderid(Integer orderid) {
