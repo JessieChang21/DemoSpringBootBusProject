@@ -13,4 +13,10 @@ public interface RouteRepository extends JpaRepository<Routes, String> {
 	
 	@Query(value = "select distinct area FROM ROUTES r", nativeQuery = true)
 	public List<String> findDisArea();
+	
+	@Query(value = "select distinct tripname FROM ROUTES r where area=?1", nativeQuery = true)
+	public List<String> findDisTripNameByArea(String area);
+	
+	@Query(value = "select distinct tripname FROM ROUTES r", nativeQuery = true)
+	public List<String> findDisTripName();
 }
