@@ -20,6 +20,7 @@ import tw.bus.route.model.RouteService;
 import tw.bus.route.model.Routes;
 
 
+
 @Controller
 @RequestMapping("/routes")
 //@SessionAttributes(names = {"totalPages", "totalElements"})
@@ -85,5 +86,18 @@ public class RouteController {
 	public List<String> findDisArea(){
 		return routeServ.findDisArea();
 	}
+	
+	@PostMapping("/routeTripNameAll")
+	@ResponseBody
+	public List<String> findDisTripName(){
+		return routeServ.findDisTripName();
+	}
+	
+	@PostMapping("/findDisTripNameByArea/{area}")
+	@ResponseBody
+	public List<String> findDisTripNameByArea(@PathVariable("area")String area){
+		return routeServ.findDisTripNameByArea(area);
+	}
+	
 
 }

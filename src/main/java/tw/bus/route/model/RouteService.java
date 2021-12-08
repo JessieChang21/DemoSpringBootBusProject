@@ -65,5 +65,13 @@ public class RouteService {
 	public List<String> findDisArea(){
 		return routeResp.findDisArea();
 	}
+	
+	public List<String> findDisTripNameByArea(String area){
+		return routeResp.findDisTripNameByArea(area);
+	}
+	
+	public List<String> findDisTripName(){
+		return routeResp.findDisTripName();
+	}
 
 }

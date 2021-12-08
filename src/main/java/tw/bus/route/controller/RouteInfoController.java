@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import tw.bus.route.model.RouteInfo;
 import tw.bus.route.model.RouteInfoService;
 
-
 @Controller
 @RequestMapping("/routes")
 public class RouteInfoController {

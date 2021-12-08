@@ -43,7 +43,6 @@
 	   $.when(load(indexPage))
 	   .then(pageIn());
 	   
-
 	   $.ajax({
 		   //送出要求
 		   type:'post',
@@ -71,65 +70,43 @@
 				   });	
 			   }
 		   }
-	   }).then(function() {
-		   $("#selectArea").change(function () {
-			   $("select option:selected").each(function () {
-			             console.log($(this).text());
-			             
-			             $.ajax({
-			       		   //送出要求
-			       		   type:'post',
-			       		   url:'/routes/routeByArea/' + $(this).text() +'/1',
-			       		   dataType:'JSON',  //網頁預期從Server接收的資料型態
-			       		   contentType:'application.json',  //網頁要送到Server的資料型態
-			       		   async:false,
-			       		   //以下為資料data送回來後要做的事
-			       		   success: function(data){
-			       			   console.log('success:' + data);
-			       			   var json = JSON.stringify(data,null,4);
-			       			   console.log('json:' + json);
-			      			   
-			       			   $('#showroutes').empty("");
-			      			   
-			       			   if(data.pageEles==0){
-			       					load(1);
-			       			   }else{
-			       				   var table = $('#showroutes');
-			       				   table.append("<tr align='center' id='ptitle'><th>路線編號</th><th>旅程名稱</th><th>地區</th><th>方向</th><th></th><th></th></tr>");
-			      				   
-			       				   $.each(data.list, function(i,n){
-			       					   var dir;
-			       					   if(n.direction==0){
-			       						   dir = "去程";
-			       						}else{
-			       							   dir = "返程";
-			       							   }
-			       					   if(i%2==0){
-			       					   var tr = "<tr align='center' class='even'>" + "<td>" + n.routeId + "</td>" +
-			       					            "<td>" + n.tripName + "</td>" + "<td>" + n.area + "</td>"+ "<td>" + dir + "</td>"+
-			       					            "<td>" + "<a href='findrouteinfoShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "詳細路線" +"</a></td>"+
-			       					            		"<td>" + "<a href='http://localhost:8081/busTimes/findbustimeShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "查詢班表" +"</a></td>"+ "</tr>";
-			       					   table.append(tr);
-			       					   } else {
-			       						   var tr = "<tr align='center' class='odd'>" + "<td>" + n.routeId + "</td>" +
-			       				            "<td>" + n.tripName + "</td>" + "<td>" + n.area + "</td>"+ "<td>" + dir + "</td>"+
-			       				            "<td>" + "<a href='findrouteinfoShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "詳細路線" +"</a></td>"+
-			       				            		"<td>" + "<a href='http://localhost:8081/busTimes/findbustimeShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "查詢班表" +"</a></td>"+ "</tr>";
-			       				   table.append(tr);
-			       					   }
-			       				   });	
-			       				   var div = document.getElementById('tempinput');
-			       				   div.innerHTML = "";
-			       				   div.innerHTML += "<input id='totalPages' type='hidden' value='"+data.tolpages+"'>"+
-			       						   "<input id='totalElements' type='hidden' value='"+data.pageEles+"'>";
-			      					
-			       			   }
-			       		   }
-			       	   }).then(pageIn());
-			   });
-		   });
-	   });
+	   }).then(selectArea());
+	   
+	   $.when(findAllTripName()).then(selectTripName());
+
+	   
    });
+   
+   function findAllTripName(){
+	   $.ajax({
+		   //送出要求
+		   type:'post',
+		   url:'/routes/routeTripNameAll',
+		   dataType:'JSON',  //網頁預期從Server接收的資料型態
+		   contentType:'application.json',  //網頁要送到Server的資料型態
+		   async:false,
+		   //以下為資料data送回來後要做的事
+		   success: function(data){
+			   console.log('success:' + data);
+			   var json = JSON.stringify(data,null,4);
+			   console.log('json:' + json);
+			   
+			   $('#selectTripName').empty("");
+			   
+			   if(data==null){
+				   $('#selectTripName').prepend("<option>沒搜到</option>");
+			   }else{
+				   var sele = $('#selectTripName');
+				   sele.append("<option>選擇路線名稱</option>");
+				   
+				   $.each(data, function(i,n){
+					   var op = "<option value='"+ n.trim() +"'>"+n.trim()+"</option>";
+					   sele.append(op);
+				   });	
+			   }
+		   }
+	   });
+   }
    
    function pageIn() {
 	   var totalPages = $('#totalPages').val();
@@ -156,6 +133,158 @@
 	   $("#"+p).addClass('btn-primary');
    }
    
+   function selectArea() {
+	   $("#selectArea").change(function () {
+		   $("#selectArea option:selected").each(function () {
+		             console.log($(this).text());
+		             
+		             $.ajax({
+		       		   //送出要求
+		       		   type:'post',
+		       		   url:'/routes/routeByArea/' + $(this).text() +'/1',
+		       		   dataType:'JSON',  //網頁預期從Server接收的資料型態
+		       		   contentType:'application.json',  //網頁要送到Server的資料型態
+		       		   async:false,
+		       		   //以下為資料data送回來後要做的事
+		       		   success: function(data){
+		       			   console.log('success:' + data);
+		       			   var json = JSON.stringify(data,null,4);
+		       			   console.log('json:' + json);
+		      			   
+		       			   $('#showroutes').empty("");
+		      			   
+		       			   if(data.pageEles==0){
+		       					load(1);
+		       			   }else{
+		       				   var table = $('#showroutes');
+		       				   table.append("<tr align='center' id='ptitle'><th>路線編號</th><th>旅程名稱</th><th>地區</th><th>方向</th><th></th><th></th></tr>");
+		      				   
+		       				   $.each(data.list, function(i,n){
+		       					   var dir;
+		       					   if(n.direction==0){
+		       						   dir = "去程";
+		       						}else{
+		       							   dir = "返程";
+		       							   }
+		       					   if(i%2==0){
+		       					   var tr = "<tr align='center' class='even'>" + "<td>" + n.routeId + "</td>" +
+		       					            "<td>" + n.tripName + "</td>" + "<td>" + n.area + "</td>"+ "<td>" + dir + "</td>"+
+		       					            "<td>" + "<a href='findrouteinfoShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "詳細路線" +"</a></td>"+
+		       					            		"<td>" + "<a href='http://localhost:8081/busTimes/findbustimeShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "查詢班表" +"</a></td>"+ "</tr>";
+		       					   table.append(tr);
+		       					   } else {
+		       						   var tr = "<tr align='center' class='odd'>" + "<td>" + n.routeId + "</td>" +
+		       				            "<td>" + n.tripName + "</td>" + "<td>" + n.area + "</td>"+ "<td>" + dir + "</td>"+
+		       				            "<td>" + "<a href='findrouteinfoShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "詳細路線" +"</a></td>"+
+		       				            		"<td>" + "<a href='http://localhost:8081/busTimes/findbustimeShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "查詢班表" +"</a></td>"+ "</tr>";
+		       				   table.append(tr);
+		       					   }
+		       				   });	
+		       				   var div = document.getElementById('tempinput');
+		       				   div.innerHTML = "";
+		       				   div.innerHTML += "<input id='totalPages' type='hidden' value='"+data.tolpages+"'>"+
+		       						   "<input id='totalElements' type='hidden' value='"+data.pageEles+"'>";
+		      					
+		       			   }
+		       		   }
+ 		       	   }).then(pageIn())
+						.then(
+								DisTripNameByArea($(this).text())
+		       	   );
+		             
+		   });
+	   });
+   }
+   
+   function selectTripName() {
+	   $("#selectTripName").change(function () {
+		   $("#selectTripName option:selected").each(function () {
+		             console.log($(this).text());
+		             
+		             $.ajax({
+		       		   //送出要求
+		       		   type:'post',
+		       		   url:'/routes/routeByTripname/' + $(this).text() +'/1',
+		       		   dataType:'JSON',  //網頁預期從Server接收的資料型態
+		       		   contentType:'application.json',  //網頁要送到Server的資料型態
+		       		   async:false,
+		       		   //以下為資料data送回來後要做的事
+		       		   success: function(data){
+		       			   console.log('success:' + data);
+		       			   var json = JSON.stringify(data,null,4);
+		       			   console.log('json:' + json);
+		      			   
+		       			   $('#showroutes').empty("");
+		      			   
+		       			   if(data.pageEles==0){
+		       					load(1);
+		       			   }else{
+		       				   var table = $('#showroutes');
+		       				   table.append("<tr align='center' id='ptitle'><th>路線編號</th><th>旅程名稱</th><th>地區</th><th>方向</th><th></th><th></th></tr>");
+		      				   
+		       				   $.each(data.list, function(i,n){
+		       					   var dir;
+		       					   if(n.direction==0){
+		       						   dir = "去程";
+		       						}else{
+		       							   dir = "返程";
+		       							   }
+		       					   if(i%2==0){
+		       					   var tr = "<tr align='center' class='even'>" + "<td>" + n.routeId + "</td>" +
+		       					            "<td>" + n.tripName + "</td>" + "<td>" + n.area + "</td>"+ "<td>" + dir + "</td>"+
+		       					            "<td>" + "<a href='findrouteinfoShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "詳細路線" +"</a></td>"+
+		       					            		"<td>" + "<a href='http://localhost:8081/busTimes/findbustimeShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "查詢班表" +"</a></td>"+ "</tr>";
+		       					   table.append(tr);
+		       					   } else {
+		       						   var tr = "<tr align='center' class='odd'>" + "<td>" + n.routeId + "</td>" +
+		       				            "<td>" + n.tripName + "</td>" + "<td>" + n.area + "</td>"+ "<td>" + dir + "</td>"+
+		       				            "<td>" + "<a href='findrouteinfoShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "詳細路線" +"</a></td>"+
+		       				            		"<td>" + "<a href='http://localhost:8081/busTimes/findbustimeShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "查詢班表" +"</a></td>"+ "</tr>";
+		       				   table.append(tr);
+		       					   }
+		       				   });	
+		       				   var div = document.getElementById('tempinput');
+		       				   div.innerHTML = "";
+		       				   div.innerHTML += "<input id='totalPages' type='hidden' value='"+data.tolpages+"'>"+
+		       						   "<input id='totalElements' type='hidden' value='"+data.pageEles+"'>";
+		      					
+		       			   }
+		       		   }
+		       	   }).then(pageIn());
+		   });
+	   });
+   }
+   
+   function DisTripNameByArea(area){
+   $.ajax({
+		   //送出要求
+		   type:'post',
+		   url:'/routes/findDisTripNameByArea/'+ area,
+		   dataType:'JSON',  //網頁預期從Server接收的資料型態
+		   contentType:'application.json',  //網頁要送到Server的資料型態
+		   async:false,
+		   //以下為資料data送回來後要做的事
+		   success: function(data){
+			   console.log('success:' + data);
+			   var json = JSON.stringify(data,null,4);
+			   console.log('json:' + json);
+			   
+			   $('#selectTripName').empty("");
+			   console.log(data.length);
+			   if(data.length==0){
+  					findAllTripName();
+			   }else{
+				   var sele = $('#selectTripName');
+				   sele.append("<option>選擇路線名稱</option>");
+				   
+				   $.each(data, function(i,n){
+					   var op = "<option value='"+ n.trim() +"'>"+n.trim()+"</option>";
+					   sele.append(op);
+				   });	
+			   }
+		   }
+	   }).then(selectTripName());
+   }
    
    function change(page){
 	   indexPage = page;
@@ -613,7 +742,7 @@
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">搜尋:
 									<select id="selectArea"></select>
-								
+									<select id="selectTripName"></select>
                             </h6>
                         </div>
                         <div class="card-body">
