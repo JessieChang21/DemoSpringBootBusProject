@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>無事坐Bus</title>
 
     <!-- Custom fonts for this template-->
     <link href="/ServerSide/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -66,34 +66,21 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-bus"></i>
-                    <span>班次路線管理</span>
+                    <span>車次路線管理</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">車次路線管理:</h6>
-                        <a class="collapse-item" href="buttons.html">車次路線</a>
-                        <a class="collapse-item" href="cards.html">申請案</a>
+                        <a class="collapse-item" href="http://localhost:8081/routes/routemain.controller">車次路線</a>
+                        <a class="collapse-item" href="http://localhost:8081/busTimes/tempbustimemain.controller?tEx=9">申請案</a>
                     </div>
                 </div>
             </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
+                <a class="nav-link" href="http://localhost:8081/memberOrderBackmain.controller">
                     <i class="fas fa-solid fa-clipboard-list"></i>
-                    <span>訂單管理</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">訂單管理:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div>
+                    <span>訂單管理</span></a>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
@@ -114,7 +101,7 @@
                     </div>
                 </div>
             </li>
-             <li class="nav-item active">
+             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>套票管理</span></a>
@@ -150,14 +137,14 @@
             </li>
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>訂單統計</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="/membersmain.controller">
                     <i class="fas fa-light fa-address-book"></i>
                     <span>會員管理</span></a>
