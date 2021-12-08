@@ -248,55 +248,65 @@ public class LoginMembersController {
 //			@RequestPart("members") @Valid Members members,
 //			@RequestPart("file") @Valid  MultipartFile file,
 			@ModelAttribute("members")  Members members,
-			@ModelAttribute("umembers") UpdateMembers umembers,
+			@SessionAttribute("umembers") UpdateMembers umembers,
 									//BindingResult result, @ModelAttribute("members") 
 									Model model,
 									HttpServletRequest request) {
 		
-		MultipartFile picture = members.getMemberMultipartFile();
-		System.out.println(members.getMemberMultipartFile());
-//		MultipartFile picture = file;
-		String originalFilename = picture.getOriginalFilename();
-		System.out.println(picture);
-		System.out.println(originalFilename);
-		
-		if (originalFilename.length() > 0 && originalFilename.lastIndexOf(".") > -1) {
-			members.setFileName(originalFilename);
-		}
-		// 建立Blob物件，交由 Hibernate 寫入資料庫
-		if (picture != null && !picture.isEmpty()) {
-			try {
-				byte[] b = picture.getBytes();
-				Blob blob = new SerialBlob(b);
-				System.out.println(blob);
-				members.setMemberImage(blob);
-			} catch (Exception e) {
-				e.printStackTrace();
-				throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
+		System.out.println("umembers="+umembers);
+		System.out.println("members.getMemberMultipartFile()="+members.getMemberMultipartFile());
+//		if(members.getMemberMultipartFile() != null) {
+			MultipartFile picture = members.getMemberMultipartFile();
+			System.out.println(members.getMemberMultipartFile());
+	//		MultipartFile picture = file;
+			String originalFilename = picture.getOriginalFilename();
+			System.out.println(picture);
+			System.out.println(originalFilename);
+			
+			if (originalFilename.length() > 0 && originalFilename.lastIndexOf(".") > -1) {
+				members.setFileName(originalFilename);
 			}
-		}//getMimeType(originalFilename);
-		//String mimeType = servletContext.
-		//String mimeType = originalFilename.getMimeType();
-		FileNameMap fileNameMap = URLConnection.getFileNameMap();
-		String mimeType = fileNameMap.getContentTypeFor(originalFilename);
-        members.setMimeType(mimeType);
-//        UpdateMembers umembers = new UpdateMembers();
-//        BeanUtils.copyProperties(members, umembers);
-//        UpdateMembers umembers = uService.findById(members.getId());
-        umembers.setId(members.getId());
-        umembers.setEmail(members.getEmail());
-        umembers.setMembername(members.getMembername());
-        umembers.setMemberpwd(members.getMemberpwd());
-        umembers.setGender(members.getGender());
-        umembers.setAge(members.getAge());
-        umembers.setAdress(members.getAdress());
-        umembers.setFileName(members.getFileName());
-        umembers.setMimeType(members.getMimeType());
-        umembers.setMemberImage(members.getMemberImage());
-        System.out.println(mimeType);
-        System.out.println("umembers="+umembers);
-        System.out.println("members="+members);
-        
+			// 建立Blob物件，交由 Hibernate 寫入資料庫
+			if (picture != null && !picture.isEmpty()) {
+				try {
+					byte[] b = picture.getBytes();
+					Blob blob = new SerialBlob(b);
+					System.out.println(blob);
+					members.setMemberImage(blob);
+				} catch (Exception e) {
+					e.printStackTrace();
+					throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
+				}
+			}//getMimeType(originalFilename);
+			//String mimeType = servletContext.
+			//String mimeType = originalFilename.getMimeType();
+			FileNameMap fileNameMap = URLConnection.getFileNameMap();
+			String mimeType = fileNameMap.getContentTypeFor(originalFilename);
+	        members.setMimeType(mimeType);
+	//        UpdateMembers umembers = new UpdateMembers();
+	//        BeanUtils.copyProperties(members, umembers);
+	//        UpdateMembers umembers = uService.findById(members.getId());
+	        if(members.getMimeType() == null) {
+	        	members.setFileName(umembers.getFileName());
+		        members.setMimeType(umembers.getMimeType());
+		        members.setMemberImage(umembers.getMemberImage());
+	        }
+		
+		System.out.println(members);
+	        umembers.setId(members.getId());
+	        umembers.setEmail(members.getEmail());
+	        umembers.setMembername(members.getMembername());
+	        umembers.setMemberpwd(members.getMemberpwd());
+	        umembers.setGender(members.getGender());
+	        umembers.setAge(members.getAge());
+	        umembers.setAdress(members.getAdress());
+	        umembers.setFileName(members.getFileName());
+	        umembers.setMimeType(members.getMimeType());
+	        umembers.setMemberImage(members.getMemberImage());
+		
+	        System.out.println("umembers="+umembers);
+	        System.out.println("members="+members);
+	      
 		try {
 			HttpSession session = request.getSession();
 			session.setAttribute("members",umembers);
@@ -305,9 +315,9 @@ public class LoginMembersController {
 		} 
 		catch (Exception ex) {
 			ex.printStackTrace();
-//			result.rejectValue("memberId", "", "發生異常，請通知系統人員..." + ex.getMessage());
 			return "members/updatemembers";
-		}
+		}  
+		
 		HttpSession session = request.getSession();
 		String nextPath = (String)session.getAttribute("requestURI");
 		if (nextPath == null) {
