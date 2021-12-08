@@ -49,6 +49,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import tw.bus.members.model.Members;
 import tw.bus.members.model.MembersService;
@@ -349,6 +350,25 @@ public class LoginMembersController {
 			e.printStackTrace();
 		}
 		return baos.toByteArray();
+	}
+	
+	@GetMapping("/login")
+	public ModelAndView login(
+	    @RequestParam(value = "error", required = false) String error,
+	    @RequestParam(value = "logout", required = false) String logout) {
+
+	    ModelAndView model = new ModelAndView();
+	    if (error != null) {
+	        model.addObject("error", "帳號及密碼錯誤");
+	    }
+
+	    if (logout != null) {
+	        model.addObject("msg", "您以登出");
+	    }
+	    model.setViewName("login");
+
+	    return model;
+
 	}
 	
 	@GetMapping("/web")
