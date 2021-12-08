@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name = "Routes")
 @Component
-public class Routes {
+public class RoutesForTours {
 	@Id
 	private String routeId;
 	private String tripName;

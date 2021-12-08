@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Transactional
-public class RoutesService {
+public class RoutesForToursService {
 	@Autowired
-	private RoutesRepository rRepository;
+	private RoutesForToursRepository rRepository;
 	
-	public List<Routes> findRoutes() {
+	public List<RoutesForTours> findRoutes() {
 		return rRepository.findRoutes();
 	}
-	public List<Routes> findByArea() {
+	public List<RoutesForTours> findByArea() {
 		return rRepository.findByArea();
 	}
 }

@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import tw.bus.tour.model.RoutesRepository;
-import tw.bus.tour.model.RoutesService;
+import tw.bus.tour.model.RoutesForToursRepository;
+import tw.bus.tour.model.RoutesForToursService;
 import tw.bus.tour.model.Tour;
 import tw.bus.tour.model.TourService;
 
@@ -25,7 +25,7 @@ public class TourController {
 	@Autowired
 	private TourService tService;
 	@Autowired
-	private RoutesService rService;
+	private RoutesForToursService rService;
 
 	@GetMapping(path="/tourfindall")
 	public String processFindAllAction( Model m) {

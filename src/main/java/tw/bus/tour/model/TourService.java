@@ -13,13 +13,13 @@ public class TourService {
 	@Autowired
 	private TourRepository tRepository;
 	@Autowired
-	private RoutesRepository rRepository;
+	private RoutesForToursRepository rRepository;
 	
 
 	public List<Tour> findAll() {
 		return tRepository.findAll();
 	}
-	public List<Routes> findRoutes() {
+	public List<RoutesForTours> findRoutes() {
 		return rRepository.findRoutes();
 	}
 	public Tour findById(String editId) {
