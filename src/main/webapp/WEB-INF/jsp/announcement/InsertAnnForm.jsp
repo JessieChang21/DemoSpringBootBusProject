@@ -67,10 +67,12 @@ p {
 			id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
-			<a href="/server"><span
-				style="color: WHITE; font-family: Microsoft JhengHei; font-weight: bold; font-size: 1.8em; text-align: end; font-style: italic;"><i
-					class="fas fa-bus-alt"></i> 無事坐Bus</span></a>
-
+			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/server">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-bus-alt"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">無事坐Bus</div>
+            </a>
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
