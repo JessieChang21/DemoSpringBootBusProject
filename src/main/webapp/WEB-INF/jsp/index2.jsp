@@ -170,21 +170,21 @@ input:hover {
 						<li class="menu-has-children"><a href="">優惠活動</a>
 							<ul>
 								<li><a href="">旅遊套票</a></li>
-								
-							</ul></li>
-						<li class="menu-has-children"><a href="/showAnnouncement">最新消息</a>
-							<ul>
-								<li><a href="/showAnnouncement">最新消息</a></li>
-								<li><a href="/showlostandfound">失物招領</a></li>
 
 							</ul></li>
+						<li><a href="/showAnnouncement">最新消息</a>
+						<li><a href="/showlostandfound">失物招領</a></li>
+
+
 						<li><c:choose>
 								<c:when test='${empty members.membername}'>
-									<li class="menu-has-children"><a href="/login/page">登入&ensp;/&ensp;註冊 </a></li>
+									<li class="menu-has-children"><a href="/login/page">登入&ensp;/&ensp;註冊
+									</a></li>
 								</c:when>
 								<c:when test='${! empty members.membername}'>
-									<li class="menu-has-children"><a href="#"><img height='30px'width='30px' Style="border-radius:50%"
-                src="<c:url value='/getMemberImage?id=${members.id}' />">&ensp;${members.membername}
+									<li class="menu-has-children"><a href="#"><img
+											height='30px' width='30px' Style="border-radius: 50%"
+											src="<c:url value='/getMemberImage?id=${members.id}' />">&ensp;${members.membername}
 											,您好</a>
 										<ul>
 											<li><a href="/updatemembers.controller">會員資料</a></li>
