@@ -8,7 +8,7 @@
 <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
 <style type="text/css">
 	table {
-		border: 1px solid white;
+		border: 1px solid black;
 		border-collapse:collapse; /*重要*/
 	}
 	
@@ -71,14 +71,14 @@
 					</select>
 				</td>
 				<td><textarea 	id="upContent${Tour.tourId}" 	style="height: 100px;width: 300px;resize: none;">${Tour.tourContent}</textarea></td>
-				<td style="text-align: center">
+				<td style="text-align: center">					開始時間<br>
 					<input 		id="upSS${Tour.tourId}" 		value="${Tour.tourSaleStart}" type="date" style="text-align:center ; width: 125px">
-					<br>到<br>
+															<br>結束時間<br>
 					<input 		id="upSE${Tour.tourId}" 		value="${Tour.tourSaleEnd}"   type="date" style="text-align:center ; width: 125px">
 				</td>
-				<td style="text-align: center">
+				<td style="text-align: center">					開始時間<br>
 					<input 		id="upUS${Tour.tourId}" 		value="${Tour.tourUseStart}"  type="date" style="text-align:center ; width: 125px">
-					<br>到<br>
+															<br>結束時間<br>
 					<input 		id="upUE${Tour.tourId}" 		value="${Tour.tourUseEnd}"    type="date" style="text-align:center ; width: 125px">
 				</td>
 				<td>
@@ -104,14 +104,14 @@
 				</select>
 			</td>
 			<td><textarea id="insertContent" style="height: 100px;width: 300px;"></textarea></td>
-			<td style="text-align: center">
+			<td style="text-align: center">				開始時間<br>
 				<input id="insertSaleS"	type="date" value="" type="text" style="text-align:center ; width: 125px">
-				<br>到<br>
+													<br>結束時間<br>
 				<input id="insertSaleE" type="date" value="" type="text" style="text-align:center ; width: 125px">
 			</td>
-			<td style="text-align: center">
-			<input id="insertUseS"		type="date" value="" type="text" style="text-align:center ; width: 125px">
-				<br>到<br> 
+			<td style="text-align: center">				開始時間<br>
+				<input id="insertUseS"		type="date" value="" type="text" style="text-align:center ; width: 125px">
+													<br>結束時間<br> 
 				<input id="insertUseE"  type="date" value="" type="text" style="text-align:center ; width: 125px">
 			</td>
 			<td><select id="insertIMGURL" ></select></td>

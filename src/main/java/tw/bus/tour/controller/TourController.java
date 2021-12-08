@@ -1,38 +1,46 @@
 package tw.bus.tour.controller;
 
-import java.sql.Date;
+import java.security.Timestamp;
+import java.util.Date;
 import java.util.List;
-
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import tw.bus.tour.model.RoutesRepository;
+import tw.bus.tour.model.RoutesService;
 import tw.bus.tour.model.Tour;
 import tw.bus.tour.model.TourService;
-
 
 @Controller
 public class TourController {
 
 	@Autowired
 	private TourService tService;
+	@Autowired
+	private RoutesService rService;
 
 	@GetMapping(path="/tourfindall")
 	public String processFindAllAction( Model m) {
+		Date date = new Date();
+		System.out.println(date);
+		DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String dateStr = sdf.format(date).substring(0,10);
+		System.out.println(dateStr);
+		m.addAttribute("crdate",dateStr);
 		m.addAttribute("TourList", tService.findAll());
 		m.addAttribute("RoutesList",tService.findRoutes());
 		return "/tourFunction/tourManagedFunction";
 	}
-//	@GetMapping(path="/testtourfindall.controller")
-//	public List<Tour> processTestFindAllAction() {
-//		return  tService.findAll();
-//	}
-	
 	@GetMapping(path="/tourEdit")
 	public String processSelectById(String editId , Model m) {
-		
 		System.out.println(editId);
 //		tService.findById(editId);
 //		System.out.println(tService.findById(editId));
@@ -87,8 +95,11 @@ public class TourController {
 		return processFindAllAction(m);
 	}
 
-	@RequestMapping("/tourpackages")
-	public String processTourShowed() {
+	@GetMapping("/tourpackages")
+	public String processTourShowed(Model m) {
+		m.addAttribute("TourList", tService.findAll());
+		m.addAttribute("RoutesList",tService.findRoutes());
+		m.addAttribute("AreaList",rService.findByArea());
 		return "/tourFunction/tourShowedFunction";
 	}
 }
