@@ -162,6 +162,23 @@ select.form-select {
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
 	<script src="javascripts/bootstrap-datetimepicker.min.js"></script>
+	<script>
+		$(function() {
+			$.extend(true, $.fn.datetimepicker.defaults, {
+				icons : {
+					time : 'far fa-clock',
+					date : 'far fa-calendar',
+					up : 'fas fa-arrow-up',
+					down : 'fas fa-arrow-down',
+					previous : 'fas fa-chevron-left',
+					next : 'fas fa-chevron-right',
+					today : 'far fa-calendar-check-o',
+					clear : 'far fa-trash',
+					close : 'far fa-times'
+				}
+			});
+		});
+	</script>
 	<!-- --------------------------------------------------------------------------- -->
 
 
@@ -250,23 +267,7 @@ select.form-select {
 		</div>
 	</div>
 	<!-- --------------------------------------------------------------------------- -->
-	<script>
-		$(function() {
-			$.extend(true, $.fn.datetimepicker.defaults, {
-				icons : {
-					time : 'far fa-clock',
-					date : 'far fa-calendar',
-					up : 'fas fa-arrow-up',
-					down : 'fas fa-arrow-down',
-					previous : 'fas fa-chevron-left',
-					next : 'fas fa-chevron-right',
-					today : 'far fa-calendar-check-o',
-					clear : 'far fa-trash',
-					close : 'far fa-times'
-				}
-			});
-		});
-	</script>
+	
 	<script>
 		// 	站名關鍵字
 		$("#tags").autocomplete({
