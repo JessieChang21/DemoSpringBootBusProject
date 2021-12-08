@@ -24,7 +24,7 @@ public class logoutEmpController {
 //		} else {
 //			name = "訪客";
 //		}
-		String farewellMessage = "您已登出，期待您再次蒞臨本網站";
+		String farewellMessage = "您已登出，期待您再次蒞臨";
 		redirectAtt.addFlashAttribute("logoutMessage", farewellMessage);
 		// 登出時執行下列兩敘述
 		status.setComplete();		

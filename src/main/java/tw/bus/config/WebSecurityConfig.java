@@ -50,9 +50,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		 .and()
 		 .logout().logoutSuccessUrl("/2")
 		 .and()
-		 .csrf().disable() 						// 為不使用CSRF防跨站請求偽造防護
+		 .csrf().disable() 						// 為不使用CSRF防跨站請求偽造防護(未使用)(有使用)要在登錄和註銷表單中添加${_csrf.token}。
 		 .formLogin() 							//formLogin(): 啟用Spring Security預設的登入頁面
-		 .loginPage("/login/page")				//loginPage(): 自行設定登入頁面
+		 .loginPage("/login/page").failureUrl("/login?error")				//loginPage(): 自行設定登入頁面
+		 .usernameParameter("username").passwordParameter("password") 				//loginPage(): 自行設定登入頁面
 		 .defaultSuccessUrl("/web");            //defaultSuccessUrl(): 設定登入成功頁面網  
 //		 .successHandler(successHandler);
 	}

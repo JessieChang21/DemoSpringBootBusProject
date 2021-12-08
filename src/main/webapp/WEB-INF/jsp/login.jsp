@@ -101,6 +101,20 @@ input:hover {
 	font-size: 14px;
 	font-weight: bold;
 }
+span.error {
+	color: red;
+	display: inline-block;
+	font-size: 16pt;
+	text-align: center;
+}
+
+.error {
+	color: red;
+	display: inline-block;
+	font-size: 16pt;
+	text-align: center;
+}
+
 </style>
 
 <!-- Mobile Specific Meta -->
@@ -218,6 +232,15 @@ input:hover {
 					<div class="tab-content" id="registerTabContent">
 						<div class="tab-pane fade show active" id="login" role="tabpanel"
 							aria-labelledby="register-tab">
+							<div style="text-align:center;line-height:60px;>"><input style="visibility:hidden"/></div>
+							<div style="text-align:center;margin:0 auto;">
+								<c:if test="${not empty error}">
+							        <span class="error">${error}</span>
+							    </c:if>
+							    <c:if test="${not empty msg}">
+							        <span class="msg">${msg}</span>
+							    </c:if>
+						    </div>
 							<form class="form-wrap" method="post" action="/login/page">
 								<br>
 <%-- 									<form:input path="logemail" id="logemail" type="text"  --%>
