@@ -96,51 +96,32 @@
 				</div>
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
-						<li><a href="/2">Home</a></li>
-						<li><a href="about.html">About</a></li>
-						<li><a href="packages.html">Packages</a></li>
-						<li><a href="hotels.html">Hotels</a></li>
-						<li class="menu-has-children"><a href="">旅客服務</a>
+						<li><a href="/2">首頁</a></li>
+						<li class="menu-has-children"><a href="">優惠活動</a>
 							<ul>
-								<li><a href="/showAnnouncement">最新消息</a></li>
-								<li><a href="/showlostandfound">失物招領</a></li>
+								<li><a href="">旅遊套票</a></li>
 
 							</ul></li>
-						<li class="menu-has-children"><a
-							href="queryRoutemain.controller">查詢車次&訂購車票</a>
-							<ul>
-								<li><a href="queryMemberOrdermain.controller">查詢刪除訂購車票</a></li>
+						<li><a href="/showAnnouncement">最新消息</a>
+						<li><a href="/showlostandfound">失物招領</a></li>
 
-							</ul></li>
-						<li class="menu-has-children"><a href="">Pages</a>
-							<ul>
-								<li><a href="elements.html">Elements</a></li>
-								<li class="menu-has-children"><a href="">Level 2 </a>
-									<ul>
-										<li><a href="#">Item One</a></li>
-										<li><a href="#">Item Two</a></li>
-									</ul></li>
-							</ul></li>
-						<li>
-							<c:choose>
+
+						<li><c:choose>
 								<c:when test='${empty members.membername}'>
-									<li class="menu-has-children"><a href="login/page"> 登入註冊 </a>
-<!-- 										<ul> -->
-<!-- 											<li><a href="login/page">會員登入</a></li> -->
-<!-- 											<li><a href="register/membersregister.controller">註冊</a></li> -->
-<!-- 										</ul> -->
-									</li>
+									<li class="menu-has-children"><a href="/login/page">登入&ensp;/&ensp;註冊
+									</a></li>
 								</c:when>
 								<c:when test='${! empty members.membername}'>
-									<li class="menu-has-children"><a href="#">${members.membername} ,您好</a>
+									<li class="menu-has-children"><a href="#"><img
+											height='30px' width='30px' Style="border-radius: 50%"
+											src="<c:url value='/getMemberImage?id=${members.id}' />">&ensp;${members.membername}
+											,您好</a>
 										<ul>
-											<li><a href="elements.html">會員資料</a></li>
+											<li><a href="/updatemembers.controller">會員資料</a></li>
 											<li><a href="/logout">登出</a></li>
-										</ul>
-									</li>
+										</ul></li>
 								</c:when>
-							</c:choose>
-						</li>
+							</c:choose></li>
 					</ul>
 				</nav>
 			</div>
