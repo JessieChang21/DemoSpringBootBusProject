@@ -12,8 +12,12 @@ public interface Seat2Repository extends JpaRepository<Seat2, Integer> {
 	List<Seat2> findByBusnumber(Integer busnumber);
 	
 	@Modifying
-	@Query(value = " delete from Seat2 as s where s.seatid=:seatid", nativeQuery = true)
-	boolean deleteSeatAfterOrder(@Param("seatid") Integer seatid);
+	@Query(value = " delete from Seat2 where seatid=:seatid", nativeQuery = true)
+	Integer deleteSeatAfterOrder(@Param("seatid") Integer seatid);
+
+	@Modifying
+	@Query(value = " insert Seat2 (busnumber, seat) values (:busnumber,:seatid)", nativeQuery = true)
+	Integer insertSeatAfterDeleteOrder(@Param("busnumber") Integer busnumber, @Param("seatid") Integer seatid);
 	
 //	@Query(value= "update Totalbus2 as t set t.remainseats=:newremainseat where busnumber=:busnumber", nativeQuery = true)
 //	Totalbus2 updateRemainSeat(@Param("busnumber") Integer busnumber, @Param("newremainseat") int newremainseat);

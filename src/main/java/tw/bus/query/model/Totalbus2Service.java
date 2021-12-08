@@ -64,7 +64,7 @@ public class Totalbus2Service {
 		return tbResp.findByBusnumber(busnumber);
 	}
 	
-	public Totalbus2 updateRemainSeat(Integer busnumber, int newremainseat) {
+	public Integer updateRemainSeat(Integer busnumber, int newremainseat) {
 		return tbResp.updateRemainSeat(busnumber, newremainseat);
 	}
 

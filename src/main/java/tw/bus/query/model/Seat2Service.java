@@ -16,9 +16,12 @@ public class Seat2Service {
 		 return seatResp.findByBusnumber(busnumber);
 	}
 
-	public boolean deleteSeatAfterOrder(Integer seatid) {
+	public Integer deleteSeatAfterOrder(Integer seatid) {
 		return seatResp.deleteSeatAfterOrder(seatid);
-		
+	}
+	
+	public Integer insertSeatAfterDeleteOrder(Integer busnumber, Integer seatid) {
+		return seatResp.insertSeatAfterDeleteOrder(busnumber,seatid);
 	}
 	
 }

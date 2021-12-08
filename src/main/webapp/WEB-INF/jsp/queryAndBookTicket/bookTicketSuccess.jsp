@@ -22,29 +22,39 @@ table {
 <h3>訂票成功</h3>
 	<div>您的訂票資訊如下:</div>
 	<br />
-	<form action="deleteTicket.controller" method="POST">
+<!-- 	<form action="deleteTicket.controller" method="POST"> -->
 		<table border="1">
 			<tr>
-				<th>訂票代號</th>
+				<th>訂票編號</th>
 				<th>車次編號</th>
+				<th>路線名稱</th>
 				<th>起站</th>
 				<th>迄站</th>
+				<th>乘車日期</th>
 				<th>發車時間</th>
-				<th>乘車時間</th>
-				<th>刪除此筆訂單</th>
+				<th>旅程時間</th>
+				<th>座位編號</th>
+				<th>票種</th>
+				<th>票價</th>
 			</tr>
+			<c:forEach var="aBean" items="${memberorder}">
 			<tr>
-				<td>${insertMemberOrder.orderid}</td>
-				<td>${insertMemberOrder.busnumber}</td>
-				<td>${insertMemberOrder.initialstation}</td>
-				<td>${insertMemberOrder.finalstation}</td>
-				<td>${insertMemberOrder.formatinitaltime}</td>
-				<td>${insertMemberOrder.traveltime}</td>
-				<td><button type="submit" name="deleteTicket"
-						value="${insertMemberOrder.orderid}">送出</button></td>
+				<td>${aBean.orderid}</td>
+				<td>${aBean.busnumber}</td>
+				<td>${userinput.tripname}</td>
+				<td>${aBean.initialstation}</td>
+				<td>${aBean.finalstation}</td>
+				<td>${aBean.traveldate}</td>
+				<td>${aBean.initialtime}</td>
+				<td>${aBean.traveltime}</td>
+				<td>${aBean.seat}</td>
+				<td>${aBean.tickettype}</td>
+				<td>${aBean.price}</td>
 			</tr>
+			</c:forEach>
 		</table>
-	</form>
+		<div> 訂單總金額 : NT$ ${totalPrice} 元整</div>
+<!-- 	</form> -->
 	<br> <a href="<c:url value='/index' />">回首頁</a>
 </body>
 </html>

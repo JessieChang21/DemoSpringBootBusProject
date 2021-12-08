@@ -21,8 +21,8 @@
 		</c:when>
 		
 		<c:otherwise>
-<!-- 			<form action="/members/bookTicket.controller" method="POST"> -->
-			<form action="/bookTicket.controller" method="POST">
+			<form action="/members/bookTicket.controller" method="POST">
+<!-- 			<form action="/bookTicket.controller" method="POST"> -->
 				<table border="1">
 					<tr>
 						<th colspan="10">順向</th>

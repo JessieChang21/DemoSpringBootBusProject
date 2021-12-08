@@ -2,6 +2,8 @@ package tw.bus.query.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Seat2 {
 	@Id @Column(name="SEATID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer seatid;
 	
 	@Column(name="BUSNUMBER")

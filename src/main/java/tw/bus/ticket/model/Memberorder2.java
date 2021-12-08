@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import org.springframework.stereotype.Component;
 
 @Entity @Table(name="memberorder2")
@@ -37,7 +39,10 @@ public class Memberorder2 {
 //	private Date traveldate;
 	
 	@Column(name="INITIALTIME")
-	private Date initialtime; // String
+	private Date initialtime; 
+	
+	@Transient
+	private String formatinitaltime;
 	
 	@Column(name="TRAVELTIME")
 	private String traveltime;
@@ -62,8 +67,8 @@ public class Memberorder2 {
 	}
 
 	public Memberorder2(Integer oid, Integer orderid, String email, Integer busnumber, String initialstation,
-			String finalstation, String traveldate, Date initialtime, String traveltime, String tickettype,
-			Integer price, Integer seat, Integer orderqty, Date orderdate) {
+			String finalstation, String traveldate, Date initialtime, String formatinitaltime, String traveltime,
+			String tickettype, Integer price, Integer seat, Integer orderqty, Date orderdate) {
 		super();
 		this.oid = oid;
 		this.orderid = orderid;
@@ -73,6 +78,7 @@ public class Memberorder2 {
 		this.finalstation = finalstation;
 		this.traveldate = traveldate;
 		this.initialtime = initialtime;
+		this.formatinitaltime = formatinitaltime;
 		this.traveltime = traveltime;
 		this.tickettype = tickettype;
 		this.price = price;
@@ -100,6 +106,8 @@ public class Memberorder2 {
 		builder.append(traveldate);
 		builder.append(", initialtime=");
 		builder.append(initialtime);
+		builder.append(", formatinitaltime=");
+		builder.append(formatinitaltime);
 		builder.append(", traveltime=");
 		builder.append(traveltime);
 		builder.append(", tickettype=");
@@ -180,6 +188,14 @@ public class Memberorder2 {
 		this.initialtime = initialtime;
 	}
 
+	public String getFormatinitaltime() {
+		return formatinitaltime;
+	}
+
+	public void setFormatinitaltime(String formatinitaltime) {
+		this.formatinitaltime = formatinitaltime;
+	}
+
 	public String getTraveltime() {
 		return traveltime;
 	}
@@ -228,6 +244,7 @@ public class Memberorder2 {
 		this.orderdate = orderdate;
 	}
 
+	
 	
 	
 	

@@ -19,7 +19,7 @@ public class RouteInfoMapController {
 		this.mapService = mapService;
 	}
 	
-	@GetMapping(path = "/showmap.controller")
+	@GetMapping(path = "/showmap")
 	public String processMapMainAction() {
 		return "/queryAndBookTicket/showMap";
 	}

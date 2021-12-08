@@ -18,14 +18,18 @@ public class Memberorder2Service {
 		return moResp.save(memberorder);
 	}
 
-	public void deleteByOrderid(Integer orderid) {
-		moResp.deleteByOrderid(orderid);
+	public Integer deleteByOrderid(Integer orderid) {
+		return moResp.deleteByOrderid(orderid);
+	}
+
+	// 使用者email查詢訂單編號
+	public List<Memberorder2> findByEmail(String useremail) {
+		return moResp.findByEmail(useremail);
 	}
 	
-	public Memberorder2 findByOrderid(Integer orderid) {
+	public List<Memberorder2> findByOrderid(Integer orderid) {
 		return moResp.findByOrderid(orderid);
 	}
 	
-	// 使用者名稱查詢訂單編號
 
 }

@@ -312,7 +312,7 @@ select.form-select {
 		var minDate = new Date();
 		var maxDate = new Date();
 
-		minDate.setDate(minDate.getDate()); // set days - mean previous date from current date + mean future date from current date
+		minDate.setDate(minDate.getDate() +1); // set days - mean previous date from current date + mean future date from current date
 		maxDate.setDate(maxDate.getDate() + 30);
 
 		$('#datepicker2').datetimepicker({

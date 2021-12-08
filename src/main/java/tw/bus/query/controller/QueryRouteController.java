@@ -46,7 +46,7 @@ public class QueryRouteController {
 	// 1. 起迄站查詢
 
 	// 2. 站名關鍵字查詢
-	@GetMapping(path = "/queryRouteByKeyword.controller")
+	@GetMapping(path = "/queryRouteByKeyword")
 	public String processMainPageAction3() {
 		return "/queryAndBookTicket/queryRouteByKeyword";
 	}
@@ -64,13 +64,15 @@ public class QueryRouteController {
 		return rInfoMapService.findAll();
 	}
 
-	// 2. 關鍵字查詢=>查詢車次
+	// 關鍵字查詢=>查詢車次
 	@PostMapping(path = "/queryRoutesByTripname.controller")
 	public String processQueryAction(@RequestParam("inputform") String inputdata, Model m)
 			throws JsonParseException, JsonMappingException, IOException, ParseException {
 
 		// 轉為java物件(全部為string)
 		ByTripname inputdataObj = mapper.readValue(inputdata, ByTripname.class);
+//		userinput = ByTripname [tripname=北投竹子湖線, traveldate=2021/12/06, weekday=Monday, initialtime=10:23:23, adult=2, children=0]
+
 
 		Map<String, String> errors = new HashMap<String, String>();
 		m.addAttribute("errors", errors);
@@ -103,7 +105,7 @@ public class QueryRouteController {
 	}
 
 	// 3. 導向地圖查詢，之後要導到全部導到首頁
-	@GetMapping(path = "/queryRouteByMap.controller")
+	@GetMapping(path = "/queryRouteByMap")
 	public String processMainPageAction4() {
 		return "/queryAndBookTicket/queryRouteByMap";
 	}

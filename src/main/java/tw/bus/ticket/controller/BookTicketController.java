@@ -32,7 +32,7 @@ import tw.bus.ticket.model.Memberorder2;
 @RequestMapping("/members")
 public class BookTicketController {
 	ObjectMapper mapper = new ObjectMapper();
-	private Integer countOrderid = 100000;
+	public static Integer countOrderid = 100000;  // server重新啟動後又會從頭開始算
 
 	private Memberorder2Service moService;
 	private Totalbus2Service totalService;
@@ -50,13 +50,6 @@ public class BookTicketController {
 		this.senderService = senderService;
 	}
 
-	// 寄email測試
-//	@GetMapping("/testEmail")
-//	public String processSendEmailAction() throws MessagingException {
-//		String text= "<h3>test</h3>";
-//		senderService.sendMineEmail("burite26@gmail.com", "無事坐BUS 訂票成功", text);
-//		return "/queryAndBookTicket/bookTicketSuccess";
-//	}
 
 	// 2.1 訂購車票
 	@PostMapping(path = "/bookTicket.controller")
@@ -108,9 +101,7 @@ public class BookTicketController {
 			for (Integer i = 1; i <= qty; i++) { // seat.size = qty
 				if (i <= adult) {
 					Memberorder2 member = new Memberorder2();
-					// 呼叫此方法一次，訂單編號都一樣
 					member.setOrderid(countOrderid);
-					// 取得使用者登入email
 					member.setEmail(useremail);
 					member.setBusnumber(totalBus.getBusnumber());
 					member.setInitialstation(totalBus.getInitialstation());
@@ -148,29 +139,33 @@ public class BookTicketController {
 			// 計算總金額
 			int totalPrice = 0;
 			for (Memberorder2 mbean : memberorder) {
-//				moService.insert(mbean);
+				moService.insert(mbean);
 				totalPrice += mbean.getPrice();
 			}
 
 // 			若新增成功: 1.totalBus remainSeat更新 2. seat相關位置刪除 3.countOrderid+1 4.寄email
 			
-//			totalService.updateRemainSeat(Integer.parseInt(busnumber), newremainseat);
-//			for(Integer i : seatid) {
-//				seatService.deleteSeatAfterOrder(i);
-//			}
+			totalService.updateRemainSeat(Integer.parseInt(busnumber), newremainseat);
+			
+			for(Integer i : seatid) {
+				seatService.deleteSeatAfterOrder(i);
+			}
+			
+			
 			
 			// Send Email
 			String text;
 			if (seat.size() == 1) {
 				text = "<html><head><style>"
 						+ " table{border-collapse: collapse; text-align: center;}"
-						+ " th,td{border: 1px solid gray;}th{background-color: darkslategray;"
+						+ " th,td{border: 1px solid gray; width: 90px;}th{background-color: darkslategray;"
 						+ "opacity: 80%; color:white}</style></head>"
 						+ "<body><h4>您的訂票資訊如下 : <h4>" +
 						"<table style=\"border-collapse: collapse; text-align: center\"> "+
 							"<tr>" + 
 								"<th>訂票編號</th>" + 
-								"<th>車次</th>" + 
+								"<th>車次編號</th>" + 
+								"<th>路線名稱</th>" + 
 								"<th>起站</th>" +
 								"<th>迄站</th>" + 
 								"<th>乘車日期</th>" + 
@@ -183,25 +178,27 @@ public class BookTicketController {
 							"<tr>" + 
 								"<td>" + countOrderid + "</td>" + 
 								"<td>" + totalBus.getBusnumber() + "</td>" + 
+								"<td>" + userinput.getTripname() + "</td>" + 
 								"<td>" + totalBus.getInitialstation() + "</td>" + 
 								"<td>" + totalBus.getFinalstation() + "</td>" +
 								"<td>" + userinput.getTraveldate() + "</td>" + 
 								"<td>" + totalBus.getInitialtime() + "</td>" +
 								"<td>" + totalBus.getTraveltime() + "</td>" + 
 								"<td>" + seat.get(0) + " 號</td>" + 
-								"<td>" + totalPrice + "</td>" + 
+								"<td> NT$" + totalPrice + "</td>" + 
 							"</tr>" + 
 						"</table></body></html>";
 			} else {
 				text = "<html><head><style>"
 						+ " table{border-collapse: collapse; text-align: center;}"
-						+ " th,td{border: 1px solid gray;} th{background-color: darkslategray;"
+						+ " th,td{border: 1px solid gray; width: 90px;} th{background-color: darkslategray;"
 						+ "opacity: 80%; color:white}</style></head>"
 						+ "<body><h4>您的訂票資訊如下 : <h4>" +
 						"<table style=\"border-collapse: collapse; text-align: center\"> "+
 							"<tr>" + 
 								"<th>訂票編號</th>" + 
-								"<th>車次</th>" + 
+								"<th>車次編號</th>" + 
+								"<th>路線名稱</th>" + 
 								"<th>起站</th>" +
 								"<th>迄站</th>" + 
 								"<th>乘車日期</th>" + 
@@ -214,23 +211,23 @@ public class BookTicketController {
 							"<tr>" + 
 								"<td>" + countOrderid + "</td>" + 
 								"<td>" + totalBus.getBusnumber() + "</td>" + 
+								"<td>" + userinput.getTripname() + "</td>" + 
 								"<td>" + totalBus.getInitialstation() + "</td>" + 
 								"<td>" + totalBus.getFinalstation() + "</td>" +
 								"<td>" + userinput.getTraveldate() + "</td>" + 
 								"<td>" + totalBus.getInitialtime() + "</td>" +
 								"<td>" + totalBus.getTraveltime() + "</td>" + 
 								"<td>" + seat.get(0) + "號 ~ " + seat.get(seat.size() - 1) + " 號</td>" + 
-								"<td>" + totalPrice + "</td>" + 
+								"<td> NT$" + totalPrice + "</td>" + 
 							"</tr>" + 
 						"</table></body></html>";
 			}
 
 			
 			senderService.sendMineEmail(useremail, "無事坐BUS 訂票成功", text);
-
-
-//			countOrderid++; //若新增成功，countOrderid+1
-		
+			countOrderid++; //新增成功，且寄完email後
+			m.addAttribute("qty",qty);
+			m.addAttribute("userinput",userinput);
 			m.addAttribute("memberorder",memberorder);
 			m.addAttribute("totalPrice",totalPrice);
 
