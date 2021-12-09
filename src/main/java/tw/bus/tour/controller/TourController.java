@@ -37,7 +37,7 @@ public class TourController {
 		m.addAttribute("crdate",dateStr);
 		m.addAttribute("TourList", tService.findAll());
 		m.addAttribute("RoutesList",tService.findRoutes());
-		return "/tourFunction/tourManagedFunction";
+		return "/tourFunction/tourManagedCSSTest";
 	}
 	@GetMapping(path="/tourEdit")
 	public String processSelectById(String editId , Model m) {
