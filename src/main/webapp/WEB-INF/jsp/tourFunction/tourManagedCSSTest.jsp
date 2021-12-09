@@ -9,53 +9,106 @@
 
 <head>
 <style type="text/css">
-	.mytext {
-		width: 500px;
-		font-size: 12pt;
-		padding: 5px;
-	}
-	
-	table {
-		border-collapse: collapse;
-		width: 1000px;
-		height: 700px;
-		align: center;
-		background-color: 
-	}
-	
-	span.error {
-		color: red;
-		display: inline-block;
-		font-size: 12pt;
-	}
-	p {
-		font-size: 12pt;
-		color: black;
-		margin-left: 100px;
-		margin-top: 10px;
-	}
+.mytext {
+	width: 500px;
+	font-size: 12pt;
+	padding: 5px;
+}
+
+span.error {
+	color: red;
+	display: inline-block;
+	font-size: 12pt;
+}
+
+p {
+	font-size: 12pt;
+	color: black;
+	margin-left: 100px;
+	margin-top: 10px;
+}
+
+.prettyborder {
+	border: 1px solid #0066cc;
+	padding: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
 table {
-		border: 1px solid black;
-		border-collapse:collapse; /*重要*/
+	border: 0px ridge navy;
+	padding: 5px;
+	border-collapse: collapse; /*重要*/
+	background: #E0EAFC; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);
+	/* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #CFDEF3, #E0EAFC);
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.for-th th {
+	border: 1px solid black;
+	padding: 5px;
+	color: white;
+	background: #1e3c72; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #2a5298, #1e3c72);
+	/* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #2a5298, #1e3c72);
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+table td {
+	border: 0px solid white;
+	padding: 5px;
+	margin-top: 2px;
+	color: navy;
+	background: #E0EAFC; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);
+	/* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #CFDEF3, #E0EAFC);
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.expiredtour {
+	color: white;
+	border: 3px ridge #FF0000;
+	padding: 5px;
+	margin-top: 10px;
+}
+
+.insertBox {
+	border-top: 10px double navy;
+	padding: 5px;
+	margin-top: 10px;
+}
+
+a.button3 {
+	 display: inline-block;
+	 padding: 0.3em 1.2em;
+	 margin: 0 0.3em 0.3em 0;
+	 border-radius: 2em;
+	 box-sizing: border-box;
+	 text-decoration: none;
+	 font-family: 'Roboto', sans-serif;
+	 font-weight: 300;
+	 color: #FFFFFF;
+	 background-color: #4eb5f1;
+	 text-align: center;
+	 transition: all 0.2s;
+}
+
+a.button3:hover {
+	 background-color: #4095c6;
+}
+
+@media all and (max-width:30em) {
+	 a.button3 {
+		  display: block;
+		  margin: 0.2em auto;
+		 
 	}
-	
-	table th {
-		border: 1px solid white;
-		padding: 5px;
-		color: gold;
-	}
-	
-	table td {
-		border: 1px solid white;
-		padding: 5px;
-		color: black;
-		background-color: white;
-	}
-	.expiredtour td{
-		border: 1px solid red;
-		padding: 5px;
-		background-color: red;
-	}
+}
 </style>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -64,7 +117,7 @@ table {
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SB Admin 2 - Dashboard</title>
+<title>TOUR Managed Function Part</title>
 
 <!-- Custom fonts for this template-->
 <link href="/ServerSide/vendor/fontawesome-free/css/all.min.css"
@@ -89,12 +142,14 @@ table {
 			id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
-			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-bus-alt"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">無事坐Bus</div>
-            </a>
+			<a
+				class="sidebar-brand d-flex align-items-center justify-content-center"
+				href="/server">
+				<div class="sidebar-brand-icon rotate-n-15">
+					<i class="fas fa-bus-alt"></i>
+				</div>
+				<div class="sidebar-brand-text mx-3">無事坐Bus</div>
+			</a>
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
@@ -113,35 +168,25 @@ table {
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
 				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-bus"></i> <span>班次路線管理</span>
+					class="fas fa-bus"></i> <span>車次路線管理</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">車次路線管理:</h6>
-                        <a class="collapse-item" href="buttons.html">車次路線</a>
-                        <a class="collapse-item" href="cards.html">申請案</a>
+						<h6 class="collapse-header">車次路線管理:</h6>
+						<a class="collapse-item"
+							href="http://localhost:8081/routes/routemain.controller">車次路線</a>
+						<a class="collapse-item"
+							href="http://localhost:8081/busTimes/tempbustimemain.controller?tEx=9">申請案</a>
 					</div>
 				</div></li>
 
-			<!-- Nav Item - Utilities Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseUtilities"
-				aria-expanded="true" aria-controls="collapseUtilities"> <i
-					class="fas fa-solid fa-clipboard-list"></i> <span>訂單管理</span>
-			</a>
-				<div id="collapseUtilities" class="collapse"
-					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">訂單管理:</h6>
-						<a class="collapse-item" href="utilities-color.html">Colors</a> <a
-							class="collapse-item" href="utilities-border.html">Borders</a> <a
-							class="collapse-item" href="utilities-animation.html">Animations</a>
-						<a class="collapse-item" href="utilities-other.html">Other</a>
-					</div>
-				</div></li>
+			<li class="nav-item"><a class="nav-link"
+				href="http://localhost:8081/memberOrderBackmain.controller"> <i
+					class="fas fa-solid fa-clipboard-list"></i> <span>訂單管理</span></a></li>
 
 			<!-- Nav Item - Utilities Collapse Menu -->
+
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseUtilities2"
 				aria-expanded="true" aria-controls="collapseUtilities2"> <i
@@ -156,6 +201,10 @@ table {
 
 					</div>
 				</div></li>
+			<li class="nav-item"><a class="nav-link"
+				href="http://localhost:8081/tourfindall"> <i
+					class="fas fa-fw fa-folder"></i> <span>套票管理</span>
+			</a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
@@ -185,14 +234,14 @@ table {
 				</div></li>
 
 			<!-- Nav Item - Charts -->
-			<li class="nav-item"><a class="nav-link" href="charts.html">
-					<i class="fas fa-fw fa-chart-area"></i> <span>訂單統計</span>
-			</a></li>
+			<li class="nav-item active"><a class="nav-link"
+				href="charts.html"> <i class="fas fa-fw fa-chart-area"></i> <span>訂單統計</span></a>
+			</li>
 
 			<!-- Nav Item - Tables -->
-			<li class="nav-item active"><a class="nav-link"
-				href="tables.html"> <i class="fas fa-light fa-address-book"></i> <span>會員管理</span></a>
-			</li>
+			<li class="nav-item"><a class="nav-link"
+				href="/membersmain.controller"> <i
+					class="fas fa-light fa-address-book"></i> <span>會員管理</span></a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
@@ -380,8 +429,7 @@ table {
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <span
 								class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas
-									McGee</span> <img class="img-profile rounded-circle"
-								>
+									McGee</span> <img class="img-profile rounded-circle">
 						</a> <!-- Dropdown - User Information -->
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -410,7 +458,7 @@ table {
 
 				<!-- Begin Page Content -->
 
-				
+
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
@@ -423,91 +471,123 @@ table {
 						</div>
 						<div class="card-body" align="center">
 							<div class="table-responsive">
+								<div class="prettyborder">
 									<table style="text-align: center">
-		<tr>
-			<th>套票ID</th>
-			<th>套票名稱</th>
-			<th>套票原價</th>
-			<th>優惠售價</th>
-			<th>適用路線</th>
-			<th>套票內容</th>
-			<th>販售時間</th>
-			<th>使用時間</th>
-			<th>縮圖</th>
-			<th colspan="2">資料維護</th>
-		</tr>
-		<c:forEach var='Tour' items='${TourList}'>
-		<c:if test="${Tour.tourUseEnd.compareTo(crdate)<0}">
-		<tr id="ExpiredData" class="expiredtour">
-		</c:if>
-		<c:if test="false">
-		<tr id="TourData" >
-		</c:if>
-				<td style="text-align: center">${Tour.tourId}</td>
-				<td><input 		id="upName${Tour.tourId}"	    value="${Tour.tourName}"  		style="text-align:center ; width: 200px;"></td>
-				<td><input 		id="upPrice${Tour.tourId}" 		value="${Tour.tourPrice}"       style="text-align:center ; width: 45px;"></td>
-				<td><input 		id="updisPrice${Tour.tourId}" 	value="${Tour.discountPrice}"   style="text-align:center ; width: 45px;"></td>
-				<td>
-					<select id="upRouteId${Tour.tourId}" style="text-align: center;">
-						<c:forEach var='Routes' items='${RoutesList}'>
-							<c:if test="${Tour.fk_routes_routeId == Routes.routeId}">
-							<option value="${Routes.routeId}" selected="selected">${Routes.tripName}</option>
-							</c:if>
-							<c:if test="${Tour.fk_routes_routeId != Routes.routeId}">
-							<option value="${Routes.routeId}">${Routes.tripName}</option>
-							</c:if>
-						</c:forEach>
-					</select>
-				</td>
-				<td><textarea 	id="upContent${Tour.tourId}" 	style="height: 100px;width: 300px;resize: none;">${Tour.tourContent}</textarea></td>
-				<td style="text-align: center">					開始時間<br>
-					<input 		id="upSS${Tour.tourId}" 		value="${Tour.tourSaleStart}" type="date" style="text-align:center ; width: 125px">
-															<br>結束時間<br>
-					<input 		id="upSE${Tour.tourId}" 		value="${Tour.tourSaleEnd}"   type="date" style="text-align:center ; width: 125px">
-				</td>
-				<td style="text-align: center">					開始時間<br>
-					<input 		id="upUS${Tour.tourId}" 		value="${Tour.tourUseStart}"  type="date" style="text-align:center ; width: 125px">
-															<br>結束時間<br>
-					<input 		id="upUE${Tour.tourId}" 		value="${Tour.tourUseEnd}"    type="date" style="text-align:center ; width: 125px">
-				</td>
-				<td>
-					<img width='60' height='72' src="/images/tour/tourimages${Tour.tourId}.jpg"/><br>
-					<input id="upIMGURL${Tour.tourId}" value="*/tour/tourimages${Tour.tourId}" style ="width: 130px">
-				</td>
-				<td><button onclick="update(${Tour.tourId})">修改</button></td>
-				<td><button onclick="deleteData(${Tour.tourId})">刪除</button></td>
-		</tr>		
-		</c:forEach>
-		
-		<tr id="InsertTourData">
-			<td></td>
-			<td><textarea id="insertname" 	  		   style="text-align:left ; width: 200px; height: 50px;resize: none"></textarea></td>
-			<td><input    id="insertPrice"   value=""  style="text-align:center ; width: 45px;"></td>
-			<td><input    id="insertdPrice"  value=""  style="text-align:center ; width: 45px;"></td>
-			<td>
-				<!--<input    id="insertRouteId" value=""  style="text-align:center ; width: 45px;"> -->
-				<select id="insertRouteId" style="text-align: center;">
-					<c:forEach var='Routes' items='${RoutesList}'>
-						<option value="${Routes.routeId}">${Routes.tripName}</option>
-					</c:forEach>
-				</select>
-			</td>
-			<td><textarea id="insertContent" style="height: 100px;width: 300px;"></textarea></td>
-			<td style="text-align: center">				開始時間<br>
-				<input id="insertSaleS"	type="date" value="" type="text" style="text-align:center ; width: 125px">
-													<br>結束時間<br>
-				<input id="insertSaleE" type="date" value="" type="text" style="text-align:center ; width: 125px">
-			</td>
-			<td style="text-align: center">				開始時間<br>
-				<input id="insertUseS"		type="date" value="" type="text" style="text-align:center ; width: 125px">
-													<br>結束時間<br> 
-				<input id="insertUseE"  type="date" value="" type="text" style="text-align:center ; width: 125px">
-			</td>
-			<td><select id="insertIMGURL" ></select></td>
-			<td><button onclick="insertNewData()">新增</button></td>
-			<td></td>
-		</tr>
-	</table>
+										<tr class="for-th">
+											<th>套票ID</th>
+											<th>套票名稱</th>
+											<th>套票原價</th>
+											<th>優惠售價</th>
+											<th>適用路線</th>
+											<th>套票內容</th>
+											<th>販售時間</th>
+											<th>使用時間</th>
+											<th>縮圖</th>
+											<th colspan="2">資料維護</th>
+										</tr>
+										<tr>
+											<td colspan="9"></td>
+										</tr>
+										<c:forEach var='Tour' items='${TourList}'>
+											<c:if test="${Tour.tourUseEnd.compareTo(crdate)<0}">
+												<tr id="ExpiredData" class="expiredtour">
+											</c:if>
+											<c:if test="false">
+												<tr id="TourData">
+											</c:if>
+											<td style="text-align: center">${Tour.tourId}</td>
+											<td><input id="upName${Tour.tourId}"
+												value="${Tour.tourName}"
+												style="text-align: center; width: 200px;"></td>
+											<td><input id="upPrice${Tour.tourId}"
+												value="${Tour.tourPrice}"
+												style="text-align: center; width: 50px;"></td>
+											<td><input id="updisPrice${Tour.tourId}"
+												value="${Tour.discountPrice}"
+												style="text-align: center; width: 50px;"></td>
+											<td><select id="upRouteId${Tour.tourId}"
+												style="text-align: center;">
+													<c:forEach var='Routes' items='${RoutesList}'>
+														<c:if test="${Tour.fk_routes_routeId == Routes.routeId}">
+															<option value="${Routes.routeId}" selected="selected">${Routes.tripName}</option>
+														</c:if>
+														<c:if test="${Tour.fk_routes_routeId != Routes.routeId}">
+															<option value="${Routes.routeId}">${Routes.tripName}</option>
+														</c:if>
+													</c:forEach>
+											</select></td>
+											<td><textarea id="upContent${Tour.tourId}"
+													style="height: 100px; width: 200px; resize: none;">${Tour.tourContent}</textarea></td>
+											<td style="text-align: center">開始時間<br> <input
+												id="upSS${Tour.tourId}" value="${Tour.tourSaleStart}"
+												type="date" style="text-align: center; width: 150px">
+												<br>結束時間<br> <input id="upSE${Tour.tourId}"
+												value="${Tour.tourSaleEnd}" type="date"
+												style="text-align: center; width: 150px">
+											</td>
+											<td style="text-align: center">開始時間<br> <input
+												id="upUS${Tour.tourId}" value="${Tour.tourUseStart}"
+												type="date" style="text-align: center; width: 150px">
+												<br>結束時間<br> <input id="upUE${Tour.tourId}"
+												value="${Tour.tourUseEnd}" type="date"
+												style="text-align: center; width: 150px">
+											</td>
+											<td><img width='60' height='72'
+												src="/images/tour/tourimages${Tour.tourId}.jpg" /><br>
+												<input id="upIMGURL${Tour.tourId}"
+												value="*/tour/tourimages${Tour.tourId}" style="width: 130px">
+											</td>
+											<td><button onclick="update(${Tour.tourId})"
+													class="button3">修改</button></td>
+											<td><button onclick="deleteData(${Tour.tourId})"
+													class="button3">刪除</button></td>
+											</tr>
+											<tr>
+												<td colspan="10"></td>
+											</tr>
+										</c:forEach>
+										<tr id="InsertTourData" class="insertBox">
+											<td colspan="9" style="text-align: left;">Insert New Data Here</td>
+										</tr>
+										<tr>
+											<td></td>
+											<td><textarea id="insertname"
+													style="text-align: left; width: 200px; height: 50px; resize: none"></textarea></td>
+											<td><input id="insertPrice" value=""
+												style="text-align: center; width: 50px;"></td>
+											<td><input id="insertdPrice" value=""
+												style="text-align: center; width: 50px;"></td>
+											<td>
+												<!--<input    id="insertRouteId" value=""  style="text-align:center ; width: 45px;"> -->
+												<select id="insertRouteId" style="text-align: center;">
+													<c:forEach var='Routes' items='${RoutesList}'>
+														<option value="${Routes.routeId}">${Routes.tripName}</option>
+													</c:forEach>
+											</select>
+											</td>
+											<td><textarea id="insertContent"
+													style="height: 100px; width: 200px;"></textarea></td>
+											<td style="text-align: center">開始時間<br> <input
+												id="insertSaleS" type="date" value="" type="text"
+												style="text-align: center; width: 150px"> <br>結束時間<br>
+												<input id="insertSaleE" type="date" value="" type="text"
+												style="text-align: center; width: 150px">
+											</td>
+											<td style="text-align: center">開始時間<br> <input
+												id="insertUseS" type="date" value="" type="text"
+												style="text-align: center; width: 150px"> <br>結束時間<br>
+												<input id="insertUseE" type="date" value="" type="text"
+												style="text-align: center; width: 150px">
+											</td>
+											<td><select id="insertIMGURL"></select></td>
+											<td colspan="2"><button onclick="insertNewData()" class="button3">新增</button></td>
+										</tr>
+										<tr>
+											<td colspan="9" style="text-align: right;">Show Date
+												Check Info</td>
+										</tr>
+									</table>
+								</div>
 							</div>
 						</div>
 					</div>
