@@ -12,14 +12,27 @@ import org.springframework.stereotype.Service;
 public class TourService {
 	@Autowired
 	private TourRepository tRepository;
+	@Autowired
+	private RoutesForToursRepository rRepository;
+	
 
 	public List<Tour> findAll() {
 		return tRepository.findAll();
 	}
-	public List<Tour> findById() {
-		return tRepository.findById();
+	public List<RoutesForTours> findRoutes() {
+		return rRepository.findRoutes();
+	}
+	public Tour findById(String editId) {
+		return tRepository.findById(editId);
 	}
 	public List<Tour> findByCurDate() {
 		return tRepository.findByCurDate();
+	}
+	public void deleteById(Integer editId) {
+		tRepository.deleteById(editId);
+//		tRepository.deleteCurId(editId);
+	}
+	public void insertData(Tour model ) {
+		tRepository.save(model);
 	}
 }

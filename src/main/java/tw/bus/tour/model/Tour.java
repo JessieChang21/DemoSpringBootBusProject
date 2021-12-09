@@ -1,7 +1,5 @@
 package tw.bus.tour.model;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,18 +23,18 @@ public class Tour {
 	private int tourPrice;
 	@Column(name = "discountPrice")
 	private int discountPrice;
-	@Column(name = "fk_tour_routeId")
-	private String fk_tour_routeId;
+	@Column(name = "fk_routes_routeId")
+	private String fk_routes_routeId;
 	@Column(name = "tourContent")
 	private String tourContent;
 	@Column(name = "tourSaleStart")
-	private Date tourSaleStart;
+	private String tourSaleStart;
 	@Column(name = "tourSaleEnd")
-	private Date tourSaleEnd;
+	private String tourSaleEnd;
 	@Column(name = "tourUseStart")
-	private Date tourUseStart;
+	private String tourUseStart;
 	@Column(name = "tourUseEnd")
-	private Date tourUseEnd;
+	private String tourUseEnd;
 	@Column(name = "tourURL")
 	private String tourURL;
 
@@ -72,12 +70,12 @@ public class Tour {
 		this.discountPrice = discountPrice;
 	}
 
-	public String getFk_tour_routeId() {
-		return fk_tour_routeId;
+	public String getFk_routes_routeId() {
+		return fk_routes_routeId;
 	}
 
-	public void setFk_tour_routeId(String fk_tour_routeId) {
-		this.fk_tour_routeId = fk_tour_routeId;
+	public void setFk_routes_routeId(String fk_routes_routeId) {
+		this.fk_routes_routeId = fk_routes_routeId;
 	}
 
 	public String getTourContent() {
@@ -88,35 +86,35 @@ public class Tour {
 		this.tourContent = tourContent;
 	}
 
-	public Date getTourSaleStart() {
+	public String getTourSaleStart() {
 		return tourSaleStart;
 	}
 
-	public void setTourSaleStart(Date tourSaleStart) {
+	public void setTourSaleStart(String tourSaleStart) {
 		this.tourSaleStart = tourSaleStart;
 	}
 
-	public Date getTourSaleEnd() {
+	public String getTourSaleEnd() {
 		return tourSaleEnd;
 	}
 
-	public void setTourSaleEnd(Date tourSaleEnd) {
+	public void setTourSaleEnd(String tourSaleEnd) {
 		this.tourSaleEnd = tourSaleEnd;
 	}
 
-	public Date getTourUseStart() {
+	public String getTourUseStart() {
 		return tourUseStart;
 	}
 
-	public void setTourUseStart(Date tourUseStart) {
+	public void setTourUseStart(String tourUseStart) {
 		this.tourUseStart = tourUseStart;
 	}
 
-	public Date getTourUseEnd() {
+	public String getTourUseEnd() {
 		return tourUseEnd;
 	}
 
-	public void setTourUseEnd(Date tourUseEnd) {
+	public void setTourUseEnd(String tourUseEnd) {
 		this.tourUseEnd = tourUseEnd;
 	}
 
