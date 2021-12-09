@@ -1,14 +1,10 @@
 package tw.bus.ticket.model;
 
-import java.util.Date;
-
 public class ByTripname {
 	
 	private String tripname;
-//	private Date traveldate;
 	private String traveldate;
 	private String weekday;
-//	private Date initialtime;
 	private String initialtime;
 	private Integer adult;
 	private Integer children;

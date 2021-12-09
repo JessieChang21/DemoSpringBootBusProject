@@ -13,13 +13,17 @@
 	<h3>車次查詢結果</h3>
 	<div>路線名稱 : ${inputdataObj.tripname}</div>
 	<div>旅行日期 : ${inputdataObj.traveldate}</div>
-	<br />
-	<br />
+	<br/>
+	<br/>
 	<c:choose>
 		<c:when test="${empty result}">
-			<div>暫無相關班次資訊</div>
+			<div id="all">暫無相關班次資訊</div>
 		</c:when>
-		
+	</c:choose>
+	<c:choose>
+		<c:when test="${empty byTripnameResult0}">
+			<div id="d0">暫無順向班次資訊</div>
+		</c:when>
 		<c:otherwise>
 			<form action="/members/bookTicket.controller" method="POST">
 				<table border="1">
@@ -38,8 +42,6 @@
 						<th>備註</th>
 						<th>訂票</th>
 					</tr>
-
-
 					<c:forEach var="aBean" items="${byTripnameResult0}">
 						<tr>
 							<td>${aBean.busnumber}</td>
@@ -56,8 +58,22 @@
 						</tr>
 					</c:forEach>
 				</table>
-				<br> <br>
-				<!-- 		-------------------------- -->
+				<input id="tripname" value="${inputdataObj.tripname}" type="hidden">
+				<input id="traveldate" value="${inputdataObj.traveldate}" type="hidden">
+				<input id="weekday" value="${inputdataObj.weekday}" type="hidden">
+				<input id="initialtime" value="${inputdataObj.initialtime}" type="hidden">
+				<input id="adult" value="${inputdataObj.adult}" type="hidden">
+				<input id="children" value="${inputdataObj.children}" type="hidden">
+				<input id="inputdata" name="inputdata" type="hidden">
+			</form>
+		</c:otherwise>
+	</c:choose>	
+	<c:choose>
+		<c:when test="${empty byTripnameResult1}">
+			<div id="d1">暫無逆向班次資訊</div>
+		</c:when>
+		<c:otherwise>
+			<form action="/members/bookTicket.controller" method="POST">
 				<table border="1">
 					<tr>
 						<th colspan="10">逆向</th>
@@ -74,8 +90,6 @@
 						<th>備註</th>
 						<th>訂票</th>
 					</tr>
-
-
 					<c:forEach var="aBean" items="${byTripnameResult1}">
 						<tr>
 							<td>${aBean.busnumber}</td>
@@ -99,23 +113,34 @@
 				<input id="initialtime" value="${inputdataObj.initialtime}" type="hidden">
 				<input id="adult" value="${inputdataObj.adult}" type="hidden">
 				<input id="children" value="${inputdataObj.children}" type="hidden">
-				<input id="inputdata" name="inputdata" type="hidden">
-				
+				<input id="inputdata" name="inputdata" type="hidden">	
 			</form>
 		</c:otherwise>
-	</c:choose>
+	</c:choose>	
+	
 	
 	<script type="text/javascript">
-	var params = {
+		var params = {
     	    "tripname": $("#tripname").val(),
     		"traveldate":$("#traveldate").val(),
     		"weekday":$("#weekday").val(),
     		"initialtime":$("#initialtime").val(),
     		"adult":$("#adult").val(),
     		"children":$("#children").val()
-        }
+        	}
         
-    $("#inputdata").val(JSON.stringify(params));
+    	$("#inputdata").val(JSON.stringify(params));
+		
+		window.onload = function() {
+			var all = $("#all").html();
+			var d0 = $("#d0").html();
+			var d1 = $("#d1").html();
+			
+			if(all == "暫無相關班次資訊"){
+				$("#d0").html("");
+				$("#d1").html("");
+			}
+		}
 	</script>
 </body>
 </html>

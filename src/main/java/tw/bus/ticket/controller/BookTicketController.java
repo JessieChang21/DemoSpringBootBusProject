@@ -60,6 +60,7 @@ public class BookTicketController {
 		String useremail = p.getName();
 
 		ByTripname userinput = mapper.readValue(inputdata, ByTripname.class);
+		System.out.println(userinput);
 //		busnumber = 1135
 //		inputdata = {"tripname":"北投竹子湖線","traveldate":"2021/12/06","weekday":"Monday","initialtime":"10:23:23","adult":"2","children":"0"}
 //		userinput = ByTripname [tripname=北投竹子湖線, traveldate=2021/12/06, weekday=Monday, initialtime=10:23:23, adult=2, children=0]
@@ -104,6 +105,7 @@ public class BookTicketController {
 					member.setOrderid(countOrderid);
 					member.setEmail(useremail);
 					member.setBusnumber(totalBus.getBusnumber());
+					member.setTripname(totalBus.getTripname());
 					member.setInitialstation(totalBus.getInitialstation());
 					member.setFinalstation(totalBus.getFinalstation());
 					member.setTraveldate(userinput.getTraveldate());
@@ -120,6 +122,7 @@ public class BookTicketController {
 					member.setOrderid(countOrderid);
 					member.setEmail(useremail);
 					member.setBusnumber(totalBus.getBusnumber());
+					member.setTripname(totalBus.getTripname());
 					member.setInitialstation(totalBus.getInitialstation());
 					member.setFinalstation(totalBus.getFinalstation());
 					member.setTraveldate(userinput.getTraveldate());
@@ -134,7 +137,6 @@ public class BookTicketController {
 				}
 
 			}
-			System.out.println(memberorder);
 
 			// 計算總金額
 			int totalPrice = 0;
@@ -178,7 +180,7 @@ public class BookTicketController {
 							"<tr>" + 
 								"<td>" + countOrderid + "</td>" + 
 								"<td>" + totalBus.getBusnumber() + "</td>" + 
-								"<td>" + userinput.getTripname() + "</td>" + 
+								"<td>" + totalBus.getTripname() + "</td>" + 
 								"<td>" + totalBus.getInitialstation() + "</td>" + 
 								"<td>" + totalBus.getFinalstation() + "</td>" +
 								"<td>" + userinput.getTraveldate() + "</td>" + 
@@ -211,7 +213,7 @@ public class BookTicketController {
 							"<tr>" + 
 								"<td>" + countOrderid + "</td>" + 
 								"<td>" + totalBus.getBusnumber() + "</td>" + 
-								"<td>" + userinput.getTripname() + "</td>" + 
+								"<td>" + totalBus.getTripname() + "</td>" + 
 								"<td>" + totalBus.getInitialstation() + "</td>" + 
 								"<td>" + totalBus.getFinalstation() + "</td>" +
 								"<td>" + userinput.getTraveldate() + "</td>" + 
@@ -226,8 +228,8 @@ public class BookTicketController {
 			
 			senderService.sendMineEmail(useremail, "無事坐BUS 訂票成功", text);
 			countOrderid++; //新增成功，且寄完email後
-			m.addAttribute("qty",qty);
-			m.addAttribute("userinput",userinput);
+//			m.addAttribute("qty",qty);
+//			m.addAttribute("userinput",userinput);
 			m.addAttribute("memberorder",memberorder);
 			m.addAttribute("totalPrice",totalPrice);
 

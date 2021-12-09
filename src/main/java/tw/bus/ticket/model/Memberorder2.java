@@ -28,6 +28,9 @@ public class Memberorder2 {
 	@Column(name="BUSNUMBER")
 	private Integer busnumber;
 	
+	@Column(name="TRIPNAME")
+	private String tripname;
+	
 	@Column(name="INITIALSTATION")
 	private String initialstation;
 	
@@ -66,14 +69,15 @@ public class Memberorder2 {
 		
 	}
 
-	public Memberorder2(Integer oid, Integer orderid, String email, Integer busnumber, String initialstation,
-			String finalstation, String traveldate, Date initialtime, String formatinitaltime, String traveltime,
-			String tickettype, Integer price, Integer seat, Integer orderqty, Date orderdate) {
+	public Memberorder2(Integer oid, Integer orderid, String email, Integer busnumber, String tripname,
+			String initialstation, String finalstation, String traveldate, Date initialtime, String formatinitaltime,
+			String traveltime, String tickettype, Integer price, Integer seat, Integer orderqty, Date orderdate) {
 		super();
 		this.oid = oid;
 		this.orderid = orderid;
 		this.email = email;
 		this.busnumber = busnumber;
+		this.tripname = tripname;
 		this.initialstation = initialstation;
 		this.finalstation = finalstation;
 		this.traveldate = traveldate;
@@ -98,6 +102,8 @@ public class Memberorder2 {
 		builder.append(email);
 		builder.append(", busnumber=");
 		builder.append(busnumber);
+		builder.append(", tripname=");
+		builder.append(tripname);
 		builder.append(", initialstation=");
 		builder.append(initialstation);
 		builder.append(", finalstation=");
@@ -154,6 +160,14 @@ public class Memberorder2 {
 
 	public void setBusnumber(Integer busnumber) {
 		this.busnumber = busnumber;
+	}
+
+	public String getTripname() {
+		return tripname;
+	}
+
+	public void setTripname(String tripname) {
+		this.tripname = tripname;
 	}
 
 	public String getInitialstation() {
@@ -244,7 +258,6 @@ public class Memberorder2 {
 		this.orderdate = orderdate;
 	}
 
-	
 	
 	
 	

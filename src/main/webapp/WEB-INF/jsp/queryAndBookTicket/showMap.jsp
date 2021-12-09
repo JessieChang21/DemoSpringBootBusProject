@@ -8,7 +8,8 @@
 <title>路線總覽</title>
 <link rel="icon" href="images/bus.svg" type="image/x-icon" />
 <link rel="stylesheet" href="/travelista-master/main.css">
-<link rel="stylesheet" href="/webjars/font-awesome/5.13.0/css/all.min.css">
+<link rel="stylesheet"
+	href="/webjars/font-awesome/5.13.0/css/all.min.css">
 <link rel='stylesheet' href='/webjars/leaflet/dist/leaflet.css'>
 <link rel='stylesheet'
 	href='/webjars/leaflet.markercluster/dist/MarkerCluster.css'>
@@ -18,85 +19,93 @@
 	href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.75.0/dist/L.Control.Locate.min.css" />
 
 <style>
-        #mapid {
-            height: 88vh;
-            width: 90vw;
-            margin: auto;
-            margin-top: 0;
-        }
+#mapid {
+	height: 88vh;
+	width: 90vw;
+	margin: auto;
+	margin-top: 0;
+}
 
-        .marker-cluster-small {
-            background-color: rgba(181, 226, 140, 0.6);
-        }
+.marker-cluster-small {
+	background-color: rgba(181, 226, 140, 0.6);
+}
 
-        .marker-cluster-small div {
-            background-color: rgba(110, 204, 57, 0.6);
-        }
+.marker-cluster-small div {
+	background-color: rgba(110, 204, 57, 0.6);
+}
 
-        .marker-cluster-medium {
-            background-color: rgba(241, 211, 87, 0.6);
-        }
+.marker-cluster-medium {
+	background-color: rgba(241, 211, 87, 0.6);
+}
 
-        .marker-cluster-medium div {
-            background-color: rgba(240, 194, 12, 0.6);
-        }
+.marker-cluster-medium div {
+	background-color: rgba(240, 194, 12, 0.6);
+}
 
-        .marker-cluster-large {
-            background-color: rgba(253, 156, 115, 0.6);
-        }
+.marker-cluster-large {
+	background-color: rgba(253, 156, 115, 0.6);
+}
 
-        .marker-cluster-large div {
-            background-color: rgba(241, 128, 23, 0.6);
-        }
+.marker-cluster-large div {
+	background-color: rgba(241, 128, 23, 0.6);
+}
 
-        .marker-cluster {
-            background-clip: padding-box;
-            border-radius: 20px;
-        }
+.marker-cluster {
+	background-clip: padding-box;
+	border-radius: 20px;
+}
 
-        .marker-cluster div {
-            width: 30px;
-            height: 30px;
-            margin-left: 5px;
-            margin-top: 5px;
-            text-align: center;
-            border-radius: 15px;
-            font-size: 12px;
-            font-family: monospace;
-        }
+.marker-cluster div {
+	width: 30px;
+	height: 30px;
+	margin-left: 5px;
+	margin-top: 5px;
+	text-align: center;
+	border-radius: 15px;
+	font-size: 12px;
+	font-family: monospace;
+}
 
-        .marker-cluster span {
-            line-height: 30px;
-        }
+.marker-cluster span {
+	line-height: 30px;
+}
 
-        #logo{
-            color: #f8b600;
-            font-family:Microsoft JhengHei ;
-            font-weight: bold;
-            font-size:1.8em;
-            text-align: end;
-            font-style: italic;
-            margin-left: 1vw;
-        }
+#logo {
+	color: #f8b600;
+	font-family: Microsoft JhengHei;
+	font-weight: bold;
+	font-size: 1.8em;
+	text-align: end;
+	font-style: italic;
+	margin-left: 1vw;
+}
 
-        #logo2{
-            color:white;
-            font-family:Microsoft JhengHei ;
-            font-size:1.5em;
-            font-weight: bold;
-            margin-left: 20px;
-        }
-        .container{
-            background-color: darkslategray;
-            opacity: 73%;
-            padding:auto;
-            margin: auto;
-            width: 90vw;
-            height: 55px;
-            margin-bottom: 0;
-            display: flex ;
-            align-items: center
-        }
+#logo2 {
+	color: white;
+	font-family: Microsoft JhengHei;
+	font-size: 1.5em;
+	font-weight: bold;
+	margin-left: 20px;
+}
+
+.container {
+	background-color: black;
+	opacity: 73%;
+	padding: auto;
+	margin: auto;
+	width: 90vw;
+	height: 55px;
+	margin-bottom: 0;
+	display: flex;
+	align-items: center
+}
+
+.container a:link, .container a:visited {
+	text-decoration: none;
+	color: #f8b600;
+}
+
+
 </style>
 </head>
 <body>
@@ -107,15 +116,15 @@
 	<script
 		src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.75.0/dist/L.Control.Locate.min.js"
 		charset="utf-8"></script>
-		
+
 	<div class="container main-menu">
-        <div>
-            <span id="logo">
-                <i class="fas fa-bus-alt"></i> 無事坐Bus</span>
-            <span id="logo2">- 路線總覽</span>
-        </div>
-    </div>
-    
+		<div>
+			<span id="logo"><a href="/mainpage"> <i
+					class="fas fa-bus-alt"></i> 無事坐Bus
+			</a></span> <span id="logo2">- 路線總覽</span>
+		</div>
+	</div>
+
 	<div id="mapid"></div>
 
 	<script>
@@ -275,15 +284,14 @@
 							tripicon = yellowIcon;
 						}
 
-						markers.addLayer(
-								L.marker([ json[i].lan, json[i].lon ],
+						markers.addLayer(L.marker([ json[i].lan, json[i].lon ],
 								{
 									icon : tripicon
 								}).bindPopup(
-								'<h3>' + json[i].tripname + ": </h3>" 
-										+ '<h4> ( '+ json[i].stationsequence+ " ) " + json[i].station + ' </h4>')
-								.openPopup()
-						);						
+								'<h3>' + json[i].tripname + ": </h3>"
+										+ '<h4> ( ' + json[i].stationsequence
+										+ " ) " + json[i].station + ' </h4>')
+								.openPopup());
 					}
 					map.addLayer(markers);
 				}

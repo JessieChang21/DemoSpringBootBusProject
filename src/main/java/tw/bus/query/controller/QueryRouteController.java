@@ -70,7 +70,7 @@ public class QueryRouteController {
 		return "/queryAndBookTicket/queryRouteByMap";
 	}
 
-	// 3. 地圖查詢
+	// 1. 3. 站名查詢、地圖查詢
 	@GetMapping("/queryRoutes")
 	@ResponseBody
 	public List<RoutesWithStation> processMainMap() {
@@ -114,7 +114,7 @@ public class QueryRouteController {
 		m.addAttribute("result", result);
 		m.addAttribute("byTripnameResult0", result0);
 		m.addAttribute("byTripnameResult1", result1);
-		return "/queryAndBookTicket/queryRouteResult2";
+		return "/queryAndBookTicket/queryRouteResult";
 	}
 
 

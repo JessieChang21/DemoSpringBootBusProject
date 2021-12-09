@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>會員訂單資訊</title>
+<link rel="icon" href="images/bus.svg" type="image/x-icon" />
 <style>
 #ordertable {
 	border-collapse: collapse;
@@ -69,6 +70,7 @@
 												<tr>
 													<td>訂票編號</td>
 													<td>車次編號</td>
+													<td>路線名稱</td>
 													<td>起站</td>
 													<td>迄站</td>
 													<td>乘車日期</td>
@@ -76,13 +78,14 @@
 													<td>旅程時間</td>
 													<td>座位編號</td>
 													<td>票種</td>
-													<td>金額</td>
+													<td>票價</td>
 						        				</tr></table>`);
 							for (let i = 0; i < json.length; i++) {
 							$("#"+orderid+"").append(`<table id = "ordertable">
 										        <tr>
 										        	<td>`+ json[i].orderid + `</td>
 										        	<td>`+ json[i].busnumber +`</td>
+										        	<td>`+ json[i].tripname +`</td>
 										        	<td>`+ json[i].initialstation +`</td>
 										        	<td>`+ json[i].finalstation +`</td>
 										        	<td>`+ json[i].traveldate +`</td>
