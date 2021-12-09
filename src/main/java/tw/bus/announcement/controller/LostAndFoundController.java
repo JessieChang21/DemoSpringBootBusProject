@@ -112,7 +112,7 @@ public class LostAndFoundController {
 	@PostMapping("/queryByPage2/{pageNo}")
 	@ResponseBody
 	public PageAL2 processQueryByPage(@PathVariable("pageNo") int pageNo, Model m){
-		int pageSize = 3;
+		int pageSize = 6;
 		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
 		Page<LostAndFound> page = lostAndFoundService.findAllByPage(pageable);
 		
