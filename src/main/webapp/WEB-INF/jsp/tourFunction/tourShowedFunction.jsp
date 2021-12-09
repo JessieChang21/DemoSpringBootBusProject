@@ -173,43 +173,82 @@
 							<li id="E" style="display: inline;"><a href="#4">東部</a></li>
 						</ul>
 					</div>
+					
 					<!-- 北 -->
+					<c:if test="${NMSE==1}">
 					<div id="North" class="showed-Area">
-						<div>宜蘭縣</div>
-						<div>基隆市</div>
-						<div>台北市</div>
-						<div>新北市</div>
-						<div>桃園市</div>
-						<div>新竹縣</div>
+					</c:if>
+					<c:if test="${NMSE!=1}">
+					<div id="North" class="hided-Area">
+					</c:if>
+						<div><a href="/tourpackages?area=宜蘭縣&NMSE=1">宜蘭縣</a></div>
+						<div><a href="/tourpackages?area=基隆市&NMSE=1">基隆市</a></div>
+						<div><a href="/tourpackages?area=臺北市&NMSE=1">臺北市</a></div>
+						<div><a href="/tourpackages?area=新北市&NMSE=1">新北市</a></div>
+						<div><a href="/tourpackages?area=桃園市&NMSE=1">桃園市</a></div>
+						<div><a href="/tourpackages?area=新竹縣&NMSE=1">新竹縣</a></div>
 					</div>
 					<!-- 中 -->
+					<c:if test="${NMSE==2}">
+					<div id="Middle" class="showed-Area">
+					</c:if>
+					<c:if test="${NMSE!=2}">
 					<div id="Middle" class="hided-Area">
-						<div>苗栗縣</div>
-						<div>台中市</div>
-						<div>南投縣</div>
-						<div>彰化縣</div>
-						<div>雲林縣</div>
+					</c:if>
+						<div><a href="/tourpackages?area=苗栗縣&NMSE=2">苗栗縣</a></div>
+						<div><a href="/tourpackages?area=臺中市&NMSE=2">臺中市</a></div>
+						<div><a href="/tourpackages?area=南投縣&NMSE=2">南投縣</a></div>
+						<div><a href="/tourpackages?area=彰化縣&NMSE=2">彰化縣</a></div>
+						<div><a href="/tourpackages?area=雲林縣&NMSE=2">雲林縣</a></div>
 					</div>
 					<!-- 南 -->
+					<c:if test="${NMSE==3}">
+					<div id="South" class="showed-Area">
+					</c:if>
+					<c:if test="${NMSE!=3}">
 					<div id="South" class="hided-Area">
-						<div>嘉義縣</div>
-						<div>台南市</div>
-						<div>高雄市</div>
-						<div>屏東縣</div>
+					</c:if>
+						<div><a href="/tourpackages?area=嘉義縣&NMSE=3">嘉義縣</a></div>
+						<div><a href="/tourpackages?area=臺南市&NMSE=3">臺南市</a></div>
+						<div><a href="/tourpackages?area=高雄市&NMSE=3">高雄市</a></div>
+						<div><a href="/tourpackages?area=屏東縣&NMSE=3">屏東縣</a></div>
 					</div>
 					<!-- 東 -->
+					<c:if test="${NMSE==4}">
+					<div id="East" class="showed-Area">
+					</c:if>
+					<c:if test="${NMSE!=4}">
 					<div id="East" class="hided-Area">
-						<div>花蓮縣</div>
-						<div>台東縣</div>
+					</c:if>
+						<div><a href="/tourpackages?area=花蓮縣&NMSE=4">花蓮縣</a></div>
+						<div><a href="/tourpackages?area=臺東縣&NMSE=4">臺東縣</a></div>
 					</div>
 				</div>
 			</div>
 			<div class="center">
-			<div id="">
-			台北市
-			</div>
-			
-			
+				<div id="">
+					${Area}
+					<c:forEach var="AreaItems" items="${AreaList}">
+						<c:if test="${AreaItems.direction == 1}">
+						<div>${AreaItems.tripName}(順)</div>
+						</c:if>
+						<c:if test="${AreaItems.direction != 1}">
+						<div>${AreaItems.tripName}(逆)</div>
+						</c:if>
+						<c:forEach var="Tour" items="${TourList}">
+							<c:if test="${Tour.fk_routes_routeId == AreaItems.routeId}">
+								<div>${Tour.tourName}</div>
+								<div>${Tour.tourName}</div>
+								<div>${Tour.tourPrice}AND${Tour.discountPrice}</div>
+								<div>${AreaItems.tripName}</div>
+								<div>${Tour.tourSaleStart}到${Tour.tourSaleEnd}</div>
+								<div>${Tour.tourUseStart}到${Tour.tourUseEnd}</div>
+							</c:if>
+						</c:forEach>
+					</c:forEach>
+				</div>
+
+
 			</div>
 		</div>
 		<div class="clearfix">4</div>

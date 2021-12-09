@@ -16,7 +16,7 @@ public class RoutesForToursService {
 	public List<RoutesForTours> findRoutes() {
 		return rRepository.findRoutes();
 	}
-	public List<RoutesForTours> findByArea() {
-		return rRepository.findByArea();
+	public List<RoutesForTours> findByArea(String area) {
+		return rRepository.findByArea(area);
 	}
 }

@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface RoutesForToursRepository extends JpaRepository<RoutesForTours, Integer> {
-	@Query(value = "SELECT * FROM Routes", nativeQuery = true)
+	@Query(value = "SELECT * FROM Routes WHERE direction = 0", nativeQuery = true)
 	public List<RoutesForTours> findRoutes();
-	@Query(value = "SELECT tripName FROM Routes WHERE area = ?", nativeQuery = true)
-	public List<RoutesForTours> findByArea();
+	@Query(value = "SELECT * FROM Routes WHERE area = ? AND direction = 0", nativeQuery = true)
+	public List<RoutesForTours> findByArea(String area);
 }

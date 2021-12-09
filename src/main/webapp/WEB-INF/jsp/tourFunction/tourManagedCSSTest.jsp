@@ -37,6 +37,7 @@ p {
 }
 
 table {
+	width:100%;
 	border: 0px ridge navy;
 	padding: 5px;
 	border-collapse: collapse; /*重要*/
@@ -46,7 +47,9 @@ table {
 	background: linear-gradient(to right, #CFDEF3, #E0EAFC);
 	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
-
+.tourtable th{
+min-width: 90px;
+}
 .for-th th {
 	border: 1px solid black;
 	padding: 5px;
@@ -83,32 +86,13 @@ table td {
 	margin-top: 10px;
 }
 
-a.button3 {
-	 display: inline-block;
-	 padding: 0.3em 1.2em;
-	 margin: 0 0.3em 0.3em 0;
-	 border-radius: 2em;
-	 box-sizing: border-box;
-	 text-decoration: none;
-	 font-family: 'Roboto', sans-serif;
-	 font-weight: 300;
-	 color: #FFFFFF;
-	 background-color: #4eb5f1;
-	 text-align: center;
-	 transition: all 0.2s;
+textarea {
+	height: 100px;
+	width: 200px; resize : none;
+	margin-top: 25px;
+	resize: none;
 }
 
-a.button3:hover {
-	 background-color: #4095c6;
-}
-
-@media all and (max-width:30em) {
-	 a.button3 {
-		  display: block;
-		  margin: 0.2em auto;
-		 
-	}
-}
 </style>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -462,17 +446,17 @@ a.button3:hover {
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">XXXXXXX</h1>
+					<h1 class="h3 mb-2 text-gray-800">套票管理</h1>
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">DataTables</h6>
+							<h6 class="m-0 font-weight-bold text-primary">Noted:請管理員注意紅色為過期活動</h6>
 						</div>
 						<div class="card-body" align="center">
 							<div class="table-responsive">
 								<div class="prettyborder">
-									<table style="text-align: center">
+									<table class="tourtable" style="text-align: center">
 										<tr class="for-th">
 											<th>套票ID</th>
 											<th>套票名稱</th>
@@ -486,7 +470,7 @@ a.button3:hover {
 											<th colspan="2">資料維護</th>
 										</tr>
 										<tr>
-											<td colspan="9"></td>
+											<td colspan="11"></td>
 										</tr>
 										<c:forEach var='Tour' items='${TourList}'>
 											<c:if test="${Tour.tourUseEnd.compareTo(crdate)<0}">
@@ -497,8 +481,7 @@ a.button3:hover {
 											</c:if>
 											<td style="text-align: center">${Tour.tourId}</td>
 											<td><input id="upName${Tour.tourId}"
-												value="${Tour.tourName}"
-												style="text-align: center; width: 200px;"></td>
+												value="${Tour.tourName}"></td>
 											<td><input id="upPrice${Tour.tourId}"
 												value="${Tour.tourPrice}"
 												style="text-align: center; width: 50px;"></td>
@@ -516,22 +499,19 @@ a.button3:hover {
 														</c:if>
 													</c:forEach>
 											</select></td>
-											<td><textarea id="upContent${Tour.tourId}"
-													style="height: 100px; width: 200px; resize: none;">${Tour.tourContent}</textarea></td>
-											<td style="text-align: center">開始時間<br> <input
+											<td><textarea id="upContent${Tour.tourId}">${Tour.tourContent}</textarea></td>
+											<td style="text-align: center"><input
 												id="upSS${Tour.tourId}" value="${Tour.tourSaleStart}"
 												type="date" style="text-align: center; width: 150px">
-												<br>結束時間<br> <input id="upSE${Tour.tourId}"
+												<br>to<br> <input id="upSE${Tour.tourId}"
 												value="${Tour.tourSaleEnd}" type="date"
-												style="text-align: center; width: 150px">
-											</td>
-											<td style="text-align: center">開始時間<br> <input
+												style="text-align: center; width: 150px"></td>
+											<td style="text-align: center"><input
 												id="upUS${Tour.tourId}" value="${Tour.tourUseStart}"
 												type="date" style="text-align: center; width: 150px">
-												<br>結束時間<br> <input id="upUE${Tour.tourId}"
+												<br>to<br> <input id="upUE${Tour.tourId}"
 												value="${Tour.tourUseEnd}" type="date"
-												style="text-align: center; width: 150px">
-											</td>
+												style="text-align: center; width: 150px"></td>
 											<td><img width='60' height='72'
 												src="/images/tour/tourimages${Tour.tourId}.jpg" /><br>
 												<input id="upIMGURL${Tour.tourId}"
@@ -547,7 +527,8 @@ a.button3:hover {
 											</tr>
 										</c:forEach>
 										<tr id="InsertTourData" class="insertBox">
-											<td colspan="9" style="text-align: left;">Insert New Data Here</td>
+											<td colspan="11" style="text-align: left;">Insert New
+												Data Here</td>
 										</tr>
 										<tr>
 											<td></td>
@@ -580,10 +561,11 @@ a.button3:hover {
 												style="text-align: center; width: 150px">
 											</td>
 											<td><select id="insertIMGURL"></select></td>
-											<td colspan="2"><button onclick="insertNewData()" class="button3">新增</button></td>
+											<td colspan="2"><button onclick="insertNewData()"
+													class="button3">新增</button></td>
 										</tr>
 										<tr>
-											<td colspan="9" style="text-align: right;">Show Date
+											<td id = "errorLog" colspan="11" style="text-align: right;">Show Date
 												Check Info</td>
 										</tr>
 									</table>
@@ -663,44 +645,135 @@ a.button3:hover {
 <script>
 	function update(tourId){
 		console.log(tourId)
-		var goUrl="/tourInsert?"
-			goUrl = goUrl + "tourId="+tourId;
-			goUrl = goUrl + "&tourName="+ $('#upName'+tourId).val();
-			goUrl = goUrl + "&tourPrice="+ $('#upPrice'+tourId).val();
-			goUrl = goUrl + "&discountPrice="+ $('#updisPrice'+tourId).val();
-			goUrl = goUrl + "&fk_routes_routeId="+ $('#upRouteId'+tourId).val();
-			goUrl = goUrl + "&tourContent="+ $('#upContent'+tourId).val();
-			goUrl = goUrl + "&tourSaleStart="+ $('#upSS'+tourId).val();
-			goUrl = goUrl + "&tourSaleEnd="+ $('#upSE'+tourId).val();
-			goUrl = goUrl + "&tourUseStart="+ $('#upUS'+tourId).val();
-			goUrl = goUrl + "&tourUseEnd="+ $('#upUE'+tourId).val();
-			goUrl = goUrl + "&tourURL="+ $('#upIMGURL'+tourId).val();
-		location.href=goUrl;
+		var formData = document.createElement('form');
+		var dataArray = [
+			//"tourId",
+			"tourName",
+			"tourPrice",
+			"discountPrice",
+			"fk_routes_routeId",
+			"tourContent",
+			"tourSaleStart",
+			"tourSaleEnd",
+			"tourUseStart",
+			"tourUseEnd",
+			"tourURL",
+
+		];
+		var keyArray = [
+			'upName',
+			'upPrice',
+			'updisPrice',
+			'upRouteId',
+			'upContent',
+			'upSS',
+			'upSE',
+			'upUS',
+			'upUE',
+			'upIMGURL',
+		]
+		    formData.setAttribute("method", "post");
+			formData.setAttribute("action", "/tourInsert");
+			  //for(var key in dataArray){
+			  var hidden1 = document.createElement("input");
+			  hidden1.setAttribute("type", "hidden");
+			  hidden1.setAttribute("name", 'tourId');
+			  hidden1.setAttribute("value", tourId);
+			    formData.appendChild(hidden1);
+			    var iserror = false;
+			  dataArray.forEach(function (key,i) { 
+				  if (!$('#'+keyArray[i]+tourId).val()){
+					  //WRG
+					  iserror =true
+					  $('#errorLog').html('AAAAAA')
+				  }
+				  if (keyArray[i] == 'upSS' ){
+					if($('#upSS'+tourId).val() > $('#upSE'+tourId).val() ) {
+						 iserror =true
+						  $('#errorLog').html('BBBBB')
+					}
+				  }
+				  if (keyArray[i] == 'upUS' ){
+						if($('#upUS'+tourId).val() > $('#upUE'+tourId).val() ) {
+							 iserror =true
+							  $('#errorLog').html('CCCCC')
+						}
+					  }
+				  console.log(key)
+				  var hiddenField = document.createElement("input");
+				    hiddenField.setAttribute("type", "hidden");
+				    hiddenField.setAttribute("name", key);
+				    hiddenField.setAttribute("value", $('#'+keyArray[i]+tourId).val());
+				    formData.appendChild(hiddenField);
+			  });
+			  if(iserror){
+				  return ;
+			  }
+			  console.log(formData)
+			  document.body.appendChild(formData); 
+			 formData.submit();
 	}
 	
 	function insertNewData (){
-		var goUrl="/tourInsert?"
-				console.log($('#insertname'))
-			goUrl = goUrl + "tourId=0";
-			goUrl = goUrl + "&tourName="+ $('#insertname').val();
-			goUrl = goUrl + "&tourPrice="+ $('#insertPrice').val();
-			goUrl = goUrl + "&discountPrice="+ $('#insertdPrice').val();
-			goUrl = goUrl + "&fk_routes_routeId="+ $('#insertRouteId').val();
-			goUrl = goUrl + "&tourContent="+ $('#insertContent').val();
-			//goUrl = goUrl + "&tourSaleStart="+ new Date($('#insertSaleS').val()).getTime();
-			//goUrl = goUrl + "&tourSaleEnd="+ new Date($('#insertSaleE').val()).getTime();
-			//goUrl = goUrl + "&tourUseStart="+ new Date($('#insertUseS').val()).getTime();
-			//goUrl = goUrl + "&tourUseEnd="+ new Date($('#insertUseE').val()).getTime();
-			goUrl = goUrl + "&tourSaleStart="+ $('#insertSaleS').val();
-			goUrl = goUrl + "&tourSaleEnd="+ $('#insertSaleE').val();
-			goUrl = goUrl + "&tourUseStart="+ $('#insertUseS').val();
-			goUrl = goUrl + "&tourUseEnd="+ $('#insertUseE').val();
-			goUrl = goUrl + "&tourURL="+ $('#insertIMGURL').val();
-		location.href=goUrl
+		var formData = document.createElement('form');
+		var dataArray = [
+			//"tourId",
+			"tourName",
+			"tourPrice",
+			"discountPrice",
+			"fk_routes_routeId",
+			"tourContent",
+			"tourSaleStart",
+			"tourSaleEnd",
+			"tourUseStart",
+			"tourUseEnd",
+			"tourURL",
+
+		];
+		var keyArray = [
+			'insertname',
+			'insertPrice',
+			'insertdPrice',
+			'insertRouteId',
+			'insertContent',
+			'insertSaleS',
+			'insertSaleE',
+			'insertUseS',
+			'insertUseE',
+			'insertIMGURL',
+		]
+	    formData.setAttribute("method", "post");
+		formData.setAttribute("action", "/tourInsert");
+		  //for(var key in dataArray){
+		  var hidden1 = document.createElement("input");
+		  hidden1.setAttribute("type", "hidden");
+		  hidden1.setAttribute("name", 'tourId');
+		  hidden1.setAttribute("value", 0);
+		    formData.appendChild(hidden1);
+		  dataArray.forEach(function (key,i) { 
+			  console.log(key)
+			  var hiddenField = document.createElement("input");
+			    hiddenField.setAttribute("type", "hidden");
+			    hiddenField.setAttribute("name", key);
+			    hiddenField.setAttribute("value", $('#'+keyArray[i]).val());
+			    formData.appendChild(hiddenField);
+		  });
+		  console.log(formData)
+		  document.body.appendChild(formData); 
+		 formData.submit();
 	}
 	function deleteData(tourId){
-		var goURL = "/tourDelete?editId="+tourId;
-		location.href=goURL;
+		var formData = document.createElement('form');
+	    formData.setAttribute("method", "post");
+		formData.setAttribute("action", "/tourDelete");
+		  //for(var key in dataArray){
+		  var hidden1 = document.createElement("input");
+		  hidden1.setAttribute("type", "hidden");
+		  hidden1.setAttribute("name", 'editId');
+		  hidden1.setAttribute("value", tourId);
+		    formData.appendChild(hidden1);
+			  document.body.appendChild(formData); 
+				 formData.submit();
 	}
 	
 </script>

@@ -15,8 +15,17 @@ public class RoutesForTours {
 	private String routeId;
 	private String tripName;
 	private String area;
+	private Integer direction;
 
-//	@OneToOne(mappedBy = "Routes")
+public Integer getDirection() {
+		return direction;
+	}
+
+	public void setDirection(Integer direction) {
+		this.direction = direction;
+	}
+
+	//	@OneToOne(mappedBy = "Routes")
 //	private Tour fk_tour_routeId;
 //
 	public String getRouteId() {

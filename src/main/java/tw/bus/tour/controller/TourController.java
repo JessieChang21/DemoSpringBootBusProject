@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,18 +40,7 @@ public class TourController {
 		m.addAttribute("RoutesList",tService.findRoutes());
 		return "/tourFunction/tourManagedCSSTest";
 	}
-	@GetMapping(path="/tourEdit")
-	public String processSelectById(String editId , Model m) {
-		System.out.println(editId);
-//		tService.findById(editId);
-//		System.out.println(tService.findById(editId));
-		Tour aaa =tService.findById(editId);
-		System.out.println(aaa.getTourSaleEnd());
-//		m.addAttribute("Tour", aaa);
-//		return "/tourFunction/tourEditFunction";
-		return processFindAllAction(m);
-	}
-	@GetMapping(path="/tourDelete")
+	@PostMapping(path="/tourDelete")
 	public String processDeleteById(Integer editId , Model m) {
 		
 		System.out.println(editId);
@@ -62,7 +52,7 @@ public class TourController {
 //		return "/tourFunction/tourEditFunction";
 		return processFindAllAction(m);
 	}
-	@GetMapping(path="/tourInsert")
+	@PostMapping(path="/tourInsert")
 	public String processInsertAction(
 			@RequestParam("tourId") Integer tourId,
 			@RequestParam("tourName") String tourName,
@@ -96,10 +86,17 @@ public class TourController {
 	}
 
 	@GetMapping("/tourpackages")
-	public String processTourShowed(Model m) {
+	public String processTourShowed(
+			@RequestParam("area") String area,
+			@RequestParam("NMSE") Integer nmse,
+			Model m) {
+//		String area = "臺北市";
 		m.addAttribute("TourList", tService.findAll());
+		System.out.println(tService.findAll());
 		m.addAttribute("RoutesList",tService.findRoutes());
-		m.addAttribute("AreaList",rService.findByArea());
+		m.addAttribute("AreaList",rService.findByArea(area));
+		m.addAttribute("Area", area);
+		m.addAttribute("NMSE", nmse);
 		return "/tourFunction/tourShowedFunction";
 	}
 }
