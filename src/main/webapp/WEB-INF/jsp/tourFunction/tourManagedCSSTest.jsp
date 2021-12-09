@@ -672,6 +672,19 @@ textarea {
 			'upUE',
 			'upIMGURL',
 		]
+		var errorArray = [
+			'活動名稱',
+			'原價',
+			'特價',
+			'適用路線',
+			'活動內容',
+			'販賣開始時間',
+			'販賣結束時間',
+			'使用開始時間',
+			'使用結束時間',
+			'縮圖URL'
+			
+		]
 		    formData.setAttribute("method", "post");
 			formData.setAttribute("action", "/tourInsert");
 			  //for(var key in dataArray){
@@ -681,22 +694,23 @@ textarea {
 			  hidden1.setAttribute("value", tourId);
 			    formData.appendChild(hidden1);
 			    var iserror = false;
+			    var errorText = '' ;
 			  dataArray.forEach(function (key,i) { 
 				  if (!$('#'+keyArray[i]+tourId).val()){
 					  //WRG
-					  iserror =true
-					  $('#errorLog').html('AAAAAA')
+					  iserror =true ;
+					  errorText += errorArray[i]+" ";
 				  }
 				  if (keyArray[i] == 'upSS' ){
 					if($('#upSS'+tourId).val() > $('#upSE'+tourId).val() ) {
 						 iserror =true
-						  $('#errorLog').html('BBBBB')
+						 errorText += '販賣時間 ' ;
 					}
 				  }
 				  if (keyArray[i] == 'upUS' ){
 						if($('#upUS'+tourId).val() > $('#upUE'+tourId).val() ) {
 							 iserror =true
-							  $('#errorLog').html('CCCCC')
+							 errorText += '販賣時間 ' ;
 						}
 					  }
 				  console.log(key)
@@ -707,6 +721,8 @@ textarea {
 				    formData.appendChild(hiddenField);
 			  });
 			  if(iserror){
+				  $('#errorLog').html(errorText+'有誤請確認');
+				  alert(errorText+'有誤請確認');
 				  return ;
 			  }
 			  console.log(formData)
