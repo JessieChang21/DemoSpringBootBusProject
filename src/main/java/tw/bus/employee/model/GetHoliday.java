@@ -1,11 +1,7 @@
 package tw.bus.employee.model;
 
-import java.io.Serializable;
-
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -14,12 +10,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "GetHoliday")
-//@IdClass(GetHolidaypk.class)
 @Component
 public class GetHoliday{
 	
-	//@EmbeddedId
-    //private GetHolidaypk GetHolidayPK;
 	@Id
 	private String employeeid;
 	private String substituteid;

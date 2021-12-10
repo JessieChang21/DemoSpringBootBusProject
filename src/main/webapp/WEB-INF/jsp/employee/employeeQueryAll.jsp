@@ -70,7 +70,7 @@
 </head>
 <body>
 	<div align="center">
-	<div id="mployeeListTitle">Employee Query</div>
+	<div id="mployeeListTitle"><h3>員工列表</h3></div>
 		<table id="showemployees" border="1"></table>
 		<table id="showpage">
 			<tr>
