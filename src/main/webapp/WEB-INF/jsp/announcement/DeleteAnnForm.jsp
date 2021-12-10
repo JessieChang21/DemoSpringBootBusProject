@@ -293,7 +293,7 @@ p {
 						<div class="card-body" align="center">
 							<div class="table-responsive">
 								<form:form method='POST' modelAttribute="announcement">
-									<input type="hidden" name="noname" id='putOrDelete' value="">
+									<input type="hidden" name="noname" id='putOrDelete' >
 									<c:if test='${announcement.id != null}'>
 										<form:hidden path="id" />
 										<br>&nbsp;
@@ -316,19 +316,17 @@ p {
 											</tr>
 											<tr>
 												<td>
-													<p>
-														內容：
-													</p> <form:textarea path="ancontent"
+													<p>內容：</p> <form:textarea path="ancontent"
 														style="width: 800px; height:250px; margin-left: 100px;"
 														class="mytext" /> <form:errors path="ancontent"
 														cssClass="error" /> <BR /> <BR />
 													<p>
-														<input type="button" name="update" value="刪除"
+														<input type="submit" name="update" value="刪除"
 															onclick='confirmDelete(id)' />
 													</p>
 												</td>
 											</tr>
-											
+
 										</table>
 									</fieldset>
 								</form:form>

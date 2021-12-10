@@ -96,7 +96,7 @@ public class AnnouncementController {
 		return "/announcement/showAnn";
 	}
 	
-	@GetMapping("/2")
+	@GetMapping("/mainpage")
 	public String findtop3(Model m) {
 		List<Announcement> list = announcementService.findtop3();
 		m.addAttribute("list",list);
