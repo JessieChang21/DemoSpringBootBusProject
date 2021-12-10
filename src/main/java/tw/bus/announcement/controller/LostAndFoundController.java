@@ -106,7 +106,7 @@ public class LostAndFoundController {
 		return "/lostandfound/DeleteLAFForm";
 	}
 	
-	@PostMapping("/deletelostandfound/{id}")
+	@PostMapping("/deletelostandfound")
 	public String delete(Integer id, Model m,LostAndFound lostAndFound) {
 		lostAndFoundService.deleteById(id);
 		return "redirect:/insertOK";

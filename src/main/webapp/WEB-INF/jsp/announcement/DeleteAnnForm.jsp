@@ -8,6 +8,16 @@
 <html lang="UTF-8">
 
 <head>
+<script type="text/javascript">
+	 function submit_sure() {
+		   var gnl = confirm("確定刪除(編號:${announcement.id})的公告?");
+		   if (gnl == true) {
+		    return true;
+		   } else {
+		    return false;
+		   }
+		  }
+</script>
 <style type="text/css">
 .mytext {
 	width: 500px;
@@ -54,16 +64,7 @@ p {
 
 <!-- Custom styles for this template-->
 <link href="/ServerSide/css/sb-admin-2.min.css" rel="stylesheet">
-<script type="text/javascript">
-	function confirmDelete(id) {
-		if (confirm("確定刪除(編號:${announcement.id})的公告?")) {
-			document.forms[0].action = "<c:url value='/deleteAnnouncement/{id}'  />";
-			document.forms[0].method = "POST";
-			document.forms[0].submit();
-		} else {
-		}
-	}
-</script>
+
 </head>
 
 <body id="page-top">
@@ -292,8 +293,9 @@ p {
 						</div>
 						<div class="card-body" align="center">
 							<div class="table-responsive">
-								<form:form method='POST' modelAttribute="announcement">
-									<input type="hidden" name="noname" id='putOrDelete' >
+								
+								<form:form method='POST' enctype="multipart/form-data" modelAttribute="announcement" action="/deleteAnnouncement" onsubmit="return submit_sure()" >
+									<input type="hidden" name="noname" id='putOrDelete' value="">
 									<c:if test='${announcement.id != null}'>
 										<form:hidden path="id" />
 										<br>&nbsp;
@@ -302,31 +304,32 @@ p {
 										<legend>公告資料</legend>
 										<table>
 											<tr>
-												<td>
-													<p>
-														<BR />主旨：
-														<form:input path="antitle" class="mytext" type="hidden" />${announcement.antitle }
+												<td align='right'>編號：<br>&nbsp;
+												</td>
+												<td><form:input path="id" type="hidden" />${announcement.id}<br>&nbsp;
+
 												</td>
 											</tr>
 											<tr>
-												<td>
-													<p>
-														<BR> 類別：
-														<form:input path="ancategory" class="mytext" type="hidden" />${announcement.ancategory }
+												<td align='right'>主旨：<br>&nbsp;
+												</td>
+												<td><form:input path="antitle" type="hidden" />${announcement.antitle}<br>&nbsp;
+													<form:errors path="antitle" cssClass="error" /></td>
 											</tr>
 											<tr>
-												<td>
-													<p>內容：</p> <form:textarea path="ancontent"
-														style="width: 800px; height:250px; margin-left: 100px;"
-														class="mytext" /> <form:errors path="ancontent"
-														cssClass="error" /> <BR /> <BR />
-													<p>
-														<input type="submit" name="update" value="刪除"
-															onclick='confirmDelete(id)' />
-													</p>
+												<td align='right'>類別：<br>&nbsp;
 												</td>
+												<td><form:input path="ancategory" type="hidden"></form:input>${announcement.ancategory}<br>&nbsp;
+													<form:errors path="ancategory" cssClass="error" /></td>
+
 											</tr>
 
+
+											<tr>
+												<td colspan='2' align='center'><input type="submit"
+													name="update" value="刪除" />
+											</tr>
+											
 										</table>
 									</fieldset>
 								</form:form>
@@ -385,6 +388,7 @@ p {
 	</div>
 
 	<!-- Bootstrap core JavaScript-->
+	
 	<script src="/ServerSide/vendor/jquery/jquery.min.js"></script>
 	<script src="/ServerSide/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

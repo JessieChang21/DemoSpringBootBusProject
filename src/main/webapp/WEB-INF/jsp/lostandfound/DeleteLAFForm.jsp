@@ -55,14 +55,14 @@ p {
 <!-- Custom styles for this template-->
 <link href="/ServerSide/css/sb-admin-2.min.css" rel="stylesheet">
 <script type="text/javascript">
-	function confirmDelete(id) {
-		if (confirm("確定刪除(編號:${lostAndFound.id})的物品?")) {
-			document.forms[0].action = "<c:url value='/deletelostandfound/{id}'  />";
-			document.forms[0].method = "POST";
-			document.forms[0].submit();
-		} else {
-		}
-	}
+function submit_sure() {
+	   var gnl = confirm("確定刪除(編號:${lostAndFound.id})的物品?");
+	   if (gnl == true) {
+	    return true;
+	   } else {
+	    return false;
+	   }
+	  }
 </script>
 </head>
 
@@ -292,7 +292,7 @@ p {
 						</div>
 						<div class="card-body" align="center">
 							<div class="table-responsive">
-								<form:form method='POST' modelAttribute="lostAndFound">
+								<form:form method='POST' modelAttribute="lostAndFound" action="/deletelostandfound" onsubmit="return submit_sure()">
 									<input type="hidden" name="noname" id='putOrDelete' value="">
 									<c:if test='${lostAndFound.id != null}'>
 										<form:hidden path="id" />
@@ -331,7 +331,7 @@ p {
 											</tr>	
 											<tr>
 												<td colspan='2' align='center'><input type="submit"
-													name="update" value="刪除" onclick='confirmDelete(id)' />
+													name="update" value="刪除"  />
 											</tr>
 											
 										</table>
