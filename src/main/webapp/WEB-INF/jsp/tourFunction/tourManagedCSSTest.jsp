@@ -37,6 +37,7 @@ p {
 }
 
 table {
+	font-size:20px;
 	width:100%;
 	border: 0px ridge navy;
 	padding: 5px;
@@ -48,7 +49,7 @@ table {
 	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .tourtable th{
-min-width: 90px;
+	min-width: 150px;
 }
 .for-th th {
 	border: 1px solid black;
@@ -92,7 +93,6 @@ textarea {
 	margin-top: 25px;
 	resize: none;
 }
-
 </style>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -502,20 +502,21 @@ textarea {
 											<td><textarea id="upContent${Tour.tourId}">${Tour.tourContent}</textarea></td>
 											<td style="text-align: center"><input
 												id="upSS${Tour.tourId}" value="${Tour.tourSaleStart}"
-												type="date" style="text-align: center; width: 150px">
+												type="date" style="text-align: center; width: 150px;font-size: 15px;">
 												<br>to<br> <input id="upSE${Tour.tourId}"
 												value="${Tour.tourSaleEnd}" type="date"
-												style="text-align: center; width: 150px"></td>
+												style="text-align: center; width: 150px;font-size: 15px;"></td>
 											<td style="text-align: center"><input
 												id="upUS${Tour.tourId}" value="${Tour.tourUseStart}"
-												type="date" style="text-align: center; width: 150px">
+												type="date" style="text-align: center; width: 150px;font-size: 15px;">
 												<br>to<br> <input id="upUE${Tour.tourId}"
 												value="${Tour.tourUseEnd}" type="date"
-												style="text-align: center; width: 150px"></td>
+												style="text-align: center; width: 150px;font-size: 15px;"></td>
 											<td><img width='60' height='72'
 												src="/images/tour/tourimages${Tour.tourId}.jpg" /><br>
-												<input id="upIMGURL${Tour.tourId}"
-												value="*/tour/tourimages${Tour.tourId}" style="width: 130px">
+												<select id="upIMGURL${Tour.tourId}" style="width: 120px;font-size: 15px">
+												<option>/tour/tourimages${Tour.tourId}</option>
+												</select>
 											</td>
 											<td><button onclick="update(${Tour.tourId})"
 													class="button3">修改</button></td>
@@ -532,8 +533,8 @@ textarea {
 										</tr>
 										<tr>
 											<td></td>
-											<td><textarea id="insertname"
-													style="text-align: left; width: 200px; height: 50px; resize: none"></textarea></td>
+											<td><textarea id="insertName"
+													style="text-align: left;resize: none"></textarea></td>
 											<td><input id="insertPrice" value=""
 												style="text-align: center; width: 50px;"></td>
 											<td><input id="insertdPrice" value=""
@@ -549,18 +550,29 @@ textarea {
 											<td><textarea id="insertContent"
 													style="height: 100px; width: 200px;"></textarea></td>
 											<td style="text-align: center">開始時間<br> <input
-												id="insertSaleS" type="date" value="" type="text"
-												style="text-align: center; width: 150px"> <br>結束時間<br>
-												<input id="insertSaleE" type="date" value="" type="text"
-												style="text-align: center; width: 150px">
+												id="insertSaleS" type="date" value="" 
+												style="text-align: center; width: 150px;font-size: 15px;"> <br>結束時間<br>
+												<input id="insertSaleE" type="date" value="" 
+												style="text-align: center; width: 150px;font-size: 15px;">
 											</td>
 											<td style="text-align: center">開始時間<br> <input
-												id="insertUseS" type="date" value="" type="text"
-												style="text-align: center; width: 150px"> <br>結束時間<br>
-												<input id="insertUseE" type="date" value="" type="text"
-												style="text-align: center; width: 150px">
+												id="insertUseS" type="date" value="" 
+												style="text-align: center; width: 150px;font-size: 15px;"> <br>結束時間<br>
+												<input id="insertUseE" type="date" value="" 
+												style="text-align: center; width: 150px;font-size: 15px;">
 											</td>
-											<td><select id="insertIMGURL"></select></td>
+											<td><select id="insertIMGURL" style = "width:120px; font-size: 15px">
+											<option>/tour/tourimages10001</option>
+											<option>/tour/tourimages10002</option>
+											<option>/tour/tourimages10003</option>
+											<option>/tour/tourimages10004</option>
+											<option>/tour/tourimages10005</option>
+											<option>/tour/tourimages10006</option>
+											<option>/tour/tourimages10007</option>
+											<option>/tour/tourimages10008</option>
+											<option>/tour/tourimages10009</option>
+											<option>/tour/tourimages10010</option>
+											</select></td>
 											<td colspan="2"><button onclick="insertNewData()"
 													class="button3">新增</button></td>
 										</tr>
@@ -733,7 +745,6 @@ textarea {
 	function insertNewData (){
 		var formData = document.createElement('form');
 		var dataArray = [
-			//"tourId",
 			"tourName",
 			"tourPrice",
 			"discountPrice",
@@ -744,10 +755,9 @@ textarea {
 			"tourUseStart",
 			"tourUseEnd",
 			"tourURL",
-
 		];
 		var keyArray = [
-			'insertname',
+			'insertName',
 			'insertPrice',
 			'insertdPrice',
 			'insertRouteId',
@@ -758,6 +768,18 @@ textarea {
 			'insertUseE',
 			'insertIMGURL',
 		]
+		var errorArray = [
+			'活動名稱',
+			'原價',
+			'特價',
+			'適用路線',
+			'活動內容',
+			'販賣開始時間',
+			'販賣結束時間',
+			'使用開始時間',
+			'使用結束時間',
+			'縮圖URL'
+		]
 	    formData.setAttribute("method", "post");
 		formData.setAttribute("action", "/tourInsert");
 		  //for(var key in dataArray){
@@ -765,18 +787,43 @@ textarea {
 		  hidden1.setAttribute("type", "hidden");
 		  hidden1.setAttribute("name", 'tourId');
 		  hidden1.setAttribute("value", 0);
-		    formData.appendChild(hidden1);
+		  formData.appendChild(hidden1);
+		    var iserror = false;
+		    var errorText = '' ;
 		  dataArray.forEach(function (key,i) { 
+			  if (!$('#'+keyArray[i]).val()){
+				  //WRG
+				  iserror =true ;
+				  errorText += errorArray[i]+" ";
+			  }
+			  if (keyArray[i] == 'insertSaleS' ){
+				if($('#insertSaleS').val() > $('#insertSaleE').val() ) {
+					 iserror =true ;
+					 errorText += '販賣時間 ' ;
+				}
+			  }
+			  if (keyArray[i] == 'insertUseS' ){
+					if($('#insertUseS').val() > $('#insertUseE').val() ) {
+						 iserror =true
+						 errorText += '販賣時間 ' ;
+					}
+				  }
 			  console.log(key)
 			  var hiddenField = document.createElement("input");
 			    hiddenField.setAttribute("type", "hidden");
 			    hiddenField.setAttribute("name", key);
 			    hiddenField.setAttribute("value", $('#'+keyArray[i]).val());
 			    formData.appendChild(hiddenField);
-		  });
+		 		 });
+			  if(iserror){
+				  $('#errorLog').html(errorText+'有誤請確認');
+				  //$('#errorLog')
+				  alert(errorText+'有誤請確認');
+				  return ;
+			  }
 		  console.log(formData)
 		  document.body.appendChild(formData); 
-		 formData.submit();
+		  formData.submit();
 	}
 	function deleteData(tourId){
 		var formData = document.createElement('form');
@@ -787,9 +834,9 @@ textarea {
 		  hidden1.setAttribute("type", "hidden");
 		  hidden1.setAttribute("name", 'editId');
 		  hidden1.setAttribute("value", tourId);
-		    formData.appendChild(hidden1);
-			  document.body.appendChild(formData); 
-				 formData.submit();
+		  formData.appendChild(hidden1);
+		  document.body.appendChild(formData); 
+		  formData.submit();
 	}
 	
 </script>
