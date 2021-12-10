@@ -278,7 +278,7 @@ input[type='checkbox']:checked + .content { height: auto; width: auto;}
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">新增公告</h1>
+					<h1 class="h3 mb-2 text-gray-800">編輯公告</h1>
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
