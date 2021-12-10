@@ -10,7 +10,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.Principal;
 import java.sql.Blob;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.crypto.BadPaddingException;
@@ -52,8 +52,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import tw.bus.announcemen.model.Announcement;
-import tw.bus.announcemen.model.AnnouncementService;
 import tw.bus.members.model.Members;
 import tw.bus.members.model.MembersService;
 import tw.bus.memberslogin.model.EncodePwdUtil;
@@ -75,9 +73,6 @@ public class LoginMembersController {
 	
 	@Autowired
 	private UpdateMemberService uService;
-	
-	@Autowired
-	private AnnouncementService anservice;
 	
 //	String noImagePath = "/images/NoImage.png";
 
@@ -239,99 +234,6 @@ public class LoginMembersController {
 //		return o;
 //	}
 	
-	// 取得登入成功後使用者資料
-	@GetMapping("/updatemembers.controller")
-	public String processPrincipalQuery(@SessionAttribute Members members, Model m) {
-		System.out.println(members);
-		UpdateMembers umembers = new UpdateMembers();
-		m.addAttribute("umembers",umembers);
-		m.addAttribute("members",members);
-		return "members/updatemembers";
-	}
-	
-	@PostMapping(path = "/memberupdate.controller" )
-	public String updateAction(
-//			@RequestPart("members") @Valid Members members,
-//			@RequestPart("file") @Valid  MultipartFile file,
-			@ModelAttribute("members")  Members members,
-			@SessionAttribute("umembers") UpdateMembers umembers,
-									//BindingResult result, @ModelAttribute("members") 
-									Model model,
-									HttpServletRequest request) {
-		
-		System.out.println("umembers="+umembers);
-		System.out.println("members.getMemberMultipartFile()="+members.getMemberMultipartFile());
-//		if(members.getMemberMultipartFile() != null) {
-			MultipartFile picture = members.getMemberMultipartFile();
-			System.out.println(members.getMemberMultipartFile());
-	//		MultipartFile picture = file;
-			String originalFilename = picture.getOriginalFilename();
-			System.out.println(picture);
-			System.out.println(originalFilename);
-			
-			if (originalFilename.length() > 0 && originalFilename.lastIndexOf(".") > -1) {
-				members.setFileName(originalFilename);
-			}
-			// 建立Blob物件，交由 Hibernate 寫入資料庫
-			if (picture != null && !picture.isEmpty()) {
-				try {
-					byte[] b = picture.getBytes();
-					Blob blob = new SerialBlob(b);
-					System.out.println(blob);
-					members.setMemberImage(blob);
-				} catch (Exception e) {
-					e.printStackTrace();
-					throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
-				}
-			}//getMimeType(originalFilename);
-			//String mimeType = servletContext.
-			//String mimeType = originalFilename.getMimeType();
-			FileNameMap fileNameMap = URLConnection.getFileNameMap();
-			String mimeType = fileNameMap.getContentTypeFor(originalFilename);
-	        members.setMimeType(mimeType);
-	//        UpdateMembers umembers = new UpdateMembers();
-	//        BeanUtils.copyProperties(members, umembers);
-	//        UpdateMembers umembers = uService.findById(members.getId());
-	        if(members.getMimeType() == null) {
-	        	members.setFileName(umembers.getFileName());
-		        members.setMimeType(umembers.getMimeType());
-		        members.setMemberImage(umembers.getMemberImage());
-	        }
-		
-		System.out.println(members);
-	        umembers.setId(members.getId());
-	        umembers.setEmail(members.getEmail());
-	        umembers.setMembername(members.getMembername());
-	        umembers.setMemberpwd(members.getMemberpwd());
-	        umembers.setGender(members.getGender());
-	        umembers.setAge(members.getAge());
-	        umembers.setAdress(members.getAdress());
-	        umembers.setFileName(members.getFileName());
-	        umembers.setMimeType(members.getMimeType());
-	        umembers.setMemberImage(members.getMemberImage());
-		
-	        System.out.println("umembers="+umembers);
-	        System.out.println("members="+members);
-	      
-		try {
-			HttpSession session = request.getSession();
-			session.setAttribute("members",umembers);
-			uService.updateMembers(umembers);
-
-		} 
-		catch (Exception ex) {
-			ex.printStackTrace();
-			return "members/updatemembers";
-		}  
-		
-		HttpSession session = request.getSession();
-		String nextPath = (String)session.getAttribute("requestURI");
-		if (nextPath == null) {
-			nextPath = request.getContextPath();
-			return "index2";
-		}
-		return "redirect: " + nextPath;
-	}
 	
 	@GetMapping("/getMemberImage")
 	public ResponseEntity<byte[]> getProductImage(@RequestParam("id") Long id) {
@@ -368,30 +270,37 @@ public class LoginMembersController {
 		return baos.toByteArray();
 	}
 	
-	@GetMapping("/login")
-	public ModelAndView login(
-	    @RequestParam(value = "error", required = false) String error,
-	    @RequestParam(value = "logout", required = false) String logout) {
-
-	    ModelAndView model = new ModelAndView();
-	    if (error != null) {
-	        model.addObject("error", "帳號及密碼錯誤");
-	    }
-
-	    if (logout != null) {
-	        model.addObject("msg", "您以登出");
-	    }
-	    model.setViewName("login");
-
-	    return model;
-
+	@PostMapping("/login/error")
+	public String loginerror(Model m) {
+		
+		System.out.println("hi~/error");
+		Map<String, String> errorMsgMap = new HashMap<String, String>();
+		errorMsgMap.put("error", "帳號及密碼錯誤");
+		m.addAttribute("error",errorMsgMap);
+		return "login";		
 	}
 	
+//	@GetMapping("/login")
+//	public ModelAndView login(
+//	    @RequestParam(value = "error", required = false) String error,
+//	    @RequestParam(value = "logout", required = false) String logout) {
+//
+//	    ModelAndView model = new ModelAndView();
+//	    if (error != null) {
+//	        model.addObject("error", "帳號及密碼錯誤");
+//	    }
+//
+//	    if (logout != null) {
+//	        model.addObject("msg", "您以登出");
+//	    }
+//	    model.setViewName("login");
+//
+//	    return model;
+//
+//	}
+	
 	@GetMapping("/web")
-	public String emailGetMembersName(Authentication authentication ,HttpSession session,Model m) {
-		
-		List<Announcement> list = anservice.findtop3();
-		m.addAttribute("list",list);
+	public String emailGetMembersName(Authentication authentication ,HttpSession session) {
 		
 		System.out.println("hi~/web");
 		System.out.println(authentication.getName());
