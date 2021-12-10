@@ -69,6 +69,9 @@ tr:last-child td:first-child {
 tr:last-child td:last-child {
   border-radius: 0 0 10px 0;
 }
+tbody{
+
+}
 #idnumber{
     outline-style: none ;
     border: 1px solid #ccc; 
@@ -99,6 +102,66 @@ tr:last-child td:last-child {
     font-weight: 100;
     font-family: "Microsoft soft";
 }
+#adress{
+    outline-style: none ;
+    border: 1px solid #ccc; 
+    border-radius: 10px;
+    padding: 14px 16px;
+    width: 100px;
+    font-size: 18px;
+    font-weight: 100;
+    font-family: "Microsoft soft";
+}
+#gender{
+    outline-style: none ;
+    border: 1px solid #ccc; 
+    border-radius: 10px;
+    padding: 14px 16px;
+    width: 100px;
+    font-size: 18px;
+    font-weight: 100;
+    font-family: "Microsoft soft";
+}
+#age{
+    outline-style: none ;
+    border: 1px solid #ccc; 
+    border-radius: 10px;
+    padding: 14px 16px;
+    width: 100px;
+    font-size: 18px;
+    font-weight: 100;
+    font-family: "Microsoft soft";
+}
+#membernamea{
+    outline-style: none ;
+    border: 1px solid #ccc; 
+    border-radius: 10px;
+    padding: 14px 16px;
+    width: 200px;
+    font-size: 18px;
+    font-weight: 120;
+    font-family: "Microsoft soft";
+}
+#emaila{
+	outline-style: none ;
+    border: 1px solid #ccc; 
+    border-radius: 10px;
+    padding: 14px 16px;
+    width: 250px;
+    font-size: 18px;
+    font-weight: 120;
+    font-family: "Microsoft soft";
+}
+#memberpwda{
+    outline-style: none ;
+    border: 1px solid #ccc; 
+    border-radius: 10px;
+    padding: 14px 16px;
+    width: 200px;
+    font-size: 18px;
+    font-weight: 120;
+    font-family: "Microsoft soft";
+}
 </style>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -126,6 +189,9 @@ var indexPage=1;
 $(document).ready(function(){
 	   load(indexPage);
 	   loadadd();
+// 	   $.when(load(indexPage))
+// 	   .then(pageIn());
+// pageIn();
 });
 
 function change(page){
@@ -148,11 +214,12 @@ function load(indexPage){
 			   $('#myTable').empty("");
 			   
 			   if(data==null){
-				   $('table').prepend("<tr><td colspan='2'>暫無資料</td></tr>");;
+				   $('table').prepend("<tr><td colspan='2'>暫無資料</td></tr>");
 			   }else{
 				   var table = $('#myTable');
-				   table.append("<tr id='mtitle'><th>image</th><th>idnumber</th><th>membername</th><th>email</th><th>update</th><th>delete</th></tr>");
-				   $.each(data, function(i,n){
+				   table.append("<tr id='mtitle'><th>image</th><th>idnumber</th><th>membername</th><th>email</th><th>adress</th><th>gender</th><th>age</th><th>update</th><th>delete</th></tr>");
+// 				   $(data.reverse()).each(function(i,n){
+					   $.each(data, function(i,n){
 					   var tr = "<tr align='center'>" + 
 					   			"<td><image height='70px' width='70px' Style='border-radius:50% ; border : 2px solid #6495ED;' "+
 					   			"src='/getMemberImage?id="+n.id+"'/></td>" +
@@ -160,124 +227,138 @@ function load(indexPage){
 				    	        "<td><input id='membername' style='text-align:center' type='text' value='" + n.membername + "' /></td>" +
 				    	        "<td style='display:none'><input id='memberpwd' type='password' value='"+ n.memberpwd +"' readonly/></td>" +
 				    	        "<td><input id='email' style='text-align:center' type='text' value='"+ n.email +"' /></td>" +
-				    	        "<td style='display:none'><input id='adress' type='text' value='"+ n.adress +"' readonly/></td>" +
-				    	        "<td style='display:none'><input id='gender' type='text' value='"+ n.gender +"' readonly/></td>" +
-					   	        "<td style='display:none'><input id='age' type='text' value='"+ n.age +"' readonly/></td>" +
+				    	        "<td ><input id='adress' type='text' value='"+ n.adress +"' readonly/></td>" +
+				    	        "<td ><input id='gender' type='text' value='"+ n.gender +"' readonly/></td>" +
+					   	        "<td ><input id='age' type='text' value='"+ n.age +"' readonly/></td>" +
 					            
 					            "<td><button class='btn btn-success btn-circle' id='update' value='update' onclick='updateMembers(" + n.id + ")'><i class='fas fa-check'/></button></td>" + //修改
 					            "<td><button class='btn btn-danger btn-circle' id='delete' value='delete' onclick='deleteMembers(" + n.id + ")'><i class='fas fa-trash'/></button></td>" + //刪除
 					            "</tr>";
 					   table.append(tr);
-				   });			   
+				   });	
+// 					   var div = document.getElementById('tempinput');
+// 					   div.innerHTML = "";
+// 					   div.innerHTML += "<input id='totalPages' type='hidden' value='"+data.tolpages+"'>"+
+// 							   "<input id='totalElements' type='hidden' value='"+data.pageEles+"'>";
 			   }
 		   }
-	   });
+	   })
+// 	   .then(pageIn());
 	}
-function loadadd(){
-	   var table = $('#addmembers');
-   	 	table.append("<tr id='mtitle'><th>頭像</th><th>編號</th><th>電子郵件</th><th>姓名</th><th>管理</th>");
-   	 	var tr = "<tr align='center'>" + 
-	   	 		 "<td><input id='idnumberI' type='text'/></td>" +
-	   	         "<td><input id='membernameI' type='text'/></td>" +
-	   	         "<td><input id='memberpwdI' type='password'></td>" +
-	   	         "<td><input id='phoneI' type='text'></td>" +
-	   	         "<td><input id='birthdayI' type='text'></td>" +
-	   	         "<td><input id='genderI' type='text'></td>" +
-	   	         "<td><input id='adressI' type='text'></td>" +
-	   	      	 "<td><input id='emailI' type='text'></td>" +
-	   	      	 
-				 "<td><button id='quickInput' type='button' value='quickInput' onclick='quickInput()'>surprise</button></td>" +
-	   	         "<td><button id='addmember' type='button' value='addmember' onclick='sendMembers()'>save</button></td>" +
-	   	         "</tr>";
-   	 	table.append(tr);
-}
-function deleteMembers(id){  //刪除function
-	var id = id;
-// 	var params = {
-// 		"id":id
-// 	}
-	$.ajax({
-		 type:'Get',
-		 url:'delete/' +id,
-		 dataType:'JSON',
-		 contentType:'application/json',
-// 		 data:JSON.stringify(params),
-		 success: function(data){
-				   console.log(data);
-				   $('#feedbackupdate').html("刪除成功");
-		 }
-	});
-}
-
-function updateMembers(id){  //修改function
-	var id = id;
-	var idnumber = $('#idnumber').val();
-	var membername = $('#membername').val();
-	var memberpwd = $('#memberpwd').val();
-	var phone = $('#phone').val();
-	var birthday = $('#birthday').val();
-	var gender = $('#gender').val();
-	var adress = $('#adress').val();
-	var email = $('#email').val();
-
-	var params = {
-			"id":id,
-	  	"idNumber":idnumber,
-		"membername":membername,
-		"memberpwd":memberpwd,
-		"phone":phone,
-		"birthday":birthday,
-		"gender":gender,
-		"adress":adress,
-		"email":email
+	   
+// 	function pageIn() {
+// 		   var totalPages = $('#totalPages').val();
+// 		   var totalElements = $('#totalElements').val();
+// 		   console.log(totalPages);
+// 		   console.log(totalElements);
+// 		   $('#showpage').empty("");
+// 		   var divpagetol = document.getElementById('dataTable_info');
+// 		   var divpage = document.getElementById('showpage');
+// 		   tr1 ="Total Pages:"+ totalPages +" "+ "Total Records:"+totalElements;
+// 		   divpagetol.innerHTML =tr1;
+// 		   tr2="<button id='myPage' class='btn btn-light' color='blue' value='pre' onclick='changepre()'>Previous</button>";
+// 		   for(var i=1; i<=totalPages; i++){
+// 			   tr2 += "<button id='myPage"+i+"' class='btn btn-light pages' color='blue' value='"+i+"' onclick='change("+i+")'>"+i+"</button>";
+// 		   }
+// 		   tr2+="<button id='myPage' class='btn btn-light' color='blue' value='next' onclick='changeNext()'>Next</button>";
+		   
+// 		   divpage.innerHTML =tr2;
+// 		   var p ="myPage"+indexPage;
+// 		   $(".pages").removeClass('btn-primary');
+// 		   $(".pages").removeClass('btn-light');
+// 		   $(".pages").addClass('btn-light');
+// 		   $("#"+p).removeClass('btn-light');
+// 		   $("#"+p).addClass('btn-primary');
+// 	   }
+	
+	
+	function loadadd(){
+		   var table = $('#addmembers');
+		   table.append("<tr id='mtitlea'><th>email</th><th>membername</th><th>password</th><th>add</th></tr>");
+			   var tr = "<tr align='center'>" + 
+			   			"<td><input id='emaila' style='text-align:center' type='text' value='' /></td>" +
+		    	        "<td><input id='membernamea' style='text-align:center' type='text' value=''/></td>" +
+		    	        "<td ><input id='memberpwda' type='text' value='' ></td>" +
+			            
+			            "<td><button class='btn btn-success btn-circle' id='add' value='add' onclick='sendMembers()'><i class='fas fa-check'/></button></td>" + //修改
+	
+			            "</tr>";
+			   table.append(tr);
 	}
-
-	$.ajax({
-		 type:'post',
-		 url:'update',
-		 dataType:'JSON',
-		 contentType:'application/json',
-		 data:JSON.stringify(params),
-		 success: function(data){
-				   console.log(data);
-				   $('#feedbackupdate').html("修改成功");
-		 }
-	});
-}
-
-function sendMembers(){
-	var idnumber = $('#idnumberI').val();
-	var membername = $('#membernameI').val();
-	var memberpwd = $('#memberpwdI').val();
-	var phone = $('#phoneI').val();
-	var birthday = $('#birthdayI').val();
-	var gender = $('#genderI').val();
-	var adress = $('#adressI').val();
-	var email = $('#emailI').val();
-
-	var params = {
-	  "idNumber":idnumber,
-		"membername":membername,
-		"memberpwd":memberpwd,
-		"phone":phone,
-		"birthday":birthday,
-		"gender":gender,
-		"adress":adress,
-		"email":email
+	function deleteMembers(id){  //刪除function
+		var id = id;
+	// 	var params = {
+	// 		"id":id
+	// 	}
+		$.ajax({
+			 type:'Get',
+			 url:'delete/' +id,
+			 dataType:'JSON',
+			 contentType:'application/json',
+	// 		 data:JSON.stringify(params),
+			 success: function(data){
+					   console.log(data);
+					   $('#feedbackupdate').html("刪除成功");
+			 }
+		});
 	}
 
-	$.ajax({
-		 type:'post',
-		 url:'insert',
-		 dataType:'JSON',
-		 contentType:'application/json',
-		 data:JSON.stringify(params),
-		 success: function(data){
-				   console.log(data);
-				   $('#feedbackadd').html("新增成功");
-		 }
-	});
-}
+	function updateMembers(id){  //修改function
+
+		var id = $('#idnumber').val();
+		var membername = $('#membername').val();
+		var memberpwd = $('#memberpwd').val();
+		var age = $('#age').val();
+		var gender = $('#gender').val();
+		var adress = $('#adress').val();
+		var email = $('#email').val();
+	
+		var params = {
+				"id":id,
+			"membername":membername,
+			"memberpwd":memberpwd,
+			"age":age,
+			"gender":gender,
+			"adress":adress,
+			"email":email
+		}
+
+		$.ajax({
+			 type:'post',
+			 url:'update',
+			 dataType:'JSON',
+			 contentType:'application/json',
+			 data:JSON.stringify(params),
+			 success: function(data){
+					   console.log(data);
+					   $('#feedbackupdate').html("修改成功");
+			 }
+		});
+	}
+
+	function sendMembers(){
+		var membername = $('#membernamea').val();
+		var memberpwd = $('#memberpwda').val();
+		var email = $('#emaila').val();
+	
+		var params = {
+			"membername":membername,
+			"memberpwd":memberpwd,
+			"email":email
+		}
+	
+		$.ajax({
+			 type:'post',
+			 url:'insert',
+			 dataType:'JSON',
+			 contentType:'application/json',
+			 data:JSON.stringify(params),
+			 success: function(data){
+					   console.log(data);
+					   $('#feedbackadd').html("新增成功");
+			 }
+		});
+	}
 //小幫手
 let index = 0;
 var idnum= ["A274967322", 'A289262174', 'A120475611', 'A173478968', 'A118785817', 'A161615166',  'A280326855']; 
@@ -300,6 +381,65 @@ function quickInput(){
 	}
 	
 }
+
+function searchMembers(){
+	var email = $("#inputsearchemail").val();
+	console.log(email);
+	$.ajax({
+		 type:'get',
+		 url:'/search/'+email,
+		 dataType:'JSON',
+		 contentType:'application/json',
+// 		 data:JSON.stringify(params)
+		 success: function(data){
+// 			var str = JSON.stringify(data);
+// 			var data = Json.parse(str)
+			   console.log(data);
+			   $('#searchTable').empty("");
+				   
+			   if(data==null){
+				   $('table').prepend("<tr><td colspan='2'>暫無資料</td></tr>");;
+			   }else{
+				   var table = $('#searchTable');
+				   		var tr = "<tr align='center'>" + 
+					   			"<td><image height='70px' width='70px' Style='border-radius:50% ; border : 2px solid #6495ED;' "+
+					   			"src='/getMemberImage?id="+data.id+"'/></td>" +
+							    "<td><input id='idnumber' style='text-align:center' type='text' value='" + data.id + "' readonly/></td>" +
+				    	        "<td><input id='membername' style='text-align:center' type='text' value='" + data.membername + "' /></td>" +
+				    	        "<td style='display:none'><input id='memberpwd' type='password' value='"+ data.memberpwd +"' readonly/></td>" +
+				    	        "<td><input id='email' style='text-align:center' type='text' value='"+ data.email +"' /></td>" +
+				    	        "<td ><input id='adress' type='text' value='"+ data.adress +"' readonly/></td>" +
+				    	        "<td ><input id='gender' type='text' value='"+ data.gender +"' readonly/></td>" +
+					   	        "<td ><input id='age' type='text' value='"+ data.age +"' readonly/></td>" +
+					            
+					            "<td><button class='btn btn-success btn-circle' id='update' value='update' onclick='updateMembers(" + data.id + ")'><i class='fas fa-check'/></button></td>" + //修改
+					            "<td><button class='btn btn-danger btn-circle' id='delete' value='delete' onclick='deleteMembers(" + data.id + ")'><i class='fas fa-trash'/></button></td>" + //刪除
+					            "</tr>";
+					   table.append(tr);
+			   }
+		 }
+	   });			   
+}
+
+// $("#searchemail").on("cilck",function(){
+// 	var email = $("#inputsearchemail").html();
+// 	console.log(email);
+// 	$.ajax({
+// 		 type:'get',
+// 		 url:'/update/'+email,
+// 		 dataType:'JSON',
+// 		 contentType:'application/json',
+// // 		 data:JSON.stringify(params)
+// 		 success: function(data){
+// 			var str = JSON.stringify(data);
+// 			var data = Json.parse(str)
+// 				   console.log(data);
+				   
+// 		 }
+// 	});
+	
+// });
+
 </script>
 </head>
 
@@ -416,7 +556,7 @@ function quickInput(){
 
 			<!-- Nav Item - Tables -->
 			<li class="nav-item active"><a class="nav-link"
-				href="#"> <i class="fas fa-light fa-address-book"></i> <span>會員管理</span></a>
+				> <i class="fas fa-light fa-address-book"></i> <span>會員管理</span></a>
 			</li>
 
 			<!-- Divider -->
@@ -644,42 +784,25 @@ function quickInput(){
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">DataTables</h6>
+							<div class="input-group" style="backgroud-color:white">
+							<input id="inputsearchemail" type="text" class="form-control bg-light border-0 small"
+								placeholder="Search for..." >
+							<div class="input-group-append">
+								<button id="searchemail" class="btn btn-primary" type="button" onclick="searchMembers()" >
+									<i class="fas fa-search fa-sm"></i>
+								</button>
+							</div>
+						</div>
+						<table id="searchTable"></table>
 						</div>
 						<div class="card-body" align="center">
 							<div class="table-responsive">
 <!-- 								<P>XXXXXX</P> -->
 								<table id="myTable">
-<!-- 									<tr> -->
-<!-- 										<th>頭像</th> -->
-<!-- 										<th>ID</th> -->
-<!-- 										<th>電子郵件</th> -->
-<!-- 										<th>姓名</th> -->
-<!-- 										<th>管理</th> -->
-<!-- 									</tr> -->
-<%-- 									<c:forEach var="members" items="${Members}"> --%>
-<!-- 										<tr> -->
-<!-- 		                                    <td> -->
-<!-- 		                                        <img height='30px'width='30px'  -->
-<!-- 		                                        Style="border-radius:50%"  -->
-<%-- 		                                        src="<c:url value='/getMemberImage?id=${members.id}' />"> --%>
-<!-- 		                                    </td> -->
-<!-- 		                                    <td> -->
-<%-- 		                                        <c:out value="${members.id}" /> --%>
-<!-- 		                                    </td> -->
-<!-- 		                                    <td> -->
-<%-- 		                                        <c:out value="${members.email}" /> --%>
-<!-- 		                                    </td> -->
-<!-- 		                                    <td> -->
-<%-- 		                                        <c:out value="${members.membername}" /> --%>
-<!-- 		                                    </td> -->
-		                                    
-<%-- 		                                    <td><a href="<c:url value='/memberSys/ToUpdateMemberServlet.do?memberId=${member.memberId}'/>">編輯</a></td> --%>
-<%-- 											<td><a href="<c:url value='/memberSys/DeleteMemberServlet.do?memberId=${member.memberId}'/>">刪除</a></td> --%>
-<!-- 	                                	</tr> -->
-<%-- 	                            	</c:forEach> --%>
+									
 								</table>
 								<table id="showpage">
+								
 									<tr>
 								      <td>Total Pages:${totalPages} Total Records:${totalElements}</td>
 								      <td colspan="3" align="center">Previous
@@ -689,6 +812,17 @@ function quickInput(){
 								      </td>
 								   </tr>
 								</table>
+<!-- 								<div align='right'> -->
+<!--                                 	<div class="btn-group" id="showpage"></div> -->
+<!--                                 	</div> -->
+                                		
+<!-- 								<div id = "tempinput"></div> -->
+								<hr>
+<!-- 								<div id="membersListTitle">InserMembers</div><br> -->
+								<div align="center">
+									<table id="addmembers" ></table>
+									<div id="feedbackadd" align="center"></div>
+								</div>
 							</div>
 						</div>
 					</div>

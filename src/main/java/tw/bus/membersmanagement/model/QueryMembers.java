@@ -38,7 +38,7 @@ public class QueryMembers {
 	private String adress;
 	
 	@Column(name = "AGE")
-	private Integer age;
+	private String age;
 
 	public Long getId() {
 		return id;
@@ -80,11 +80,11 @@ public class QueryMembers {
 		this.adress = adress;
 	}
 
-	public Integer getAge() {
+	public String getAge() {
 		return age;
 	}
 
-	public void setAge(Integer age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 
