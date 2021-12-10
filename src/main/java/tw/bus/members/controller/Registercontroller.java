@@ -8,6 +8,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -31,6 +32,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import tw.bus.announcemen.model.Announcement;
+import tw.bus.announcemen.model.AnnouncementService;
 import tw.bus.announcemen.validators.AnnouncementValidator;
 import tw.bus.members.model.EmailSenderService;
 import tw.bus.members.model.Members;
@@ -52,6 +55,9 @@ public class Registercontroller {
 	
 	@Autowired
 	private EmailSenderService senderService;
+	
+	@Autowired
+	private AnnouncementService announcementService;
 	
 //	String noImagePath = "/../static/images/NoImage.png";
 	String noImagePath = "/animages/images01.jpg";
@@ -117,6 +123,10 @@ public class Registercontroller {
 		System.out.println("membersout = "+members);
 		mService.insertMembers(members);
 		session.setAttribute("members",members);
+		
+		List<Announcement> list = announcementService.findtop3();
+		m.addAttribute("list",list);
+		
 		return "index2";
 	}
 	
