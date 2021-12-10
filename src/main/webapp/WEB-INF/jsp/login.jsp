@@ -101,6 +101,7 @@ input:hover {
 	font-size: 14px;
 	font-weight: bold;
 }
+
 span.error {
 	color: red;
 	display: inline-block;
@@ -114,7 +115,6 @@ span.error {
 	font-size: 16pt;
 	text-align: center;
 }
-
 </style>
 
 <!-- Mobile Specific Meta -->
@@ -182,13 +182,17 @@ span.error {
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
 						<li><a href="/2">首頁</a></li>
-						<li class="menu-has-children"><a href="">優惠活動</a>
+						<li class="menu-has-children"><a href="/members/membersmain.controller">優惠活動</a>
 							<ul>
 								<li><a href="">旅遊套票</a></li>
+								
+							</ul></li>
+						<li class="menu-has-children"><a href="/showAnnouncement">最新消息</a>
+							<ul>
+								<li><a href="/showAnnouncement">最新消息</a></li>
+								<li><a href="/showlostandfound">失物招領</a></li>
 
 							</ul></li>
-						<li><a href="/showAnnouncement">最新消息</a>
-						<li><a href="/showlostandfound">失物招領</a></li>
 						<li><c:choose>
 								<c:when test='${empty members.membername}'>
 									<li class="menu-has-children"><a href="/register/membersregister.controller">註冊</a></li>
@@ -232,16 +236,18 @@ span.error {
 					<div class="tab-content" id="registerTabContent">
 						<div class="tab-pane fade show active" id="login" role="tabpanel"
 							aria-labelledby="register-tab">
-							<div style="text-align:center;line-height:60px;>"><input style="visibility:hidden"/></div>
-							<div style="text-align:center;margin:0 auto;">
-								<c:if test="${not empty error}">
-							        <span class="error">${error}</span>
-							    </c:if>
-							    <c:if test="${not empty msg}">
-							        <span class="msg">${msg}</span>
-							    </c:if>
+							<div style="text-align:center;line-height:50px;>"><input style="visibility:hidden"/></div>
+							<div style="text-align:center;margin:0 auto;color: red;font-size: 16pt;">${error.error}
+<%-- 								<c:if test="${not empty error}"> --%>
+<%-- 							        <span class="error">${error}</span> --%>
+<%-- 							    </c:if> --%>
+<%-- 							    <c:if test="${not empty msg}"> --%>
+<%-- 							        <span class="msg">${msg}</span> --%>
+<%-- 							    </c:if> --%>
 						    </div>
 							<form class="form-wrap" method="post" action="/login/page">
+<!-- 							<div style="text-align:center;line-height:50px;>"><input style="visibility:hidden"/></div> -->
+<%-- 							<div style="text-align:center;margin:0 auto;">${error.error}</div> --%>
 								<br>
 <%-- 									<form:input path="logemail" id="logemail" type="text"  --%>
 <!-- 									class="form-control" placeholder="email "/>	 -->
@@ -249,11 +255,11 @@ span.error {
 <!-- 									onfocus="this.placeholder = ''"  -->
 <!-- 									onblur="this.placeholder = 'email '"  -->
 									<input id="username" name="username" type="text" 
-									class="form-control" placeholder="email" />
+									class="form-control" placeholder="請輸入電子郵件" />
 									 
 									<br>
-									<input name="password" type="text"
-									class="form-control" placeholder="password " /> 
+									<input name="password" type="password"
+									class="form-control" placeholder="請輸入密碼" /> 
 <!-- 									name="password" -->
 <!-- 									onfocus="this.placeholder = ''" -->
 <!-- 									onblur="this.placeholder = 'password '"  -->

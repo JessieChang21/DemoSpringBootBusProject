@@ -3,6 +3,8 @@ package tw.bus.ticket.model;
 public class ByTripname {
 	
 	private String tripname;
+	private String initstation;
+	private String finalstation;
 	private String traveldate;
 	private String weekday;
 	private String initialtime;
@@ -12,10 +14,11 @@ public class ByTripname {
 	public ByTripname() {
 	}
 
-	
-	public ByTripname(String tripname, String traveldate, String weekday, String initialtime, Integer adult,
-			Integer children) {
+	public ByTripname(String tripname, String initstation, String finalstation, String traveldate, String weekday,
+			String initialtime, Integer adult, Integer children) {
 		this.tripname = tripname;
+		this.initstation = initstation;
+		this.finalstation = finalstation;
 		this.traveldate = traveldate;
 		this.weekday = weekday;
 		this.initialtime = initialtime;
@@ -23,12 +26,15 @@ public class ByTripname {
 		this.children = children;
 	}
 
-
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("ByTripname [tripname=");
 		builder.append(tripname);
+		builder.append(", initstation=");
+		builder.append(initstation);
+		builder.append(", finalstation=");
+		builder.append(finalstation);
 		builder.append(", traveldate=");
 		builder.append(traveldate);
 		builder.append(", weekday=");
@@ -43,13 +49,28 @@ public class ByTripname {
 		return builder.toString();
 	}
 
-
 	public String getTripname() {
 		return tripname;
 	}
 
 	public void setTripname(String tripname) {
 		this.tripname = tripname;
+	}
+
+	public String getInitstation() {
+		return initstation;
+	}
+
+	public void setInitstation(String initstation) {
+		this.initstation = initstation;
+	}
+
+	public String getFinalstation() {
+		return finalstation;
+	}
+
+	public void setFinalstation(String finalstation) {
+		this.finalstation = finalstation;
 	}
 
 	public String getTraveldate() {
@@ -91,7 +112,12 @@ public class ByTripname {
 	public void setChildren(Integer children) {
 		this.children = children;
 	}
+	
+	
+	
 
+	
+	
 	
 	
 }

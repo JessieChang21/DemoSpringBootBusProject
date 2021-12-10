@@ -13,7 +13,9 @@
 <title>車次查詢結果</title>
 <link rel="icon" href="images/bus.svg" type="image/x-icon" />
 <style type="text/css">
-
+#banner{
+    background-image: url("/images/queryRoutes/tai.jpg");
+}
 #all, #d0, #d1 {
 	font-size: 1.2em;
 }
@@ -146,7 +148,7 @@ table tr:last-child td:last-child {
 	<!-- HTML ============================================= -->
 	<c:import url="/WEB-INF/jsp/commons/header.jsp" />
 	<!-- start banner Area -->
-	<section class="about-banner relative">
+	<section class="about-banner relative" id="banner">
 		<div class="overlay overlay-bg"></div>
 		<div class="container">
 			<div class="row d-flex align-items-center justify-content-center">
@@ -280,7 +282,7 @@ table tr:last-child td:last-child {
 			</div>
 		</c:otherwise>
 	</c:choose>
-
+	
 
 	<!-- -------------------------------------------------------------------- -->
 	<c:import url="/WEB-INF/jsp/commons/footer.jsp" />

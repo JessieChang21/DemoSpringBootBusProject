@@ -7,6 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>地圖查詢</title>
+<link rel="icon" href="images/bus.svg" type="image/x-icon" />
 <link rel="stylesheet" href="/webjars/jquery-ui/1.12.1/jquery-ui.css">
 <link rel='stylesheet'
     href='/webjars/font-awesome/5.13.0/css/all.min.css'>
@@ -29,7 +30,7 @@
 
 <style type="text/css">
 #imgMap {
-/*     float: right; */
+     float: right; 
 }
 
 body {

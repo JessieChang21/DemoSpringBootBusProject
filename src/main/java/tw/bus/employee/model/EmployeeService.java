@@ -24,8 +24,20 @@ public class EmployeeService {
 		return null;
 	}
 	
+	public String findMaxId(){
+		return eResp.findMaxId();
+	}
+	//依照員工編號取得姓名
+	public String getNamebyId(String id){
+		return eResp.getNamebyId(id);
+	}
+	
 	public List<Employee> findAll(){
 		return eResp.findAll();
+	}
+	
+	public List<Employee> findAllById(String id){
+		return eResp.findAllById(id);
 	}
 	
 	public Page<Employee> findAllByPage(Pageable pageable){

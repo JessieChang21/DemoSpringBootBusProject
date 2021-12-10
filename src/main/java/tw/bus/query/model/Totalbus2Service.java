@@ -59,6 +59,9 @@ public class Totalbus2Service {
 		return query2;
 	}
 	
+	public Totalbus2 findByArea(String city) {
+		return tbResp.findByArea(city);
+	}
 	
 	public Totalbus2 findByBusnumber(Integer busnumber) {
 		return tbResp.findByBusnumber(busnumber);
@@ -66,6 +69,11 @@ public class Totalbus2Service {
 	
 	public Integer updateRemainSeat(Integer busnumber, int newremainseat) {
 		return tbResp.updateRemainSeat(busnumber, newremainseat);
+	}
+
+
+	public List<Totalbus2> findAll() {
+		return tbResp.findAll();
 	}
 
 }

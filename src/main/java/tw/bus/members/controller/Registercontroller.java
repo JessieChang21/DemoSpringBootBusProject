@@ -8,7 +8,6 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -21,6 +20,7 @@ import javax.sql.rowset.serial.SerialException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,8 +32,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import tw.bus.announcemen.model.Announcement;
-import tw.bus.announcemen.model.AnnouncementService;
 import tw.bus.announcemen.validators.AnnouncementValidator;
 import tw.bus.members.model.EmailSenderService;
 import tw.bus.members.model.Members;
@@ -41,7 +39,7 @@ import tw.bus.members.model.MembersService;
 import tw.bus.members.validate.MembersValidator;
 import tw.bus.memberslogin.controller.LoginMembersController;
 import tw.bus.memberslogin.model.EncodePwdUtil;
-import tw.bus.memberslogin.model.LoginMembers;
+//import tw.bus.memberslogin.model.LoginMembers;
 
 
 
@@ -55,9 +53,6 @@ public class Registercontroller {
 	
 	@Autowired
 	private EmailSenderService senderService;
-	
-	@Autowired
-	private AnnouncementService announcementService;
 	
 //	String noImagePath = "/../static/images/NoImage.png";
 	String noImagePath = "/animages/images01.jpg";
@@ -81,14 +76,14 @@ public class Registercontroller {
 		membersValidator.validate(members, bindingResult);
 		if(bindingResult.hasErrors()) {
 			System.out.println(bindingResult.getAllErrors());
-			LoginMembers lmembers = new LoginMembers();
-			m.addAttribute("lmembers",lmembers);
+//			LoginMembers lmembers = new LoginMembers();
+//			m.addAttribute("lmembers",lmembers);
 			return "members/register";
 		}
 		if (mService.existsByEmail(members.getEmail())) {
 			bindingResult.rejectValue("email", "", "帳號已存在，請重新輸入");
-			LoginMembers lmembers = new LoginMembers();
-			m.addAttribute("lmembers",lmembers);
+//			LoginMembers lmembers = new LoginMembers();
+//			m.addAttribute("lmembers",lmembers);
 			return "members/register";
 		}
 		
@@ -116,17 +111,13 @@ public class Registercontroller {
 		members.setMemberImage(blob); 
 		members.setFileName("NoImage.png");
 		members.setMimeType("image/png");
-		members.setAge(1);
+		members.setAge("保密");
+		String encodePwd = new BCryptPasswordEncoder().encode(members.getMemberpwd());
+		members.setMemberpwd(encodePwd);
 //		members.setMemberpwd(getMD5Endocing(EncodePwdUtil.encryptString(members.getMemberpwd())));
-//		String encodePwd = new BCryptPasswordEncoder().encode(members.getMemberpwd());
-		members.setMemberpwd(new BCryptPasswordEncoder().encode(members.getMemberpwd()));
 		System.out.println("membersout = "+members);
 		mService.insertMembers(members);
 		session.setAttribute("members",members);
-		
-		List<Announcement> list = announcementService.findtop3();
-		m.addAttribute("list",list);
-		
 		return "index2";
 	}
 	

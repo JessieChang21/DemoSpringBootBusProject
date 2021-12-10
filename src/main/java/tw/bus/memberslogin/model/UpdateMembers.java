@@ -36,7 +36,7 @@ public class UpdateMembers {
 	private String adress;
 	
 	@Column(name = "AGE")
-	private Integer age;
+	private String age;
 	
 	@Column(name = "FILENAME")
 	private String fileName;
@@ -99,11 +99,11 @@ public class UpdateMembers {
 		this.adress = adress;
 	}
 
-	public Integer getAge() {
+	public String getAge() {
 		return age;
 	}
 
-	public void setAge(Integer age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 

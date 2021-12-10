@@ -40,7 +40,7 @@
 						</ul></li>
 					<li><a href="/showAnnouncement">最新消息</a>
 					<li><a href="/showlostandfound">失物招領</a></li>
-
+					<li><a href="/members/queryMemberOrder">訂單查詢</a></li>
 
 					<li><c:choose>
 							<c:when test='${empty members.membername}'>
@@ -53,7 +53,7 @@
 										src="<c:url value='/getMemberImage?id=${members.id}' />">&ensp;${members.membername}
 										,您好</a>
 									<ul>
-										<li><a href="/updatemembers.controller">會員資料</a></li>
+										<li><a href="/updatemembers.controller">會員中心</a></li>
 										<li><a href="/logout">登出</a></li>
 									</ul></li>
 							</c:when>

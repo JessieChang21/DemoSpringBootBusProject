@@ -30,7 +30,7 @@
 
 
 	<br>
-	<a href="<c:url value='/index'/>">回首頁</a>
+	<a href="<c:url value='/mainpage'/>">回首頁</a>
 
 	<script>
 	window.onload = function() {
