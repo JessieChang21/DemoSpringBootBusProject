@@ -10,6 +10,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.Principal;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 
 import javax.crypto.BadPaddingException;
@@ -51,6 +52,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import tw.bus.announcemen.model.Announcement;
+import tw.bus.announcemen.model.AnnouncementService;
 import tw.bus.members.model.Members;
 import tw.bus.members.model.MembersService;
 import tw.bus.memberslogin.model.EncodePwdUtil;
@@ -72,6 +75,9 @@ public class LoginMembersController {
 	
 	@Autowired
 	private UpdateMemberService uService;
+	
+	@Autowired
+	private AnnouncementService anservice;
 	
 //	String noImagePath = "/images/NoImage.png";
 
@@ -382,7 +388,10 @@ public class LoginMembersController {
 	}
 	
 	@GetMapping("/web")
-	public String emailGetMembersName(Authentication authentication ,HttpSession session) {
+	public String emailGetMembersName(Authentication authentication ,HttpSession session,Model m) {
+		
+		List<Announcement> list = anservice.findtop3();
+		m.addAttribute("list",list);
 		
 		System.out.println("hi~/web");
 		System.out.println(authentication.getName());

@@ -45,11 +45,10 @@ span.error {
 					<tr>
 						<td align='right'>巴士編號：<br>&nbsp;
 						</td>
-						<td><form:select path="itbussnumber" >
-							<option value="1615">1615</option>
-							<option value="1616">1616</option>
-							<option value="1617">1617</option>
-						</form:select><br>&nbsp; </td>
+						<td>
+							<form:input path="itbussnumber" textarea="300" /><br>&nbsp;
+							<form:errors path="itbussnumber" cssClass="error" />
+						</td>
 					</tr>
 					<tr>
 						<td align='right'>拾獲日期：<br>&nbsp;

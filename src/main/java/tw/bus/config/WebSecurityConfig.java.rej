@@ -1,0 +1,9 @@
+diff a/src/main/java/tw/bus/config/WebSecurityConfig.java b/src/main/java/tw/bus/config/WebSecurityConfig.java	(rejected hunks)
+@@ -22,6 +22,7 @@
+ 	@Autowired
+ 	private AuthUserDetailsService userDetailsService;
+ 	
++//	@Autowired
+ //    @Qualifier("myAuthenticationSuccessHandler")
+ //    private AuthenticationSuccessHandler successHandler;
+ 

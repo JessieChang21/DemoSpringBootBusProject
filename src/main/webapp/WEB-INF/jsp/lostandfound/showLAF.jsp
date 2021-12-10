@@ -257,6 +257,14 @@ function pageIn() {
 			<tr>
 				<td style="background-color:white;"><form method='POST'
 					action="<c:url value='/showlafbydate'/>">
+					<input name='itdate' type='hidden' type='text' value='2021/12'>
+					<input type='submit' style="width:200px;height:40px;border:2px blue none;background-color:white;font-size:130%" value='十二月份'>
+					</form>
+				</td></tr>
+			
+			<tr>
+				<td style="background-color:white;"><form method='POST'
+					action="<c:url value='/showlafbydate'/>">
 					<input name='itdate' type='hidden' type='text' value='2021/11'>
 					<input type='submit' style="width:200px;height:40px;border:2px blue none;background-color:white;font-size:130%" value='十一月份'>
 					</form>
@@ -276,9 +284,11 @@ function pageIn() {
 				</form></td>
 			</tr>
 	</table>
+	<BR/>	<BR/>	<BR/><BR/>	<BR/>	<BR/><BR/>	<BR/>	<BR/>
 	</div>
 	<div id="table_wrap"  align="center">
 	<table id="showlaf"></table><BR/>
+	
 	</div>
 	<div>
 		<div>
@@ -292,6 +302,7 @@ function pageIn() {
 		<div id="tempinput"></div>
 
 	</div>
+	
 
 	<!-- Start insurence-one Area -->
 	<section class="insurence-one-area section-gap"></section>
