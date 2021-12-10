@@ -7,6 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>關鍵字查詢</title>
+<link rel="icon" href="images/bus.svg" type="image/x-icon" />
 <link rel="stylesheet" href="/webjars/jquery-ui/1.12.1/jquery-ui.css">
 <link rel='stylesheet'
 	href='/webjars/font-awesome/5.13.0/css/all.min.css'>
@@ -478,17 +479,6 @@ select.form-select {
 				children = parseInt(children);
 			}
 			
-// 			jsonObj = [];
-//             item = {}
-            
-//             item["tripname"] = tripname;
-//             item["traveldate"] = traveldate;
-//             item["weekday"] = weekday;
-//             item["initialtime"] = initialtime;
-//             item["adult"] = adult;
-//             item["children"] = children;
-
-//             jsonObj.push(item);//將item傳入jsonObj裡面
 		    
             var params = {
             	    "tripname":tripname,
@@ -500,17 +490,6 @@ select.form-select {
                 }
                 
             $("#inputform").val(JSON.stringify(params));
-            
-// 		    $.ajax({
-// 		    	 type:'post',
-// 		    	 url:'bookticketByStationKeyword.controller',
-// 		    	 dataType:'JSON',
-// 		    	 contentType:'application/json',
-// 		    	 data:JSON.stringify(params),
-// 		    	 success: function(data){
-		    		
-// 		    	  }
-// 		    });
 			
 			
 		})

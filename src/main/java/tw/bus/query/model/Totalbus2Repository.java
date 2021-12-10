@@ -19,6 +19,9 @@ public interface Totalbus2Repository extends JpaRepository<Totalbus2, Integer> {
 	@Modifying
 	@Query(value= "update Totalbus2 set remainseats=:newremainseat where busnumber=:busnumber", nativeQuery = true)
 	Integer updateRemainSeat(@Param("busnumber") Integer busnumber, @Param("newremainseat") int newremainseat);
+
+
+	Totalbus2 findByArea(String city);
 	
 	
 }
