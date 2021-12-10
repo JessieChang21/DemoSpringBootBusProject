@@ -16,6 +16,29 @@ public class GetHolidayService {
 	@Autowired
 	private GetHolidayRepository ghResp;
 	
+	public void InsertGetHoliday(String employeeid,String substituteid,String date,String timeperiod,Integer totalhours,String release) {
+		ghResp.InsertGetHoliday(employeeid, substituteid, date, timeperiod, totalhours, release);
+	}
+	//依照employeeid, date, timeperiod檢查是否已存在請假資料,0:沒有,>=1:已存在請假資料
+	public Integer hasData(String employeeid,String date,String timeperiod) {
+		return ghResp.hasData(employeeid, date, timeperiod);
+	}
+	//主管放行
+	public void Updaterelease(String employeeid,String date,String timeperiod) {
+		ghResp.Updaterelease(employeeid, date, timeperiod);
+	}
+	public Page<GetHoliday> QueryAllUnRelease(Pageable pageable){
+		return ghResp.QueryAllUnRelease(pageable);
+	}
+	//銷假
+	public void DeleteGetHoliday(String employeeid,String date,String timeperiod) {
+		ghResp.DeleteGetHoliday(employeeid, date, timeperiod);
+	}
+	
+	public Page<GetHoliday> QueryAllbyId(Pageable pageable,String employeeid){
+		return ghResp.QueryAllbyId(pageable,employeeid);
+	}
+	
 	public GetHoliday findById(String id) {
 		Optional<GetHoliday> op1 = ghResp.findById(id);
 		if(op1.isPresent()) {
@@ -23,6 +46,8 @@ public class GetHolidayService {
 		}
 		return null;
 	}
+	
+	
 	
 	public List<GetHoliday> findAll(){
 		return ghResp.findAll();

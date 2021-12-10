@@ -1,8 +1,11 @@
 package tw.bus.employee.model;
 
-import java.sql.Date;
+import java.io.Serializable;
+
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -11,53 +14,56 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "GetHoliday")
+//@IdClass(GetHolidaypk.class)
 @Component
-public class GetHoliday {
+public class GetHoliday{
 	
+	//@EmbeddedId
+    //private GetHolidaypk GetHolidayPK;
 	@Id
-	private String EmployeeID;
-	private String SubstituteID;
+	private String employeeid;
+	private String substituteid;
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-	private Date Date;
-	private String TimePeriod;
-	private Integer TotalHours;
-	private String Release;
-	public String getEmployeeID() {
-		return EmployeeID;
+	private String date;
+	private String timeperiod;
+	private Integer totalhours;
+	private String release;
+	public String getEmployeeid() {
+		return employeeid;
 	}
-	public void setEmployeeID(String employeeID) {
-		EmployeeID = employeeID;
+	public void setEmployeeid(String employeeid) {
+		this.employeeid = employeeid;
 	}
-	public String getSubstituteID() {
-		return SubstituteID;
+	public String getSubstituteid() {
+		return substituteid;
 	}
-	public void setSubstituteID(String substituteID) {
-		SubstituteID = substituteID;
+	public void setSubstituteid(String substituteid) {
+		this.substituteid = substituteid;
 	}
-	public Date getDate() {
-		return Date;
+	public String getDate() {
+		return date;
 	}
-	public void setDate(Date date) {
-		Date = date;
+	public void setDate(String date) {
+		this.date = date;
 	}
-	public String getTimePeriod() {
-		return TimePeriod;
+	public String getTimeperiod() {
+		return timeperiod;
 	}
-	public void setTimePeriod(String timePeriod) {
-		TimePeriod = timePeriod;
+	public void setTimeperiod(String timeperiod) {
+		this.timeperiod = timeperiod;
 	}
-	public Integer getTotalHours() {
-		return TotalHours;
+	public Integer getTotalhours() {
+		return totalhours;
 	}
-	public void setTotalHours(Integer totalHours) {
-		TotalHours = totalHours;
+	public void setTotalhours(Integer totalhours) {
+		this.totalhours = totalhours;
 	}
 	public String getRelease() {
-		return Release;
+		return release;
 	}
 	public void setRelease(String release) {
-		Release = release;
+		this.release = release;
 	}
 	
-	
+
 }

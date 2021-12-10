@@ -76,6 +76,7 @@
 	function updateemployee(){
     	var id = $('#id_h').val();
     	var employeename = $('#employeename').val();
+    	var password = $('#password_h').val();
     	var groupid = $('#groupid').val();
     	var gender = $('#gender').val();
     	var jobid = $('#jobid').val();
@@ -91,6 +92,7 @@
     	var params = {
     	    "id":id,
     		"employeename":employeename,
+    		"password":password,
     		"groupid":groupid,
     		"gender":gender,
     		"jobid":jobid,
@@ -115,6 +117,7 @@
 	function deleteemployee(){
     	var id = $('#id_h').val();
     	var employeename = $('#employeename').val();
+    	var password = $('#password_h').val();
     	var groupid = $('#groupid').val();
     	var gender = $('#gender').val();
     	var jobid = $('#jobid').val();
@@ -130,6 +133,7 @@
     	var params = {
     	    "id":id,
     		"employeename":employeename,
+    		"password":password,
     		"groupid":groupid,
     		"gender":gender,
     		"jobid":jobid,
@@ -154,9 +158,9 @@
 </head>
 <body>
 	<form action="employeeQuery" method="post">
-		<table>
+		<table border="1">
 			<tr>
-				<td><h3>員工基本資料</h3></td>
+				<td colspan='2'><h3>員工基本資料</h3></td>
 			</tr>
 			<tr>
 				<td><label>員工編號</label></td>
@@ -180,15 +184,15 @@
 				<td><select id="rankid" name="rankid"></select></td>
 			</tr>
 			<tr>
-				<td>
+				<td colspan='2'>
 					<button id='update' type='button' onclick="updateemployee()">update</button>
-				</td>
-				<td>
 					<button id='delete' type='button' onclick="deleteemployee()">delete</button>
+					<button><a href="<c:url value='/employee/employeemain.controller'/> " >回前頁</a></button>
 				</td>
 			</tr>
 		</table>
 		<input id="id_h" type="hidden" value="${pid}">
+		<input id="password_h" type="hidden" value="${password}">
 		<input id="gender_h" type="hidden" value="${gender}">
 		<input id="jobid_h" type="hidden" value="${jobid}">
 		<input id="rankid_h" type="hidden" value="${rankid}">

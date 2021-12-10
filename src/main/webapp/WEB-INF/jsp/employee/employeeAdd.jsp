@@ -117,7 +117,7 @@ var indexPage = 1;
 <body>
 	<h3>員工資料</h3>
 	<form action="employeeInsert2" method ="post">
-		<table>
+		<table border="1">
 			<tr style='display:none'>
 				<td><label>員工編號</label></td>
 				<td><input id='id' name="id" type='text'/></td>
@@ -144,6 +144,7 @@ var indexPage = 1;
 			</tr>
 			<tr>
 				<td><button type="submit" value="employeeadd">確認送出</button></td>
+				<td><button><a href="<c:url value='/employee/employeemain.controller'/> " >回前頁</a></button></td>
 			</tr>
 		</table>
 	</form>

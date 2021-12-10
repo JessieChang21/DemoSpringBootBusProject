@@ -5,6 +5,9 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,8 +23,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import org.w3c.dom.Document;
+
 import tw.bus.employee.model.Employee;
 import tw.bus.employee.model.EmployeeService;
+import tw.bus.employee.model.Holiday;
+import tw.bus.employee.model.HolidayRepository;
+import tw.bus.employee.model.HolidayService;
 import tw.bus.employee.model.Job;
 import tw.bus.employee.model.JobService;
 import tw.bus.employee.model.Rank;
@@ -34,12 +42,14 @@ public class EmployeeController {
     private EmployeeService eService;
 	private JobService jService;
 	private RankService rService;
+	private HolidayService hService;
 	
 	@Autowired
-	public EmployeeController(EmployeeService eService, JobService jService, RankService rService) {
+	public EmployeeController(EmployeeService eService, JobService jService, RankService rService,HolidayService hService) {
 		this.eService = eService;
 		this.jService = jService;
 		this.rService = rService;
+		this.hService = hService;
 	}
 	
 	@GetMapping("/employeemain.controller")
@@ -52,6 +62,7 @@ public class EmployeeController {
 		m.addAttribute("pid", pid);
 		Employee e = eService.findById(pid);
 		m.addAttribute("employeename",e.getEmployeename().toString());
+		m.addAttribute("password",e.getPassword().toString());
 		m.addAttribute("groupid",e.getGroupid().toString());
 		m.addAttribute("gender",e.getGender().toString());
 		m.addAttribute("jobid",e.getJobid().toString());
@@ -87,9 +98,11 @@ public class EmployeeController {
 			@RequestParam("rankid") String rankid) {
 		Employee e = new Employee();
 		//e.setId(id);
-		e.setId(eService.findMaxId());
+		String empid = eService.findMaxId();
+		e.setId(empid);
 		e.setEmployeename(employeename);
-		e.setGroupid("A");
+		e.setPassword("0000");
+		e.setGroupid("1");
 		e.setGender(gender);
 		e.setJobid(jobid);
 		e.setRankid(rankid);
@@ -100,26 +113,41 @@ public class EmployeeController {
 		e.setEnterdate(formatter.format(date));
 		e.setSeniority(0);
 		eService.insertEmployee(e);
+		//新增員工資料的同時新增該員工的假期統計
+		Holiday h = new Holiday();
+		h.setEmployeeid(empid);
+		h.setTotalhours(56);
+		h.setLavehours(0);
+		hService.insertHoliday(h);
 		return "employee/employeeQueryAll";
 	}
 	
 	@PostMapping("employeeUpdate") 
-	@ResponseBody
-	public Employee processUpdateAction(@RequestBody Employee e) {
-		e.setGroupid("A");
+	//@ResponseBody
+	public String processUpdateAction(@RequestBody Employee e) {
+
+		e.setPassword("0000");
+		e.setGroupid("1");
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		//LocalDate todaysDate = LocalDate.now();
 		System.out.println(formatter.format(date));
 		e.setEnterdate(formatter.format(date));
 		e.setSeniority(0);
-		return eService.updateEmployee(e);
-		//return "employee/employeeQueryAll";
+		eService.updateEmployee(e);
+		return "employee/employeeQueryAll";
 	}
 	
 	@PostMapping("employeeDelete") 
 	public String processDeleteAction(@RequestBody Employee e) {
 		eService.deleteEmployee(e);
+		//刪除員工資料的同時刪除員工的假期統計
+		Holiday h = new Holiday();
+		String empid = e.getId().toString();
+		h.setEmployeeid(empid);
+		h.setTotalhours(56);
+		h.setLavehours(0);
+		hService.deleteHoliday(h);
 		return "employee/employeeQueryAll";
 	}
 	
