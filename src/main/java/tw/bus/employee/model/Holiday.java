@@ -11,28 +11,26 @@ import org.springframework.stereotype.Component;
 @Component
 public class Holiday {
 	@Id
-	private String EmployeeID;
-	private Integer TotalHours;
-	private Integer LaveHours;
-	public String getEmployeeID() {
-		return EmployeeID;
+	private String employeeid;
+	private Integer totalhours;
+	private Integer lavehours;
+	public String getEmployeeid() {
+		return employeeid;
 	}
-	public void setEmployeeID(String employeeID) {
-		EmployeeID = employeeID;
+	public void setEmployeeid(String employeeid) {
+		this.employeeid = employeeid;
 	}
-	public Integer getTotalHours() {
-		return TotalHours;
+	public Integer getTotalhours() {
+		return totalhours;
 	}
-	public void setTotalHours(Integer totalHours) {
-		TotalHours = totalHours;
+	public void setTotalhours(Integer totalhours) {
+		this.totalhours = totalhours;
 	}
-	public Integer getLaveHours() {
-		return LaveHours;
+	public Integer getLavehours() {
+		return lavehours;
 	}
-	public void setLaveHours(Integer laveHours) {
-		LaveHours = laveHours;
+	public void setLavehours(Integer lavehours) {
+		this.lavehours = lavehours;
 	}
 	
-	
-
 }

@@ -23,6 +23,14 @@ public class HolidayService {
 		}
 		return null;
 	}
+	//取得該員工剩餘假期時數
+	public Integer getTotalHoursbyID(String employeeid){
+		return hResp.getTotalHoursbyID(employeeid);
+	}
+	//取得該員工已休假時數
+	public Integer getLaveHoursbyID(String employeeid){
+		return hResp.getLaveHoursbyID(employeeid);
+	}
 	
 	public List<Holiday> findAll(){
 		return hResp.findAll();

@@ -19,6 +19,8 @@ public class Employee {
 	private String id;
 	
 	private String employeename;
+	private String password;
+	
 	private String groupid;
 	private String gender;
 	private String jobid;
@@ -37,6 +39,12 @@ public class Employee {
 	}
 	public void setEmployeename(String employeename) {
 		this.employeename = employeename;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public String getGroupid() {
 		return groupid;

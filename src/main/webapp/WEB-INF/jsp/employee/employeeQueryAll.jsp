@@ -36,63 +36,41 @@
 					   var table = $('#showemployees');
 					   table.append("<tr id='etitle'><th>員工ID</th><th>員工姓名</th><th>性別</th><th>職稱</th><th>職等</th></tr>");
 					   $.each(data, function(i,n){
-						   var tr = "<tr align='center'>" + 
-				   			"<td><a href='employQuery.controller?pid=" + n.id + "'>" + n.id + "</a></td>" +
-						    "<td>" + n.employeename + "</td>" +
-						    "<td style='display:none'>"+ n.groupid +"</td>"
+						    table.append("<tr align='center'>");
+						    table.append("<td><a href='employQuery.controller?pid=" + n.id + "'>" + n.id + "</a></td>");
+							table.append("<td>" + n.employeename + "</td>");
+							table.append("<td style='display:none'>"+ n.groupid +"</td>");
 						    if(n.gender == "M"){
-						    	tr += "<td>男</td>"
+						    	table.append("<td>男</td>");
 						    }else{
-						    	tr += "<td>女</td>"
+						    	table.append("<td>女</td>");
 						    }
-			    	        //"<td>" + n.gender + "</td>" +
-			    	        var jobname = getJob(n.jobid);
-			    	        console.log('jobname:' + jobname);
-			    	        tr += "<td>"+ n.jobid +"</td>" +
-			    	        "<td>"+ n.rankid +"</td>" +
-			    	        "<td style='display:none'>"+ n.enterdate +"</td>" +
-				   	        "<td style='display:none'>"+ n.seniority +"</td>" +
+						    if($.trim(n.jobid) == "1"){
+						    	table.append("<td>站務員</td>");
+						    }else{
+						    	table.append("<td>駕駛員</td>");
+						    }
+			    	        //table.append("<td>"+ n.jobid +"</td>");
+			    	        if($.trim(n.jobid) == "1"){
+						    	table.append("<td>專員</td>");
+						    }else{
+						    	table.append("<td>經理</td>");
+						    }
+			    	        //table.append("<td>"+ n.rankid +"</td>");
+			    	    	table.append("<td style='display:none'>"+ n.enterdate +"</td>");
+			    	    	table.append("<td style='display:none'>"+ n.seniority +"</td>");
 				            
-				            "</tr>";
-						   table.append(tr);
+			    	    	table.append("</tr>");
 					   });	
 				   }
 				   }
 		   });
 		   }
-	function getJob(jobid){
-		$.ajax({
-			   type:'Post',
-			   url:'/employee/getJobbyid/' + jobid,
-			   dataType:'JSON',
-			   contentType:'text',
-			   success: function(data){
-				   console.log('success:' + data);
-				   var json = JSON.stringify(data,null,4);
-				   console.log('json:' + json);
-				   console.log('getJob:' + data.jobname);
-				   return data.jobname;
-				   
-			   },error: function() {console.log("error-getJob");}
-		});
-	}
-	function add(){
-		$.ajax({
-			   type:'Get',
-			   url:'/employee/employadd.controller',
-			   dataType:'JSON',
-			   contentType:'application/json',
-			   success: function(data){
-				   console.log('success:' + data);
-				   }
-			   });
-	}
-	
 </script>
 </head>
 <body>
 	<div align="center">
-	<div id="mployeeListTitle">Employee Query</div>
+	<div id="mployeeListTitle"><h3>員工列表</h3></div>
 		<table id="showemployees" border="1"></table>
 		<table id="showpage">
 			<tr>
@@ -106,7 +84,6 @@
 			</tr>
 			<tr>
 				<td>
-					<button id='add' type='button' value='add' onclick='add()'>新增員工</button>
 					<a href='/employee/employadd.controller'  class="btn btn-primary">新增員工</a>
 				</td>
 			</tr>
