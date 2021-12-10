@@ -178,7 +178,7 @@ function insertTime(){
 								         <td><form:textarea path="toExamineNote" rows = "5" cols = "30"/></td>
 								      </tr>
 								      
-								      <tr>
+								      <tr align='center'>
 								      	 <td colspan="2">
 								      	 <form:hidden path="empolyeeName" value = "${employee.employeeName}"/>
 								      	 <input type="submit" name="toExamine" value="送出" onclick="return(confirm('是否確認要送出申請？'))" class='btn btn-primary'></td>

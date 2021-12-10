@@ -26,7 +26,7 @@ import tw.bus.schedule.model.Seats;
 import tw.bus.ticketback.model.Memberorder;
 import tw.bus.ticketback.model.MemberorderService;
 import tw.bus.ticketback.model.PageAssistMo;
-import tw.bus.ticketback.model.emailSenderService;
+import tw.bus.ticketback.model.backEmailSenderService;
 
 
 @Controller
@@ -34,13 +34,13 @@ public class MemberorderController {
 	
 	private MemberorderService moService;
 	// 後臺增加service
-	private emailSenderService mailServ;
+	private backEmailSenderService mailServ;
 	private SeatService seatServ;
 	private BusTimeService busServ;
 	
 	
 	@Autowired
-	public MemberorderController(MemberorderService moService, emailSenderService mailServ, SeatService seatServ, BusTimeService busServ) {
+	public MemberorderController(MemberorderService moService, backEmailSenderService mailServ, SeatService seatServ, BusTimeService busServ) {
 		this.moService = moService;
 		this.mailServ = mailServ;
 		this.seatServ = seatServ;
