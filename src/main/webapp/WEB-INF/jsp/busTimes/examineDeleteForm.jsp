@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
-  
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-<title>詳細路線${rid}</title>
+<title>刪除車次審查</title>
 <link rel="icon" href="/images/bus.svg" type="/image/x-icon" />
 
     <!-- Custom fonts for this template -->
@@ -38,50 +38,8 @@
     </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
-    $(document).ready(function(){
-    	var rid = $('#rid').val();
-    	load(rid);
-    });
-    
-    function load(rid){
-    	$.ajax({
-    	   type:'post',
- 		   url:'/routes/findrouteinfobyid.controller/' + rid,
- 		   dataType:'JSON',
- 		   contentType:'application/json',
- 		   success: function(data){
- 			   
- 			   console.log('success:' + data);
- 			   var json = JSON.stringify(data,null,4);
- 			   console.log('json:' + json);
- 			   
- 			   $('#showproduct').empty("");
- 			   
- 			  if(data==null){
- 				 $('table').prepend("<tr><td colspan='2'>暫無資料</td></tr>");
- 		      }else{
- 		    	 var table = $('#showproduct');
- 		    	 table.append("<tr align='center' id='ptitle'><th>車站順序</th><th>車站名稱</th><th>行經時間</th></tr>");
- 		    	
- 		    	 $.each(data, function(i,n){
- 		    		if(i%2==0){
-					   var tr = "<tr align='center' class='even'>" + "<td>" + n.stationSequence + "</td>" +
-					            "<td>" + n.station + "</td>" + "<td>" + n.sequenceTime + "</td>"+"</tr>";
-					   table.append(tr);
- 		    		}else{
- 		    			var tr = "<tr align='center' class='odd'>" + "<td>" + n.stationSequence + "</td>" +
-			            "<td>" + n.station + "</td>" + "<td>" + n.sequenceTime + "</td>"+"</tr>";
-			   			table.append(tr);
- 		    		}
-    			});
- 		      }
-    }
-    	});
-    }
-    
-    function backPage() {
-		window.history.go(-1);
-	}
+
+
     
 </script>
 </head>
@@ -105,29 +63,102 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">${rid}詳細站點</h1>
+                    <h1 class="h3 mb-2 text-gray-800">審查刪除申請</h1>
                     
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">
-                            
+									
                             </h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="showproduct" width="100%" cellspacing="0">
-                                    
+                            <form:form action="deleteBus.controller" method="post" modelAttribute="tempBus">
+							    <table class="table table-bordered" id="showroutes" width="100%" cellspacing="0">
+	                              <tr>
+							         <td><form:label path="testBusNumber">申請編號:</form:label></td>
+							         <td><form:hidden path="testBusNumber"/>${tempBus.testBusNumber}</td>
+							      </tr>
+							      <tr>
+							         <td><form:label path="busNumberPo">車次編號:</form:label></td>
+							         <td><form:hidden path="busNumberPo"/>${tempBus.busNumberPo}</td>
+							      </tr>
+							      <tr>
+									  <td><form:label path="routeId">路線編號:</form:label></td>
+									  <td><form:hidden path="routeId"/>${tempBus.routeId}</td>
+								      </tr>
+								      <tr>
+								         <td><form:label path="tripName">路線名稱:</form:label></td>
+								         <td><form:hidden path="tripName"/>${tempBus.tripName}</td>
+								      </tr>
+								      <tr>
+								         <td><form:label path="area">地區:</form:label></td>
+								         <td><form:hidden path="area"/>${tempBus.area}</td>
+								  </tr>
+							      <tr>
+							         <td><form:label path="initialTime">發車時間:</form:label></td>
+							         
+							         <td>
+							         <form:hidden path="initialTime" />${tempBus.initialTime}
+							         </td>
+							      </tr>
+							      <tr>
+							         <td><form:label path="totalSeats">總座位數:</form:label></td>
+							         <td><form:hidden path="totalSeats"/>${tempBus.totalSeats}</td>
+							      </tr>
+							      <tr>
+							         <td><form:label path="note">班次備註:</form:label></td>
+							         <td><form:hidden path = "note" rows = "3" cols = "30" />${tempBus.note}</td>
+							      </tr>
+							      <tr>
+							        <td><form:label path="note">運行日:</form:label></td>
+							        <td><form:hidden path="sunday"/>  <form:hidden path="monday"/>  
+							        <form:hidden path="tuesday" /> <form:hidden path="wednesday"/>  
+							        <form:hidden path="thursday"/> <form:hidden path="friday"/>
+							        <form:hidden path="saturday" />
+							        
+							         <c:if test="${tempBus.sunday==1}">星期日</c:if>
+							      <c:if test="${tempBus.monday==1}">星期一 </c:if>
+							      <c:if test="${tempBus.tuesday==1}">星期二 </c:if>
+							      <c:if test="${tempBus.wednesday==1}">星期三 </c:if>
+							      <c:if test="${tempBus.thursday==1}">星期四 </c:if>
+							      <c:if test="${tempBus.friday==1}">星期五 </c:if>
+							      <c:if test="${tempBus.saturday==1}">星期六 </c:if>
+							     
+							        </td>
+							     </tr>
+							      <tr>
+							         <td><form:label path="toExamineNote">申請說明:</form:label></td>
+							         <td><form:hidden path="toExamineNote" rows = "5" cols = "30"/>${tempBus.toExamineNote}</td>
+							      </tr>
+							      
+							      <tr>
+							         <td><form:label path="empolyeeName">申請者:</form:label></td>
+							         <td><form:hidden path="empolyeeName" rows = "5" cols = "30"/>${tempBus.empolyeeName}</td>
+							      
+							      </tr>
+							      
+							      <tr>
+							         <td><form:label path="examineNote">審查評語:</form:label></td>
+							         <td><form:textarea path="examineNote" rows = "5" cols = "30"/></td>
+							      </tr>
+							      
+							      <tr align='center'>
+							      	 <td colspan="2">
+							      	 <form:hidden path="managerName" value = "${employee.employeeName}"/>
+							         <form:hidden path="toExamineDate"/>
+							         
+							      	 <input type="submit" name="depass" value="通過刪除" class="btn btn-primary"  onclick="return(confirm('是否確認要通過刪除申請？'))">
+							         &emsp;&emsp;&emsp;
+							         <input type="submit" name="denopass" value="退回" class="btn btn-danger" onclick="return(confirm('是否確認要退回申請？'))"></td>
+							      </tr>
                                 </table>
+                            </form:form>
+                                
                                 <div>
-                                	
-                                	
-                                	<div><button id = "backPage" onclick='backPage()' class="btn btn-primary">上一頁</button></div>
-                                		
-								<div id = "tempinput">
-								<input id="rid" type="hidden" value="${rid}">
-								</div>
-								
+								<div id = "tempinput"></div>
+									<a href="<c:url value='http://localhost:8081/busTimes/tempbustimemain.controller?tEx=9' />" class="btn btn-primary">返回申請列表</a>
                             </div>
                         </div>
                     </div>
@@ -178,7 +209,6 @@
             </div>
         </div>
     </div>
-
 
     <!-- Bootstrap core JavaScript-->
     <script src="/ServerSide/vendor/jquery/jquery.min.js"></script>
