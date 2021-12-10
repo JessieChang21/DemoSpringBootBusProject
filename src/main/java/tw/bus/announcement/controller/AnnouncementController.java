@@ -21,6 +21,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -28,9 +29,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import tw.bus.announcemen.model.Announcement;
 import tw.bus.announcemen.model.AnnouncementService;
+import tw.bus.announcemen.model.PageAL;
 import tw.bus.announcemen.validators.AnnouncementValidator;
 
-@SessionAttributes(names = {"totalPages", "totalElements"})
+//@SessionAttributes(names = {"totalPages", "totalElements"})
 @Controller
 public class AnnouncementController {
 	
@@ -215,15 +217,21 @@ public class AnnouncementController {
 		return "redirect:/insertOK";
 	}
 	
+
 	@PostMapping("/queryByPage/{pageNo}")
 	@ResponseBody
-	public List<Announcement> processQueryByPage(@PathVariable("pageNo") int pageNo, Model m,Model m1){
+	public PageAL processQueryByPage(@PathVariable("pageNo") int pageNo, Model m,Model m1){
 		int pageSize = 3;
 		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
 		Page<Announcement> page = announcementService.findAllByPage(pageable);
-		m.addAttribute("totalPages", page.getTotalPages());
-		m.addAttribute("totalElements", page.getTotalElements());
-		return page.getContent();
+		
+		PageAL pga = new PageAL();
+		
+		pga.setList(page.getContent());
+		pga.setPageEles(page.getTotalElements());
+		pga.setTolpages(page.getTotalPages());
+		
+		return pga;
 	}
 	
 }

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import tw.bus.announcemen.model.LostAndFound;
 import tw.bus.announcemen.model.LostAndFoundService;
+import tw.bus.announcemen.model.PageAL2;
 import tw.bus.announcemen.validators.LostAndFoundValidator;
 
 @SessionAttributes(names = {"totalPages", "totalElements"})
@@ -110,12 +111,17 @@ public class LostAndFoundController {
 	
 	@PostMapping("/queryByPage2/{pageNo}")
 	@ResponseBody
-	public List<LostAndFound> processQueryByPage(@PathVariable("pageNo") int pageNo, Model m){
-		int pageSize = 3;
+	public PageAL2 processQueryByPage(@PathVariable("pageNo") int pageNo, Model m){
+		int pageSize = 6;
 		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
 		Page<LostAndFound> page = lostAndFoundService.findAllByPage(pageable);
-		m.addAttribute("totalPages", page.getTotalPages());
-		m.addAttribute("totalElements", page.getTotalElements());
-		return page.getContent();
+		
+		PageAL2 pageAL2 = new PageAL2();
+		
+		pageAL2.setList(page.getContent());
+		pageAL2.setPageEles(page.getTotalElements());
+		pageAL2.setTolpages(page.getTotalPages());
+		
+		return pageAL2;
 	}
 }

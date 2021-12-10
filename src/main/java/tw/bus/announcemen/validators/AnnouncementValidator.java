@@ -16,9 +16,9 @@ public class AnnouncementValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 	
-		ValidationUtils.rejectIfEmpty(errors, "antitle", "Announcement.title.error" , "主旨欄位不能為空");
-		ValidationUtils.rejectIfEmpty(errors, "ancontent", "Announcement.title.error" , "內容欄位不能為空");
-		ValidationUtils.rejectIfEmpty(errors, "ancategory", "Announcement.title.error" , "類別欄位不能為空");
+		ValidationUtils.rejectIfEmpty(errors, "antitle", "Announcement.title.error" , "請輸入主旨");
+		ValidationUtils.rejectIfEmpty(errors, "ancontent", "Announcement.title.error" , "請輸入內容");
+		ValidationUtils.rejectIfEmpty(errors, "ancategory", "Announcement.title.error" , "請選擇公告類別");
 
 	}
 

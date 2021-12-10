@@ -124,9 +124,7 @@ input:hover {
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700"
 	rel="stylesheet">
-<!--
-			CSS
-			============================================= -->
+<!--CSS	============================================= -->
 <link rel="stylesheet" href="/travelista/css/linearicons.css">
 <link rel="stylesheet" href="/travelista/css/font-awesome.min.css">
 <link rel="stylesheet" href="/travelista/css/bootstrap.css">
@@ -138,81 +136,7 @@ input:hover {
 <link rel="stylesheet" href="/travelista/css/main.css">
 </head>
 <body>
-	<header id="header">
-		<div class="header-top">
-			<div class="container">
-				<div class="row align-items-center">
-					<div class="col-lg-6 col-sm-6 col-6 header-top-left">
-						<ul>
-							<li><a href="#">Visit Us</a></li>
-							<li><a href="#">Buy Tickets</a></li>
-						</ul>
-					</div>
-					<div class="col-lg-6 col-sm-6 col-6 header-top-right">
-						<div class="header-social">
-							<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
-								class="fa fa-twitter"></i></a> <a href="#"><i
-								class="fa fa-dribbble"></i></a> <a href="#"><i
-								class="fa fa-behance"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="container main-menu">
-			<div class="row align-items-center justify-content-between d-flex">
-				<div id="logo">
-					<a href="/2"><span
-						style="color: #f8b600; font-family: Microsoft JhengHei; font-weight: bold; font-size: 1.8em; text-align: end; font-style: italic;"><i
-							class="fas fa-bus-alt"></i> 無事坐Bus</span></a>
-				</div>
-				<nav id="nav-menu-container">
-					<ul class="nav-menu">
-						<li><a href="/2">Home</a></li>
-						<li><a href="about.html">About</a></li>
-						<li><a href="packages.html">Packages</a></li>
-						<li><a href="hotels.html">Hotels</a></li>
-						<li class="menu-has-children"><a href="">旅客服務</a>
-							<ul>
-								<li><a href="/showAnnouncement">最新消息</a></li>
-								<li><a href="/showlostandfound">失物招領</a></li>
-
-							</ul></li>
-						<li class="menu-has-children"><a
-							href="queryRoutemain.controller">查詢車次&訂購車票</a>
-							<ul>
-								<li><a href="queryMemberOrdermain.controller">查詢刪除訂購車票</a></li>
-
-							</ul></li>
-						<li class="menu-has-children"><a href="">Pages</a>
-							<ul>
-								<li><a href="elements.html">Elements</a></li>
-								<li class="menu-has-children"><a href="">Level 2 </a>
-									<ul>
-										<li><a href="#">Item One</a></li>
-										<li><a href="#">Item Two</a></li>
-									</ul></li>
-							</ul></li>
-						<li><c:choose>
-								<c:when test='${empty members.membername}'>
-									<li class="menu-has-children"><a href="/register/membersregister.controller">登入註冊 </a></li>
-								</c:when>
-								<c:when test='${! empty members.membername}'>
-									<li class="menu-has-children"><a href="#"><img height='30px'width='30px' Style="border-radius:50%"
-                src="<c:url value='/getMemberImage?id=${members.id}' />">&ensp;${members.membername}
-											,您好</a>
-										<ul>
-											<li><a href="/updatemembers.controller">會員資料</a></li>
-											<li><a href="/logingout">登出</a></li>
-										</ul></li>
-								</c:when>
-							</c:choose></li>
-					</ul>
-				</nav>
-				<!-- #nav-menu-container -->
-			</div>
-		</div>
-	</header>
+	<c:import url="/WEB-INF/jsp/commons/header.jsp" />
 	<!-- #header -->
 
 	<!-- start banner Area -->

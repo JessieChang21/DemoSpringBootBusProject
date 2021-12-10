@@ -96,34 +96,86 @@ td{
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
-   var indexPage=1;
-   $(document).ready(function(){
-	   load(indexPage);
-   });
-   
-   function change(page){
+var indexPage=1;
+$(document).ready(function(){
+	   $.when(load(indexPage))
+	   .then(pageIn());
+});
+
+function change(page){
 	   indexPage = page;
 	   load(indexPage);
-   }
-   
+	   var p ="myPage"+indexPage;
+	   $(".pages").removeClass('btn-primary');
+	   $(".pages").removeClass('btn-light');
+	   $(".pages").addClass('btn-light');
+	   $("#"+p).removeClass('btn-light');
+	   $("#"+p).addClass('btn-primary');
+}
+function changepre(){
+	   if(indexPage>1){
+	   indexPage = indexPage-1;
+	   load(indexPage);
+	   var p ="myPage"+indexPage;
+	   $(".pages").removeClass('btn-primary');
+	   $(".pages").removeClass('btn-light');
+	   $(".pages").addClass('btn-light');
+	   $("#"+p).removeClass('btn-light');
+	   $("#"+p).addClass('btn-primary');}
+}
+function changeNext(){
+	   if(indexPage<$('#totalPages').val()){
+	   indexPage = indexPage+1;
+	   load(indexPage);
+	   var p ="myPage"+indexPage;
+	   $(".pages").removeClass('btn-primary');
+	   $(".pages").removeClass('btn-light');
+	   $(".pages").addClass('btn-light');
+	   $("#"+p).removeClass('btn-light');
+	   $("#"+p).addClass('btn-primary');}
+}
+
+function pageIn() {
+	   var totalPages = $('#totalPages').val();
+	   var totalElements = $('#totalElements').val();
+	   $('#showpage').empty("");
+	   var divpagetol = document.getElementById('dataTable_info');
+	   var divpage = document.getElementById('showpage');
+//	   tr1 ="Total Pages:"+ totalPages +" "+ "Total Records:"+totalElements;
+//	   divpagetol.innerHTML =tr1;
+	   tr2="<button id='myPage' class='btn btn-light' color='blue' value='pre' onclick='changepre()'>前一頁</button>";
+	   for(var i=1; i<=totalPages; i++){
+		   tr2 += "<button id='myPage"+i+"' class='btn btn-light pages' color='blue' value='"+i+"' onclick='change("+i+")'>"+i+"</button>";
+	   }
+	   tr2+="<button id='myPage' class='btn btn-light' color='blue' value='next' onclick='changeNext()'>下一頁</button>";
+	   
+	   divpage.innerHTML =tr2;
+	   var p ="myPage"+indexPage;
+	   $(".pages").removeClass('btn-primary');
+	   $(".pages").removeClass('btn-light');
+	   $(".pages").addClass('btn-light');
+	   $("#"+p).removeClass('btn-light');
+	   $("#"+p).addClass('btn-primary');
+}
    function load(indexPage){
 	   $.ajax({
 		   type:'post',
 		   url:'/queryByPage2/' + indexPage,
 		   dataType:'JSON',
 		   contentType:'application.json',
+		   async:false,
 		   success: function(data){
 			   console.log('success:' + data);
 			   var json = JSON.stringify(data,null,4);
 			   console.log('json:' + json);
 			   $('#showlaf').empty("");
-			   if(data==null){
+			   if(data.list==null){
 				   $('table').prepend("<tr><td colspan='2'>暫無資料</td></tr>");;
 			   }else{
 				   var table = $('#showlaf');
 				   table.append("<tr height='50px'><th width='150'><font color='black'>路線編號</th><th width='150'><font color='black'>物品名稱</th><th width='150'><font color='black'>拾獲地點</th><th width='150'><font color='black'>拾獲時間</th></tr>");
 				   
-				   $.each(data, function(i,n){
+				   $.each(data.list, function(i,n){
 					   
 					   var tr = "<tr height='50px' align='center'>" + 
 					            "<td><font color='black'>" + n.itbussnumber  + "</td>" +
@@ -133,7 +185,11 @@ td{
 					            "</tr>";    
 					            
 					   table.append(tr);
-				   });			   
+				   });			
+				   var div = document.getElementById('tempinput');
+				   div.innerHTML = "";
+				   div.innerHTML += "<input id='totalPages' type='hidden' value='"+data.tolpages+"'>"+
+						   "<input id='totalElements' type='hidden' value='"+data.pageEles+"'>";
 			   }
 		   }
 	   });
@@ -172,84 +228,7 @@ td{
 <link rel="stylesheet" href="/travelista/css/main.css">
 </head>
 <body style="background-color: #F2F2F2;">
-	<header id="header">
-		<div class="header-top">
-			<div class="container">
-				<div class="row align-items-center">
-					<div class="col-lg-6 col-sm-6 col-6 header-top-left">
-						<ul>
-							<li><a href="#">Visit Us</a></li>
-							<li><a href="#">Buy Tickets</a></li>
-						</ul>
-					</div>
-					<div class="col-lg-6 col-sm-6 col-6 header-top-right">
-						<div class="header-social">
-							<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
-								class="fa fa-twitter"></i></a> <a href="#"><i
-								class="fa fa-dribbble"></i></a> <a href="#"><i
-								class="fa fa-behance"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="container main-menu">
-			<div class="row align-items-center justify-content-between d-flex">
-				<div id="logo">
-					<a href="/2"><span style="color: #f8b600;font-family:Microsoft JhengHei ;font-weight: bold;font-size:1.8em;text-align: end;font-style: italic;"><i class="fas fa-bus-alt"></i>  無事坐Bus</span></a>
-				</div>
-				<nav id="nav-menu-container">
-					<ul class="nav-menu">
-						<li><a href="/2">Home</a></li>
-						<li><a href="about.html">About</a></li>
-						<li><a href="packages.html">Packages</a></li>
-						<li><a href="hotels.html">Hotels</a></li>
-						<li class="menu-has-children"><a href="">旅客服務</a>
-							<ul>
-								<li><a href="/showAnnouncement">最新消息</a></li>
-								<li><a href="/showlostandfound">失物招領</a></li>
-
-							</ul></li>
-						<li class="menu-has-children"><a
-							href="queryRoutemain.controller">查詢車次&訂購車票</a>
-							<ul>
-								<li><a href="queryMemberOrdermain.controller">查詢刪除訂購車票</a></li>
-
-							</ul></li>
-						<li class="menu-has-children"><a href="">Pages</a>
-							<ul>
-								<li><a href="elements.html">Elements</a></li>
-								<li class="menu-has-children"><a href="">Level 2 </a>
-									<ul>
-										<li><a href="#">Item One</a></li>
-										<li><a href="#">Item Two</a></li>
-									</ul></li>
-							</ul></li>
-						<li><li>
-							<c:choose>
-								<c:when test='${empty members.membername}'>
-									<li class="menu-has-children"><a href="login/page"> 登入註冊 </a>
-<!-- 										<ul> -->
-<!-- 											<li><a href="login/page">會員登入</a></li> -->
-<!-- 											<li><a href="register/membersregister.controller">註冊</a></li> -->
-<!-- 										</ul> -->
-									</li>
-								</c:when>
-								<c:when test='${! empty members.membername}'>
-									<li class="menu-has-children"><a href="#">${members.membername} ,您好</a>
-										<ul>
-											<li><a href="elements.html">會員資料</a></li>
-											<li><a href="/logout">登出</a></li>
-										</ul>
-									</li>
-								</c:when>
-							</c:choose>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		</div>
-	</header>
+	<c:import url="/WEB-INF/jsp/commons/header.jsp" />
 	<!-- #header -->
 
 	<!-- start banner Area -->
@@ -278,6 +257,14 @@ td{
 			<tr>
 				<td style="background-color:white;"><form method='POST'
 					action="<c:url value='/showlafbydate'/>">
+					<input name='itdate' type='hidden' type='text' value='2021/12'>
+					<input type='submit' style="width:200px;height:40px;border:2px blue none;background-color:white;font-size:130%" value='十二月份'>
+					</form>
+				</td></tr>
+			
+			<tr>
+				<td style="background-color:white;"><form method='POST'
+					action="<c:url value='/showlafbydate'/>">
 					<input name='itdate' type='hidden' type='text' value='2021/11'>
 					<input type='submit' style="width:200px;height:40px;border:2px blue none;background-color:white;font-size:130%" value='十一月份'>
 					</form>
@@ -297,18 +284,25 @@ td{
 				</form></td>
 			</tr>
 	</table>
+	<BR/>	<BR/>	<BR/><BR/>	<BR/>	<BR/><BR/>	<BR/>	<BR/>
 	</div>
 	<div id="table_wrap"  align="center">
 	<table id="showlaf"></table><BR/>
+	
 	</div>
-	<div align="center" >
-<%-- 			<td>Total Pages:${totalPages} Total Records:${totalElements}</td> --%>
-			<p ><c:forEach var="i"
-					begin="1" end="${totalPages}" step="1">
-					<button id="myPage" value="${i}" onclick="change(${i})">${i}</button>
-				</c:forEach>
-			</p>
+	<div>
+		<div>
+			<div class="dataTables_info" id="dataTable_info" role="status"
+				aria-live="polite"></div>
+		</div>
+		<div align='center'>
+			<div class="btn-group" id="showpage"></div>
+		</div>
+
+		<div id="tempinput"></div>
+
 	</div>
+	
 
 	<!-- Start insurence-one Area -->
 	<section class="insurence-one-area section-gap"></section>
