@@ -129,7 +129,7 @@ public class UpdateMembersController {
 		session.setAttribute("umembers",umembers);
 		m.addAttribute("members",members);
 //		return "members/updatemembers";
-		return "members/updatepage";
+		return "members/updatemembers";
 	}
 	
 	
@@ -247,40 +247,6 @@ public class UpdateMembersController {
 //		m.addAttribute("totalPages", citybean);
 		return citybean;
 	}
-	
-//	@PostMapping("/sendeMail")
-//	@ResponseBody
-//	public Map sendEmail(@RequestBody Map<String, String> o
-////			,Model model
-//			) {
-		// 註冊的前置作業，你要自行完成
-		// 假設前端會送一Email Address來後端，本範例將假設放在參數：emailAddress內
-//		Map<String, String> map = (Map<String, String>) session.getAttribute("randomCode");
-//		if (map == null) {
-//			map = new HashMap<>();
-//			session.setAttribute("randomCode", map);
-//		}
-//		System.out.println(o);
-//		String email = (String) o.get("email");
-//		System.out.println(email);
-//		String random = randomCode();
-////		map.put(random, random);
-//		System.out.println("random=" + random);
-//		senderService.sendEmail(email, "歡迎您註冊成為 無事坐BUS 的會員", "請於10分鐘內輸入驗證碼 : " + 
-//				random + "<br>");
-////		model.addAttribute("random", random);
-//		o.put("random", random);
-//		return o;
-//	}
-		
-//	 public String randomCode(){
-//		  StringBuilder str = new StringBuilder();
-//		  Random random = new Random();
-//		  for (int i = 0; i < 6; i++) {
-//		   str.append(random.nextInt(10));
-//		  }
-//		  return str.toString();
-//		 }
 	
 	@PostMapping("/Adressarea")
 	@ResponseBody
