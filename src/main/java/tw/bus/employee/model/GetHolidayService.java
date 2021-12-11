@@ -35,17 +35,21 @@ public class GetHolidayService {
 		ghResp.DeleteGetHoliday(employeeid, date, timeperiod);
 	}
 	
-	public Page<GetHoliday> QueryAllbyId(Pageable pageable,String employeeid){
-		return ghResp.QueryAllbyId(pageable,employeeid);
+	public Page<GetHoliday> QueryAllbyId_Y(Pageable pageable,String employeeid){
+		return ghResp.QueryAllbyId_Y(pageable,employeeid);
 	}
 	
-	public GetHoliday findById(String id) {
+	public Page<GetHoliday> QueryAllbyId_N(Pageable pageable,String employeeid){
+		return ghResp.QueryAllbyId_N(pageable,employeeid);
+	}
+	
+	/**public GetHoliday findById(String id) {
 		Optional<GetHoliday> op1 = ghResp.findById(id);
 		if(op1.isPresent()) {
 			return op1.get();
 		}
 		return null;
-	}
+	}**/
 	
 	
 	
