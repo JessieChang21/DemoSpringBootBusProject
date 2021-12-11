@@ -72,17 +72,52 @@ tr:last-child td:last-child {
 tbody{
 
 }
-#idnumber{
+.lalaland{
+	align-content:center;
     outline-style: none ;
     border: 1px solid #ccc; 
     border-radius: 10px;
     padding: 14px 16px;
-    width: 100px;
+    width: 50px;
+    font-size: 18px;
+    font-weight: 100;
+    font-family: "Microsoft soft";
+}
+#idnumber{
+	align-content:center;
+    outline-style: none ;
+    border: 1px solid #ccc; 
+    border-radius: 10px;
+    padding: 14px 16px;
+    width: 60px;
     font-size: 18px;
     font-weight: 100;
     font-family: "Microsoft soft";
 }
 #membername{
+	align-content:center;
+    outline-style: none ;
+    border: 1px solid #ccc; 
+    border-radius: 10px;
+    padding: 14px 16px;
+    width: 130px;
+    font-size: 18px;
+    font-weight: 100;
+    font-family: "Microsoft soft";
+}
+#email{
+	align-content:center;
+	outline-style: none ;
+    border: 1px solid #ccc; 
+    border-radius: 10px;
+    padding: 14px 16px;
+    width: 230px;
+    font-size: 18px;
+    font-weight: 100;
+    font-family: "Microsoft soft";
+}
+#adress{
+	align-content:center;
     outline-style: none ;
     border: 1px solid #ccc; 
     border-radius: 10px;
@@ -92,47 +127,30 @@ tbody{
     font-weight: 100;
     font-family: "Microsoft soft";
 }
-#email{
-	outline-style: none ;
-    border: 1px solid #ccc; 
-    border-radius: 10px;
-    padding: 14px 16px;
-    width: 200px;
-    font-size: 18px;
-    font-weight: 100;
-    font-family: "Microsoft soft";
-}
-#adress{
-    outline-style: none ;
-    border: 1px solid #ccc; 
-    border-radius: 10px;
-    padding: 14px 16px;
-    width: 100px;
-    font-size: 18px;
-    font-weight: 100;
-    font-family: "Microsoft soft";
-}
 #gender{
+	align-content:center;
     outline-style: none ;
     border: 1px solid #ccc; 
     border-radius: 10px;
     padding: 14px 16px;
-    width: 100px;
+    width: 65px;
     font-size: 18px;
     font-weight: 100;
     font-family: "Microsoft soft";
 }
 #age{
+	align-content:center;
     outline-style: none ;
     border: 1px solid #ccc; 
     border-radius: 10px;
     padding: 14px 16px;
-    width: 100px;
+    width: 130px;
     font-size: 18px;
     font-weight: 100;
     font-family: "Microsoft soft";
 }
 #membernamea{
+	align-content:center;
     outline-style: none ;
     border: 1px solid #ccc; 
     border-radius: 10px;
@@ -143,6 +161,7 @@ tbody{
     font-family: "Microsoft soft";
 }
 #emaila{
+	align-content:center;
 	outline-style: none ;
     border: 1px solid #ccc; 
     border-radius: 10px;
@@ -153,6 +172,7 @@ tbody{
     font-family: "Microsoft soft";
 }
 #memberpwda{
+	align-content:center;
     outline-style: none ;
     border: 1px solid #ccc; 
     border-radius: 10px;
@@ -184,19 +204,67 @@ tbody{
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
-
 var indexPage=1;
 $(document).ready(function(){
-	   load(indexPage);
-	   loadadd();
-// 	   $.when(load(indexPage))
-// 	   .then(pageIn());
-// pageIn();
+	loadadd()
+    $.when(load(indexPage))
+    .then(pageIn());
 });
 
 function change(page){
 	   indexPage = page;
 	   load(indexPage);
+	   var p ="myPage"+indexPage;
+	   $(".pages").removeClass('btn-primary');
+	   $(".pages").removeClass('btn-light');
+	   $(".pages").addClass('btn-light');
+	   $("#"+p).removeClass('btn-light');
+	   $("#"+p).addClass('btn-primary');
+}
+function changepre(){
+	   if(indexPage>1){
+	   indexPage = indexPage-1;
+	   load(indexPage);
+	   var p ="myPage"+indexPage;
+	   $(".pages").removeClass('btn-primary');
+	   $(".pages").removeClass('btn-light');
+	   $(".pages").addClass('btn-light');
+	   $("#"+p).removeClass('btn-light');
+	   $("#"+p).addClass('btn-primary');}
+}
+function changeNext(){
+	   if(indexPage<$('#totalPages').val()){
+	   indexPage = indexPage+1;
+	   load(indexPage);
+	   var p ="myPage"+indexPage;
+	   $(".pages").removeClass('btn-primary');
+	   $(".pages").removeClass('btn-light');
+	   $(".pages").addClass('btn-light');
+	   $("#"+p).removeClass('btn-light');
+	   $("#"+p).addClass('btn-primary');}
+}
+
+function pageIn() {
+	   var totalPages = $('#totalPages').val();
+	   var totalElements = $('#totalElements').val();
+	   $('#showpage').empty("");
+	   var divpagetol = document.getElementById('dataTable_info');
+	   var divpage = document.getElementById('showpage');
+//	   tr1 ="Total Pages:"+ totalPages +" "+ "Total Records:"+totalElements;
+//	   divpagetol.innerHTML =tr1;
+	   tr2="<button id='myPage' class='btn btn-light' color='blue' value='pre' onclick='changepre()'>前一頁</button>";
+	   for(var i=1; i<=totalPages; i++){
+		   tr2 += "<button id='myPage"+i+"' class='btn btn-light pages' color='blue' value='"+i+"' onclick='change("+i+")'>"+i+"</button>";
+	   }
+	   tr2+="<button id='myPage' class='btn btn-light' color='blue' value='next' onclick='changeNext()'>下一頁</button>";
+	   
+	   divpage.innerHTML =tr2;
+	   var p ="myPage"+indexPage;
+	   $(".pages").removeClass('btn-primary');
+	   $(".pages").removeClass('btn-light');
+	   $(".pages").addClass('btn-light');
+	   $("#"+p).removeClass('btn-light');
+	   $("#"+p).addClass('btn-primary');
 }
 
 function load(indexPage){
@@ -219,27 +287,27 @@ function load(indexPage){
 				   var table = $('#myTable');
 				   table.append("<tr id='mtitle'><th>image</th><th>idnumber</th><th>membername</th><th>email</th><th>adress</th><th>gender</th><th>age</th><th>update</th><th>delete</th></tr>");
 // 				   $(data.reverse()).each(function(i,n){
-					   $.each(data, function(i,n){
+					   $.each(data.list, function(i,n){
 					   var tr = "<tr align='center'>" + 
 					   			"<td><image height='70px' width='70px' Style='border-radius:50% ; border : 2px solid #6495ED;' "+
 					   			"src='/getMemberImage?id="+n.id+"'/></td>" +
-							    "<td><input id='idnumber' style='text-align:center' type='text' value='" + n.id + "' readonly/></td>" +
-				    	        "<td><input id='membername' style='text-align:center' type='text' value='" + n.membername + "' /></td>" +
-				    	        "<td style='display:none'><input id='memberpwd' type='password' value='"+ n.memberpwd +"' readonly/></td>" +
-				    	        "<td><input id='email' style='text-align:center' type='text' value='"+ n.email +"' /></td>" +
-				    	        "<td ><input id='adress' type='text' value='"+ n.adress +"' readonly/></td>" +
-				    	        "<td ><input id='gender' type='text' value='"+ n.gender +"' readonly/></td>" +
-					   	        "<td ><input id='age' type='text' value='"+ n.age +"' readonly/></td>" +
+							    "<td><input class='lalaland' id='idnumber' style='text-align:center' type='text' value='" + n.id + "' readonly/></td>" +
+				    	        "<td><input class='lalaland' id='membername' style='text-align:center' type='text' value='" + n.membername + "' /></td>" +
+				    	        "<td style='display:none'><input class='lalaland' id='memberpwd' type='password' value='"+ n.memberpwd +"' readonly/></td>" +
+				    	        "<td><input class='lalaland' id='email' style='text-align:center' type='text' value='"+ n.email +"' /></td>" +
+				    	        "<td ><input class='lalaland' id='adress' type='text' value='"+ n.adress +"' readonly/></td>" +
+				    	        "<td ><input class='lalaland' id='gender' type='text' value='"+ n.gender +"' readonly/></td>" +
+					   	        "<td ><input class='lalaland' id='age' type='text' value='"+ n.age +"' readonly/></td>" +
 					            
 					            "<td><button class='btn btn-success btn-circle' id='update' value='update' onclick='updateMembers(" + n.id + ")'><i class='fas fa-check'/></button></td>" + //修改
 					            "<td><button class='btn btn-danger btn-circle' id='delete' value='delete' onclick='deleteMembers(" + n.id + ")'><i class='fas fa-trash'/></button></td>" + //刪除
 					            "</tr>";
 					   table.append(tr);
 				   });	
-// 					   var div = document.getElementById('tempinput');
-// 					   div.innerHTML = "";
-// 					   div.innerHTML += "<input id='totalPages' type='hidden' value='"+data.tolpages+"'>"+
-// 							   "<input id='totalElements' type='hidden' value='"+data.pageEles+"'>";
+					   var div = document.getElementById('tempinput');
+					   div.innerHTML = "";
+					   div.innerHTML += "<input id='totalPages' type='hidden' value='"+data.tolpages+"'>"+
+							   "<input id='totalElements' type='hidden' value='"+data.pageEles+"'>";
 			   }
 		   }
 	   })
@@ -276,9 +344,9 @@ function load(indexPage){
 		   var table = $('#addmembers');
 		   table.append("<tr id='mtitlea'><th>email</th><th>membername</th><th>password</th><th>add</th></tr>");
 			   var tr = "<tr align='center'>" + 
-			   			"<td><input id='emaila' style='text-align:center' type='text' value='' /></td>" +
-		    	        "<td><input id='membernamea' style='text-align:center' type='text' value=''/></td>" +
-		    	        "<td ><input id='memberpwda' type='text' value='' ></td>" +
+			   			"<td><input class='lalaland' id='emaila' style='text-align:center' type='text' value='' /></td>" +
+		    	        "<td><input class='lalaland' id='membernamea' style='text-align:center' type='text' value=''/></td>" +
+		    	        "<td ><input class='lalaland' id='memberpwda' type='text' value='' ></td>" +
 			            
 			            "<td><button class='btn btn-success btn-circle' id='add' value='add' onclick='sendMembers()'><i class='fas fa-check'/></button></td>" + //修改
 	
@@ -286,6 +354,11 @@ function load(indexPage){
 			   table.append(tr);
 	}
 	function deleteMembers(id){  //刪除function
+		
+		var yes = confirm('確定要刪除資料嗎？');
+
+		if (yes) {
+		    
 		var id = id;
 	// 	var params = {
 	// 		"id":id
@@ -298,12 +371,20 @@ function load(indexPage){
 	// 		 data:JSON.stringify(params),
 			 success: function(data){
 					   console.log(data);
-					   $('#feedbackupdate').html("刪除成功");
 			 }
 		});
+		alert('刪除成功');
+	window.location.href="membersmain.controller";
+		} else {
+		    alert('已取消刪除');
+		}
 	}
 
 	function updateMembers(id){  //修改function
+		
+		var yes = confirm('確定要修改資料嗎？');
+
+		if (yes) {
 
 		var id = $('#idnumber').val();
 		var membername = $('#membername').val();
@@ -331,12 +412,21 @@ function load(indexPage){
 			 data:JSON.stringify(params),
 			 success: function(data){
 					   console.log(data);
-					   $('#feedbackupdate').html("修改成功");
 			 }
 		});
+		alert('修改成功');
+		window.location.href="membersmain.controller";
+	} else {
+	    alert('已取消修改');
+	}
 	}
 
 	function sendMembers(){
+		
+		var yes = confirm('確定要新增資料嗎？');
+
+		if (yes) {	
+	
 		var membername = $('#membernamea').val();
 		var memberpwd = $('#memberpwda').val();
 		var email = $('#emaila').val();
@@ -355,9 +445,13 @@ function load(indexPage){
 			 data:JSON.stringify(params),
 			 success: function(data){
 					   console.log(data);
-					   $('#feedbackadd').html("新增成功");
 			 }
 		});
+		alert('新增成功');
+		window.location.href="membersmain.controller";
+	} else {
+	    alert('已取消新增');
+	}
 	}
 //小幫手
 let index = 0;
@@ -404,13 +498,13 @@ function searchMembers(){
 				   		var tr = "<tr align='center'>" + 
 					   			"<td><image height='70px' width='70px' Style='border-radius:50% ; border : 2px solid #6495ED;' "+
 					   			"src='/getMemberImage?id="+data.id+"'/></td>" +
-							    "<td><input id='idnumber' style='text-align:center' type='text' value='" + data.id + "' readonly/></td>" +
-				    	        "<td><input id='membername' style='text-align:center' type='text' value='" + data.membername + "' /></td>" +
-				    	        "<td style='display:none'><input id='memberpwd' type='password' value='"+ data.memberpwd +"' readonly/></td>" +
-				    	        "<td><input id='email' style='text-align:center' type='text' value='"+ data.email +"' /></td>" +
-				    	        "<td ><input id='adress' type='text' value='"+ data.adress +"' readonly/></td>" +
-				    	        "<td ><input id='gender' type='text' value='"+ data.gender +"' readonly/></td>" +
-					   	        "<td ><input id='age' type='text' value='"+ data.age +"' readonly/></td>" +
+							    "<td><input class='lalaland' id='idnumber' style='text-align:center' type='text' value='" + data.id + "' readonly/></td>" +
+				    	        "<td><input class='lalaland' id='membername' style='text-align:center' type='text' value='" + data.membername + "' /></td>" +
+				    	        "<td style='display:none'><input class='lalaland' id='memberpwd' type='password' value='"+ data.memberpwd +"' readonly/></td>" +
+				    	        "<td><input class='lalaland' id='email' style='text-align:center' type='text' value='"+ data.email +"' /></td>" +
+				    	        "<td ><input class='lalaland' id='adress' type='text' value='"+ data.adress +"' readonly/></td>" +
+				    	        "<td ><input class='lalaland' id='gender' type='text' value='"+ data.gender +"' readonly/></td>" +
+					   	        "<td ><input class='lalaland' id='age' type='text' value='"+ data.age +"' readonly/></td>" +
 					            
 					            "<td><button class='btn btn-success btn-circle' id='update' value='update' onclick='updateMembers(" + data.id + ")'><i class='fas fa-check'/></button></td>" + //修改
 					            "<td><button class='btn btn-danger btn-circle' id='delete' value='delete' onclick='deleteMembers(" + data.id + ")'><i class='fas fa-trash'/></button></td>" + //刪除
@@ -801,23 +895,37 @@ function searchMembers(){
 								<table id="myTable">
 									
 								</table>
-								<table id="showpage">
+								<div>
+		<div>
+			<div class="dataTables_info" id="dataTable_info" role="status"
+				aria-live="polite"></div>
+		</div>
+		<div align='center'>
+			<div class="btn-group" id="showpage"></div>
+		</div>
+
+		<div id="tempinput"></div>
+		
+
+	</div>
+<!-- 								<table id="showpage"> -->
 								
-									<tr>
-								      <td>Total Pages:${totalPages} Total Records:${totalElements}</td>
-								      <td colspan="3" align="center">Previous
-								          <c:forEach var="i" begin="1" end="${totalPages}" step="1">
-								              <button id="myPage" value="${i}" onclick="change(${i})">${i}</button>
-								          </c:forEach>Next
-								      </td>
-								   </tr>
-								</table>
+<!-- 									<tr> -->
+<%-- 								      <td>Total Pages:${totalPages} Total Records:${totalElements}</td> --%>
+<!-- 								      <td colspan="3" align="center">Previous -->
+<%-- 								          <c:forEach var="i" begin="1" end="${totalPages}" step="1"> --%>
+<%-- 								              <button id="myPage" value="${i}" onclick="change(${i})">${i}</button> --%>
+<%-- 								          </c:forEach>Next --%>
+<!-- 								      </td> -->
+<!-- 								   </tr> -->
+<!-- 								</table> -->
 <!-- 								<div align='right'> -->
 <!--                                 	<div class="btn-group" id="showpage"></div> -->
 <!--                                 	</div> -->
                                 		
 <!-- 								<div id = "tempinput"></div> -->
 								<hr>
+								
 <!-- 								<div id="membersListTitle">InserMembers</div><br> -->
 								<div align="center">
 									<table id="addmembers" ></table>
@@ -826,6 +934,7 @@ function searchMembers(){
 							</div>
 						</div>
 					</div>
+
 
 				</div>
 				<!-- /.container-fluid -->
