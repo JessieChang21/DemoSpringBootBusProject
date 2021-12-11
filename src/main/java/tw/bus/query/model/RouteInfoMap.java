@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name="routeinfomap")
+@Table(name="routeinfo")
 @Component
 public class RouteInfoMap {
 	@Id @Column(name="ROUTEINFOID")

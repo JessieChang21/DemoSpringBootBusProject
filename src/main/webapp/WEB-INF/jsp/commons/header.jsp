@@ -26,13 +26,13 @@
 	<div class="container main-menu">
 		<div class="row align-items-center justify-content-between d-flex">
 			<div id="logo">
-				<a href="/2"><span
-					style="color: #f8b600; font-family: Microsoft JhengHei; font-weight: bold; font-size: 1.8em; text-align: end; font-style: italic;"><i
-						class="fas fa-bus-alt"></i> 無事坐Bus</span></a>
+				<a href="/mainpage"><span
+					style="color: #f8b600; font-family: Microsoft JhengHei; font-weight: bold; font-size: 2.2em; text-align: end; font-style: italic;">
+					<i class="fas fa-bus-alt"></i> 無事坐Bus</span></a>
 			</div>
 			<nav id="nav-menu-container">
 				<ul class="nav-menu">
-					<li><a href="/2">首頁</a></li>
+					<li><a href="/mainpage">首頁</a></li>
 					<li><a href="/showmap">地圖查詢</a></li>
 					<li class="menu-has-children"><a href="">優惠活動</a>
 						<ul>

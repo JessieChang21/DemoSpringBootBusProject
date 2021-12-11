@@ -12,7 +12,7 @@ import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 
-@Entity @Table(name="memberorder2")
+@Entity @Table(name="memberorder")
 @Component
 public class Memberorder2 {
 	@Id
@@ -65,14 +65,17 @@ public class Memberorder2 {
 	@Column(name="ORDERDATE")
 	private Date orderdate;
 	
+	@Column(name="PAYMENTSTATUS")
+	private String paymentstatus;
+	
 	public Memberorder2() {
 		
 	}
 
 	public Memberorder2(Integer oid, Integer orderid, String email, Integer busnumber, String tripname,
 			String initialstation, String finalstation, String traveldate, Date initialtime, String formatinitaltime,
-			String traveltime, String tickettype, Integer price, Integer seat, Integer orderqty, Date orderdate) {
-		super();
+			String traveltime, String tickettype, Integer price, Integer seat, Integer orderqty, Date orderdate,
+			String paymentstatus) {
 		this.oid = oid;
 		this.orderid = orderid;
 		this.email = email;
@@ -89,6 +92,7 @@ public class Memberorder2 {
 		this.seat = seat;
 		this.orderqty = orderqty;
 		this.orderdate = orderdate;
+		this.paymentstatus = paymentstatus;
 	}
 
 	@Override
@@ -126,6 +130,8 @@ public class Memberorder2 {
 		builder.append(orderqty);
 		builder.append(", orderdate=");
 		builder.append(orderdate);
+		builder.append(", paymentstatus=");
+		builder.append(paymentstatus);
 		builder.append("]");
 		return builder.toString();
 	}
@@ -257,6 +263,16 @@ public class Memberorder2 {
 	public void setOrderdate(Date orderdate) {
 		this.orderdate = orderdate;
 	}
+
+	public String getPaymentstatus() {
+		return paymentstatus;
+	}
+
+	public void setPaymentstatus(String paymentstatus) {
+		this.paymentstatus = paymentstatus;
+	}
+
+	
 
 	
 	
