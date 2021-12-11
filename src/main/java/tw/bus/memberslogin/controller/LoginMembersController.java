@@ -12,12 +12,14 @@ import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
+import javax.mail.MessagingException;
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -52,6 +54,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import tw.bus.members.model.EmailSenderService;
 import tw.bus.members.model.Members;
 import tw.bus.members.model.MembersService;
 import tw.bus.memberslogin.model.EncodePwdUtil;
@@ -74,7 +77,8 @@ public class LoginMembersController {
 	@Autowired
 	private UpdateMemberService uService;
 	
-//	String noImagePath = "/images/NoImage.png";
+	@Autowired
+	private EmailSenderService senderService;
 
 	ServletContext context;
 
@@ -233,6 +237,38 @@ public class LoginMembersController {
 //		o.put("membername", membername);
 //		return o;
 //	}
+	
+	@PostMapping("/forgetpasswordsend") 
+	@ResponseBody
+	public Map forgetpasswordsendEmail(@RequestBody Map<String, String> o) throws MessagingException {
+		
+		String email = (String) o.get("email");
+		System.out.println(email);
+		if (mService.existsByEmail(email)){
+			Members member = new Members();
+			member = mService.findByEmail(email);
+			String random = randomCode();
+			System.out.println("random=" + random);
+			String encodePwd = new BCryptPasswordEncoder().encode(random);
+			member.setMemberpwd(encodePwd);
+			senderService.sendMineEmail(email, "歡迎您進入 無事坐BUS 的會員密碼中心", "請輸入您的新密碼 : " + 
+					random + "登入後請至 --> 會員中心 --> 修改密碼");
+			mService.updateMembers(member);
+			o.put("email", email);
+			return o;
+		}
+		Map<String, String> error = new HashMap<>();
+		return error;
+	}
+	
+	 public String randomCode(){
+		  StringBuilder str = new StringBuilder();
+		  Random random = new Random();
+		  for (int i = 0; i < 8; i++) {
+		   str.append(random.nextInt(10));
+		  }
+		  return str.toString();
+		 }
 	
 	
 	@GetMapping("/getMemberImage")
