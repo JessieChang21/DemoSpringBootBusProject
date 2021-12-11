@@ -512,8 +512,8 @@ textarea {
 												<br>to<br> <input id="upUE${Tour.tourId}"
 												value="${Tour.tourUseEnd}" type="date"
 												style="text-align: center; width: 150px;font-size: 15px;"></td>
-											<td><img width='60' height='72'
-												src="/images/tour/tourimages${Tour.tourId}.jpg" /><br>
+											<td><img width='120' height='80'
+												src="/images/tour/${Tour.tourId}.jpg" /><br>
 												<select id="upIMGURL${Tour.tourId}" style="width: 120px;font-size: 15px">
 												<option>/tour/tourimages${Tour.tourId}</option>
 												</select>
