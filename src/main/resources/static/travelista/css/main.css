@@ -2103,7 +2103,7 @@ h1, h2, h3, h4, h5, h6 {
   padding-right: 15px;
   
 /*   background: darkslategray; */
-  height:80px;
+  height:85px;
 }
 
 #header {
@@ -2385,7 +2385,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 #nav-menu-container {
   padding-right: 15px;
   
-  margin-left:440px;
+  margin-left:560px;
   
 }
 

@@ -8,8 +8,16 @@
 <title>會員訂單資訊</title>
 <link rel="icon" href="images/bus.svg" type="image/x-icon" />
 <style>
+#showOrder{
+	font-family: "Microsoft soft";
+	font-weight: bold;
+	font-size: 22px;
+	margin-bottom: 2vh
+}
+
 #ordertable {
 	border-collapse: collapse;
+	
 }
 
 #ordertable td {
@@ -19,19 +27,162 @@
 	font-weight: normal;
 	font-size: 16px;
 }
-</style>
+/* CSS ============================================= */
+#sidea>a{
+	color:black;
+	font-family: "Microsoft soft";
+	font-weight: bold
+}
+#table_wrap>table {
+	font-size: 16px;
+	text-align: center;
+	margin: 0 auto;
+	border-collapse: separate;
+	border-spacing: 0;
+	border: 2px #000;
+}
 
+
+#table_wrap>table {
+	margin: auto;
+	width: 70%;
+	border-collapse: collapse;
+	font-size: 16px;
+	text-align: center;
+	margin: 0 auto;
+	border-collapse: separate;
+	border-spacing: 0;
+	border: 2px #000;
+}
+
+#table_wrap>thead tr,#table_wrap>tbody tr {
+	height: 50px;
+	line-height: 50px;
+	/*background-color: pink;*/
+}
+
+#table_wrap>tr th:first-child,#table_wrap>tr td:first-child { /*設定table左邊邊框*/
+	border-left: 2px solid #eaeaea;
+}
+
+#table_wrap>tr th:last-child,#table_wrap>tr td:last-child { /*設定table右邊邊框*/
+	border-right: 2px solid #eaeaea;
+}
+
+#table_wrap>tr td:first-child,#table_wrap>tr td:nth-child(2), table tr td:nth-child(3),
+	table tr td:last-child { /*設定table表格每列底部邊框*/
+	border-bottom: 2px solid #eaeaea;
+}
+
+#table_wrap>tr:last-child td:first-child,#table_wrap>tr:last-child td:nth-child(2),
+	table tr:last-child td:nth-child(3), table tr:last-child td:last-child
+	{ /!*設定table表格最後一列底部邊框 *!/ border-bottom:2pxsolid#000;
+	
+}
+
+table tr:first-child th:first-child {
+	border-top-left-radius: 12px;
+}
+
+table tr:first-child th:last-child {
+	border-top-right-radius: 12px;
+}
+
+table tr:last-child td:first-child {
+	border-bottom-left-radius: 12px;
+}
+
+table tr:last-child td:last-child {
+	border-bottom-right-radius: 12px;
+}
+
+</style>
+<!-- CSS ============================================= -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+<link
+	href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700"
+	rel="stylesheet">
+<link rel="stylesheet" href="/travelista/css/linearicons.css">
+<link rel="stylesheet" href="/travelista/css/font-awesome.min.css">
+<link rel="stylesheet" href="/travelista/css/bootstrap.css">
+<link rel="stylesheet" href="/travelista/css/magnific-popup.css">
+<link rel="stylesheet" href="/travelista/css/jquery-ui.css">
+<link rel="stylesheet" href="/travelista/css/nice-select.css">
+<link rel="stylesheet" href="/travelista/css/animate.min.css">
+<link rel="stylesheet" href="/travelista/css/owl.carousel.css">
+<link rel="stylesheet" href="/travelista/css/main.css">
 </head>
 <body>
-	<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
-	<h3>您的訂單資訊如下:</h3>
-	<div id="showOrder">訂單編號:</div>
-	<div id="memberOrder"></div>
+<!-- 	<script src="/webjars/jquery/3.1.1/jquery.min.js"></script> -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="/travelista/js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="/travelista/js/popper.min.js"></script>
+	<script src="/travelista/js/vendor/bootstrap.min.js"></script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+	<script src="/travelista/js/jquery-ui.js"></script>
+	<script src="/travelista/js/easing.min.js"></script>
+	<script src="/travelista/js/hoverIntent.js"></script>
+	<script src="/travelista/js/superfish.min.js"></script>
+	<script src="/travelista/js/jquery.ajaxchimp.min.js"></script>
+	<script src="/travelista/js/jquery.magnific-popup.min.js"></script>
+	<script src="/travelista/js/jquery.nice-select.min.js"></script>
+	<script src="/travelista/js/owl.carousel.min.js"></script>
+	<script src="/travelista/js/mail-script.js"></script>
+	<script src="/travelista/js/main.js"></script>
+	
+	<!-- HTML ============================================= -->
+	<c:import url="/WEB-INF/jsp/commons/header.jsp" />
+	<!-- start banner Area -->
+	<section class="about-banner relative" id="banner">
+		<div class="overlay overlay-bg"></div>
+		<div class="container">
+			<div class="row d-flex align-items-center justify-content-center">
+				<div class="about-content col-lg-12">
+					<h1 class="text-white">訂票成功</h1>
+					<p class="text-white link-nav">
+						<a href="/mainpage">首頁 </a> <span class="lnr lnr-arrow-right"></span>
+						<span> 訂票成功</span>
+					</p>
+				</div>
+			</div>
+		</div>
 
+	</section>
+	
+	<BR />
+	<BR />
+	<BR />
+	<div style="height:100px; ">
+	<div id="table_wrap" style="float: left; margin-left: 50px">
+		<table id="table_wrap">
+			<tr>
+				<th style="background-color: #f8b600; font-size: 140%; color:white"
+					align="center" width="300px" height="50px">會員中心</th>
+			</tr>
+			<tr>
+				<td id="sidea" style="background-color: white;">
+					<a href="/updatemembers.controller">會員資料更新</a>
+				</td>
+			</tr>
+			<tr>
+				<td id="sidea" style="background-color: white;">
+					<a href="/members/queryMemberOrder">訂單查詢</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<div id="orderrange">
+		<div id="showOrder">您的訂單編號如下，請點選查看:</div>
+		<div id="memberOrder"></div>
+	</div>
 
 	<br>
-	<a href="<c:url value='/mainpage'/>">回首頁</a>
 
+	<c:import url="/WEB-INF/jsp/commons/footer.jsp" />
 	<script>
 	window.onload = function() {
 		$("#memberOrder").empty();
