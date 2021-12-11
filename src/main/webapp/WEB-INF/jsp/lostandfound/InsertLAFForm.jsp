@@ -8,6 +8,15 @@
 <html lang="UTF-8">
 
 <head>
+<script type="text/javascript">
+function updatelaf() {
+    var hiddenField = document.getElementById("updateOrDelete");
+//     hiddenField.value='PUT';
+	alert("操作完成!");
+    document.forms[0].method="POST";
+	document.forms[0].submit();
+}
+</script>
 <style type="text/css">
 .mytext {
 	width: 500px;
@@ -131,7 +140,7 @@ p {
 													<BR />拾獲日期：
 												<p /> <form:input path="itdate" /><br>&nbsp; <form:errors
 													path="itdate" cssClass="error" /> <BR /><BR /> <input
-												type='submit' value='送出'>
+												type='submit' onclick="updatelaf()" value='送出'>
 											</td>
 										</tr>
 									</table>

@@ -173,7 +173,7 @@ function pageIn() {
 				   $('table').prepend("<tr><td colspan='2'>暫無資料</td></tr>");;
 			   }else{
 				   var table = $('#showlaf');
-				   table.append("<tr height='50px'><th width='150'><font color='black'>路線編號</th><th width='150'><font color='black'>物品名稱</th><th width='150'><font color='black'>拾獲地點</th><th width='150'><font color='black'>拾獲時間</th></tr>");
+				   table.append("<tr height='50px'><th width='150'><font color='black'>巴士編號</th><th width='150'><font color='black'>物品名稱</th><th width='150'><font color='black'>拾獲地點(站別)</th><th width='150'><font color='black'>拾獲時間</th></tr>");
 				   
 				   $.each(data.list, function(i,n){
 					   
