@@ -38,6 +38,10 @@ public class BaseController {
 	public String serverindex() {
 		return "serverindex";
 	}
+	@GetMapping("/updatelafOK")
+	public String updatelaf() {
+		return "/lostandfound/showLAF1";
+	}
 	
 	
 	

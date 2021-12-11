@@ -51,7 +51,7 @@ public class LostAndFoundController {
 			return "/lostandfound/InsertLAFForm";
 		}
 		lostAndFoundService.insert(lostAndFound);
-		return "redirect:/insertOK";
+		return "redirect:/showlostandfound2";
 	}
 	
 	@GetMapping("/showlostandfound")
@@ -95,7 +95,7 @@ public class LostAndFoundController {
 		
 		
 		lostAndFoundService.update(lostAndFound);
-		return "redirect:/insertOK";
+		return "redirect:/showlostandfound2";
 	}
 	
 	@GetMapping("/deletelostandfound/{id}")
@@ -109,7 +109,7 @@ public class LostAndFoundController {
 	@PostMapping("/deletelostandfound")
 	public String delete(Integer id, Model m,LostAndFound lostAndFound) {
 		lostAndFoundService.deleteById(id);
-		return "redirect:/insertOK";
+		return "redirect:/showlostandfound2";
 	}
 	
 	@PostMapping("/showlafbydate")

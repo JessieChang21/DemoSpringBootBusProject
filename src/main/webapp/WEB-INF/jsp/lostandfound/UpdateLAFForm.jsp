@@ -12,6 +12,7 @@
 function updatelaf() {
     var hiddenField = document.getElementById("updateOrDelete");
 //     hiddenField.value='PUT';
+	alert("操作完成!");
     document.forms[0].method="POST";
 	document.forms[0].submit();
 }
