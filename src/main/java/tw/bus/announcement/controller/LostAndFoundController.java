@@ -2,6 +2,7 @@ package tw.bus.announcement.controller;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +67,19 @@ public class LostAndFoundController {
 		return "/lostandfound/showLAF1";
 	}
 	
+	@PostMapping("/selectLAFbyid")
+	public String selectbyid(Integer id,Model m,LostAndFound lostAndFound) {
+		List<LostAndFound> list2 = new ArrayList<>();
+		lostAndFound = lostAndFoundService.findById(id);
+		list2.add(lostAndFound);
+		m.addAttribute("list2",list2);
+		
+		List<LostAndFound> list = lostAndFoundService.findAll();
+		m.addAttribute("list", list);
+		return "/lostandfound/showLAF1";
+		
+	}
+	
 	
 	@GetMapping("/updatelostandfound/{id}")
 	public String updateForm(@PathVariable Integer id,Model m) {
@@ -78,10 +92,7 @@ public class LostAndFoundController {
 	public String update(LostAndFound lostAndFound,Model m,BindingResult bindingResult) {
 		LostAndFoundValidator lostAndFoundValidator = new LostAndFoundValidator();
 		lostAndFoundValidator.validate(lostAndFound, bindingResult);
-		if(bindingResult.hasErrors()) {
-			System.out.println(bindingResult.getAllErrors());
-			return "/lostandfound/UpdateLAFForm";
-		}
+		
 		
 		lostAndFoundService.update(lostAndFound);
 		return "redirect:/insertOK";
@@ -95,7 +106,7 @@ public class LostAndFoundController {
 		return "/lostandfound/DeleteLAFForm";
 	}
 	
-	@PostMapping("/deletelostandfound/{id}")
+	@PostMapping("/deletelostandfound")
 	public String delete(Integer id, Model m,LostAndFound lostAndFound) {
 		lostAndFoundService.deleteById(id);
 		return "redirect:/insertOK";

@@ -20,7 +20,6 @@ import tw.bus.route.model.RouteService;
 import tw.bus.route.model.Routes;
 
 
-
 @Controller
 @RequestMapping("/routes")
 //@SessionAttributes(names = {"totalPages", "totalElements"})

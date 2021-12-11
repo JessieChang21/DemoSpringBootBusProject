@@ -64,6 +64,8 @@
                         <h6 class="collapse-header">Custom Utilities:</h6>
                         <a class="collapse-item" href="/saveAnnouncement">新增公告</a>
                         <a class="collapse-item" href="/showAnnouncement1">編輯公告</a>
+                        <a class="collapse-item" href="/savelostandfound">新增遺失物</a>
+                        <a class="collapse-item" href="/showlostandfound2">編輯遺失物</a>
                     
                     </div>
                 </div>
