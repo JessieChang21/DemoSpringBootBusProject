@@ -1,32 +1,31 @@
 package tw.bus.employee.model;
 
-import java.io.Serializable;
-
-import javax.persistence.EmbeddedId;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "GetHoliday")
-//@IdClass(GetHolidaypk.class)
 @Component
 public class GetHoliday{
 	
-	//@EmbeddedId
-    //private GetHolidaypk GetHolidayPK;
 	@Id
+	@Column(name = "employeeid")
 	private String employeeid;
+	@Column(name = "substituteid")
 	private String substituteid;
+	@Column(name = "date")
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	private String date;
+	@Column(name = "timeperiod")
 	private String timeperiod;
+	@Column(name = "totalhours")
 	private Integer totalhours;
+	@Column(name = "release")
 	private String release;
 	public String getEmployeeid() {
 		return employeeid;
@@ -55,7 +54,7 @@ public class GetHoliday{
 	public Integer getTotalhours() {
 		return totalhours;
 	}
-	public void setTotalhours(Integer totalhours) {
+	public void setTotalhours(int totalhours) {
 		this.totalhours = totalhours;
 	}
 	public String getRelease() {
@@ -65,5 +64,5 @@ public class GetHoliday{
 		this.release = release;
 	}
 	
-
+	
 }

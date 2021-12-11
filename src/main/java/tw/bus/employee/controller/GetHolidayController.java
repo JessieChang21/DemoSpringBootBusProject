@@ -24,19 +24,19 @@ import tw.bus.employee.model.Employee;
 import tw.bus.employee.model.EmployeeService;
 import tw.bus.employee.model.GetHoliday;
 import tw.bus.employee.model.GetHolidayService;
-import tw.bus.employee.model.GetHolidaypk;
 import tw.bus.employee.model.HolidayService;
+import tw.bus.query.model.RoutesWithStation;
 
 @Controller
 @RequestMapping("/GetHoliday")
-@SessionAttributes(names = {"totalPages", "totalElements"})
+@SessionAttributes(names = {"totalPages", "totalElements","employee"})
 public class GetHolidayController {
 	
     private GetHolidayService ghService;
     private HolidayService hService;
     private EmployeeService eService;
     //測試用員工編號
-    private String empid = "100001";
+    private String empid = "5";
 	
 	@Autowired
 	public GetHolidayController(GetHolidayService ghService, HolidayService hService,EmployeeService eService) {
@@ -145,12 +145,24 @@ public class GetHolidayController {
 		return page.getContent();
 	}
 	
+	@PostMapping("/test/{pageNo}")
+	@ResponseBody
+	public List<GetHoliday> test(@PathVariable("pageNo") int pageNo, Model m){
+		int pageSize = 5;
+		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
+		Page<GetHoliday> page = ghService.findAllByPage(pageable);
+		m.addAttribute("totalPages", page.getTotalPages());
+		m.addAttribute("totalElements", page.getTotalElements());
+		return page.getContent();
+	}
+	
 	@PostMapping("/QueryAllUnRelease/{pageNo}")
 	@ResponseBody
 	public List<GetHoliday> processQueryAllUnRelease(@PathVariable("pageNo") int pageNo, Model m){
 		int pageSize = 5;
 		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
 		Page<GetHoliday> page = ghService.QueryAllUnRelease(pageable);
+		System.out.println(page.getContent());
 		m.addAttribute("totalPages", page.getTotalPages());
 		m.addAttribute("totalElements", page.getTotalElements());
 		return page.getContent();
@@ -165,6 +177,19 @@ public class GetHolidayController {
 		m.addAttribute("totalPages", page.getTotalPages());
 		m.addAttribute("totalElements", page.getTotalElements());
 		return page.getContent();
+	}
+	
+	@GetMapping("/findList")
+	@ResponseBody
+	public List<GetHoliday> finAllUnRelease() {
+		List<GetHoliday> result = ghService.finAllUnRelease();
+		for(GetHoliday bean : result) {
+			System.out.println("Employeeid:"+bean.getEmployeeid());
+			System.out.println("Substituteid:"+bean.getSubstituteid());
+			System.out.println("Date:"+bean.getDate());
+			System.out.println("Timeperiod:"+bean.getTimeperiod());
+		}
+		return ghService.finAllUnRelease();
 	}
 	
 	@PostMapping("/getsubstituteid")

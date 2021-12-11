@@ -1,13 +1,10 @@
 package tw.bus.employee.model;
 
-import java.sql.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
