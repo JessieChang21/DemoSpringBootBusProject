@@ -57,8 +57,12 @@ public class MembersService {
 	}
 	
 	public boolean existsByEmail(String email) {
+		Optional<Members> opl = memberRpo.findByEmail(email);
 		
-		return false;
+		if(opl.isEmpty()) {
+			return false;
+		 }
+		return true;
 	}
 
 	public Members findByEmailAndPassword(String username, String password) throws Exception {
