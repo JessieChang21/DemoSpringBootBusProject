@@ -55,5 +55,9 @@ public class EmployeeService {
 	public void deleteEmployee(Employee e) {
 		eResp.delete(e);
 	}
+	
+	public void deleteByEmployeeid(String id) {
+		eResp.deleteByEmployeeid(id);
+	}
 
 }
