@@ -96,19 +96,20 @@ public class AnnouncementController {
 		return "/announcement/showAnn";
 	}
 	
-	@GetMapping("/2")
+	@GetMapping("/mainpage")
 	public String findtop3(Model m) {
 		List<Announcement> list = announcementService.findtop3();
 		m.addAttribute("list",list);
 		return "/index2";
 	}
-	
-	@GetMapping("/login/page")
+	@GetMapping("/2")
 	public String findtop3_2(Model m) {
 		List<Announcement> list = announcementService.findtop3();
 		m.addAttribute("list",list);
-		return "/login";
+		return "/index2";
 	}
+	
+	
 	
 	@GetMapping("/showAnnouncement1")
 	public String showAll(Model m) {
@@ -211,8 +212,9 @@ public class AnnouncementController {
 		return "/announcement/DeleteAnnForm";
 	}
 	
-	@PostMapping("/deleteAnnouncement/{id}")
+	@PostMapping("/deleteAnnouncement")
 	public String delete(Integer id, Model m,Announcement announcement) {
+		m.addAttribute(announcement);
 		announcementService.deleteById(id);
 		return "redirect:/insertOK";
 	}

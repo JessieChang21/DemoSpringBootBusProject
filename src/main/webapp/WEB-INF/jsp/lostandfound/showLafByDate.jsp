@@ -195,7 +195,7 @@ td{
 		<tr >
 			<th width='150'><font color='black'>巴士編號</th>
 			<th width='150'><font color='black'>物品名稱</th>
-			<th width='150'><font color='black'>拾獲地點</th>
+			<th width='150'><font color='black'>拾獲地點(站別)</th>
 			<th width='150'><font color='black'>拾獲時間</th>
 			
 		</tr>

@@ -11,10 +11,10 @@ import org.springframework.data.repository.query.Param;
 public interface Memberorder2Repository extends JpaRepository<Memberorder2, Integer> {
 
 	@Modifying
-	@Query(value="delete from Memberorder2 where orderid=:orderid", nativeQuery = true)
+	@Query(value="delete from Memberorder where orderid=:orderid", nativeQuery = true)
 	Integer deleteByOrderid(@Param("orderid") Integer orderid);
 
-	@Query(value="select * from Memberorder2 as m where m.email=:email order by orderid", nativeQuery = true)
+	@Query(value="select * from Memberorder as m where m.email=:email order by orderid", nativeQuery = true)
 	List<Memberorder2> findByEmail(@Param("email") String useremail);
 	
 	List<Memberorder2> findByOrderid(Integer orderid);
