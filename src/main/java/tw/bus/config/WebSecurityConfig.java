@@ -44,16 +44,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		 .antMatchers(HttpMethod.POST).permitAll()
 		 .anyRequest().authenticated()			//anyRequest()任何請求都要求authenticated()驗證，會對剩下的進行設定建議放在最後
 		 .and()
+         .oauth2Login()
+         .loginPage("/login/page")
+         .defaultSuccessUrl("/user")
+		 .and()
 		 .rememberMe() 							//透過此記得我功能在驗證後以Cookie方式儲存至瀏覽器
 		 .tokenValiditySeconds(86400) 			// 設定有效時間(秒)
 		 .key("rememberMe-key") 				// 設定儲存的Cookie名稱
 		 .and()
-		 .logout().logoutSuccessUrl("/2")
+		 .logout().logoutSuccessUrl("/mainpage")
 		 .and()
 		 .csrf().disable() 						// 為不使用CSRF防跨站請求偽造防護(未使用)(有使用)要在登錄和註銷表單中添加${_csrf.token}。
 		 .formLogin() 							//formLogin(): 啟用Spring Security預設的登入頁面
-		 .loginPage("/login/page").failureUrl("/login?error")				//loginPage(): 自行設定登入頁面
-		 .usernameParameter("username").passwordParameter("password") 				//loginPage(): 自行設定登入頁面
+		 .loginPage("/login/page")
+//		 .failureUrl("/login?error")				//loginPage(): 自行設定登入頁面
+		 .failureForwardUrl("/login/error")
+		 .usernameParameter("username").passwordParameter("password")        
 		 .defaultSuccessUrl("/web");            //defaultSuccessUrl(): 設定登入成功頁面網  
 //		 .successHandler(successHandler);
 	}
