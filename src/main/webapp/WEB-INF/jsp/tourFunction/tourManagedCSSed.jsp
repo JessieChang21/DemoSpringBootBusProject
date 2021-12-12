@@ -516,6 +516,12 @@ textarea {
 												src="/images/tour/tourimages${Tour.tourId}.jpg" /><br>
 												<input id="upIMGURL${Tour.tourId}"
 												value="*/tour/tourimages${Tour.tourId}" style="width: 130px">
+												style="text-align: center; width: 150px;font-size: 15px;"></td>
+											<td><img width='120' height='80'
+												src="/images/tour/${Tour.tourId}.jpg" /><br>
+												<select id="upIMGURL${Tour.tourId}" style="width: 120px;font-size: 15px">
+												<option>/tour/tourimages${Tour.tourId}</option>
+												</select>
 											</td>
 											<td><button onclick="update(${Tour.tourId})"
 													class="button3">修改</button></td>

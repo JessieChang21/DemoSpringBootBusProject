@@ -7,48 +7,45 @@
 <html lang="zxx" class="no-js">
 <head>
 <style type="text/css">
+.wrap {
+	border: 0px solid black;
+	width: 1150px;
+	min-height: 800px;
+	margin: 0px;
+	padding: 1px;
+	background-color: none;
+}
+
 .header {
-	border: 1px solid black;
-	height: 150px;
+	border: 0px solid black;
+	width: 1120px;
+	height: 80px;
 	margin: 10px;
-	font-size: 22px;
 	padding: 10px;
+	height: 80px;
 }
 
 .left {
-	width: 180px;
-	border: 1px solid black;
+	border: 0px solid black; width : 180px;
 	height: 600px;
 	float: left;
 	margin: 10px;
-	margin-right: 30px;
+	width: 180px;
 }
 
 .center {
 	width: 900px;
-	border: 1px solid black;
-	height: 600px;
-	float: left;
+	border: 0px solid black;
+	/*height: 600px;*/
 	margin: 10px;
-	color: white;
-}
-
-.header h1 a {
-	background-image: url('./images/tour/tourtitleimages.jpg');
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-size: 100px 100px;
-	width: 128px;
-	height: 128px;
-	text-indent: 101%;
-	overflow: hidden;
-	white-space: nowrap;
+	margin-left: 30PX;
 	float: left;
+	color: Black;
 }
 
 .header ul {
 	float: right;
-	margin-top: 55px;
+	margin-top: 15px;
 	margin-right: 20px;
 }
 
@@ -60,14 +57,85 @@
 
 .header ul li a {
 	text-decoration: none;
-	color: white;
+	font-size: x-large;
+	background-color: #f2b201;
+	border-radius: 5px;
+	color: black;
 }
-.showed-Area {
+
+#Area2Routes {
+	background-color: #F5F5F6;
+	border-radius: 15px;
+	padding: 2px;
+	margin: 10px;
+}
+
+#Area2Routes h4 {
+	background-color: #ba8300;
+	border-radius: 10px;
+	margin: 1px;
+	color:white;
+	font-size: xx-large;
+}
+
+#Area2Routes ul li a {
+	background-color: #f2b200;
+	border-radius: 5px;
+	margin: 2px;
+	padding: 2px;
+	color: black !important;
+	font-weight: bolder;
+}
+
+#Area2Routes span a {
+	display: block;
+	background-color: #ffe44b;
+	border-radius: 10px;
+	margin:1px;
+	padding: 5px;
+	color: black !important;
+	font-size: x-large;
+}
+
+#Area2Routes .hided-Area {
+	display: none;
+}
+
+#Area2Routes .showed-Area {
 	
 }
 
-.hided-Area {
-	display: none;
+#TourContentShowedHere h2 {
+	background-color: #f2b201 !important;
+}
+
+#TourName a {
+	margin: 5px;
+	background-color: #ffe44b !important;
+	font-size: larger;
+}
+
+#TourQuery {
+	
+}
+
+#TourContent {
+	background-color: #F5F5F6;
+	border: 0px solid black !important;
+	color: green !important;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#TourTable {
+	margin-top:10px;
+	margin-left: 210px;
+	margin-right: auto;
+	text-align: left;
+}
+
+#TourTable td {
+	padding-left: 10px;
 }
 </style>
 <script
@@ -105,7 +173,7 @@
 <link rel="stylesheet" href="/travelista/css/owl.carousel.css">
 <link rel="stylesheet" href="/travelista/css/main.css">
 </head>
-<body style="background-color: #F2F2F2;">
+<body>
 
 	<!-- #header -->
 	<c:import url="/WEB-INF/jsp/commons/header.jsp" />
@@ -114,17 +182,14 @@
 		<div class="overlay overlay-bg"></div>
 		<div class="container">
 			<div class="row d-flex align-items-center justify-content-center">
-				<div>
+				<div class="about-content col-lg-12">
+					<h1 class="text-white">旅遊套票</h1>
+					<p class="text-white link-nav">
+						<a href="/2">首頁 </a> <span class="lnr lnr-arrow-right"></span> <a
+							href="/tourpackages?area=臺北市&NMSE=1">優惠活動</a>
+					</p>
 					<div class="wrap">
-							<h1>
-								<a href="/tourfindall">旅遊套票</a>
-							</h1>
 						<div class="header">
-							<h1 class="text-white">XXXX</h1>
-							<p class="text-white link-nav">
-								<a href="/2">首頁 </a> <span class="lnr lnr-arrow-right"></span> <a
-									href="/xxx"> XXXX</a>
-							</p>
 							<ul>
 								<li><a href="">║套票一覽║</a></li>
 								<li><a href="">║購買指南║</a></li>
@@ -139,241 +204,161 @@
 									<div>
 										<h4>路線選擇</h4>
 									</div>
-									<div id="showedArea" >
-										<ul style="display: inline;" >
-											<li id="N" class="nav-item" style="display: inline;"><a href="#1">北部</a></li>
-											<li id="M" class="nav-item" style="display: inline;"><a href="#2">中部</a></li>
-											<li id="S" class="nav-item" style="display: inline;"><a href="#3">南部</a></li>
-											<li id="E" class="nav-item" style="display: inline;"><a href="#4">東部</a></li>
+									<div id="showedArea">
+										<ul style="display: inline;">
+											<li id="N" style="display: inline;"><a href="/tourpackages?area=宜蘭縣&NMSE=1">北部</a></li>
+											<li id="M" style="display: inline;"><a href="/tourpackages?area=南投縣&NMSE=2">中部</a></li>
+											<li id="S" style="display: inline;"><a href="/tourpackages?area=雲林縣&NMSE=3">南部</a></li>
+											<li id="E" style="display: inline;"><a href="/tourpackages?area=花蓮縣&NMSE=4">東部</a></li>
 										</ul>
 									</div>
-
-									<!-- 北 -->
-									<c:if test="${NMSE==1}">
-										<div id="North" class="showed-Area">
-									</c:if>
-									<c:if test="${NMSE!=1}">
-										<div id="North" class="hided-Area">
-									</c:if>
-									<div>
-										<a href="/tourpackages?area=宜蘭縣&NMSE=1">宜蘭縣</a>
+									<div id="TotalN">
+										<!-- 北 -->
+										<c:if test="${NMSE==1}">
+											<span id="North" class="showed-Area">
+											 <c:if
+													test="${NMSE!=1}">
+													<span id="North" class="hided-Area">
+												</c:if>
+										</c:if>
+										<span> <a href="/tourpackages?area=宜蘭縣&NMSE=1">宜蘭縣</a>	
+										</span>
+										<span> <a href="/tourpackages?area=基隆市&NMSE=1">基隆市</a>
+										</span> 
+										<span> <a href="/tourpackages?area=臺北市&NMSE=1">臺北市</a>
+										</span> 
+										<span> <a href="/tourpackages?area=新北市&NMSE=1">新北市</a>
+										</span> 
+										<span> <a href="/tourpackages?area=桃園市&NMSE=1">桃園市</a>
+										</span> 
+										<span> <a href="/tourpackages?area=新竹縣&NMSE=1">新竹縣</a>
+										</span>
 									</div>
-									<div>
-										<a href="/tourpackages?area=基隆市&NMSE=1">基隆市</a>
+									<div id="TotalM">
+										<!-- 中 -->
+										<c:if test="${NMSE==2}">
+											<span id="Middle" class="showed-Area">
+										</c:if>
+										<c:if test="${NMSE!=2}">
+											<span id="Middle" class="hided-Area">
+										</c:if>
+										<span> <a href="/tourpackages?area=苗栗縣&NMSE=2">苗栗縣</a>
+										</span> <span> <a href="/tourpackages?area=臺中市&NMSE=2">臺中市</a>
+										</span> <span> <a href="/tourpackages?area=南投縣&NMSE=2">南投縣</a>
+										</span> <span> <a href="/tourpackages?area=彰化縣&NMSE=2">彰化縣</a>
+										</span> <span> <a href="/tourpackages?area=雲林縣&NMSE=2">雲林縣</a>
+										</span>
 									</div>
-									<div>
-										<a href="/tourpackages?area=臺北市&NMSE=1">臺北市</a>
+									<div id="TotalS">
+										<!-- 南 -->
+										<c:if test="${NMSE==3}">
+											<span id="South" class="showed-Area">
+										</c:if>
+										<c:if test="${NMSE!=3}">
+											<span id="South" class="hided-Area">
+										</c:if>
+										<span> <a href="/tourpackages?area=嘉義縣&NMSE=3">嘉義縣</a>
+										</span> <span> <a href="/tourpackages?area=臺南市&NMSE=3">臺南市</a>
+										</span> <span> <a href="/tourpackages?area=高雄市&NMSE=3">高雄市</a>
+										</span> <span> <a href="/tourpackages?area=屏東縣&NMSE=3">屏東縣</a>
+										</span>
 									</div>
-									<div>
-										<a href="/tourpackages?area=新北市&NMSE=1">新北市</a>
-									</div>
-									<div>
-										<a href="/tourpackages?area=桃園市&NMSE=1">桃園市</a>
-									</div>
-									<div>
-										<a href="/tourpackages?area=新竹縣&NMSE=1">新竹縣</a>
+									<div id="TotalE">
+										<!-- 東 -->
+										<c:if test="${NMSE==4}">
+											<span id="East" class="showed-Area">
+										</c:if>
+										<c:if test="${NMSE!=4}">
+											<span id="East" class="hided-Area">
+										</c:if>
+										<span> <a href="/tourpackages?area=花蓮縣&NMSE=4">花蓮縣</a>
+										</span> <span> <a href="/tourpackages?area=臺東縣&NMSE=4">臺東縣</a>
+										</span>
 									</div>
 								</div>
-								<!-- 中 -->
-								<c:if test="${NMSE==2}">
-									<div id="Middle" class="showed-Area">
-								</c:if>
-								<c:if test="${NMSE!=2}">
-									<div id="Middle" class="hided-Area">
-								</c:if>
-								<div>
-									<a href="/tourpackages?area=苗栗縣&NMSE=2">苗栗縣</a>
-								</div>
-								<div>
-									<a href="/tourpackages?area=臺中市&NMSE=2">臺中市</a>
-								</div>
-								<div>
-									<a href="/tourpackages?area=南投縣&NMSE=2">南投縣</a>
-								</div>
-								<div>
-									<a href="/tourpackages?area=彰化縣&NMSE=2">彰化縣</a>
-								</div>
-								<div>
-									<a href="/tourpackages?area=雲林縣&NMSE=2">雲林縣</a>
-								</div>
+								<!-- Area2Routes -->
 							</div>
-							<!-- 南 -->
-							<c:if test="${NMSE==3}">
-								<div id="South" class="showed-Area">
-							</c:if>
-							<c:if test="${NMSE!=3}">
-								<div id="South" class="hided-Area">
-							</c:if>
-							<div>
-								<a href="/tourpackages?area=嘉義縣&NMSE=3">嘉義縣</a>
+							<!-- Left -->
+							<div class="center">
+								<!-- 套票內容長在這 -->
+								<div id="TourContentShowedHere">
+									<h1 style="text-align: left;">${Area}--</h1>
+									<c:forEach var="AreaItems" items="${AreaList}">
+										<c:if test="${AreaItems.direction == 1}">
+											<div>${AreaItems.tripName}(順)</div>
+										</c:if>
+										<c:if test="${AreaItems.direction != 1}">
+											<div id="tripName">
+												<h2>${AreaItems.tripName}(來回)</h2>
+											</div>
+										</c:if>
+										<c:forEach var="Tour" items="${TourList}">
+											<c:if
+												test="${Tour.fk_routes_routeId == AreaItems.routeId && Tour.tourUseEnd.compareTo(crdate) > 0}">
+												<div id="TourQuery">
+													<div id="TourName" class="hidetogglebtn">
+														<div style="background-color: #FFE44B"> <a>${Tour.tourName}</a>
+														</div>
+													</div>
+													<div id="TourContent" class="showcontent"
+														style="display: none;">
+														<br> <img style="width: 300px; hieght: 200px"
+															src="/images/tour/${Tour.tourId}.jpg">
+														<h3>║ ${Tour.tourName} ║</h3>
+														<div id="TourTable">
+															<table>
+																<tr>
+																	<th>套票內容:</th>
+																	<td style="text-align: left;">${Tour.tourContent}</td>
+																</tr>
+																<tr>
+																	<th>套票價格:</th>
+																	<td>優惠價:${Tour.discountPrice}原價:${Tour.tourPrice}</td>
+																</tr>
+																<tr>
+																	<th>適用路線:</th>
+																	<td>${AreaItems.tripName}</td>
+																</tr>
+																<tr>
+																	<th>販售時間:</th>
+																	<td>${Tour.tourSaleStart}到${Tour.tourSaleEnd}</td>
+																</tr>
+																<tr>
+																	<th>使用使間:</th>
+																	<td>${Tour.tourUseStart}到${Tour.tourUseEnd}</td>
+																</tr>
+															</table>
+														</div>
+													</div>
+													<!-- TourContent -->
+												</div>
+												<!-- TourQuery -->
+											</c:if>
+										</c:forEach>
+									</c:forEach>
+								</div>
+								<!-- 套票內容結束 -->
 							</div>
-							<div>
-								<a href="/tourpackages?area=臺南市&NMSE=3">臺南市</a>
-							</div>
-							<div>
-								<a href="/tourpackages?area=高雄市&NMSE=3">高雄市</a>
-							</div>
-							<div>
-								<a href="/tourpackages?area=屏東縣&NMSE=3">屏東縣</a>
-							</div>
+							<!-- center -->
 						</div>
-						<!-- 東 -->
-						<c:if test="${NMSE==4}">
-							<div id="East" class="showed-Area">
-						</c:if>
-						<c:if test="${NMSE!=4}">
-							<div id="East" class="hided-Area">
-						</c:if>
-						<div>
-							<a href="/tourpackages?area=花蓮縣&NMSE=4">花蓮縣</a>
-						</div>
-						<div>
-							<a href="/tourpackages?area=臺東縣&NMSE=4">臺東縣</a>
-						</div>
+						<!--content-->
 					</div>
+					<!-- wrap -->
 				</div>
+				<!-- about-content col-lg-12 萬惡之源 -->
 			</div>
-			<div class="center">
-				<div id="">
-					<h1>${Area}-------</h1>
-					<c:forEach var="AreaItems" items="${AreaList}">
-						<c:if test="${AreaItems.direction == 1}">
-							<div>${AreaItems.tripName}(順)</div>
-						</c:if>
-						<c:if test="${AreaItems.direction != 1}">
-							<div><h2 style="background-color: #f2b201">${AreaItems.tripName}(來回)</h2></div>
-						</c:if>
-						<c:forEach var="Tour" items="${TourList}">
-							<c:if test="${Tour.fk_routes_routeId == AreaItems.routeId && Tour.tourUseEnd.compareTo(crdate) > 0}">
-								<div><h2 style="background-color: #FFFF99"><a>V ${Tour.tourName} V</a></h2></div>
-								<div>
-								<br><img style="width: 80px; hieght: 120px" src="/images/tour/tourimages${Tour.tourId}.jpg">
-								<h3 style="color: white">║ ${Tour.tourName} ║</h3>
-								<table>
-								<tr><th>套票內容</th><td>${Tour.tourContent}</td></tr>
-								<tr><th>套票價格</th><td>優惠價:${Tour.discountPrice}原價:${Tour.tourPrice}</td></tr>
-								<tr><th>適用路線</th><td>${AreaItems.tripName}</td></tr>
-								<tr><th>販售時間</th><td>${Tour.tourSaleStart}到${Tour.tourSaleEnd}</td></tr>
-								<tr><th>使用使間</th><td>${Tour.tourUseStart}到${Tour.tourUseEnd}</td></tr>
-								</table>
-								</div>
-							</c:if>
-						</c:forEach>
-					</c:forEach>
-				</div>
-
-
-			</div>
+			<!-- row d-flex align-items-center justify-content-center -->
 		</div>
 
 	</section>
 	<!-- End banner Area -->
-
-	<!-- start footer Area -->
-	<footer class="footer-area section-gap">
-		<div class="container">
-
-			<div class="row">
-				<div class="col-lg-3  col-md-6 col-sm-6">
-					<div class="single-footer-widget">
-						<h6>About Agency</h6>
-						<p>The world has become so fast paced that people don’t want
-							to stand by reading a page of information, they would much rather
-							look at a presentation and understand the message. It has come to
-							a point</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 col-sm-6">
-					<div class="single-footer-widget">
-						<h6>Navigation Links</h6>
-						<div class="row">
-							<div class="col">
-								<ul>
-									<li><a href="#">Home</a></li>
-									<li><a href="#">Feature</a></li>
-									<li><a href="#">Services</a></li>
-									<li><a href="#">Portfolio</a></li>
-								</ul>
-							</div>
-							<div class="col">
-								<ul>
-									<li><a href="#">Team</a></li>
-									<li><a href="#">Pricing</a></li>
-									<li><a href="#">Blog</a></li>
-									<li><a href="#">Contact</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3  col-md-6 col-sm-6">
-					<div class="single-footer-widget">
-						<h6>Newsletter</h6>
-						<p>For business professionals caught between high OEM price
-							and mediocre print and graphic output.</p>
-						<div id="mc_embed_signup">
-							<form target="_blank"
-								action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-								method="get" class="subscription relative">
-								<div class="input-group d-flex flex-row">
-									<input name="EMAIL" placeholder="Email Address"
-										onfocus="this.placeholder = ''"
-										onblur="this.placeholder = 'Email Address '" required=""
-										type="email">
-									<button class="btn bb-btn">
-										<span class="lnr lnr-location"></span>
-									</button>
-								</div>
-								<div class="mt-10 info"></div>
-							</form>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3  col-md-6 col-sm-6">
-					<div class="single-footer-widget mail-chimp">
-						<h6 class="mb-20">InstaFeed</h6>
-						<ul class="instafeed d-flex flex-wrap">
-							<li><img src="/travelista/img/i1.jpg" alt=""></li>
-							<li><img src="/travelista/img/i2.jpg" alt=""></li>
-							<li><img src="/travelista/img/i3.jpg" alt=""></li>
-							<li><img src="/travelista/img/i4.jpg" alt=""></li>
-							<li><img src="/travelista/img/i5.jpg" alt=""></li>
-							<li><img src="/travelista/img/i6.jpg" alt=""></li>
-							<li><img src="/travelista/img/i7.jpg" alt=""></li>
-							<li><img src="/travelista/img/i8.jpg" alt=""></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-
-			<div
-				class="row footer-bottom d-flex justify-content-between align-items-center">
-				<p class="col-lg-8 col-sm-12 footer-text m-0">
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					Copyright &copy;
-					<script>
-						document.write(new Date().getFullYear());
-					</script>
-					All rights reserved | This template is made with <i
-						class="fa fa-heart-o" aria-hidden="true"></i> by <a
-						href="https://colorlib.com" target="_blank">Colorlib</a>
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-				</p>
-				<div class="col-lg-4 col-sm-12 footer-social">
-					<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
-						class="fa fa-twitter"></i></a> <a href="#"><i
-						class="fa fa-dribbble"></i></a> <a href="#"><i
-						class="fa fa-behance"></i></a>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<!-- End footer Area -->
+	<c:import url="/WEB-INF/jsp/tourFunction/footerForTour.jsp" />
 
 	<script src="/travelista/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="/travelista/js/popper.min.js"></script>
 	<script src="/travelista/js/vendor/bootstrap.min.js"></script>
-	<script	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
 	<script src="/travelista/js/jquery-ui.js"></script>
 	<script src="/travelista/js/easing.min.js"></script>
 	<script src="/travelista/js/hoverIntent.js"></script>
@@ -384,6 +369,8 @@
 	<script src="/travelista/js/owl.carousel.min.js"></script>
 	<script src="/travelista/js/mail-script.js"></script>
 	<script src="/travelista/js/main.js"></script>
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script>
 		$('#N').click(function(showedNorth) {
 			console.log('顯示北部');
@@ -412,6 +399,20 @@
 			$('#Middle').attr('class', 'hided-Area');
 			$('#South').attr('class', 'hided-Area');
 			$('#East').attr('class', 'showed-Area');
+		});
+
+		//function showedTourContent(tourId){
+		//	console.log('顯示內容');
+		//	console.log($('#showContent'+tourId));
+		//	if($(tourId == tourId)){
+		//	$('#TourContent'+tourId).attr('class','showed-Content');
+		//	}
+		//}
+
+		$(document).ready(function() {
+			$(".hidetogglebtn").click(function() {
+				$(this).next(".showcontent").slideToggle();
+			});
 		});
 	</script>
 </body>
