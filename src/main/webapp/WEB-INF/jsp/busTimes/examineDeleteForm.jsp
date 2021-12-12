@@ -148,7 +148,10 @@
 							      	 <td colspan="2">
 							      	 <form:hidden path="managerName" value = "${employee.employeeName}"/>
 							         <form:hidden path="toExamineDate"/>
-							         
+							         <form:hidden path="initialStation" value = "${tempBus.initialStation}"/>
+							      	<form:hidden path="finalStation" value = "${tempBus.finalStation}"/>
+							      	<form:hidden path="travelTime" value = "${tempBus.travelTime}"/>
+									 
 							      	 <input type="submit" name="depass" value="通過刪除" class="btn btn-primary"  onclick="return(confirm('是否確認要通過刪除申請？'))">
 							         &emsp;&emsp;&emsp;
 							         <input type="submit" name="denopass" value="退回" class="btn btn-danger" onclick="return(confirm('是否確認要退回申請？'))"></td>
