@@ -508,8 +508,6 @@ textarea {
 											<input id="upUS${Tour.tourId}" value="${Tour.tourUseStart}"	type="date" style="text-align: center; width: 150px;font-size: 15px;">
 												<br>to<br> 
 											<input id="upUE${Tour.tourId}" value="${Tour.tourUseEnd}" type="date" 	style="text-align: center; width: 150px;font-size: 15px;"></td>
-												<input id="upIMGURL${Tour.tourId}"
-												value="*/tour/tourimages${Tour.tourId}" style="width: 130px">
 											<td><img width='120' height='80'
 												src="/images/tour/${Tour.tourId}.jpg" /><br>
 												<select id="upIMGURL${Tour.tourId}" style="width: 120px;font-size: 15px">
