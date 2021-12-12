@@ -305,7 +305,7 @@ function forgetpassword(){
 									<br><br>
 <!-- 									<button class="primary-btn" type="submit" value="login">Login</button> -->
 
-									
+									<a class="primary-btn" href="/oauth2/authorization/google">Sign-in Google</a>
 									<input class="primary-btn" type="submit" value="登入"/>
 									
 							</form>

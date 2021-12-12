@@ -277,7 +277,7 @@ function emailcheckclick(){
 <!-- 					<p class="text-white"></p> -->
 <!-- 					<a href="#" class="primary-btn text-uppercase">Get Started</a> -->
 <!-- 				</div> -->
-				<div class="col-lg-6 col-md-6 banner-right">
+				<div class="col-lg-5 col-md-6 banner-right">
 					<ul class="nav nav-tabs" id="myTab" role="tablist">
 						<li class="nav-item"><a class="nav-link active"
 							id="register-tab" data-toggle="tab" href="#register" role="tab"
@@ -299,10 +299,10 @@ function emailcheckclick(){
 								<br>
 								<form:input path='membername' placeholder="請輸入姓名" type="text" value="" class="form-control"/>
 								<form:errors path="membername" cssClass="error" />
-								<br>
+<!-- 								<br> -->
 								<span id="emailcheckdiv"></span>
 								<form:input id='emailcheck' path='emailcheck' type="text" value="" placeholder="請輸入驗證碼" class="form-control" maxlength="6" 
-								style='width:69%;display:inline'/>
+								style='width:62%;display:inline'/>
 								
 <!-- 										<br> -->
 								<form:errors path="emailcheck" cssClass="error" /><br>
