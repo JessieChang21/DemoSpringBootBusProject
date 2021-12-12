@@ -79,5 +79,9 @@ public class RouteService {
 	public List<String> findDisTripName(){
 		return routeResp.findDisTripName();
 	}
+	
+	public Routes findLastRoute() {
+		return routeResp.findTopOrderByRouteIdDesc();
+	}
 
 }
