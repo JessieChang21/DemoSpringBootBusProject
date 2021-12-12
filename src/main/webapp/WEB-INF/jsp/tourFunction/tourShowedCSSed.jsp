@@ -205,7 +205,7 @@
 										<h4>路線選擇</h4>
 									</div>
 									<div id="showedArea">
-										<ul style="display: inline;">
+										<ul style="display: inline;background-color: #ffe44b;border-radius: 25px;">
 											<li id="N" style="display: inline;"><a href="#1">北部</a></li>
 											<li id="M" style="display: inline;"><a href="#2">中部</a></li>
 											<li id="S" style="display: inline;"><a href="#3">南部</a></li>
