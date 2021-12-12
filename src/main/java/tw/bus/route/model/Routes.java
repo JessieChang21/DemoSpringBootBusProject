@@ -24,6 +24,12 @@ public class Routes {
 	@Column(name = "direction")
 	private Integer direction;
 	
+	@Column(name = "initialstation")
+	private String initialStation;
+	
+	@Column(name = "finalstation")
+	private String finalStation;
+	
 	public String getRouteId() {
 		return routeId;
 	}
@@ -48,8 +54,28 @@ public class Routes {
 	public void setDirection(Integer direction) {
 		this.direction = direction;
 	}
+	public Routes(String routeId, String tripName, String area, Integer direction) {
+		super();
+		this.routeId = routeId;
+		this.tripName = tripName;
+		this.area = area;
+		this.direction = direction;
+	}
 	
-	
+	public Routes() {
+	}
+	public String getInitialStation() {
+		return initialStation;
+	}
+	public void setInitialStation(String initialStation) {
+		this.initialStation = initialStation;
+	}
+	public String getFinalStation() {
+		return finalStation;
+	}
+	public void setFinalStation(String finalStation) {
+		this.finalStation = finalStation;
+	}
 	
 	
 	

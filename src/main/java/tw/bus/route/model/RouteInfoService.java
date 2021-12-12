@@ -27,5 +27,9 @@ public class RouteInfoService {
 		System.out.println(routeId);
 		return rouRep.findTopByRouteIdOrderByStationSequenceAsc(routeId);
 	}
+	
+	public RouteInfo insertRouteInfo(RouteInfo rInfo) {
+		return rouRep.save(rInfo);
+	}
 
 }
