@@ -72,7 +72,7 @@
                 </div>
             </li>
              <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="/tourfindall">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>套票管理</span></a>
             </li>

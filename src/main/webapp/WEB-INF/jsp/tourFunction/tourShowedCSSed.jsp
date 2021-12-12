@@ -205,11 +205,11 @@
 										<h4>路線選擇</h4>
 									</div>
 									<div id="showedArea">
-										<ul style="display: inline;">
-											<li id="N" style="display: inline;"><a href="/tourpackages?area=宜蘭縣&NMSE=1">北部</a></li>
-											<li id="M" style="display: inline;"><a href="/tourpackages?area=南投縣&NMSE=2">中部</a></li>
-											<li id="S" style="display: inline;"><a href="/tourpackages?area=雲林縣&NMSE=3">南部</a></li>
-											<li id="E" style="display: inline;"><a href="/tourpackages?area=花蓮縣&NMSE=4">東部</a></li>
+										<ul style="display: inline;background-color: #ffe44b;border-radius: 25px;">
+											<li id="N" style="display: inline;"><a href="#1">北部</a></li>
+											<li id="M" style="display: inline;"><a href="#2">中部</a></li>
+											<li id="S" style="display: inline;"><a href="#3">南部</a></li>
+											<li id="E" style="display: inline;"><a href="#4">東部</a></li>
 										</ul>
 									</div>
 									<div id="TotalN">
