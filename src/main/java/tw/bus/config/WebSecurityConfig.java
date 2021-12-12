@@ -52,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		 .tokenValiditySeconds(86400) 			// 設定有效時間(秒)
 		 .key("rememberMe-key") 				// 設定儲存的Cookie名稱
 		 .and()
-		 .logout().logoutSuccessUrl("/2")
+		 .logout().logoutSuccessUrl("/mainpage")
 		 .and()
 		 .csrf().disable() 						// 為不使用CSRF防跨站請求偽造防護(未使用)(有使用)要在登錄和註銷表單中添加${_csrf.token}。
 		 .formLogin() 							//formLogin(): 啟用Spring Security預設的登入頁面
