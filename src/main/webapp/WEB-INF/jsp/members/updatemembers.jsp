@@ -402,11 +402,19 @@ option{
 			<span id="minespan">
 			<button id="changepasswordtest" onclick='passwordcheckclick()' class="primary-btn" style="border-radius: 12px;width: 200px; background-color: darkslategray">修改密碼</button></span></th></tr>
 		<tr>
-			<td style="background-color: white;text-align:center;">電子郵件:&emsp;${members.email}</td></tr><tr><td style="background-color: white;text-align:center;">姓名:&emsp;${members.membername}</td></tr>
+			<td style="background-color: white;text-align:center;">電子郵件:&emsp;${members.email}</td>
+		</tr>
 		<tr>
-			<td style="background-color: white;text-align:center;">性別:&emsp;${members.gender}</td><tr><td style="background-color: white;text-align:center;">年齡層:&emsp;${members.age}</td></tr>
+			<td style="background-color: white;text-align:center;">姓名:&emsp;${members.membername}</td>
+		</tr>
 		<tr>
-			<td style="background-color: white;text-align:center;">居住地:&emsp;${members.adress}</td></tr>
+			<td style="background-color: white;text-align:center;">性別:&emsp;${members.gender}</td>
+		<tr>
+		<td style="background-color: white;text-align:center;">年齡層:&emsp;${members.age}</td>
+		</tr>
+		<tr>
+			<td style="background-color: white;text-align:center;">居住地:&emsp;${members.adress}</td>
+		</tr>
 		</table>
 	</div>
 	</div>

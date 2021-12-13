@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,6 +40,7 @@ public class BookTicketController {
 	private Routeprice2Service priceService;
 	private Seat2Service seatService;
 	private EmailSenderService senderService;
+	
 
 	@Autowired
 	public BookTicketController(Memberorder2Service moService, Totalbus2Service totalService,
@@ -225,6 +227,7 @@ public class BookTicketController {
 						"</table></body></html>";
 			}
 
+			
 			
 			senderService.sendMineEmail(useremail, "無事坐BUS 訂票成功", text);
 			countOrderid++; //新增成功，且寄完email後

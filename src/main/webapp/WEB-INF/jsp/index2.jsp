@@ -762,6 +762,16 @@ input:hover {
                 </div>
             </div>
         </div>
+		<c:choose>
+			<c:when test='${empty members.membername}'>
+				<li class="menu-has-children"><a href="/framePage2">熱門目的地
+				</a></li>
+			</c:when>
+			<c:when test='${! empty members.membername}'>
+				<li class="menu-has-children"><a href="/framePage">熱門目的地
+				</a></li>	
+			</c:when>
+		</c:choose>
     </div>
 
     <!-- End popular-destination Area -->
