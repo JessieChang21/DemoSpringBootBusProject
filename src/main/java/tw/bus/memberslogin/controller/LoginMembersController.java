@@ -11,6 +11,7 @@ import java.security.Principal;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -54,6 +55,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import tw.bus.announcemen.model.Announcement;
+import tw.bus.announcemen.model.AnnouncementService;
 import tw.bus.members.model.EmailSenderService;
 import tw.bus.members.model.Members;
 import tw.bus.members.model.MembersService;
@@ -79,6 +82,9 @@ public class LoginMembersController {
 	
 	@Autowired
 	private EmailSenderService senderService;
+	
+	@Autowired
+	private AnnouncementService announcementService;
 
 	ServletContext context;
 
@@ -336,12 +342,15 @@ public class LoginMembersController {
 //	}
 	
 	@GetMapping("/web")
-	public String emailGetMembersName(Authentication authentication ,HttpSession session) {
+	public String emailGetMembersName(Authentication authentication ,HttpSession session,
+			Model m) {
 		
 		System.out.println("hi~/web");
 		System.out.println(authentication.getName());
 		
 		Members members = mService.findByEmail(authentication.getName());
+		List<Announcement> list = announcementService.findtop3();
+		m.addAttribute("list",list);
 		System.out.println("member = " + members);
 		session.setAttribute("members",members);
 		return "index2";		

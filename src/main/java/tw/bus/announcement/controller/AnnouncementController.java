@@ -102,12 +102,12 @@ public class AnnouncementController {
 		m.addAttribute("list",list);
 		return "/index2";
 	}
-	@GetMapping("/2")
-	public String findtop3_2(Model m) {
-		List<Announcement> list = announcementService.findtop3();
-		m.addAttribute("list",list);
-		return "/index2";
-	}
+//	@GetMapping("/2")
+//	public String findtop3_2(Model m) {
+//		List<Announcement> list = announcementService.findtop3();
+//		m.addAttribute("list",list);
+//		return "/index2";
+//	}
 	
 	
 	
