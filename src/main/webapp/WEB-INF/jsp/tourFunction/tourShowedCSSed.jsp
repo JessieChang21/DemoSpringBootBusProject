@@ -131,7 +131,7 @@
 
 #TourTable {
 	margin-top:10px;
-	margin-left: 210px;
+	margin-left: 300px;
 	margin-right: auto;
 	text-align: left;
 }
@@ -157,6 +157,7 @@
 <meta charset="UTF-8">
 <!-- Site Title -->
 <title>旅遊套票</title>
+<link rel="icon" href="images/bus.svg" type="image/x-icon" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 <link
