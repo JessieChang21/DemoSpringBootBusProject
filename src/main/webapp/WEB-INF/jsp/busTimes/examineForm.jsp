@@ -143,7 +143,10 @@
 									     <tr align='center'>
 									     	 <td colspan="2">
 									     	 <form:hidden path="managerName" value = "${employee.employeeName}"/>
-									     	 
+									     	 <form:hidden path="initialStation" value = "${tempBus.initialStation}"/>
+									      	<form:hidden path="finalStation" value = "${tempBus.finalStation}"/>
+									      	<form:hidden path="travelTime" value = "${tempBus.travelTime}"/>
+									      	<form:hidden path="toExamineDate"/>
 									     	 <input type="submit" name="pass" value="通過新增" class="btn btn-primary" onclick="return(confirm('是否確認要通過新增申請？'))">
 									        &emsp;&emsp;&emsp;<input type="submit" name="nopass" value="退回" class="btn btn-danger" onclick="return(confirm('是否確認要退回申請？'))"></td>
 									     </tr>

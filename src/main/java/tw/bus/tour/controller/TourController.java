@@ -38,7 +38,7 @@ public class TourController {
 		m.addAttribute("crdate",dateStr);
 		m.addAttribute("TourList", tService.findAll());
 		m.addAttribute("RoutesList",tService.findRoutes());
-		return "/tourFunction/tourManagedCSSTest";
+		return "/tourFunction/tourManagedCSSed";
 	}
 	@PostMapping(path="/tourDelete")
 	public String processDeleteById(Integer editId , Model m) {
@@ -90,6 +90,12 @@ public class TourController {
 			@RequestParam("area") String area,
 			@RequestParam("NMSE") Integer nmse,
 			Model m) {
+		Date date = new Date();
+		System.out.println(date);
+		DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String dateStr = sdf.format(date).substring(0,10);
+		System.out.println(dateStr);
+		m.addAttribute("crdate",dateStr);
 //		String area = "臺北市";
 		m.addAttribute("TourList", tService.findAll());
 		System.out.println(tService.findAll());
@@ -97,6 +103,6 @@ public class TourController {
 		m.addAttribute("AreaList",rService.findByArea(area));
 		m.addAttribute("Area", area);
 		m.addAttribute("NMSE", nmse);
-		return "/tourFunction/tourShowedFunction";
+		return "/tourFunction/tourShowedCSSed";
 	}
 }

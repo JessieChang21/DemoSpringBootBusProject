@@ -19,4 +19,7 @@ public interface RouteRepository extends JpaRepository<Routes, String> {
 	
 	@Query(value = "select distinct tripname FROM ROUTES r", nativeQuery = true)
 	public List<String> findDisTripName();
+	
+	@Query(value = "select top 1 * FROM ROUTES r order by routeId DESC", nativeQuery = true)
+	public Routes findTopOrderByRouteIdDesc();
 }

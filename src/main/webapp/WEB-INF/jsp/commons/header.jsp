@@ -32,7 +32,12 @@
 			</div>
 			<nav id="nav-menu-container">
 				<ul class="nav-menu">
-					<li><a href="/mainpage">首頁</a></li>
+					<li><a href="/2">首頁</a></li>
+					<li><a href="/showmap">地圖查詢</a></li>
+					<li class="menu-has-children"><a href="">優惠活動</a>
+						<ul>
+							<li><a href="/tourpackages?area=%E8%87%BA%E5%8C%97%E5%B8%82&NMSE=1">旅遊套票</a></li>
+						</ul></li>
 					<li><a href="/showAnnouncement">最新消息</a>
 					<li><a href="">旅遊套票</a>
 					<li><a href="/showlostandfound">失物招領</a></li>

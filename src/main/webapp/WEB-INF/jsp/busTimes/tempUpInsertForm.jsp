@@ -223,6 +223,12 @@ function insertTime(){
 								      
 								      <tr align='center'>
 								      	 <td colspan="2">
+								      	 <form:hidden path="toExamineDate" value = "${tempBus.toExamineDate}"/>
+								         <form:hidden path="initialStation" value = "${tempBus.initialStation}"/>
+									      	<form:hidden path="finalStation" value = "${tempBus.finalStation}"/>
+									      	<form:hidden path="travelTime" value = "${tempBus.travelTime}"/>
+									      <form:hidden path="passDate"/>
+									      
 								      	 <input type="submit" name="toExamine" value="申請新增" class="btn btn-primary" onclick="return(confirm('是否確認要送出新增申請？'))">
 								      	 &emsp;&emsp;&emsp;
 								      	 <input type="submit" name="noWantNew" value="撤回申請" class="btn btn-warning" onclick="return(confirm('是否確認要撤回申請？'))">

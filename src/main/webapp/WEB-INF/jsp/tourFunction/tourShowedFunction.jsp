@@ -251,8 +251,6 @@
 
 			</div>
 		</div>
-		<div class="clearfix">4</div>
-		<div class="footer">5</div>
 	</div>
 </body>
 <script>
