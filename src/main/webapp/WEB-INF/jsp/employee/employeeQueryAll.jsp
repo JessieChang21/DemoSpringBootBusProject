@@ -70,7 +70,7 @@
 						    	table.append("<td>駕駛員</td>");
 						    }
 			    	        //table.append("<td>"+ n.jobid +"</td>");
-			    	        if($.trim(n.jobid) == "1"){
+			    	        if($.trim(n.rankid) == "1"){
 						    	table.append("<td>專員</td>");
 						    }else{
 						    	table.append("<td>經理</td>");
