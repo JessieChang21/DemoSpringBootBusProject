@@ -23,19 +23,25 @@
 <link href="/ServerSide/css/sb-admin-2.min.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
-var indexPage = 1;
+var indexPage_Y = 1;
+var indexPage_N = 1;
 $(document).ready(function() {
-	load(indexPage);
+	load_Y(indexPage_Y);
+	load_N(indexPage_N);
 });
-function change(page) {
-	indexPage = page;
-	load(indexPage);
+function change_Y(page) {
+	indexPage_Y = page;
+	load_Y(indexPage_Y);
 }
-function load(indexPage){
+function change_N(page) {
+	indexPage_N = page;
+	load_N(indexPage_N);
+}
+function load_Y(indexPage){
 	var id = $('#id_h').val();
 	   $.ajax({
 		   type:'Post',
-		   url:'/GetHoliday/queryByPage/' + indexPage,
+		   url:'/GetHoliday/QueryAllbyId_Y/' + indexPage_Y,
 		   dataType:'JSON',
 		   contentType:'application/json',
 		   success: function(data){
@@ -44,28 +50,58 @@ function load(indexPage){
 			   console.log('json:' + json);
 			   console.log('id:'+id);
 			   
-			   $('#showholiday').empty("");
+			   $('#showholiday_Y').empty("");
 			   if(data==null){
 				   $('table').prepend("<tr><td colspan='2'>查無請假資料</td></tr>");;
 			   }else{
-				   var table1 = $('#showholiday');
-				   table1.append("<tr id='etitle'><th>請假日期</th><th>請假時段</td><th>代班員工</th><th>註銷</th></tr>");
-				   //$.each(data, function(i,n){
+				   var table1 = $('#showholiday_Y');
+				   table1.append("<tr id='etitle'><th>請假日期</th><th>請假時段</td><th>代班員工</th></tr>");
 					for(let i=0;i<data.length;i++){
-					   //if(id == n.employeeid){
 					   console.log('success:' + data[i].substituteid);
 					   var tr = "<tr align='center'>" + 
-					   "<td>" + data[i].date + "</td>" +
-					   "<td>" + data[i].timeperiod + "</td>" +
+					   "<td>" + data[i].pk.date + "</td>" +
+					   "<td>" + data[i].pk.timeperiod + "</td>" +
 					   "<td>" + data[i].substituteid + "</td>"
 					   "</tr>";
-					   if(data[i].release == "Y"){
-						   tr +=   "<td><a href='delete?employeeid=" + data[i].employeeid + "&date="+data[i].date+"&timeperiod="+data[i].timeperiod+"'>註銷</a></td>"
+					   tr += "</tr>";
+					   table1.append(tr); 
+				   }
+			   }
+			   }
+	   });
+	   }
+function load_N(indexPage){
+	var id = $('#id_h').val();
+	   $.ajax({
+		   type:'Post',
+		   url:'/GetHoliday/QueryAllbyId_N/' + indexPage_N,
+		   dataType:'JSON',
+		   contentType:'application/json',
+		   success: function(data){
+			   console.log('success:' + data[0]);
+			   var json = JSON.stringify(data,null,4);
+			   console.log('json:' + json);
+			   console.log('id:'+id);
+			   
+			   $('#showholiday_N').empty("");
+			   if(data==null){
+				   $('table').prepend("<tr><td colspan='2'>查無請假資料</td></tr>");;
+			   }else{
+				   var table1 = $('#showholiday_N');
+				   table1.append("<tr id='etitle'><th>請假日期</th><th>請假時段</td><th>代班員工</th><th>註銷</th></tr>");
+					for(let i=0;i<data.length;i++){
+					   console.log('success:' + data[i].substituteid);
+					   var tr = "<tr align='center'>" + 
+					   "<td>" + data[i].pk.date + "</td>" +
+					   "<td>" + data[i].pk.timeperiod + "</td>" +
+					   "<td>" + data[i].substituteid + "</td>"
+					   "</tr>";
+					   if(data[i].release == "N"){
+						   tr +=   "<td><a href='delete?employeeid=" + data[i].pk.employeeid + "&date="+data[i].pk.date+"&timeperiod="+data[i].pk.timeperiod+"'>註銷</a></td>"
 			           }
 					   tr += "</tr>";
 					   table1.append(tr); 
-					   //}
-				   }//);
+				   }
 			   }
 			   }
 	   });
@@ -92,28 +128,46 @@ function load(indexPage){
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">Tables</h1>
+					<h1 class="h3 mb-2 text-gray-800">請假查詢與註銷</h1>
 					<p class="mb-4">
-						DataTables is a third party plugin that is used to generate the
-						demo table below. For more information about DataTables, please
-						visit the <a target="_blank" href="https://datatables.net">official
+						<a target="_blank" href="https://datatables.net">official
 							DataTables documentation</a>.
 					</p>
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">請假查詢與銷假</h6>
+							<h6 class="m-0 font-weight-bold text-primary">主管已放行</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-		<table id="showholiday" class="table table-bordered" width="100%" cellspacing="0"></table>
+		<table id="showholiday_Y" class="table table-bordered" width="100%" cellspacing="0"></table>
 		<table id="showpage">
 			<tr>
 				<td>Total Pages:${totalPages} Total Records:${totalElements}</td>
 				<td id="feedbackupdate" align="center" />
 				<td colspan="3" align="right">Previous <c:forEach var="i" begin="1" end="${totalPages}" step="1">
-						<button id="myPage" value="${i}" onclick="change(${i})">${i}</button>
+						<button id="myPage" value="${i}" onclick="change_Y(${i})">${i}</button>
+					</c:forEach>Next
+				</td>
+			</tr>
+		</table>
+		</div>
+						</div>
+					</div>
+		<div class="card shadow mb-4">
+						<div class="card-header py-3">
+							<h6 class="m-0 font-weight-bold text-primary">尚在處理中</h6>
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+		<table id="showholiday_N" class="table table-bordered" width="100%" cellspacing="0"></table>
+		<table id="showpage">
+			<tr>
+				<td>Total Pages:${totalPages} Total Records:${totalElements}</td>
+				<td id="feedbackupdate" align="center" />
+				<td colspan="3" align="right">Previous <c:forEach var="i" begin="1" end="${totalPages}" step="1">
+						<button id="myPage" value="${i}" onclick="change_N(${i})">${i}</button>
 					</c:forEach>Next
 				</td>
 			</tr>

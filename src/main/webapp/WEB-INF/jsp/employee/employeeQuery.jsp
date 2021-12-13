@@ -193,27 +193,21 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">Tables</h1>
+					<h1 class="h3 mb-2 text-gray-800">員工資料查詢</h1>
 					<p class="mb-4">
-						DataTables is a third party plugin that is used to generate the
-						demo table below. For more information about DataTables, please
-						visit the <a target="_blank" href="https://datatables.net">official
+						<a target="_blank" href="https://datatables.net">official
 							DataTables documentation</a>.
 					</p>
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">DataTables
-								Example</h6>
+							<h6 class="m-0 font-weight-bold text-primary">員工基本資料</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
 	<form action="employeeDelete2" method="post">
 		<table class="table table-bordered" id="showemployees"width="100%" cellspacing="0">
-			<tr>
-				<td colspan='2'><h3>員工基本資料</h3></td>
-			</tr>
 			<tr>
 				<td><label>員工編號</label></td>
 				<td>${pid}</td>
@@ -237,8 +231,8 @@
 			</tr>
 			<tr>
 				<td colspan='2'>
-					<button id='update' type='button' onclick="updateemployee()">update</button>
-					<button id='delete' type='button' onclick="deleteemployee()">delete</button>
+					<button id='update' type='button' onclick="updateemployee()">修改</button>
+					<button id='delete' type='button' onclick="deleteemployee()">刪除</button>
 					<button><a href="<c:url value='/employee/employeemain.controller'/> " >回前頁</a></button>
 				</td>
 			</tr>
