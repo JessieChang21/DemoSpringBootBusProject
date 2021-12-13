@@ -131,7 +131,8 @@ span.error {
 <!-- meta character set -->
 <meta charset="UTF-8">
 <!-- Site Title -->
-<title>Travel</title>
+<title>登入</title>
+<link rel="icon" href="images/bus.svg" type="image/x-icon" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 <link
@@ -184,69 +185,7 @@ function forgetpassword(){
 </script>
 </head>
 <body>
-	<header id="header">
-		<div class="header-top">
-			<div class="container">
-				<div class="row align-items-center">
-					<div class="col-lg-6 col-sm-6 col-6 header-top-left">
-						<ul>
-							<li><a href="#">Visit Us</a></li>
-							<li><a href="#">Buy Tickets</a></li>
-						</ul>
-					</div>
-					<div class="col-lg-6 col-sm-6 col-6 header-top-right">
-						<div class="header-social">
-							<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
-								class="fa fa-twitter"></i></a> <a href="#"><i
-								class="fa fa-dribbble"></i></a> <a href="#"><i
-								class="fa fa-behance"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="container main-menu">
-			<div class="row align-items-center justify-content-between d-flex">
-				<div id="logo">
-					<a href="/2"><span
-						style="color: #f8b600; font-family: Microsoft JhengHei; font-weight: bold; font-size: 1.8em; text-align: end; font-style: italic;"><i
-							class="fas fa-bus-alt"></i> 無事坐Bus</span></a>
-				</div>
-				<nav id="nav-menu-container">
-					<ul class="nav-menu">
-						<li><a href="/2">首頁</a></li>
-						<li class="menu-has-children"><a href="/members/membersmain.controller">優惠活動</a>
-							<ul>
-								<li><a href="">旅遊套票</a></li>
-								
-							</ul></li>
-						<li class="menu-has-children"><a href="/showAnnouncement">最新消息</a>
-							<ul>
-								<li><a href="/showAnnouncement">最新消息</a></li>
-								<li><a href="/showlostandfound">失物招領</a></li>
-
-							</ul></li>
-						<li><c:choose>
-								<c:when test='${empty members.membername}'>
-									<li class="menu-has-children"><a href="/register/membersregister.controller">註冊</a></li>
-								</c:when>
-								<c:when test='${! empty members.membername}'>
-									<li class="menu-has-children"><a href="#"><img height='30px'width='30px' Style="border-radius:50%"
-                src="<c:url value='/getMemberImage?id=${members.id}' />">&ensp;${members.membername}
-											,您好</a>
-										<ul>
-											<li><a href="/updatemembers.controller">會員資料</a></li>
-											<li><a href="/logout">登出</a></li>
-										</ul></li>
-								</c:when>
-							</c:choose></li>
-					</ul>
-				</nav>
-				<!-- #nav-menu-container -->
-			</div>
-		</div>
-	</header>
-	<!-- #header -->
+	<c:import url="/WEB-INF/jsp/commons/header.jsp" />
 
 	<!-- start banner Area -->
 	<section class="banner-area relative">
