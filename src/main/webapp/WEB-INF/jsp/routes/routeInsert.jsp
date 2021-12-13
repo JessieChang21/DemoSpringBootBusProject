@@ -185,7 +185,7 @@
     $(document).ready(function(){
     	$("#showroutes tr:even").addClass('even');
     	
-    	if(rank!=02){
+    	if(rank!=2){
     		var div = document.getElementById('showAll');
     		div.innerHTML='';
     		div.innerHTML="<div align='center' class='card-header py-3'><h3 class='m-0 font-weight-bold text-primary'>"+
