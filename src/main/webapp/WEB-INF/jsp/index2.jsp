@@ -441,14 +441,22 @@ input:hover {
                     <button class="nav-link active" id="route-tab" data-bs-toggle="tab" data-bs-target="#route" type="button"
                         role="tab" aria-controls="route" aria-selected="true">依起訖站查詢</button>
                     </li>
-                    <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="station-tab" data-bs-toggle="tab" data-bs-target="#station" type="button"
-                        role="tab" aria-controls="station" aria-selected="false">依關鍵字查詢</button>
-                    </li>
+                    
                     <li class="nav-item" role="presentation">
                     <button class="nav-link" id="map-tab" data-bs-toggle="tab" data-bs-target="#map" type="button" role="tab"
                         aria-controls="map" aria-selected="false">依地圖查詢</button>
                     </li>
+                    
+                    <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="station-tab" data-bs-toggle="tab" data-bs-target="#station" type="button"
+                        role="tab" aria-controls="station" aria-selected="false">依關鍵字查詢</button>
+                    </li>
+                    
+<!--                     <li class="nav-item" role="presentation"> -->
+<!--                     <button class="nav-link" id="map-tab" data-bs-toggle="tab" data-bs-target="#map" type="button" role="tab" -->
+<!--                         aria-controls="map" aria-selected="false">依地圖查詢</button> -->
+<!--                     </li> -->
+                    
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="station-tab" onclick="window.open('/showmap', '_blank')">路線總覽</button>
                     </li>

@@ -7,6 +7,9 @@
 <html lang="zxx" class="no-js">
 <head>
 <style type="text/css">
+#banner{
+    background-image: url("/images/queryRoutes/thumb.jpg");
+}
 table {
 	margin: auto;
 	width: 70%;
@@ -429,7 +432,7 @@ option{
 	<!-- #header -->
 	<c:import url="/WEB-INF/jsp/commons/header.jsp" />
 	<!-- start banner Area -->
-	<section class="about-banner relative">
+	<section class="about-banner relative" id="banner">
 		<div class="overlay overlay-bg"></div>
 		<div class="container">
 			<div class="row d-flex align-items-center justify-content-center">
