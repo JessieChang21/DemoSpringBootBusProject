@@ -32,7 +32,7 @@
 			</div>
 			<nav id="nav-menu-container">
 				<ul class="nav-menu">
-					<li><a href="/2">首頁</a></li>
+					<li><a href="/mainpage">首頁</a></li>
 <!-- 					<li><a href="/showmap">地圖查詢</a></li> -->
 <!-- 					<li class="menu-has-children"><a href="">優惠活動</a> -->
 <!-- 						<ul> -->
