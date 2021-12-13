@@ -107,7 +107,8 @@ input:hover {
 <!-- meta character set -->
 <meta charset="UTF-8">
 <!-- Site Title -->
-<title>Travel</title>
+<title>無事坐Bus</title>
+<link rel="icon" href="images/bus.svg" type="image/x-icon" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700"
