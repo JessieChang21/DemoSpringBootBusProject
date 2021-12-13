@@ -112,7 +112,8 @@
 #TourName a {
 	margin: 5px;
 	background-color: #ffe44b !important;
-	font-size: larger;
+/* 	font-size: larger; */
+	font-weight: 900;
 }
 
 #TourQuery {
@@ -123,6 +124,7 @@
 	background-color: #F5F5F6;
 	border: 0px solid black !important;
 	color: green !important;
+	font-weight: 900;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -154,7 +156,7 @@
 <!-- meta character set -->
 <meta charset="UTF-8">
 <!-- Site Title -->
-<title>超值旅遊套票</title>
+<title>旅遊套票</title>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 <link
@@ -186,7 +188,7 @@
 					<h1 class="text-white">旅遊套票</h1>
 					<p class="text-white link-nav">
 						<a href="/mainpage">首頁 </a> <span class="lnr lnr-arrow-right"></span> <a
-							href="/tourpackages?area=臺北市&NMSE=1">優惠活動</a>
+							href="/tourpackages?area=臺北市&NMSE=1">旅遊套票</a>
 					</p>
 					<div class="wrap">
 						<div class="header">
