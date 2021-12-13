@@ -35,13 +35,13 @@ table tr th:last-child, table tr td:last-child { /*設定table右邊邊框*/
 	border-right: 2px solid #eaeaea;
 }
 
-table tr td:first-child, table tr td:nth-child(2), table tr td:nth-child(3),
+table tr td:first-child, table tr td:nth-child(2), table tr td:nth-child(3),table tr td:nth-child(4),
 	table tr td:last-child { /*設定table表格每列底部邊框*/
 	border-bottom: 2px solid #eaeaea;
 }
 
 table tr:last-child td:first-child, table tr:last-child td:nth-child(2),
-	table tr:last-child td:nth-child(3), table tr:last-child td:last-child
+	table tr:last-child td:nth-child(3),td:nth-child(4), table tr:last-child td:last-child
 	{ /!*設定table表格最後一列底部邊框 *!/ border-bottom:2pxsolid#000;
 	
 }
@@ -173,11 +173,12 @@ function pageIn() {
 				   $('table').prepend("<tr><td colspan='2'>暫無資料</td></tr>");;
 			   }else{
 				   var table = $('#showlaf');
-				   table.append("<tr height='50px'><th width='150'><font color='black'>巴士編號</th><th width='150'><font color='black'>物品名稱</th><th width='150'><font color='black'>拾獲地點(站別)</th><th width='150'><font color='black'>拾獲時間</th></tr>");
+				   table.append("<tr height='50px'><th width='40'><font color='black'>編號</th><th width='60'><font color='black'>巴士編號</th><th width='60'><font color='black'>物品名稱</th><th width='60'><font color='black'>拾獲地點(站別)</th><th width='60'><font color='black'>拾獲時間</th></tr>");
 				   
 				   $.each(data.list, function(i,n){
 					   
 					   var tr = "<tr height='50px' align='center'>" + 
+					   			"<td><font color='black'>" + n.id  + "</td>" +
 					            "<td><font color='black'>" + n.itbussnumber  + "</td>" +
 					            "<td><font color='black'>" + n.itname +  "</td>"+
 					            "<td><font color='black'>" +  n.itplace + "</td>" +
