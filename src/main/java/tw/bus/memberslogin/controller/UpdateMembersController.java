@@ -32,6 +32,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import tw.bus.members.model.CityService;
 import tw.bus.members.model.EmailSenderService;
+import tw.bus.announcemen.model.Announcement;
+import tw.bus.announcemen.model.AnnouncementService;
 import tw.bus.members.model.AdressBean;
 import tw.bus.members.model.AdressRepository;
 import tw.bus.members.model.AdressService;
@@ -70,13 +72,15 @@ public class UpdateMembersController {
 	
 	FrameBeanService framebeanService;
 	
+
+	AnnouncementService announcementService;
 	
 	ServletContext context;
 	
 	@Autowired
 	public UpdateMembersController(CityService aService, AreaService areaService, AdressService adressService,
 			UpdateMemberService uService,AgelevelService agelevelService, EmailSenderService senderService,
-			FrameBeanService framebeanService) {
+			FrameBeanService framebeanService,AnnouncementService announcementService) {
 		this.aService = aService;
 		this.areaService = areaService;
 		this.adressService = adressService;
@@ -84,6 +88,7 @@ public class UpdateMembersController {
 		this.agelevelService = agelevelService;
 		this.senderService = senderService;
 		this.framebeanService = framebeanService;
+		this.announcementService = announcementService;
 	}
 
 
@@ -233,7 +238,8 @@ public class UpdateMembersController {
 			ex.printStackTrace();
 			return "members/updatemembers";
 		}  
-	
+		List<Announcement> list = announcementService.findtop3();
+		model.addAttribute("list",list);
 			return "index2";
 	}
 	
