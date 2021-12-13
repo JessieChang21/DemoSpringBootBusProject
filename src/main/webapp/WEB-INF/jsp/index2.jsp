@@ -276,7 +276,7 @@ select.form-select {
 
 /* ============3. 地圖查詢 END============= */
 /* ============from index2============= */
-table {
+#table_wrap {
 	margin: auto;
 	width: 70%;
 	border-collapse: collapse;
@@ -291,48 +291,48 @@ table {
 	border: 2px #000;
 }
 
-table thead tr, table tbody tr {
+#table_wrap>thead tr, #table_wrap>tbody tr {
 	height: 50px;
 	line-height: 50px;
 	/*background-color: pink;*/
 }
 
-table tr th:first-child, table tr td:first-child { /*設定table左邊邊框*/
+#table_wrap>tr th:first-child,#table_wrap>tr td:first-child { /*設定table左邊邊框*/
 	border-left: 2px solid #eaeaea;
 }
 
-table tr th:last-child, table tr td:last-child { /*設定table右邊邊框*/
+#table_wrap>tr th:last-child, #table_wrap>tr td:last-child { /*設定table右邊邊框*/
 	border-right: 2px solid #eaeaea;
 }
 
-table tr td:first-child, table tr td:nth-child(2), table tr td:nth-child(3),
+#table_wrap>tr td:first-child, #table_wrap>tr td:nth-child(2), #table_wrap>tr td:nth-child(3),
 	table tr td:last-child { /*設定table表格每列底部邊框*/
-	border-bottom: 2px solid #eaeaea;
+/* 	border-bottom: 2px solid #eaeaea; */
 }
 
-table tr:last-child td:first-child, table tr:last-child td:nth-child(2),
-	table tr:last-child td:nth-child(3), table tr:last-child td:last-child
-	{ /!*設定table表格最後一列底部邊框 *!/ border-bottom:2pxsolid#000;
+#table_wrap>tr:last-child td:first-child, #table_wrap>tr:last-child td:nth-child(2),
+	table tr:last-child td:nth-child(3), table tr:last-child td:last-child{ 
+/* 	border-bottom:2px solid #000; */
 	
 }
 
-table tr th {
+#table_wrap tr th {
 	background-color: orange;
 }
 
-table tr:first-child th:first-child {
+#table_wrap tr:first-child th:first-child {
 	border-top-left-radius: 12px;
 }
 
-table tr:first-child th:last-child {
+#table_wrap tr:first-child th:last-child {
 	border-top-right-radius: 12px;
 }
 
-table tr:last-child td:first-child {
+#table_wrap tr:last-child td:first-child {
 	border-bottom-left-radius: 12px;
 }
 
-table tr:last-child td:last-child {
+#table_wrap tr:last-child td:last-child {
 	border-bottom-right-radius: 12px;
 }
 
@@ -372,6 +372,7 @@ input:hover {
 	font-weight: bold;
 }
 /* ============from index2 END============= */
+
 </style>
 </head>
 <body>
@@ -416,7 +417,7 @@ input:hover {
 <div id="queryMap"></div>
     <div class="overlay overlay-bg"></div>
         <div id="leftslogn" class="col-lg-6 col-md-6 banner-left leftslogn">
-        	<h6 class="text-white">踏上你的旅程</h6>
+        	<h6 class="text-white" style="font-size:18px;font-style: italic;">踏上你的旅程...</h6>
             <h1 class="text-white">台灣巴士行</h1>
             <p class="text-white"></p>
             <p class="primary-btn text-uppercase" id="getstarted">Get Started</p>

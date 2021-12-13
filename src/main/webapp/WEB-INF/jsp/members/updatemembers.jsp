@@ -315,7 +315,7 @@ option{
 				<div class="about-content col-lg-12">
 					<h1 class="text-white">會員中心</h1>
 					<p class="text-white link-nav">
-						<a href="/2">首頁 </a> <span class="lnr lnr-arrow-right"></span> <a
+						<a href="/mainpage">首頁 </a> <span class="lnr lnr-arrow-right"></span> <a
 							href="/showAnnouncement"> 會員中心</a>
 					</p>
 				</div>

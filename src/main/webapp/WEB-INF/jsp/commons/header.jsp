@@ -36,7 +36,7 @@
 					<li><a href="/showAnnouncement">最新消息</a>
 					<li><a href="">旅遊套票</a>
 					<li><a href="/showlostandfound">失物招領</a></li>
-					<li><a href="/showmap">地圖查詢</a></li>
+					<li><a href="/showmap">路線總覽</a></li>
 					
 
 					<li><c:choose>
