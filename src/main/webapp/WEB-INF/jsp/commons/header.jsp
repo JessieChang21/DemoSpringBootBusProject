@@ -40,6 +40,16 @@
 						</ul></li>
 					<li><a href="/showAnnouncement">最新消息</a>
 					<li><a href="">旅遊套票</a>
+					<li><c:choose>
+							<c:when test='${empty members.membername}'>
+								<li class="menu-has-children"><a href="/framePage2">熱門目的地
+								</a></li>
+							</c:when>
+							<c:when test='${! empty members.membername}'>
+								<li class="menu-has-children"><a href="/framePage">熱門目的地
+								</a></li>	
+							</c:when>
+						</c:choose></li>
 					<li><a href="/showlostandfound">失物招領</a></li>
 					<li><a href="/showmap">路線總覽</a></li>
 					

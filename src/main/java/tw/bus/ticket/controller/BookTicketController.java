@@ -43,7 +43,9 @@ public class BookTicketController {
 	private Routeprice2Service priceService;
 	private Seat2Service seatService;
 	private EmailSenderService senderService;
+
 	private MembersService membersService;
+
 
 
 	@Autowired
@@ -234,6 +236,7 @@ public class BookTicketController {
 						"</table></body></html>";
 			}
 
+			
 			
 			senderService.sendMineEmail(useremail, "無事坐BUS 訂票成功", text);
 			countOrderid++; //新增成功，且寄完email後
