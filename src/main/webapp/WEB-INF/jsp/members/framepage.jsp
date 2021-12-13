@@ -171,7 +171,7 @@ option{
 </style>
 <meta charset="UTF-8">
 <title>熱門景點</title>
-
+<link rel="icon" href="images/bus.svg" type="image/x-icon" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Favicon-->
