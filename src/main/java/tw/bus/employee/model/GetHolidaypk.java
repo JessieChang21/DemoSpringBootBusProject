@@ -2,8 +2,10 @@ package tw.bus.employee.model;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import javax.persistence.Embeddable;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+@Embeddable
 public class GetHolidaypk implements Serializable {
 	private String employeeid;
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")

@@ -100,8 +100,12 @@ function insertTime(){
  	theSeleM.append(op2);
 }
 
-
-
+// function setKey(){
+// 	console.log("click");
+// 	$("#toExamineNote").attr("value","示範申請");
+// 	$("#note").attr("value","假日運行");
+// 	//$('#showroutes').remove('tr');
+// }
     
 </script>
 </head>
@@ -152,7 +156,7 @@ function insertTime(){
 								      </tr>
 								      <tr>
 								        <td><form:label path="initialTime">發車時間:</form:label></td>
-								        <td id="initialTimech"><input id='initialTimeBefore' type='hidden' value='${tempBus.initialTime}'>
+								        <td id="initialTimech">
 										<select id = "idSelectHour"></select>:
 								        <select id = "idSelectMin"></select>
 								        <span id="timeError" style='color:red; font-size:8px;'><input type='hidden' name='initialTime' value='${tempBus.initialTime}'/>${errors.initialTimeE}</span>
@@ -164,7 +168,7 @@ function insertTime(){
 								      </tr>
 								      <tr>
 								         <td><form:label path="note">班次備註:</form:label></td>
-								         <td><form:textarea path = "note" rows = "3" cols = "30" /></td>
+								         <td><form:textarea path = "note" rows = "3" cols = "30" id="note"/></td>
 								      </tr>
 								      <tr>
 								         <td><form:label path="note">運行日:</form:label></td>
@@ -175,13 +179,16 @@ function insertTime(){
 								      </tr>
 								      <tr>
 								         <td><form:label path="toExamineNote">申請說明:</form:label></td>
-								         <td><form:textarea path="toExamineNote" rows = "5" cols = "30"/></td>
+								         <td><form:textarea path="toExamineNote" rows = "5" cols = "30"  id="toExamineNote"/></td>
 								      </tr>
 								      
 								      <tr align='center'>
 								      	 <td colspan="2">
+								      	 <form:hidden path="toExamineDate"/>
 								      	 <form:hidden path="empolyeeName" value = "${employee.employeeName}"/>
 								      	 <input type="submit" name="toExamine" value="送出" onclick="return(confirm('是否確認要送出申請？'))" class='btn btn-primary'></td>
+<!-- 								      	<button type='button' id='newnew' onclick="setKey()" class="btn btn-warning">一鍵輸入</button> -->
+        
 								      </tr>
                                 </table>
                             </form:form>

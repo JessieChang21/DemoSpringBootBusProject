@@ -80,7 +80,10 @@
 							         <td>申請編號:</td><td>${bus.testBusNumber}</td>
 							      </tr>
 							   	  <tr>
-							         <td>車次編號:</td><td>${bus.busNumberPo}</td>
+							         <td>車次編號:</td><td>
+							         <c:if test="${bus.busNumberPo==null}">未有編號 </c:if>
+							         <c:if test="${bus.busNumberPo!=''}">${bus.busNumberPo}</c:if>
+							         </td>
 							      </tr>
 							      <tr>
 							         <td>路線編號:</td><td>${bus.routeId}</td>

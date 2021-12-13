@@ -149,6 +149,12 @@
 							      
 							      <tr align='center'>
 							      	 <td colspan="2">
+							      	 <form:hidden path="toExamineDate"/>
+							      	 <form:hidden path="passDate"/>
+								         <form:hidden path="initialStation" value = "${tempBus.initialStation}"/>
+									      	<form:hidden path="finalStation" value = "${tempBus.finalStation}"/>
+									      	<form:hidden path="travelTime" value = "${tempBus.travelTime}"/>
+									      
 							      	 <input type="submit" name="delete" value="申請刪除" class="btn btn-danger" onclick="return(confirm('是否確認要送出刪除申請？'))">
 							      	 &emsp;&emsp;&emsp;
 							      	 <input type="submit" name="noWant" value="撤回申請" class="btn btn-warning" onclick="return(confirm('是否確認要撤回申請？'))">

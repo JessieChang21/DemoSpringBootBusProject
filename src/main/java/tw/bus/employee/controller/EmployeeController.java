@@ -1,10 +1,13 @@
 package tw.bus.employee.controller;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
+import javax.mail.MessagingException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -95,7 +98,14 @@ public class EmployeeController {
 			@RequestParam("employeename") String employeename,
 			@RequestParam("gender") String gender,
 			@RequestParam("jobid") String jobid,
-			@RequestParam("rankid") String rankid) {
+			@RequestParam("rankid") String rankid,
+			Model m) {
+		Map<String, String> errors = new HashMap<String, String>();
+		m.addAttribute("errors", errors);
+		if(employeename == "") {
+			errors.put("errors", "請輸入員工姓名");
+			return "employee/employeeAdd";
+		}
 		Employee e = new Employee();
 		//e.setId(id);
 		String empid = eService.findMaxId();
@@ -125,7 +135,6 @@ public class EmployeeController {
 	@PostMapping("employeeUpdate") 
 	//@ResponseBody
 	public String processUpdateAction(@RequestBody Employee e) {
-
 		e.setPassword("0000");
 		e.setGroupid("1");
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -138,13 +147,16 @@ public class EmployeeController {
 		return "employee/employeeQueryAll";
 	}
 	
-	@PostMapping("employeeDelete") 
-	public String processDeleteAction(@RequestBody Employee e) {
-		eService.deleteEmployee(e);
+	@PostMapping("/employeeDelete/{id}") 
+	//@ResponseBody
+	public String processDeleteAction(@PathVariable("id") String id) throws MessagingException {
+		//eService.deleteEmployee(e);
+		System.out.println("id = " +id);
+		eService.deleteByEmployeeid(id);
 		//刪除員工資料的同時刪除員工的假期統計
 		Holiday h = new Holiday();
-		String empid = e.getId().toString();
-		h.setEmployeeid(empid);
+		//String empid = e.getId().toString();
+		h.setEmployeeid(id);
 		h.setTotalhours(56);
 		h.setLavehours(0);
 		hService.deleteHoliday(h);

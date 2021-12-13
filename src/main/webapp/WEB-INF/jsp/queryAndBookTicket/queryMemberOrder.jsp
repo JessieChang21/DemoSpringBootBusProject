@@ -19,13 +19,22 @@
 	border-collapse: collapse;
 	
 }
-
-#ordertable td {
-	width: 150px;
+#ordertable th{
+    background-color: darkslategray;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    border: 1px solid white;
+    width: 100px;
+    text-align: center;
+ 	font-size: 18px;
+}
+#ordertable tr td {
+	
+ 	width: 100px;
 	border: 1px solid black;
 	text-align: center;
 	font-weight: normal;
-	font-size: 16px;
+ 	font-size: 16px; 
 }
 /* CSS ============================================= */
 #sidea>a{
@@ -96,6 +105,31 @@ table tr:last-child td:last-child {
 	border-bottom-right-radius: 12px;
 }
 
+#orderrange{
+	width:75vw;
+	margin-left:23vw;
+}
+
+#deleteorder{
+	margin-top:1vw;
+	margin-left:64vw;
+}
+
+#orderid{
+	width:90px;
+}
+
+#memberOrder{
+	width:75vw;
+}
+#totalPrice{
+	font-size: 1.5em;
+	font-family: "Poppins", sans-serif;
+	font-weight: bold;
+	color:#f8b600;
+	margin-left:55vw;
+	margin-top:1vw;
+}
 </style>
 <!-- CSS ============================================= -->
 <link rel="stylesheet"
@@ -155,7 +189,7 @@ table tr:last-child td:last-child {
 	<BR />
 	<BR />
 	<BR />
-	<div style="height:100px; ">
+	<div style="height:100px;">
 	<div id="table_wrap" style="float: left; margin-left: 50px">
 		<table id="table_wrap">
 			<tr>
@@ -200,14 +234,15 @@ table tr:last-child td:last-child {
 				}
 				for (let i = 0; i < json.length; i++) {
 					$("#memberOrder").append(`<div id="` + json[i].orderid + `">`+
-										`<button type="button" class="primary-btn text-uppercase" name = "orderid" id="orderid"  value="`+ json[i].orderid +`">` + json[i].orderid  + `</botton>
+										`<button type="button" class="btn btn-warning" name = "orderid" id="orderid"  value="`+ json[i].orderid +`">` + json[i].orderid  + `</botton>
 										</div><br>`);
 				}
 							
 				$("button").on("click",function(){
 					var orderid = $(this).val();
-					$("table").remove();
-					
+					$("#"+orderid+">table").remove();
+					$("#"+orderid+">div").remove();
+					var totalPrice=0;
 					
 					$.ajax({
 						url : "/members/queryMemberOrderByOrderId/" + orderid,
@@ -219,19 +254,21 @@ table tr:last-child td:last-child {
 							var json = JSON.parse(str);
 							$("#"+orderid+"").append(`<table id = "ordertable">
 												<tr>
-													<td>訂票編號</td>
-													<td>車次編號</td>
-													<td>路線名稱</td>
-													<td>起站</td>
-													<td>迄站</td>
-													<td>乘車日期</td>
-													<td>發車時間</td>
-													<td>旅程時間</td>
-													<td>座位編號</td>
-													<td>票種</td>
-													<td>票價</td>
+													<th>訂票編號</th>
+													<th>車次編號</th>
+													<th>路線名稱</th>
+													<th>起站</th>
+													<th>迄站</th>
+													<th>乘車日期</th>
+													<th>發車時間</th>
+													<th>旅程時間</th>
+													<th>座位編號</th>
+													<th>票種</th>
+													<th>票價</th>
 						        				</tr></table>`);
+							
 							for (let i = 0; i < json.length; i++) {
+							totalPrice += json[i].price;
 							$("#"+orderid+"").append(`<table id = "ordertable">
 										        <tr>
 										        	<td>`+ json[i].orderid + `</td>
@@ -248,12 +285,16 @@ table tr:last-child td:last-child {
 										        </tr>
 											
 												</table>`);
+								
 							}
-							$("#deleteorder").remove();			
-							$("#"+orderid+"").append(`<button type="button" id="deleteorder" value="`+orderid+`">刪除此筆訂單</button>`);
+							$("#deleteorder").remove();
+							$("#"+orderid+"").append(`<div id="totalPrice">訂單總金額 : NT$ ` + totalPrice + `元整 </div>`);
+							$("#"+orderid+"").append(`<button type="button" id="deleteorder" value="`+orderid+`" class="btn btn-danger">刪除此筆訂單</button>`);
 								$("#deleteorder").click(function(){
 									var deleteorderid =$(this).val();
+									alert("確認刪除此筆訂單?");
 									$("#"+deleteorderid+"").remove();
+									
 									alert("訂單編號 "+deleteorderid+" 刪除成功!");
 									if($("#memberOrder:has(button)").length == 0){
 										$("#showOrder").html("您暫無訂單紀錄");

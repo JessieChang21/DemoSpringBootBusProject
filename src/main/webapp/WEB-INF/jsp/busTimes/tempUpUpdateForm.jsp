@@ -167,6 +167,10 @@ function insertTime(){
 								         <td><form:hidden path="testBusNumber"/>${tempBus.testBusNumber}</td>
 								      </tr>
 								      <tr>
+								         <td><form:label path="busNumberPo">車次編號:</form:label></td>
+								         <td><form:hidden path="busNumberPo"/>${tempBus.busNumberPo}</td>
+								      </tr>
+								      <tr>
 								         <td><form:label path="routeId">路線編號:</form:label></td>
 								         <td><form:hidden path="routeId"/>${tempBus.routeId}</td>
 								      </tr>
@@ -223,6 +227,12 @@ function insertTime(){
 								      
 								      <tr align='center'>
 								      	 <td colspan="2">
+								         <form:hidden path="toExamineDate" value = "${tempBus.toExamineDate}"/>
+								         <form:hidden path="initialStation" value = "${tempBus.initialStation}"/>
+									      	<form:hidden path="finalStation" value = "${tempBus.finalStation}"/>
+									      	<form:hidden path="travelTime" value = "${tempBus.travelTime}"/>
+									      <form:hidden path="passDate"/>
+									      
 								      	 <input type="submit"  name="update" value="申請變更" class="btn btn-primary" onclick="return(confirm('是否確認要送出變更申請？'))">
 								      	 &emsp;&emsp;&emsp;
 								      	 <input type="submit"  name="noWant" value="撤回申請" class="btn btn-warning" onclick="return(confirm('是否確認要撤回申請？'))"></td>

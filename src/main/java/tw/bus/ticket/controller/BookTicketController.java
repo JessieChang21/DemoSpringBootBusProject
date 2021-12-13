@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,8 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import tw.bus.members.model.EmailSenderService;
+import tw.bus.members.model.Members;
+import tw.bus.members.model.MembersService;
 import tw.bus.query.model.Routeprice2;
 import tw.bus.query.model.Routeprice2Service;
 import tw.bus.query.model.Seat2;
@@ -40,23 +43,29 @@ public class BookTicketController {
 	private Routeprice2Service priceService;
 	private Seat2Service seatService;
 	private EmailSenderService senderService;
-	
+
+	private MembersService membersService;
+
+
 
 	@Autowired
-	public BookTicketController(Memberorder2Service moService, Totalbus2Service totalService,
-			Routeprice2Service priceService, Seat2Service seatService, EmailSenderService senderService) {
+	public BookTicketController(ObjectMapper mapper, Memberorder2Service moService, Totalbus2Service totalService,
+			Routeprice2Service priceService, Seat2Service seatService, EmailSenderService senderService,
+			MembersService membersService) {
+		this.mapper = mapper;
 		this.moService = moService;
 		this.totalService = totalService;
 		this.priceService = priceService;
 		this.seatService = seatService;
 		this.senderService = senderService;
+		this.membersService = membersService;
 	}
 
 
 	// 2.1 訂購車票
 	@PostMapping(path = "/bookTicket.controller")
 	public String processBookAction(@RequestParam("bookBus") String busnumber,
-			@RequestParam("inputdata") String inputdata, Model m, Principal p)
+			@RequestParam("inputdata") String inputdata, Model m, Principal p, HttpSession session)
 			throws JsonMappingException, JsonProcessingException, MessagingException {
 
 		String useremail = p.getName();
@@ -233,15 +242,21 @@ public class BookTicketController {
 			countOrderid++; //新增成功，且寄完email後
 //			m.addAttribute("qty",qty);
 //			m.addAttribute("userinput",userinput);
+			
+			Members members = membersService.findByEmail(useremail);
+			session.setAttribute("members",members);
 			m.addAttribute("memberorder",memberorder);
 			m.addAttribute("totalPrice",totalPrice);
 
 			return "/queryAndBookTicket/bookTicketSuccess";
 		} else {
 			System.out.println("totalBus=null");
-			return "/queryAndBookTicket/queryRouteByKeyword"; // 導回首頁
+			return "index2"; // 導回首頁
 		}
 	}
+
+
+	
 
 	// 3.
 //	@PostMapping(path="/bookTicketByTripName.controller")
