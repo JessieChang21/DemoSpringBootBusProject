@@ -230,8 +230,6 @@ function load(tEx, indexPage){
 					var rank = $('#rankId').val();
 					if(rank==01){
 	 			    	$(".check").addClass('disabled');
-	 			    } else {
-	 			    	$(".write").addClass('disabled');
 	 			    }
 					
 			   }
@@ -372,9 +370,7 @@ function load(tEx, indexPage){
 				 var rank = $('#rankId').val();
 				 if(rank==01){
 			    	$(".check").addClass('disabled');
-			    } else {
-			    	$(".write").addClass('disabled');
-			    }
+			    } 
 	   }
  });
 	}  else if (tEx==3){
@@ -446,9 +442,7 @@ function load(tEx, indexPage){
 						 			var rank = $('#rankId').val();
 						 			if(rank==01){
 								    	$(".check").addClass('disabled');
-								    } else {
-								    	$(".write").addClass('disabled');
-								    }
+								    } 
 					   
 			   }
 		 });
@@ -705,9 +699,7 @@ function load(tEx, indexPage){
 						 			var rank = $('#rankId').val();
 						 			if(rank==01){
 						 			    	$(".check").addClass('disabled');
-						 			    } else {
-						 			    	$(".write").addClass('disabled');
-						 			    }
+						 			    } 
 						 			
 			   }
 		

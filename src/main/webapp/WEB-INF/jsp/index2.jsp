@@ -39,11 +39,12 @@
 
 
 <style type="text/css">
+
 .container main-menu{
 	position:fixed;
 }
 .nav-menu a {      /*導覽列*/
-  padding: 0 8px 0px 8px;
+/*   padding: 0 4px 0px 4px; */
   text-decoration: none;
   display: inline-block;
   font-weight: 500;
@@ -53,7 +54,7 @@
   text-shadow: 0.05em 0.05em 0.05em black;
   font-weight: bold;
   font-size: 14px;
-/*   margin-left:3px; */
+/*    margin-left:3px;  */
 }
 
 .nav-menu a:hover {

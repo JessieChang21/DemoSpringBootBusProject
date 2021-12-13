@@ -2205,7 +2205,7 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
   outline: none;
   
-  color: black;
+  color: white;
   font-weight: bold;
   font-size: 14px;
   margin-left:3px;
@@ -2383,9 +2383,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #nav-menu-container {
-  padding-right: 15px;
-  
-  margin-left:560px;
+  margin-left:420px;
   
 }
 

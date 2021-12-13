@@ -527,13 +527,15 @@ public class TempBusTimeController {
 			tempBus.setToExamineDate(ft.format(dNow));
 			
 			BusTimes bus = busTimeServ.findBusById(tempBus.getBusNumberPo());
-			
+			System.out.println(bus.getTotalSeats());
 			for (int i=1; i<= bus.getTotalSeats() ;i++) {
 				Seats s = new Seats();
 				s.setBusNumber(bus.getBusNumber());
 				s.setSeats(i);
 				seatServ.insertSeats(s);
 			}
+			bus.setRemainSeats(bus.getTotalSeats());
+			busTimeServ.insertBusTime(bus);
 			
 			tempBusTimeServ.insertTempBusTimes(tempBus);
 			m.addAttribute("tempBus", tempBus);
