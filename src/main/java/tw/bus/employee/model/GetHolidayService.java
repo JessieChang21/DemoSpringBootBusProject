@@ -43,16 +43,6 @@ public class GetHolidayService {
 		return ghResp.QueryAllbyId_N(pageable,employeeid);
 	}
 	
-	/**public GetHoliday findById(String id) {
-		Optional<GetHoliday> op1 = ghResp.findById(id);
-		if(op1.isPresent()) {
-			return op1.get();
-		}
-		return null;
-	}**/
-	
-	
-	
 	public List<GetHoliday> findAll(){
 		return ghResp.findAll();
 	}

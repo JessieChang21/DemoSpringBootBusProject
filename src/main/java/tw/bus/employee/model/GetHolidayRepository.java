@@ -18,23 +18,24 @@ public interface GetHolidayRepository extends JpaRepository<GetHoliday, GetHolid
 	@Query(value="select count(*) from GetHoliday where employeeid = ?1 and date = ?2 and timeperiod = ?3", nativeQuery = true)
 	 public Integer hasData(String employeeid,String date,String timeperiod);
 	
+	
 	@Modifying
-	@Query(value="update GetHoliday set release = 'Y' where employeeid = ?1 and date = ?2 and timeperiod = ?3 ", nativeQuery = true)
+	@Query(value="update GetHoliday set release = 'Y' where employeeid = ?1 and date = ?2 and timeperiod = ?3 and release = 'Y' ", nativeQuery = true)
 	public void Updaterelease(String employeeid,String date,String timeperiod);
 	
 	@Modifying
 	@Query(value="delete from GetHoliday where employeeid = ?1 and date = ?2 and timeperiod = ?3 ", nativeQuery = true)
 	public void DeleteGetHoliday(String employeeid,String date,String timeperiod);
 	
-	@Query(value=" select g.employeeid+'-'+e1.employeename as employeeid, "
-			+ " g.substituteid+'-'+e2.employeename as substituteid, "
-			+ " g.date,g.timeperiod,g.totalhours,g.release "
+	@Query(value=" select employeeid+'-'+e1.employeename as employeeid, "
+			+ " substituteid+'-'+e2.employeename as substituteid, "
+			+ " date,timeperiod,totalhours,release "
 			+ " from GetHoliday as g "
 			+ " left join Employee as e1 "
 			+ " on g.employeeid = e1.id "
 			+ " left join Employee as e2 "
 			+ " on g.substituteid = e2.id "
-			+ " where release = 'N'", nativeQuery = true)
+			+ " where release = 'N' ", nativeQuery = true)
 	 public Page<GetHoliday> QueryAllUnRelease(Pageable pageable);
 	
 	@Query(value=" select g.employeeid, "

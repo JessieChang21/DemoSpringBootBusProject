@@ -171,7 +171,7 @@ var indexPage = 1;
 			</tr>
 			<tr>
 				<td><label>員工姓名</label></td>
-				<td><input id='employeename' name="employeename" type='text'/></td>
+				<td><input id='employeename' name="employeename" type='text'/><font color="red">${errors.errors}</font></td>
 			</tr>
 			<tr style='display:none'>
 				<td><label>群組</label></td>

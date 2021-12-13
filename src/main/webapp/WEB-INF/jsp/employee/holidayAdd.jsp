@@ -112,8 +112,8 @@ function getsubstitute(){
 				<td colspan='4'>
 					<button type="submit" value="GetHolidayInsert"">確認送出</button>
 					<button><a href="<c:url value='/GetHoliday/getholidayindex'/> " >回前頁</a></button>
+					<font color="red">${errors.errors}</font>
 				</td>
-				
 			</tr>
 		</table>
 	</form>

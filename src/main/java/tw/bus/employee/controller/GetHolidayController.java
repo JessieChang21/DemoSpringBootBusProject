@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import tw.bus.employee.model.Employee;
@@ -28,6 +29,7 @@ import tw.bus.employee.model.GetHoliday;
 import tw.bus.employee.model.GetHolidayService;
 import tw.bus.employee.model.GetHolidaypk;
 import tw.bus.employee.model.HolidayService;
+import tw.bus.memberslogin.model.UpdateMembers;
 import tw.bus.query.model.RoutesWithStation;
 
 @Controller
@@ -59,46 +61,67 @@ public class GetHolidayController {
 		return "employee/getholidayQueryAll";
 	}
 	@GetMapping("/getholidayadd")
-	public String processAddAction(Model m) {
-		m.addAttribute("empId", empid);
-		m.addAttribute("empName", eService.getNamebyId(empid).toString());
-		m.addAttribute("LaveHours",hService.getLaveHoursbyID(empid));
+	public String processAddAction(@SessionAttribute("employee") Employee emp,Model m) {
+		String eid = emp.getId().toString();
+		System.out.println("empid="+eid);
+		String EMP_ID = "";
+		if(eid.isEmpty()) {
+			EMP_ID = empid;
+		}else {
+			EMP_ID = eid;
+		}
+		m.addAttribute("empId", EMP_ID);
+		m.addAttribute("empName", eService.getNamebyId(EMP_ID).toString());
+		m.addAttribute("LaveHours",hService.getLaveHoursbyID(EMP_ID));
 		return "employee/holidayAdd";
 	}
 	//員工請假
 	@PostMapping("/getholidayInsert") 
-	public String processInsertAction(@RequestParam("substituteid") String substituteid,
+	public String processInsertAction(@SessionAttribute("employee") Employee emp,
+			@RequestParam("substituteid") String substituteid,
 			@RequestParam("date") String date,
 			@RequestParam("timeperiod") String timeperiod, Model m) {
+		String eid = emp.getId().toString();
+		System.out.println("empid="+eid);
+		String EMP_ID = "";
+		if(eid.isEmpty()) {
+			EMP_ID = empid;
+		}else {
+			EMP_ID = eid;
+		}
+		m.addAttribute("empId", EMP_ID);
+		m.addAttribute("empName", eService.getNamebyId(EMP_ID).toString());
+		m.addAttribute("LaveHours",hService.getLaveHoursbyID(EMP_ID));
 		Map<String, String> errors = new HashMap<String, String>();
 		m.addAttribute("errors", errors);
-		if (empid == substituteid) {
-			errors.put("msg", "代班人員不可為請假員工本人");
+		if(date == "") {
+			errors.put("errors", "尚未選擇請假日期");
 			return "employee/holidayAdd";
 		}
-		if(ghService.hasData(empid, date, timeperiod) >= 1) {
-			errors.put("msg", "不可重複請假");
+		if(ghService.hasData(substituteid, date, timeperiod) >= 1) {
+			errors.put("errors", "該員工已請假,不可代班");
+			return "employee/holidayAdd";
+		}
+		if(ghService.hasData(EMP_ID, date, timeperiod) >= 1) {
+			errors.put("errors", "不可重複請假");
 			return "employee/holidayAdd";
 		}
 		GetHolidaypk pk = new GetHolidaypk();
-		pk.setEmployeeid(empid);
+		pk.setEmployeeid(EMP_ID);
 		pk.setDate(date);
 		pk.setTimeperiod(timeperiod);
 		GetHoliday gh = new GetHoliday();		
 		gh.setPk(pk);
-		//gh.setEmployeeid(empid);
 		gh.setSubstituteid(substituteid);
-		//gh.setDate(date);
-		//gh.setTimeperiod(timeperiod);
 		gh.setTotalhours(4);
 		gh.setRelease("N");
-		//ghService.insertGetHoliday(gh);
-		ghService.InsertGetHoliday(empid, substituteid, date, timeperiod, 4, "N");
+		//ghService.InsertGetHoliday(EMP_ID, substituteid, date, timeperiod, 4, "N");
+		ghService.insertGetHoliday(gh);
 		//同步修改員工假期統計
-		var h = hService.findById(empid);
-		h.setEmployeeid(empid);
-		h.setTotalhours(hService.getTotalHoursbyID(empid));
-		h.setLavehours(hService.getLaveHoursbyID(empid)-4);
+		var h = hService.findById(EMP_ID);
+		h.setEmployeeid(EMP_ID);
+		h.setTotalhours(hService.getTotalHoursbyID(EMP_ID));
+		h.setLavehours(hService.getLaveHoursbyID(EMP_ID)-4);
 		hService.updateHoliday(h);
 		return "employee/holidayindex";
 	}
@@ -119,8 +142,16 @@ public class GetHolidayController {
 	}
 	//假期查詢
 	@GetMapping("/getholidayQuerybyId")
-	public String processgetholidayQuery(Model m) {
-		m.addAttribute("empId", empid);
+	public String processgetholidayQuery(@SessionAttribute("employee") Employee emp,Model m) {
+		String eid = emp.getId().toString();
+		System.out.println("empid="+eid);
+		String EMP_ID = "";
+		if(eid.isEmpty()) {
+			EMP_ID = empid;
+		}else {
+			EMP_ID = eid;
+		}
+		m.addAttribute("empId", EMP_ID);
 		return "employee/holidayQuerybyId";
 	}
 	@GetMapping("/delete") 
@@ -131,14 +162,8 @@ public class GetHolidayController {
 		ghService.DeleteGetHoliday(employeeid,date,timeperiod);
 		return "employee/holidayQuerybyId";
 	}
-	
-	/**@PostMapping("/querybyid/{pid}")
-	@ResponseBody
-	public GetHoliday processFindByIdAction(@PathVariable("pid") String eid) {
-		return ghService.findById(eid);
-	}**/
-	
-	@PostMapping("/queryByPage/{pageNo}")
+		
+	@GetMapping("/queryByPage/{pageNo}")
 	@ResponseBody
 	public List<GetHoliday> processQueryByPage(@PathVariable("pageNo") int pageNo, Model m){
 		int pageSize = 5;
@@ -152,9 +177,11 @@ public class GetHolidayController {
 	@GetMapping("/QueryAllUnRelease/{pageNo}")
 	@ResponseBody
 	public List<GetHoliday> processQueryAllUnRelease(@PathVariable("pageNo") int pageNo, Model m){
+		System.out.println("開始查詢");
 		int pageSize = 5;
 		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
 		Page<GetHoliday> page = ghService.QueryAllUnRelease(pageable);
+		System.out.println("查詢完成");
 		m.addAttribute("totalPages", page.getTotalPages());
 		m.addAttribute("totalElements", page.getTotalElements());
 		return page.getContent();
@@ -162,10 +189,19 @@ public class GetHolidayController {
 	
 	@PostMapping("/QueryAllbyId_Y/{pageNo}")
 	@ResponseBody
-	public List<GetHoliday> processQueryAllbyId_Y(@PathVariable("pageNo") int pageNo, Model m){
+	public List<GetHoliday> processQueryAllbyId_Y(@SessionAttribute("employee") Employee emp,
+			@PathVariable("pageNo") int pageNo, Model m){
 		int pageSize = 5;
 		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
-		Page<GetHoliday> page = ghService.QueryAllbyId_Y(pageable,empid);
+		String eid = emp.getId().toString();
+		System.out.println("empid="+eid);
+		String EMP_ID = "";
+		if(eid.isEmpty()) {
+			EMP_ID = empid;
+		}else {
+			EMP_ID = eid;
+		}
+		Page<GetHoliday> page = ghService.QueryAllbyId_Y(pageable,EMP_ID);
 		m.addAttribute("totalPages", page.getTotalPages());
 		m.addAttribute("totalElements", page.getTotalElements());
 		return page.getContent();
@@ -173,10 +209,19 @@ public class GetHolidayController {
 	
 	@PostMapping("/QueryAllbyId_N/{pageNo}")
 	@ResponseBody
-	public List<GetHoliday> processQueryAllbyId_N(@PathVariable("pageNo") int pageNo, Model m){
+	public List<GetHoliday> processQueryAllbyId_N(@SessionAttribute("employee") Employee emp,
+			@PathVariable("pageNo") int pageNo, Model m){
 		int pageSize = 5;
 		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
-		Page<GetHoliday> page = ghService.QueryAllbyId_N(pageable,empid);
+		String eid = emp.getId().toString();
+		System.out.println("empid="+eid);
+		String EMP_ID = "";
+		if(eid.isEmpty()) {
+			EMP_ID = empid;
+		}else {
+			EMP_ID = eid;
+		}
+		Page<GetHoliday> page = ghService.QueryAllbyId_N(pageable,EMP_ID);
 		m.addAttribute("totalPages", page.getTotalPages());
 		m.addAttribute("totalElements", page.getTotalElements());
 		return page.getContent();
@@ -184,8 +229,16 @@ public class GetHolidayController {
 	
 	@PostMapping("/getsubstituteid")
 	@ResponseBody
-	public List<Employee>  getSubstituteId() {
-		return eService.findAllById(empid);
+	public List<Employee>  getSubstituteId(@SessionAttribute("employee") Employee emp) {
+		String eid = emp.getId().toString();
+		System.out.println("empid="+eid);
+		String EMP_ID = "";
+		if(eid.isEmpty()) {
+			EMP_ID = empid;
+		}else {
+			EMP_ID = eid;
+		}
+		return eService.findAllById(EMP_ID);
 	}
 	
 }
