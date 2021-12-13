@@ -8,6 +8,9 @@
 <html lang="UTF-8">
 
 <head>
+<c:if test="${empty employee}">
+	<c:redirect url="/backLoginsystemMain.controller" />
+</c:if>
 <style type="text/css">
 .mytext {
 	width: 500px;
