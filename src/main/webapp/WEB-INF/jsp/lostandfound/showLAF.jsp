@@ -239,7 +239,7 @@ function pageIn() {
 				<div class="about-content col-lg-12">
 					<h1 class="text-white">失物招領</h1>
 					<p class="text-white link-nav">
-						<a href="/2">首頁 </a> <span class="lnr lnr-arrow-right"></span>
+						<a href="/mainpage">首頁 </a> <span class="lnr lnr-arrow-right"></span>
 						<a href="/showlostandfound"> 失物招領</a>
 					</p>
 				</div>

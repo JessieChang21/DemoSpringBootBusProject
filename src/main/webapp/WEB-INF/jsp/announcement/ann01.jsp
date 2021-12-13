@@ -79,7 +79,7 @@
 				<div class="about-content col-lg-12">
 					<h1 class="text-white">最新消息</h1>
 					<p class="text-white link-nav">
-						<a href="/2">首頁 </a> <span class="lnr lnr-arrow-right"></span>
+						<a href="/mainpage">首頁 </a> <span class="lnr lnr-arrow-right"></span>
 						<a href="/showAnnouncement"> 最新消息</a>
 					</p>
 				</div>

@@ -170,7 +170,7 @@ option{
 
 </style>
 <meta charset="UTF-8">
-<title>Show Announcement</title>
+<title>熱門景點</title>
 
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -185,7 +185,7 @@ option{
 <!-- meta character set -->
 <meta charset="UTF-8">
 <!-- Site Title -->
-<title>Travel</title>
+<title>熱門景點</title>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 <link
@@ -948,8 +948,8 @@ function framepage12(){
 				<div class="about-content col-lg-12">
 					<h1 class="text-white">熱門目的地</h1>
 					<p class="text-white link-nav">
-						<a href="/2">首頁 </a> <span class="lnr lnr-arrow-right"></span> <a
-							href="/showAnnouncement"> 熱門目的地</a>
+						<a href="/mainpage">首頁 </a> <span class="lnr lnr-arrow-right"></span> <a
+							href="/framePage"> 熱門目的地</a>
 					</p>
 				</div>
 			</div>

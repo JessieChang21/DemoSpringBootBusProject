@@ -185,7 +185,7 @@
 				<div class="about-content col-lg-12">
 					<h1 class="text-white">旅遊套票</h1>
 					<p class="text-white link-nav">
-						<a href="/2">首頁 </a> <span class="lnr lnr-arrow-right"></span> <a
+						<a href="/mainpage">首頁 </a> <span class="lnr lnr-arrow-right"></span> <a
 							href="/tourpackages?area=臺北市&NMSE=1">優惠活動</a>
 					</p>
 					<div class="wrap">

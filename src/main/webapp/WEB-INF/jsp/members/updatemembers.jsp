@@ -172,7 +172,7 @@ option{
             overflow: hidden;
             border-radius: 12px
         }
-        ul{
+        #ul123{
             margin:0;
             padding: 0;
             position: absolute;
@@ -437,7 +437,7 @@ option{
 					<h1 class="text-white">會員中心</h1>
 					<p class="text-white link-nav">
 						<a href="/mainpage">首頁 </a> <span class="lnr lnr-arrow-right"></span> <a
-							href="/showAnnouncement"> 會員中心</a>
+							href="/updatemembers.controller"> 會員中心</a>
 					</p>
 				</div>
 			</div>
@@ -555,7 +555,7 @@ option{
 	
 	
 	<div id="container12345">
-		<ul class="slides">
+		<ul id="ul123" class="slides">
             <li id="li1" style="display:none"><img src="/travelista/images/Jiufen.jpg" alt="" style="border-radius: 12px;height:220px;width:330px;"></li>
             <li id="li2" style="display:none"><img src="/travelista/images/greenReef.jpg" alt="" style="border-radius: 12px;height:220px;width:330px;"></li>
             <li id="li3" style="display:none"><img src="/images/viewlike/qiandaohu .png" alt="" style="border-radius: 12px;height:220px;width:330px;"></li>
