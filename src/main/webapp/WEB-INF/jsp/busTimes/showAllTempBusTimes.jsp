@@ -228,7 +228,7 @@ function load(tEx, indexPage){
 	 				   				"<a href='/busTimes/tempbustimemain.controller?tEx=2&42&52'  class='btn btn-primary'>待修改</a>"+
 						 			"<a href='/busTimes/tempbustimemain.controller?tEx="+ "3&43&45"+"'  class='btn btn-success'>已通過</a>";
 					var rank = $('#rankId').val();
-					if(rank==01){
+					if(rank==1){
 	 			    	$(".check").addClass('disabled');
 	 			    }
 					
@@ -368,7 +368,7 @@ function load(tEx, indexPage){
 				 			"<a href='/busTimes/tempbustimemain.controller?tEx="+"1&4&5"+"'  class='btn btn-danger' >審查中</a>"+
 				 			"<a href='/busTimes/tempbustimemain.controller?tEx="+"3&43&53"+"'  class='btn btn-success'>已通過</a>";
 				 var rank = $('#rankId').val();
-				 if(rank==01){
+				 if(rank==1){
 			    	$(".check").addClass('disabled');
 			    } 
 	   }
@@ -440,7 +440,7 @@ function load(tEx, indexPage){
 							  		"<a href='/busTimes/tempbustimemain.controller?tEx=2&42&52'  class='btn btn-primary'>待修改</a>"+
 						 			"<a href='/busTimes/tempbustimemain.controller?tEx="+"1&4&5"+"'  class='btn btn-danger'>審查中</a>";
 						 			var rank = $('#rankId').val();
-						 			if(rank==01){
+						 			if(rank==1){
 								    	$(".check").addClass('disabled');
 								    } 
 					   
@@ -697,7 +697,7 @@ function load(tEx, indexPage){
 						 			"<a href='/busTimes/tempbustimemain.controller?tEx=1&4&5'  class='btn btn-danger'>審查中</a>"+
 						 			"<a href='/busTimes/tempbustimemain.controller?tEx=3&43&53'  class='btn btn-success'>已通過</a>";
 						 			var rank = $('#rankId').val();
-						 			if(rank==01){
+						 			if(rank==1){
 						 			    	$(".check").addClass('disabled');
 						 			    } 
 						 			
