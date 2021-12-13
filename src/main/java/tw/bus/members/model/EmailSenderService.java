@@ -16,22 +16,6 @@ public class EmailSenderService {
 	@Autowired
 	private JavaMailSender mailSender;
 	
-//	@Autowired
-//	public EmailSenderService(JavaMailSender mailSender) {
-//		this.mailSender = mailSender;
-//	}
-
-//	public void sendEmail(String toEmail, String subject, String body) {
-//		SimpleMailMessage message = new SimpleMailMessage();
-//		message.setFrom(FROM);
-//		message.setTo(toEmail);
-//		message.setText(body);
-//		message.setSubject(subject);
-//		mailSender.send(message);
-//		
-//		System.out.println("郵件已寄出...");
-//	}
-	
 	public void sendMineEmail(String toEmail, String subject, String body) throws MessagingException {
 		
 		MimeMessage message = mailSender.createMimeMessage();

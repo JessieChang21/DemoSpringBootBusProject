@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +31,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import tw.bus.members.model.CityService;
+import tw.bus.members.model.EmailSenderService;
 import tw.bus.members.model.AdressBean;
 import tw.bus.members.model.AdressRepository;
 import tw.bus.members.model.AdressService;
@@ -57,21 +60,61 @@ public class UpdateMembersController {
 	
 	UpdateMemberService uService;
 	
+	
 	AgelevelService agelevelService;
+	
+	
+	EmailSenderService senderService;
+	
 	
 	ServletContext context;
 	
 	@Autowired
 	public UpdateMembersController(CityService aService, AreaService areaService, AdressService adressService,
-			UpdateMemberService uService,AgelevelService agelevelService) {
+			UpdateMemberService uService,AgelevelService agelevelService, EmailSenderService senderService) {
 		this.aService = aService;
 		this.areaService = areaService;
 		this.adressService = adressService;
 		this.uService = uService;
 		this.agelevelService = agelevelService;
+		this.senderService = senderService;
 	}
 
 
+	@PostMapping("/sendeMail")
+	@ResponseBody
+	public Map sendEmail(@RequestBody Map<String, String> o
+//			,Model model
+			) throws MessagingException {
+		// 註冊的前置作業，你要自行完成
+		// 假設前端會送一Email Address來後端，本範例將假設放在參數：emailAddress內
+//		Map<String, String> map = (Map<String, String>) session.getAttribute("randomCode");
+//		if (map == null) {
+//			map = new HashMap<>();
+//			session.setAttribute("randomCode", map);
+//		}
+		System.out.println(o);
+		String email = (String) o.get("email");
+		System.out.println(email);
+		String random = randomCode();
+//		map.put(random, random);
+		System.out.println("random=" + random);
+		senderService.sendMineEmail(email, "歡迎您修改 無事坐BUS 的會員密碼", "請於10分鐘內輸入驗證碼 : " + 
+				random + "<br>");
+//		model.addAttribute("random", random);
+		o.put("random", random);
+		return o;
+	}
+	
+	public String randomCode(){
+		  StringBuilder str = new StringBuilder();
+		  Random random = new Random();
+		  for (int i = 0; i < 6; i++) {
+		   str.append(random.nextInt(10));
+		  }
+		  return str.toString();
+		 }
+	
 	// 取得登入成功後使用者資料
 	@GetMapping("/updatemembers.controller")
 	public String processPrincipalQuery(@SessionAttribute Members members, Model m,
@@ -85,6 +128,7 @@ public class UpdateMembersController {
 		HttpSession session = request.getSession();
 		session.setAttribute("umembers",umembers);
 		m.addAttribute("members",members);
+//		return "members/updatemembers";
 		return "members/updatemembers";
 	}
 	
@@ -151,6 +195,9 @@ public class UpdateMembersController {
 	        AdressBean adressbean = adressService.findById(adressid);
 	        System.out.println("adressbean.getAdressName()="+adressbean.getAdressName());
 	        members.setAdress(adressbean.getAdressName());
+	        
+	        String encodePwd = new BCryptPasswordEncoder().encode(members.getMemberpwd());
+			members.setMemberpwd(encodePwd);
 	       
 	        System.out.println("members.getAdress()="+members.getAdress());
 	        System.out.println(members);
@@ -200,40 +247,6 @@ public class UpdateMembersController {
 //		m.addAttribute("totalPages", citybean);
 		return citybean;
 	}
-	
-//	@PostMapping("/sendeMail")
-//	@ResponseBody
-//	public Map sendEmail(@RequestBody Map<String, String> o
-////			,Model model
-//			) {
-		// 註冊的前置作業，你要自行完成
-		// 假設前端會送一Email Address來後端，本範例將假設放在參數：emailAddress內
-//		Map<String, String> map = (Map<String, String>) session.getAttribute("randomCode");
-//		if (map == null) {
-//			map = new HashMap<>();
-//			session.setAttribute("randomCode", map);
-//		}
-//		System.out.println(o);
-//		String email = (String) o.get("email");
-//		System.out.println(email);
-//		String random = randomCode();
-////		map.put(random, random);
-//		System.out.println("random=" + random);
-//		senderService.sendEmail(email, "歡迎您註冊成為 無事坐BUS 的會員", "請於10分鐘內輸入驗證碼 : " + 
-//				random + "<br>");
-////		model.addAttribute("random", random);
-//		o.put("random", random);
-//		return o;
-//	}
-		
-//	 public String randomCode(){
-//		  StringBuilder str = new StringBuilder();
-//		  Random random = new Random();
-//		  for (int i = 0; i < 6; i++) {
-//		   str.append(random.nextInt(10));
-//		  }
-//		  return str.toString();
-//		 }
 	
 	@PostMapping("/Adressarea")
 	@ResponseBody

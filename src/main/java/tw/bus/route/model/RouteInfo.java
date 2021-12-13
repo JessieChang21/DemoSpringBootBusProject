@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 @Table(name = "routeinfo")
 @Component
 public class RouteInfo {
+	//// 識別規格要去改成是!!
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ROUTEINFOID")
@@ -33,13 +34,13 @@ public class RouteInfo {
 	private String area;
 	
 	@Column(name = "STATIONSEQUENCE")
-	private int stationSequence;
+	private Integer stationSequence;
 	
 	@Column(name = "STATION")
 	private String station;
 	
 	@Column(name = "SEQUENCETIME")
-	private int sequenceTime;
+	private Integer sequenceTime;
 	
 	public String getRouteId() {
 		return routeId;
@@ -83,7 +84,9 @@ public class RouteInfo {
 	public void setRouteInfoId(Integer routeInfoId) {
 		this.routeInfoId = routeInfoId;
 	}
-
+	
+	
+	
 //	public static class InnerIdClass implements Serializable {
 //        private String routeId;
 //        private int stationSequence;

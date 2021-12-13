@@ -48,7 +48,7 @@ table tr:last-child td:first-child, table tr:last-child td:nth-child(2),
 }
 
 table tr th {
-	background-color: #f8b600;
+	background-color: darkslategray;
 }
 
 table tr:first-child th:first-child {
@@ -145,11 +145,24 @@ option{
     height:10px;
 }
 
+#sidea>a{
+	color:black;
+	font-family: "Microsoft soft";
+	font-weight: bold
+}
+
+#changepasswordtest, #memberupdatetitle{
+	font-family: "Microsoft soft";
+	font-weight: bold;
+	color:white;
+	font-size: 18px;
+	text-align:center;
+}
 
 </style>
 <meta charset="UTF-8">
-<title>Show Announcement</title>
-
+<title>會員中心</title>
+<link rel="icon" href="images/bus.svg" type="image/x-icon" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Favicon-->
@@ -162,8 +175,6 @@ option{
 <meta name="keywords" content="">
 <!-- meta character set -->
 <meta charset="UTF-8">
-<!-- Site Title -->
-<title>Travel</title>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 <link
@@ -302,10 +313,10 @@ option{
 		<div class="container">
 			<div class="row d-flex align-items-center justify-content-center">
 				<div class="about-content col-lg-12">
-					<h1 class="text-white">最新消息</h1>
+					<h1 class="text-white">會員中心</h1>
 					<p class="text-white link-nav">
 						<a href="/2">首頁 </a> <span class="lnr lnr-arrow-right"></span> <a
-							href="/showAnnouncement"> 最新消息</a>
+							href="/showAnnouncement"> 會員中心</a>
 					</p>
 				</div>
 			</div>
@@ -320,47 +331,38 @@ option{
 	<div id="table_wrap" style="float: left; margin-left: 50px">
 		<table id="table_wrap">
 			<tr>
-				<th style="background-color: #f8b600; font-size: 140%"
-					align="center" width="300px" height="100px">訊息類型</th>
+				<th style="background-color: #f8b600; font-size: 140%; color:white"
+					align="center" width="300px" height="50px">會員中心</th>
 			</tr>
 			<tr>
-				<td style="background-color: white;"><form method='POST'
-						action="<c:url value='/showannbycate'/>">
-						<input name='ancategory' type='hidden' type='text' value='營運'>
-						<input type='submit'
-							style="width: 200px; height: 40px; border: 2px blue none; background-color: white; font-size: 130%"
-							value='營運'>
-					</form></td>
+				<td id="sidea" style="background-color: white;">
+					<a href="/updatemembers.controller">會員資料更新</a>
+				</td>
 			</tr>
 			<tr>
-				<td style="background-color: white;"><form method='POST'
-						action="<c:url value='/showannbycate'/>">
-						<input name='ancategory' type='hidden' type='text' value='異動'>
-						<input type='submit'
-							style="width: 200px; height: 40px; border: 2px blue none; background-color: white; font-size: 130%"
-							value='異動'>
-					</form></td>
-			</tr>
-			<tr>
-				<td style="background-color: white;"><form method='POST'
-						action="<c:url value='/showannbycate'/>">
-						<input name='ancategory' type='hidden' type='text' value='活動'>
-						<input type='submit'
-							style="width: 200px; height: 40px; border: 2px blue none; background-color: white; font-size: 130%"
-							value='活動'><br>
-					</form></td>
+				<td id="sidea" style="background-color: white;">
+					<a href="/members/queryMemberOrder">訂單查詢</a>
+				</td>
 			</tr>
 		</table>
 	</div>
 <!-- 	<div id="minetable" align='center' style="float:left;width:780px;padding-top:0px;height:300px"> -->
 	<form:form method="POST" action="/memberupdate.controller" enctype='multipart/form-data' modelAttribute="members" style="float:left;width:780px;height:380px;">
-	<table style="float:left;width:780px;height:380px;">	<tr><th style="font-size: 16px;height:50px;padding-bottom: 0px;padding-top:0px">&emsp;&emsp;&emsp;&emsp;&emsp;會員更新</th><th></th></tr>
+	<table style="float:left;width:780px;height:380px;">	
 	<tr>
-	<td rowspan="3" style="text-align:center;"><img height='150px' width='150px' Style="border-radius:50%" src="<c:url value='/getMemberImage?id=${members.id}' />">
-	<td style="text-align:center;"><form:input id="uemail" path="email" name="email" type="text" value="${members.email}" readonly="readonly"/>
-	</tr><tr>
-	<td style="text-align:center;"><form:input id="umembername" path="membername" name="membername" type="text" value="${members.membername}" readonly="readonly" />
-	</tr><tr>
+		<th id="memberupdatetitle" colspan="2" style="height:50px;padding-bottom: 0px;padding-top:0px">&emsp;&emsp;&emsp;&emsp;&emsp;會員更新</th>
+<!-- 		<th></th> -->
+	</tr>
+	<tr>
+		<td rowspan="3" style="text-align:center;"><img height='150px' width='150px' Style="border-radius:50%" src="<c:url value='/getMemberImage?id=${members.id}' />">
+		<td style="text-align:center;">
+			<form:input id="uemail" path="email" name="email" type="text" value="${members.email}" readonly="readonly"/>
+	</tr>
+	<tr>
+		<td style="text-align:center;">
+			<form:input id="umembername" path="membername" name="membername" type="text" value="${members.membername}" readonly="readonly" />
+	</tr>
+	<tr>
 	
 	
 	<td><span class="radio">請選擇性別:&emsp;&emsp; 
@@ -396,10 +398,15 @@ option{
 	</form:form>
 
 	<div style="width:300px; height:450px; float: right; margin-right: 50px">
-		<table style="width:300px"><tr><th style="text-align:center;"><span id="minespan"><button id="changepasswordtest" onclick='passwordcheckclick()' class="primary-btn" style="border-radius: 12px;width: 200px;">修改密碼</button></span></th></tr>
-		<tr><td style="background-color: white;text-align:center;">電子郵件:&emsp;${members.email}</td></tr><tr><td style="background-color: white;text-align:center;">姓名:&emsp;${members.membername}</td></tr>
-		<tr><td style="background-color: white;text-align:center;">性別:&emsp;${members.gender}</td><tr><td style="background-color: white;text-align:center;">年齡層:&emsp;${members.age}</td></tr>
-		<tr><td style="background-color: white;text-align:center;">居住地:&emsp;${members.adress}</td></tr>
+		<table style="width:300px"><tr><th style="text-align:center;">
+			<span id="minespan">
+			<button id="changepasswordtest" onclick='passwordcheckclick()' class="primary-btn" style="border-radius: 12px;width: 200px; background-color: darkslategray">修改密碼</button></span></th></tr>
+		<tr>
+			<td style="background-color: white;text-align:center;">電子郵件:&emsp;${members.email}</td></tr><tr><td style="background-color: white;text-align:center;">姓名:&emsp;${members.membername}</td></tr>
+		<tr>
+			<td style="background-color: white;text-align:center;">性別:&emsp;${members.gender}</td><tr><td style="background-color: white;text-align:center;">年齡層:&emsp;${members.age}</td></tr>
+		<tr>
+			<td style="background-color: white;text-align:center;">居住地:&emsp;${members.adress}</td></tr>
 		</table>
 	</div>
 	</div>
@@ -409,109 +416,11 @@ option{
 	<section class="insurence-one-area section-gap"></section>
 	<!-- End insurence-one Area -->
 
-	<!-- Start insurence-two Area -->
-	<section class="insurence-two-area pb-120"></section>
-	<!-- End insurence-two Area -->
 
+	
+	<c:import url="/WEB-INF/jsp/commons/footer.jsp" />
 
-	<!-- start footer Area -->
-	<footer class="footer-area section-gap">
-		<div class="container">
-
-			<div class="row">
-				<div class="col-lg-3  col-md-6 col-sm-6">
-					<div class="single-footer-widget">
-						<h6>About Agency</h6>
-						<p>The world has become so fast paced that people don’t want
-							to stand by reading a page of information, they would much rather
-							look at a presentation and understand the message. It has come to
-							a point</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 col-sm-6">
-					<div class="single-footer-widget">
-						<h6>Navigation Links</h6>
-						<div class="row">
-							<div class="col">
-								<ul>
-									<li><a href="#">Home</a></li>
-									<li><a href="#">Feature</a></li>
-									<li><a href="#">Services</a></li>
-									<li><a href="#">Portfolio</a></li>
-								</ul>
-							</div>
-							<div class="col">
-								<ul>
-									<li><a href="#">Team</a></li>
-									<li><a href="#">Pricing</a></li>
-									<li><a href="#">Blog</a></li>
-									<li><a href="#">Contact</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3  col-md-6 col-sm-6">
-					<div class="single-footer-widget">
-						<h6>Newsletter</h6>
-						<p>For business professionals caught between high OEM price
-							and mediocre print and graphic output.</p>
-						<div id="mc_embed_signup">
-							<form target="_blank"
-								action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-								method="get" class="subscription relative">
-								<div class="input-group d-flex flex-row">
-									<input name="EMAIL" placeholder="Email Address"
-										onfocus="this.placeholder = ''"
-										onblur="this.placeholder = 'Email Address '" required=""
-										type="email">
-									<button class="btn bb-btn">
-										<span class="lnr lnr-location"></span>
-									</button>
-								</div>
-								<div class="mt-10 info"></div>
-							</form>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3  col-md-6 col-sm-6">
-					<div class="single-footer-widget mail-chimp">
-						<h6 class="mb-20">InstaFeed</h6>
-						<ul class="instafeed d-flex flex-wrap">
-							<li><img src="/travelista/img/i1.jpg" alt=""></li>
-							<li><img src="/travelista/img/i2.jpg" alt=""></li>
-							<li><img src="/travelista/img/i3.jpg" alt=""></li>
-							<li><img src="/travelista/img/i4.jpg" alt=""></li>
-							<li><img src="/travelista/img/i5.jpg" alt=""></li>
-							<li><img src="/travelista/img/i6.jpg" alt=""></li>
-							<li><img src="/travelista/img/i7.jpg" alt=""></li>
-							<li><img src="/travelista/img/i8.jpg" alt=""></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-
-			<div
-				class="row footer-bottom d-flex justify-content-between align-items-center">
-				<p class="col-lg-8 col-sm-12 footer-text m-0">
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					Copyright &copy;
-					<script>document.write(new Date().getFullYear());</script>
-					All rights reserved | This template is made with <i
-						class="fa fa-heart-o" aria-hidden="true"></i> by <a
-						href="https://colorlib.com" target="_blank">Colorlib</a>
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-				</p>
-				<div class="col-lg-4 col-sm-12 footer-social">
-					<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
-						class="fa fa-twitter"></i></a> <a href="#"><i
-						class="fa fa-dribbble"></i></a> <a href="#"><i
-						class="fa fa-behance"></i></a>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<!-- End footer Area -->
+	
 
 	<script src="/travelista/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="/travelista/js/popper.min.js"></script>

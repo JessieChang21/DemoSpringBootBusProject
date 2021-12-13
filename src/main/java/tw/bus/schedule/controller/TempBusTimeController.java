@@ -230,7 +230,7 @@ public class TempBusTimeController {
 		m.addAttribute("tempBus", tempBus);
 		
 		
-		return "busTimes/tempBusResult";
+		return "busTimes/InsertBusResult";
 	}
 	
 	
@@ -280,10 +280,8 @@ public class TempBusTimeController {
 		
 		
 		tempBusTimeServ.insertTempBusTimes(tempBus);
-		m.addAttribute("tempBusRoute", tempBus.getRouteId()+tempBus.getTripName());
-		m.addAttribute("tempBusTime", tempBus.getInitialTime());
-		
-		return "busTimes/showAllTempBusTimes";
+		m.addAttribute("tempBus", tempBus);
+		return "busTimes/InsertBusResult";
 	}
 	
 
@@ -297,13 +295,9 @@ public class TempBusTimeController {
     }
 	
 	@RequestMapping(value = "/saveTempBus.controller", method = RequestMethod.POST, params = "pass")
-	public String processInsertBusAction(@Validated @ModelAttribute("tempBus") TempBusTimes tempBusP, BindingResult result, Model m) {
+	public String processInsertBusAction(@Validated @ModelAttribute("tempBus") TempBusTimes tempBus, BindingResult result, Model m) {
 
-		TempBusTimes tempBus = tempBusTimeServ.findTempBusById(tempBusP.getTestBusNumber());
-		
 		tempBus.setToExamine(3);
-		tempBus.setExamineNote(tempBusP.getExamineNote());
-		tempBus.setManagerName(tempBusP.getManagerName());
 		
 		Date dNow = new Date( );
 	    SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss");
@@ -347,8 +341,7 @@ public class TempBusTimeController {
 		System.out.println("開始改暫時表紀錄");
 		tempBus.setBusNumberPo(busnumber);
 		tempBusTimeServ.insertTempBusTimes(tempBus);
-		m.addAttribute("tempBusRoute", tempBus.getRouteId()+tempBus.getTripName());
-		m.addAttribute("tempBusTime", tempBus.getInitialTime());
+		m.addAttribute("tempBus", tempBus);
 		
 		// 輸入Bus
 		
@@ -358,13 +351,9 @@ public class TempBusTimeController {
 	
 	// 退回申請
 	@RequestMapping(value = "/saveTempBus.controller", method = RequestMethod.POST, params = "nopass")
-	public String processNoInsertBusAction(@Validated @ModelAttribute("tempBus") TempBusTimes tempBusP, BindingResult result, Model m) {
-		
-		TempBusTimes tempBus = tempBusTimeServ.findTempBusById(tempBusP.getTestBusNumber());
+	public String processNoInsertBusAction(@Validated @ModelAttribute("tempBus") TempBusTimes tempBus, BindingResult result, Model m) {
 		
 		tempBus.setToExamine(2);
-		tempBus.setExamineNote(tempBusP.getExamineNote());
-		tempBus.setManagerName(tempBusP.getManagerName());
 		
 		Date dNow = new Date( );
 	    SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss");
@@ -372,8 +361,7 @@ public class TempBusTimeController {
 		/// empolyeeName 待改
 		
 		tempBusTimeServ.insertTempBusTimes(tempBus);
-		m.addAttribute("tempBusRoute", tempBus.getRouteId()+tempBus.getTripName());
-		m.addAttribute("tempBusTime", tempBus.getInitialTime());
+		m.addAttribute("tempBus", tempBus);
 		
 		return "busTimes/InsertBusResult";
 	}
@@ -434,17 +422,6 @@ public class TempBusTimeController {
 	public String processToDeleteBusAction(@Validated @ModelAttribute("tempBus") TempBusTimes tempBus, BindingResult result, Model m) {
 	
 		tempBus.setToExamine(4);
-//		tempBus.setTestBusNumber(tempBusP.getTestBusNumber());
-//		tempBus.setToExamineNote(tempBusP.getToExamineNote());
-//		tempBus.setInitialTime(tempBusP.getInitialTime());
-//		tempBus.setNote(tempBusP.getNote());
-//		tempBus.setSunday(tempBusP.getSunday());
-//		tempBus.setMonday(tempBusP.getMonday());
-//		tempBus.setTuesday(tempBusP.getTuesday());
-//		tempBus.setWednesday(tempBusP.getWednesday());
-//		tempBus.setThursday(tempBusP.getThursday());
-//		tempBus.setFriday(tempBusP.getFriday());
-//		tempBus.setSaturday(tempBusP.getSaturday());
 
 		if (tempBus.getSunday()==null) {
 			tempBus.setSunday(0);
@@ -482,8 +459,7 @@ public class TempBusTimeController {
 		busTimeServ.updateBusTime(busInExa);
 	    
 		tempBusTimeServ.updateTempBusTimes(tempBus);
-		m.addAttribute("tempBusRoute", tempBus.getRouteId()+tempBus.getTripName());
-		m.addAttribute("tempBusTime", tempBus.getInitialTime());
+		m.addAttribute("tempBus", tempBus);
 		
 		return "busTimes/InsertBusResult";
 	}
@@ -493,17 +469,6 @@ public class TempBusTimeController {
 	public String processToUpdateBusAction(@Validated @ModelAttribute("tempBus") TempBusTimes tempBus, BindingResult result, Model m) {
 		
 		tempBus.setToExamine(5);
-//		tempBus.setTestBusNumber(tempBusP.getTestBusNumber());
-//		tempBus.setToExamineNote(tempBusP.getToExamineNote());
-//		tempBus.setInitialTime(tempBusP.getInitialTime());
-//		tempBus.setNote(tempBusP.getNote());
-//		tempBus.setSunday(tempBusP.getSunday());
-//		tempBus.setMonday(tempBusP.getMonday());
-//		tempBus.setTuesday(tempBusP.getTuesday());
-//		tempBus.setWednesday(tempBusP.getWednesday());
-//		tempBus.setThursday(tempBusP.getThursday());
-//		tempBus.setFriday(tempBusP.getFriday());
-//		tempBus.setSaturday(tempBusP.getSaturday());
 
 		if (tempBus.getSunday()==null) {
 			tempBus.setSunday(0);
@@ -541,8 +506,7 @@ public class TempBusTimeController {
 		busTimeServ.updateBusTime(busInExa);
 		
 		tempBusTimeServ.updateTempBusTimes(tempBus);
-		m.addAttribute("tempBusRoute", tempBus.getRouteId()+tempBus.getTripName());
-		m.addAttribute("tempBusTime", tempBus.getInitialTime());
+		m.addAttribute("tempBus", tempBus);
 		
 		return "busTimes/InsertBusResult";
 	}
@@ -572,10 +536,8 @@ public class TempBusTimeController {
 			}
 			
 			tempBusTimeServ.insertTempBusTimes(tempBus);
-			m.addAttribute("tempBusRoute", tempBus.getRouteId()+tempBus.getTripName());
-			m.addAttribute("tempBusTime", tempBus.getInitialTime());
 			m.addAttribute("tempBus", tempBus);
-			return "busTimes/tempBusResult";
+			return "busTimes/InsertBusResult";
 		}
 		
 	
@@ -612,11 +574,9 @@ public class TempBusTimeController {
 		Date dNow = new Date( );
 	    SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss");
 		tempBus.setPassDate(ft.format(dNow));
-		/// empolyeeName 待改
 		
 		tempBusTimeServ.updateTempBusTimes(tempBus);
-		m.addAttribute("tempBusRoute", tempBus.getRouteId()+tempBus.getTripName());
-		m.addAttribute("tempBusTime", tempBus.getInitialTime());
+		m.addAttribute("tempBus", tempBus);
 		
 		Integer busNumber = tempBus.getBusNumberPo();
 		System.out.println(busNumber);
@@ -641,8 +601,7 @@ public class TempBusTimeController {
 		/// empolyeeName 待改
 		
 		tempBusTimeServ.insertTempBusTimes(tempBus);
-		m.addAttribute("tempBusRoute", tempBus.getRouteId()+tempBus.getTripName());
-		m.addAttribute("tempBusTime", tempBus.getInitialTime());
+		m.addAttribute("tempBus", tempBus);
 		
 		return "busTimes/InsertBusResult";
 	}
@@ -718,8 +677,7 @@ public class TempBusTimeController {
 		}
 		
 		tempBusTimeServ.insertTempBusTimes(tempBus);
-		m.addAttribute("tempBusRoute", tempBus.getRouteId()+tempBus.getTripName());
-		m.addAttribute("tempBusTime", tempBus.getInitialTime());
+		m.addAttribute("tempBus", tempBus);
 		
 		return "busTimes/InsertBusResult";
 	}
@@ -740,8 +698,7 @@ public class TempBusTimeController {
 		/// empolyeeName 待改
 		
 		tempBusTimeServ.insertTempBusTimes(tempBus);
-		m.addAttribute("tempBusRoute", tempBus.getRouteId()+tempBus.getTripName());
-		m.addAttribute("tempBusTime", tempBus.getInitialTime());
+		m.addAttribute("tempBus", tempBus);
 		
 		return "busTimes/InsertBusResult";
 	}

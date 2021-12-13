@@ -39,6 +39,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">車次路線管理:</h6>
                         <a class="collapse-item" href="http://localhost:8081/routes/routemain.controller">車次路線</a>
+                        <a class="collapse-item" href="http://localhost:8081/routes/insertRoutes.controller">新增路線</a>
                         <a class="collapse-item" href="http://localhost:8081/busTimes/tempbustimemain.controller?tEx=9">申請案</a>
                     </div>
                 </div>
@@ -71,7 +72,7 @@
                 </div>
             </li>
              <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="/tourfindall">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>套票管理</span></a>
             </li>
