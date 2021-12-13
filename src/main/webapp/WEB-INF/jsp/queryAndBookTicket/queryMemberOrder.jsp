@@ -8,6 +8,10 @@
 <title>會員訂單資訊</title>
 <link rel="icon" href="images/bus.svg" type="image/x-icon" />
 <style>
+#banner{
+    background-image: url("/images/queryRoutes/thumb.jpg");
+}
+
 #showOrder{
 	font-family: "Microsoft soft";
 	font-weight: bold;
