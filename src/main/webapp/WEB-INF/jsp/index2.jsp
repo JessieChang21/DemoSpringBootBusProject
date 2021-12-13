@@ -727,11 +727,12 @@ input:hover {
                     <div class="thumb relative">
                         <div class="overlay overlay-bg"></div>
                         <!-- <img class="img-fluid" src="img/d1.jpg" alt=""> -->
-                        <img class="img-fluid" src="/travelista/images/Jiufen.jpg" alt="">
+                        <img class="img-fluid" src="/travelista/images/Jiufen.jpg" 
+                        alt="" style="border-radius: 12px;height:230px;width:350px">
                     </div>
                     <div class="desc">
 <!--                         <a href="#" class="price-btn">$150</a> -->
-                        <h4>黃金福隆線</h4>
+                        <h4>新北市瑞芳區</h4>
                         <p>九份</p>
                     </div>
                 </div>
@@ -741,12 +742,12 @@ input:hover {
                     <div class="thumb relative">
                         <div class="overlay overlay-bg"></div>
                         <img class="img-fluid" src="/travelista/images/greenReef.jpg"
-                            alt="">
+                            alt="" style="border-radius: 12px;height:230px;width:350px">
                     </div>
                     <div class="desc">
 <!--                         <a href="#" class="price-btn">$250</a> -->
-                        <h4>皇冠北海岸線</h4>
-                        <p>老梅</p>
+                        <h4>新北市石門區</h4>
+                        <p>老梅綠石槽</p>
                     </div>
                 </div>
             </div>
@@ -754,26 +755,31 @@ input:hover {
                 <div class="single-destination relative">
                     <div class="thumb relative">
                         <div class="overlay overlay-bg"></div>
-                        <img class="img-fluid" src="/travelista/images/tea.jpg" alt="">
+                        <img class="img-fluid" src="/images/viewlike/qiandaohu .png" 
+                        alt="" style="border-radius: 12px;height:230px;width:350px">
                     </div>
                     <div class="desc">
 <!--                         <a href="#" class="price-btn">$350</a> -->
-                        <h4>東眼山線</h4>
-                        <p>大溪老茶廠</p>
+                        <h4>新北市石碇區</h4>
+                        <p>千島湖</p>
                     </div>
                 </div>
             </div>
         </div>
+        <div id="nav">
 		<c:choose>
 			<c:when test='${empty members.membername}'>
-				<li class="menu-has-children"><a href="/framePage2">熱門目的地
-				</a></li>
+				<p style="Text-align:center;height:50px;margin-top: 50px">
+	                <a id="more" href="<c:url value='/framePage2'/>">熱門目的地 > ></a>
+	            </p>
 			</c:when>
 			<c:when test='${! empty members.membername}'>
-				<li class="menu-has-children"><a href="/framePage">熱門目的地
-				</a></li>	
+				<p style="Text-align:center;height:50px;margin-top: 50px" >
+	                <a id="more" href="<c:url value='/framePage'/>">熱門目的地 > ></a>
+	            </p>	
 			</c:when>
 		</c:choose>
+		</div>
     </div>
 
     <!-- End popular-destination Area -->

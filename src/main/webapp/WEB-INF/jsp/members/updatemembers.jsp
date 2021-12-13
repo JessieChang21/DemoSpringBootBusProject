@@ -158,6 +158,74 @@ option{
 	font-size: 18px;
 	text-align:center;
 }
+#container12345 {
+ 			position: relative;
+            border:2px solid #61a0f8;
+            width:1200px;
+            display:flex;         
+            justify-content: center; 
+            align-items: center;
+            top:0;
+            bottom:0;
+           	margin-left: 150px;
+            height:300px;
+            overflow: hidden;
+            border-radius: 12px
+        }
+        ul{
+            margin:0;
+            padding: 0;
+            position: absolute;
+        }
+        li{
+            margin:0;
+            padding: 0;
+            list-style: none;
+        }
+        .slides{
+            width: 4000px;
+            left: 0px;
+            transition: all .5s;
+        }
+        .slides li{
+            width:390px;
+            height:300px;
+            overflow: hidden;
+            float: left;
+            margin:0;
+            padding: 0;
+            list-style: none;
+            
+        }
+        .slides li img{
+            width:330px;
+       		margin: 40px; 
+            object-fit: cover;
+        }
+        .slide_btn{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top:0;
+            bottom:0;
+            width: 30px;
+            color:#fff;
+            position: absolute;
+            font-size:24px;  
+        }
+        #prevSlide{            
+            left:0;                    
+        }
+        #nextSlide{            
+            right:0;                
+        }
+        .slide_btn i{
+            color:rgba(255,255,255,.6);                        
+            transition: .5s;
+        }
+        .slide_btn:hover i{
+            color:rgba(255,255,255,1);            
+        }
 
 </style>
 <meta charset="UTF-8">
@@ -196,6 +264,8 @@ option{
 <script type="text/javascript">
    $(document).ready(function(){
 	   load();
+	   loaded();
+	   onload();
    });
    
    function load(){
@@ -300,7 +370,58 @@ option{
 	    	});
 		}
 	}
+   var slideCount = 0;
+   function loaded(){
+   	if(($('#frame1').val()) == 1){$('#li1').css('display', '');slideCount+=1};
+   	if(($('#frame2').val()) == 1){$('#li2').css('display', '');slideCount+=1};
+   	if(($('#frame3').val()) == 1){$('#li3').css('display', '');slideCount+=1};
+   	if(($('#frame4').val()) == 1){$('#li4').css('display', '');slideCount+=1};
+   	if(($('#frame5').val()) == 1){$('#li5').css('display', '');slideCount+=1};
+   	if(($('#frame6').val()) == 1){$('#li6').css('display', '');slideCount+=1};
+   	if(($('#frame7').val()) == 1){$('#li7').css('display', '');slideCount+=1};
+   	if(($('#frame8').val()) == 1){$('#li8').css('display', '');slideCount+=1};
+   	if(($('#frame9').val()) == 1){$('#li9').css('display', '');slideCount+=1};
+   	if(($('#frame10').val()) == 1){$('#li10').css('display', '');slideCount+=1};
+   	if(($('#frame11').val()) == 1){$('#li11').css('display', '');slideCount+=1};
+   	if(($('#frame12').val()) == 1){$('#li12').css('display', '');slideCount+=1};
+   }
 
+   function onload(){ 
+   	let slideNum=0;
+//    	let slideCount=$(".slides li img").length;
+   	let lastIndex=slideCount-3;
+   	console.log(slideCount);
+   	
+   	function run(){
+   	    if(flag){
+   	        slideNum++;
+   	        if (slideNum>lastIndex){
+   	            slideNum=0;
+   	            show();
+   	        } else {
+   	            show();
+   	        }
+   	    }
+   	};
+   	
+   	function show(){
+   	
+   	    let slidemove=0-392*slideNum;
+   	    $("ul.slides").css("left",slidemove); 
+   	}
+   	
+   	$("#prevSlide").click(function(){
+   	    slideNum--;
+   	    if(slideNum<0)slideNum=lastIndex
+   	    show();
+   	});
+   	
+   	$("#nextSlide").click(function(){
+   	    slideNum++;
+   	    if(slideNum>lastIndex)slideNum=0
+   	    show();
+   	});
+   }
 </script>
 </head>
 <body style="background-color: #F2F2F2;">
@@ -417,13 +538,52 @@ option{
 		</tr>
 		</table>
 	</div>
+	<div>
+		<input id="frame1" type="button" value="${framebean.frame1}" style="visibility:hidden;height:1px;width:1px"/>
+		<input id="frame2" type="button" value="${framebean.frame2}" style="visibility:hidden;height:1px;width:1px"/>
+		<input id="frame3" type="button" value="${framebean.frame3}" style="visibility:hidden;height:1px;width:1px"/>
+		<input id="frame4" type="button" value="${framebean.frame4}" style="visibility:hidden;height:1px;width:1px"/>
+		<input id="frame5" type="button" value="${framebean.frame5}" style="visibility:hidden;height:1px;width:1px"/>
+		<input id="frame6" type="button" value="${framebean.frame6}" style="visibility:hidden;height:1px;width:1px"/>
+		<input id="frame7" type="button" value="${framebean.frame7}" style="visibility:hidden;height:1px;width:1px"/>
+		<input id="frame8" type="button" value="${framebean.frame8}" style="visibility:hidden;height:1px;width:1px"/>
+		<input id="frame9" type="button" value="${framebean.frame9}" style="visibility:hidden;height:1px;width:1px"/>
+		<input id="frame10" type="button" value="${framebean.frame10}" style="visibility:hidden;height:1px;width:1px"/>
+		<input id="frame11" type="button" value="${framebean.frame11}" style="visibility:hidden;height:1px;width:1px"/>
+		<input id="frame12" type="button" value="${framebean.frame12}" style="visibility:hidden;height:1px;width:1px"/>
+	</div>
+	
+	
+	<div id="container12345">
+		<ul class="slides">
+            <li id="li1" style="display:none"><img src="/travelista/images/Jiufen.jpg" alt="" style="border-radius: 12px;height:220px;width:330px;"></li>
+            <li id="li2" style="display:none"><img src="/travelista/images/greenReef.jpg" alt="" style="border-radius: 12px;height:220px;width:330px;"></li>
+            <li id="li3" style="display:none"><img src="/images/viewlike/qiandaohu .png" alt="" style="border-radius: 12px;height:220px;width:330px;"></li>
+            <li id="li4" style="display:none"><img src="/images/viewlike/shitiping.png" alt="" style="border-radius: 12px;height:220px;width:330px;"></li>
+            <li id="li5" style="display:none"><img src="/images/viewlike/penghu.jpg" alt="" style="border-radius: 12px;height:220px;width:330px;"></li>
+            <li id="li6" style="display:none"><img src="/images/viewlike/luseshuidao.jpg" alt="" style="border-radius: 12px;height:220px;width:330px;"></li>
+            <li id="li7" style="display:none"><img src="/images/viewlike/zixinglou.jpg" alt="" style="border-radius: 12px;height:220px;width:330px;"></li>
+            <li id="li8" style="display:none"><img src="/images/viewlike/qixingtan.png" alt="" style="border-radius: 12px;height:220px;width:330px;"></li>
+            <li id="li9" style="display:none"><img src="/images/viewlike/taipingshan .jpg" alt="" style="border-radius: 12px;height:220px;width:330px;"></li>
+            <li id="li10" style="display:none"><img src="/images/viewlike/alishan.png" alt="" style="border-radius: 12px;height:220px;width:330px;"></li>
+            <li id="li11" style="display:none"><img src="/images/viewlike/kadangbudao.jpg" alt="" style="border-radius: 12px;height:220px;width:330px;"></li>
+            <li id="li12" style="display:none"><img src="/images/viewlike/xiaohuangshan.jpg" alt="" style="border-radius: 12px;height:220px;width:330px;"></li>
+        </ul>
+        <div id="prevSlide" class="slide_btn" >
+            <i class="fas fa-caret-left" style="color:blue"></i>
+        </div>
+        <div  id="nextSlide" class="slide_btn">
+            <i class="fas fa-caret-right" style="color:blue"></i>
+        </div>
+    </div>
 	</div>
 	<BR />
 	
 	<!-- Start insurence-one Area -->
 	<section class="insurence-one-area section-gap"></section>
 	<!-- End insurence-one Area -->
-
+	<section class="insurence-two-area pb-120" style="
+    padding-bottom: 100px;"></section>
 
 	
 	<c:import url="/WEB-INF/jsp/commons/footer.jsp" />

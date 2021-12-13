@@ -301,7 +301,7 @@ option{
 					<div class="single-destination relative">
 						<div class="thumb relative">
 							<div class="overlay overlay-bg"></div>
-							<img class="img-fluid" src="/travelista/images/shitiping.png" 
+							<img class="img-fluid" src="/images/viewlike/shitiping.png" 
 							alt="" style="border-radius: 12px;height:230px;width:350px">
 						</div>
 					</div>
