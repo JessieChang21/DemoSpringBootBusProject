@@ -26,9 +26,9 @@
 	<div class="container main-menu">
 		<div class="row align-items-center justify-content-between d-flex">
 			<div id="logo">
-				<a href="/2"><span
-					style="color: #f8b600; font-family: Microsoft JhengHei; font-weight: bold; font-size: 1.8em; text-align: end; font-style: italic;"><i
-						class="fas fa-bus-alt"></i> 無事坐Bus</span></a>
+				<a href="/mainpage"><span
+					style="color: #f8b600; font-family: Microsoft JhengHei; font-weight: bold; font-size: 2.2em; text-align: end; font-style: italic;">
+					<i class="fas fa-bus-alt"></i> 無事坐Bus</span></a>
 			</div>
 			<nav id="nav-menu-container">
 				<ul class="nav-menu">
@@ -36,11 +36,13 @@
 					<li><a href="/showmap">地圖查詢</a></li>
 					<li class="menu-has-children"><a href="">優惠活動</a>
 						<ul>
-							<li><a href="">旅遊套票</a></li>
+							<li><a href="/tourpackages?area=%E8%87%BA%E5%8C%97%E5%B8%82&NMSE=1">旅遊套票</a></li>
 						</ul></li>
 					<li><a href="/showAnnouncement">最新消息</a>
+					<li><a href="">旅遊套票</a>
 					<li><a href="/showlostandfound">失物招領</a></li>
-					<li><a href="/members/queryMemberOrder">訂單查詢</a></li>
+					<li><a href="/showmap">地圖查詢</a></li>
+					
 
 					<li><c:choose>
 							<c:when test='${empty members.membername}'>

@@ -2487,9 +2487,9 @@ body.mobile-nav-active #mobile-nav-toggle {
   background-size: cover;
 }
 
-.banner-area .overlay-bg {
-  background: rgba(4, 9, 30, 0.4);
-}
+/* .banner-area .overlay-bg { */
+/*   background: rgba(4, 9, 30, 0.4); */
+/* } */
 
 @media (max-width: 767px) {
   .banner-area .fullscreen {

@@ -149,6 +149,39 @@ span.error {
 <link rel="stylesheet" href="/travelista/css/animate.min.css">
 <link rel="stylesheet" href="/travelista/css/owl.carousel.css">
 <link rel="stylesheet" href="/travelista/css/main.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+<script type="text/javascript">
+
+function forgetpassword(){
+	console.log("hi");
+		   
+   var pemail = prompt('請輸入您的電子郵箱');
+   if(pemail == null){
+		alert('請輸入電子郵件');
+	}else{
+	
+   var params = {"email":pemail}
+	console.log(params);
+	$.ajax({
+   	   type:'POST',
+   	   url:'/forgetpasswordsend',
+   	   dataType:'JSON',
+   	   contentType:'application/json',
+   	   data:JSON.stringify(params),
+   	   success: function(data){
+			   console.log(data);
+			   console.log(data['email']);
+	   		   
+				if(data['email'] == null){
+					alert('此電子郵件還未註冊');
+				}else{
+				alert('請至電子郵件'+data['email']+'獲取新密碼');
+				}
+			}
+   	   });
+	}
+}
+</script>
 </head>
 <body>
 	<header id="header">
@@ -221,13 +254,13 @@ span.error {
 		<div class="container">
 			<div
 				class="row fullscreen align-items-center justify-content-between">
-				<div class="col-lg-6 col-md-6 banner-left">
-					<h6 class="text-white">踏上你的旅程</h6>
-					<h1 class="text-white">台灣巴士行</h1>
-					<p class="text-white"></p>
-					<a href="#" class="primary-btn text-uppercase">Get Started</a>
-				</div>
-				<div class="col-lg-4 col-md-6 banner-right">
+<!-- 				<div class="col-lg-6 col-md-6 banner-left"> -->
+<!-- 					<h6 class="text-white">踏上你的旅程</h6> -->
+<!-- 					<h1 class="text-white">台灣巴士行</h1> -->
+<!-- 					<p class="text-white"></p> -->
+<!-- 					<a href="#" class="primary-btn text-uppercase">Get Started</a> -->
+<!-- 				</div> -->
+				<div class="col-lg-5 col-md-6 banner-right">
 					<ul class="nav nav-tabs" id="myTab" role="tablist">
 						<li class="nav-item"><a class="nav-link active"
 							id="login-tab" data-toggle="tab" href="#login" role="tab"
@@ -260,6 +293,7 @@ span.error {
 									<br>
 									<input name="password" type="password"
 									class="form-control" placeholder="請輸入密碼" /> 
+									<a href="#" onclick="forgetpassword()">忘記密碼</a>
 <!-- 									name="password" -->
 <!-- 									onfocus="this.placeholder = ''" -->
 <!-- 									onblur="this.placeholder = 'password '"  -->
@@ -270,7 +304,10 @@ span.error {
 									
 									<br><br>
 <!-- 									<button class="primary-btn" type="submit" value="login">Login</button> -->
+
+									<a class="primary-btn" href="/oauth2/authorization/google">Sign-in Google</a>
 									<input class="primary-btn" type="submit" value="登入"/>
+									
 							</form>
 						</div>
 					</div>

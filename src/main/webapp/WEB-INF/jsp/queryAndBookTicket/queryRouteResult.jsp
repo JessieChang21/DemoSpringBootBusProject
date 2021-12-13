@@ -170,6 +170,7 @@ table tr:last-child td:last-child {
 		<span id="tripname">查詢路線 : ${inputdataObj.tripname}</span>
 		<span id="tripdate">查詢日期 : ${inputdataObj.traveldate}</span>
 		<span id="triptime">查詢時間 : ${inputdataObj.initialtime}</span>
+		<span id="triptime">查詢人數 : 大人:${inputdataObj.adult}人 ,小孩: ${inputdataObj.children}人</span>
 	</div>
 
 	<c:choose>

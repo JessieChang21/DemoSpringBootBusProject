@@ -14,7 +14,7 @@ import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 
-@Entity @Table(name="totalbus2")
+@Entity @Table(name="totalbus")
 @Component
 public class Totalbus2 {
 	@Id @Column(name="BUSNUMBER")

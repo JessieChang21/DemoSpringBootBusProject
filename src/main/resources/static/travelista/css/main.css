@@ -2098,8 +2098,12 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 20px;
   padding-top: 20px;
   background: rgba(255, 255, 255, 0.15);
+
   padding-left: 15px;
   padding-right: 15px;
+  
+/*   background: darkslategray; */
+  height:85px;
 }
 
 #header {
@@ -2195,11 +2199,16 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0 8px 0px 8px;
   text-decoration: none;
   display: inline-block;
-  color: #fff;
+/*   color: #fff; */
   font-weight: 500;
-  font-size: 12px;
+/*   font-size: 12px; */
   text-transform: uppercase;
   outline: none;
+  
+  color: black;
+  font-weight: bold;
+  font-size: 14px;
+  margin-left:3px;
 }
 
 .nav-menu li:hover > a {
@@ -2375,6 +2384,9 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 #nav-menu-container {
   padding-right: 15px;
+  
+  margin-left:560px;
+  
 }
 
 .primary-btn {
@@ -2488,7 +2500,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .banner-area .overlay-bg {
-  background: rgba(4, 9, 30, 0.4);
+/*   background: rgba(4, 9, 30, 0.4); */
 }
 
 @media (max-width: 767px) {

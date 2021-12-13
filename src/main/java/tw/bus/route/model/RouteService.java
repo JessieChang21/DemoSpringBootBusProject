@@ -1,6 +1,7 @@
 package tw.bus.route.model;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,11 +11,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 
+
 @Service
 @Transactional
 public class RouteService {
 	@Autowired
 	private RouteRepository routeResp;
+	
+	public Optional<Routes> findById(String routeId) {
+		return routeResp.findById(routeId);
+	}
 	
 	public List<Routes> findAllRoutes(){
 		return routeResp.findAll();
@@ -72,6 +78,10 @@ public class RouteService {
 	
 	public List<String> findDisTripName(){
 		return routeResp.findDisTripName();
+	}
+	
+	public Routes findLastRoute() {
+		return routeResp.findTopOrderByRouteIdDesc();
 	}
 
 }

@@ -38,13 +38,14 @@ import tw.bus.members.model.AreaBean;
 import tw.bus.members.model.Members;
 import tw.bus.members.model.MembersService;
 import tw.bus.memberslogin.model.UpdateMembers;
+import tw.bus.membersmanagement.model.PageAssistM;
 import tw.bus.membersmanagement.model.QueryMembers;
 import tw.bus.membersmanagement.model.QueryMembersService;
 
 
 @Controller
 //@RequestMapping("/members")
-@SessionAttributes(names = {"totalPages", "totalElememnts"})
+//@SessionAttributes(names = {"totalPages", "totalElememnts"})
 public class MembersController {
 
 	@Autowired
@@ -118,28 +119,29 @@ public class MembersController {
 		mService.deleteMembersById(id);
 	}
 	
-	@PostMapping("/membersqueryByPage/{pageNo}")
-	@ResponseBody
-	public List<QueryMembers> processQueryByPage(@PathVariable("pageNo") int pageNo, Model m){
-		int pageSize = 3;
-		Pageable pageable = PageRequest.of(pageNo-1, pageSize, Sort.by(Sort.Direction.DESC,"id"));
-		Page<QueryMembers> page = qService.findAllByPage(pageable);
-		m.addAttribute("totalPages", page.getTotalPages());
-		m.addAttribute("totalElements", page.getTotalElements());
-		return page.getContent();
-	}
-	
 //	@PostMapping("/membersqueryByPage/{pageNo}")
 //	@ResponseBody
-//	public PageAssistR processQueryByPage(@PathVariable("pageNo") int pageNo, Model m){
+//	public List<QueryMembers> processQueryByPage(@PathVariable("pageNo") int pageNo, Model m){
 //		int pageSize = 3;
 //		Pageable pageable = PageRequest.of(pageNo-1, pageSize, Sort.by(Sort.Direction.DESC,"id"));
 //		Page<QueryMembers> page = qService.findAllByPage(pageable);
-//		
-//		PageAssistR memberspage = new PageAssistR();
-//		memberspage.setList(page.getContent());
-//		memberspage.setPageEles(page.getTotalElements());
-//		memberspage.setTolpages((long) page.getTotalPages());
-//		return memberspage;
+//		m.addAttribute("totalPages", page.getTotalPages());
+//		m.addAttribute("totalElements", page.getTotalElements());
+//		return page.getContent();
 //	}
+
+	@PostMapping("/membersqueryByPage/{pageNo}")
+	@ResponseBody
+	public PageAssistM processQueryByPage(@PathVariable("pageNo") int pageNo, Model m){
+		int pageSize = 3;
+		Sort sort = Sort.by(Sort.Direction.DESC, "id");
+		Pageable pageable = PageRequest.of( (pageNo-1), pageSize, sort);
+		Page<QueryMembers> page = qService.findAllByPage(pageable);
+		
+		PageAssistM memberspage = new PageAssistM();
+		memberspage.setList(page.getContent());
+		memberspage.setPageEles(page.getTotalElements());
+		memberspage.setTolpages(page.getTotalPages());
+		return memberspage;
+	}
 }

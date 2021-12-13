@@ -145,7 +145,7 @@ $(document).ready(function(){
 function load(){
 	$('#emailcheckdiv').empty("");
 	var span = $('#emailcheckdiv');
-	span.append("<button id='emailcheckbut' type='button' value='emailcheckbut' class='primary-btn' onclick='emailcheckclick()'>emailcheck</button>")
+	span.append("<button id='emailcheckbut' type='button' value='emailcheckbut' class='primary-btn' onclick='emailcheckclick()' style='text-align:center'>emailcheck</button>")
 		   }
 
 function emailcheckclick(){
@@ -218,13 +218,32 @@ function emailcheckclick(){
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
 						<li><a href="/2">首頁</a></li>
-						<li class="menu-has-children"><a href="">優惠活動</a>
+						<li class="menu-has-children"><a href="/members/membersmain.controller">優惠活動</a>
 							<ul>
 								<li><a href="">旅遊套票</a></li>
+								
+							</ul></li>
+						<li class="menu-has-children"><a href="/showAnnouncement">最新消息</a>
+							<ul>
+								<li><a href="/showAnnouncement">最新消息</a></li>
+								<li><a href="/showlostandfound">失物招領</a></li>
 
 							</ul></li>
-						<li><a href="/showAnnouncement">最新消息</a>
-						<li><a href="/showlostandfound">失物招領</a></li>
+						<li class="menu-has-children"><a
+							href="queryRoutemain.controller">查詢車次&訂購車票</a>
+							<ul>
+								<li><a href="queryMemberOrdermain.controller">查詢刪除訂購車票</a></li>
+
+							</ul></li>
+						<li class="menu-has-children"><a href="">Pages</a>
+							<ul>
+								<li><a href="elements.html">Elements</a></li>
+								<li class="menu-has-children"><a href="">Level 2 </a>
+									<ul>
+										<li><a href="#">Item One</a></li>
+										<li><a href="#">Item Two</a></li>
+									</ul></li>
+							</ul></li>
 						<li><c:choose>
 								<c:when test='${empty members.membername}'>
 									<li class="menu-has-children"><a href="/login/page">登入</a></li>
@@ -251,15 +270,14 @@ function emailcheckclick(){
 	<section class="banner-area relative">
 		<div class="overlay overlay-bg"></div>
 		<div class="container">
-			<div
-				class="row fullscreen align-items-center justify-content-between">
-				<div class="col-lg-6 col-md-6 banner-left">
-					<h6 class="text-white">踏上你的旅程</h6>
-					<h1 class="text-white">台灣巴士行</h1>
-					<p class="text-white"></p>
-					<a href="#" class="primary-btn text-uppercase">Get Started</a>
-				</div>
-				<div class="col-lg-4 col-md-6 banner-right">
+			<div class="row fullscreen align-items-center justify-content-between" style="height: 850px;">
+<!-- 				<div class="col-lg-6 col-md-6 banner-left"> -->
+<!-- 					<h6 class="text-white">踏上你的旅程</h6> -->
+<!-- 					<h1 class="text-white">台灣巴士行</h1> -->
+<!-- 					<p class="text-white"></p> -->
+<!-- 					<a href="#" class="primary-btn text-uppercase">Get Started</a> -->
+<!-- 				</div> -->
+				<div class="col-lg-5 col-md-6 banner-right">
 					<ul class="nav nav-tabs" id="myTab" role="tablist">
 						<li class="nav-item"><a class="nav-link active"
 							id="register-tab" data-toggle="tab" href="#register" role="tab"
@@ -268,32 +286,30 @@ function emailcheckclick(){
 					<div class="tab-content" id="registerTabContent">
 						<div class="tab-pane fade show active" id="register" role="tabpanel"
 							aria-labelledby="register-tab">
-							<form:form class="form-wrap123" method="POST" modelAttribute="members" >
+							<form:form class="form-wrap" method="POST" modelAttribute="members" style="padding-bottom: 20px;
+								padding-top: 20px;padding-left: 20px;padding-right: 20px;border-radius: 12px;">
 								<form:input id="email" path='email' placeholder="請輸入電子信箱" type="text" value="" class="form-control"/>
-<!-- 										<br> -->
 								<form:errors path="email" cssClass="error" />
 								<br>
 								<form:input  path='memberpwd'  placeholder="請輸入密碼(至少8碼)" type="password" value="" class="form-control" />
-<!-- 										<br> -->
 								<form:errors path="memberpwd" cssClass="error" />
 								<br>
 								<form:input path='memberpwd2' placeholder="請再次輸入密碼" type="password" value="" class="form-control"/>
-<!-- 										<br> -->
 								<form:errors path="memberpwd2" cssClass="error" />
 								<br>
 								<form:input path='membername' placeholder="請輸入姓名" type="text" value="" class="form-control"/>
-<!-- 										<br> -->
 								<form:errors path="membername" cssClass="error" />
-								<br>
+<!-- 								<br> -->
 								<span id="emailcheckdiv"></span>
-								<form:input id='emailcheck' path='emailcheck' type="text" value="" placeholder="請輸入驗證碼" class="form-control123" maxlength="6" />
+								<form:input id='emailcheck' path='emailcheck' type="text" value="" placeholder="請輸入驗證碼" class="form-control" maxlength="6" 
+								style='width:62%;display:inline'/>
 								
 <!-- 										<br> -->
 								<form:errors path="emailcheck" cssClass="error" /><br>
-								<form:input id='emailcheck2' path='emailcheck2' type="text" value="" style="visibility:hidden"/>
-								<br>
+								<form:input id='emailcheck2' path='emailcheck2' type="text" value="" style="visibility:hidden;width:1px;height: 1px"/>
+								
 								<form:checkbox path='agreecheckbox' style="width: 18px; height: 18px;" value="true" />
-								<label for="agree" data-lang="我同意">我同意</label><a href="#.pdf" target="_blank">XXX隱私權政策與服務條款</a>
+								<label for="agree" data-lang="我同意">我同意</label><a href="/register/membersregister.controller" >XXX隱私權政策與服務條款</a>
 <!-- 										<br> -->
 								<form:errors path="agreecheckbox" cssClass="error" />
 					
@@ -302,7 +318,7 @@ function emailcheckclick(){
 <!-- 							 	 	<a href="/register/membersaddregister.controller" class="primary-btn text-uppercase">儲存</a> -->
 							  		<input class="primary-btn" type="reset" value="重填">
 								</div>
-								<div id="feedback" align="center"></div>
+			
 								
 							</form:form>
 						</div>
