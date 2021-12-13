@@ -34,11 +34,9 @@ function change(page) {
 }
 function load(indexPage){
 	   $.ajax({
-		   //type:'Post',
 		   type:'Get',
-		   //url:'/GetHoliday/QueryAllUnRelease/' + indexPage,
+		   url:'/GetHoliday/QueryAllUnRelease/' + indexPage,
 		   //url:'/GetHoliday/queryByPage/' + indexPage,
-		   url:'/GetHoliday/findList',
 		   dataType:'JSON',
 		   contentType:'application/json',
 		   success: function(data){
@@ -51,14 +49,14 @@ function load(indexPage){
 				   $('table').prepend("<tr><td colspan='5'>查無請假資料</td></tr>");;
 			   }else{
 				   var table = $('#showholiday');
-				   table.append("<tr id='etitle'><th>請假員工</th><th>代班員工</th><th>請假日期</th><th>請假時段</th><th>放行</th></tr>");
+				   table.append("<tr align='center'><th>請假員工</th><th>代班員工</th><th>請假日期</th><th>請假時段</th><th>放行</th></tr>");
 				   $.each(data, function(i,n){
-					   var tr = "<tr align='center'>" + 
-					   "<td>" + n.employeeid + "</td>" +
+					   var tr ="<tr>" +
+					   "<td>" + n.pk.employeeid + "</td>" +
 					   "<td>" + n.substituteid + "</td>" +
-					   "<td>" + n.date + "</td>" +
-					   "<td>" + n.timeperiod + "</td>" +
-					   "<td><a href='update?employeeid=" + n.employeeid + "&date="+n.date+"&timeperiod="+n.timeperiod+"'>放行</a></td>"
+					   "<td align='center'>" + n.pk.date + "</td>" +
+					   "<td align='center'>" + n.pk.timeperiod + "</td>" +
+					   "<td align='center'><a href='update?employeeid=" + n.pk.employeeid + "&date="+n.pk.date+"&timeperiod="+n.pk.timeperiod+"'>放行</a></td>"
 					   "</tr>";
 			           table.append(tr); 
 				   });	
@@ -87,11 +85,9 @@ function load(indexPage){
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">Tables</h1>
+					<h1 class="h3 mb-2 text-gray-800">主管放行</h1>
 					<p class="mb-4">
-						DataTables is a third party plugin that is used to generate the
-						demo table below. For more information about DataTables, please
-						visit the <a target="_blank" href="https://datatables.net">official
+						<a target="_blank" href="https://datatables.net">official
 							DataTables documentation</a>.
 					</p>
 

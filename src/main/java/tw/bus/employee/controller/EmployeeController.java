@@ -1,9 +1,11 @@
 package tw.bus.employee.controller;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import javax.mail.MessagingException;
 import javax.swing.JFrame;
@@ -96,7 +98,14 @@ public class EmployeeController {
 			@RequestParam("employeename") String employeename,
 			@RequestParam("gender") String gender,
 			@RequestParam("jobid") String jobid,
-			@RequestParam("rankid") String rankid) {
+			@RequestParam("rankid") String rankid,
+			Model m) {
+		Map<String, String> errors = new HashMap<String, String>();
+		m.addAttribute("errors", errors);
+		if(employeename == "") {
+			errors.put("errors", "請輸入員工姓名");
+			return "employee/employeeAdd";
+		}
 		Employee e = new Employee();
 		//e.setId(id);
 		String empid = eService.findMaxId();

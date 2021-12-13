@@ -73,32 +73,26 @@ function getsubstitute(){
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">Tables</h1>
+					<h1 class="h3 mb-2 text-gray-800">員工請假</h1>
 					<p class="mb-4">
-						DataTables is a third party plugin that is used to generate the
-						demo table below. For more information about DataTables, please
-						visit the <a target="_blank" href="https://datatables.net">official
+						<a target="_blank" href="https://datatables.net">official
 							DataTables documentation</a>.
 					</p>
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">DataTables
-								Example</h6>
+							<h6 class="m-0 font-weight-bold text-primary">員工請假</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
 	<form action="getholidayInsert" method ="post">
 		<table class="table table-bordered" id="showemployees"width="100%" cellspacing="0">
 			<tr>
-				<th colspan='4'><h3>員工請假</h3></th>
-			</tr>
-			<tr>
-				<td><label>請假人員ID</label></td>
-				<td><label id='employeeid' name='employeeid'>${empId}</label></td>
-				<td><label>請假人員姓名</label></td>
-				<td><label id='employeename' name='employeename'>${empName}</label></td>
+				<th><label>請假人員ID</label></th>
+				<th><label id='employeeid' name='employeeid'>${empId}</label></th>
+				<th><label>請假人員姓名</label></th>
+				<th><label id='employeename' name='employeename'>${empName}</label></th>
 			</tr>
 			<tr>
 				<td><label>剩餘假期時數</label></td>
@@ -118,8 +112,8 @@ function getsubstitute(){
 				<td colspan='4'>
 					<button type="submit" value="GetHolidayInsert"">確認送出</button>
 					<button><a href="<c:url value='/GetHoliday/getholidayindex'/> " >回前頁</a></button>
+					<font color="red">${errors.errors}</font>
 				</td>
-				
 			</tr>
 		</table>
 	</form>
