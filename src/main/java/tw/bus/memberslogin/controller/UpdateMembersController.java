@@ -41,6 +41,8 @@ import tw.bus.members.model.AreaBean;
 import tw.bus.members.model.AreaService;
 import tw.bus.members.model.CityBean;
 import tw.bus.members.model.Members;
+import tw.bus.memberslike.model.FrameBean;
+import tw.bus.memberslike.model.FrameBeanService;
 import tw.bus.memberslogin.model.UpdateMemberService;
 import tw.bus.memberslogin.model.UpdateMembers;
 import tw.bus.membersmanagement.model.QueryMembers;
@@ -66,18 +68,22 @@ public class UpdateMembersController {
 	
 	EmailSenderService senderService;
 	
+	FrameBeanService framebeanService;
+	
 	
 	ServletContext context;
 	
 	@Autowired
 	public UpdateMembersController(CityService aService, AreaService areaService, AdressService adressService,
-			UpdateMemberService uService,AgelevelService agelevelService, EmailSenderService senderService) {
+			UpdateMemberService uService,AgelevelService agelevelService, EmailSenderService senderService,
+			FrameBeanService framebeanService) {
 		this.aService = aService;
 		this.areaService = areaService;
 		this.adressService = adressService;
 		this.uService = uService;
 		this.agelevelService = agelevelService;
 		this.senderService = senderService;
+		this.framebeanService = framebeanService;
 	}
 
 
@@ -120,6 +126,7 @@ public class UpdateMembersController {
 	public String processPrincipalQuery(@SessionAttribute Members members, Model m,
 										HttpServletRequest request) {
 		System.out.println(members);
+		FrameBean framebean = framebeanService.findById(members.getId());
 		UpdateMembers umembers = new UpdateMembers();
 		umembers.setFileName(members.getFileName());
         umembers.setMimeType(members.getMimeType());
@@ -128,6 +135,7 @@ public class UpdateMembersController {
 		HttpSession session = request.getSession();
 		session.setAttribute("umembers",umembers);
 		m.addAttribute("members",members);
+		m.addAttribute("framebean",framebean);
 //		return "members/updatemembers";
 		return "members/updatemembers";
 	}
