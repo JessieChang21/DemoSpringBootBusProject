@@ -117,12 +117,7 @@ public class GetHolidayController {
 		gh.setRelease("N");
 		//ghService.InsertGetHoliday(EMP_ID, substituteid, date, timeperiod, 4, "N");
 		ghService.insertGetHoliday(gh);
-		//同步修改員工假期統計
-		var h = hService.findById(EMP_ID);
-		h.setEmployeeid(EMP_ID);
-		h.setTotalhours(hService.getTotalHoursbyID(EMP_ID));
-		h.setLavehours(hService.getLaveHoursbyID(EMP_ID)-4);
-		hService.updateHoliday(h);
+		
 		return "employee/holidayindex";
 	}
 	//主管放行
@@ -133,12 +128,26 @@ public class GetHolidayController {
 	
 	@GetMapping("/update") 
 	//@ResponseBody
-	public String processUpdateAction(
+	public String processUpdateAction(@SessionAttribute("employee") Employee emp,
 	@RequestParam("employeeid") String employeeid,
 	@RequestParam("date") String date,
 	@RequestParam("timeperiod") String timeperiod) {
 		System.out.println(employeeid.substring(0, 6)+"-"+date+"-"+timeperiod);
 		ghService.Updaterelease(employeeid.substring(0, 6),date,timeperiod);
+		String eid = emp.getId().toString();
+		System.out.println("empid="+eid);
+		String EMP_ID = "";
+		if(eid.isEmpty()) {
+			EMP_ID = empid;
+		}else {
+			EMP_ID = eid;
+		}
+		//同步修改員工假期統計
+				var h = hService.findById(EMP_ID);
+				h.setEmployeeid(EMP_ID);
+				h.setTotalhours(hService.getTotalHoursbyID(EMP_ID));
+				h.setLavehours(hService.getLaveHoursbyID(EMP_ID)-4);
+				hService.updateHoliday(h);
 		return "employee/holidayUpdate";
 	}
 	//假期查詢
