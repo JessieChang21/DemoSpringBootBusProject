@@ -20,7 +20,7 @@ public interface GetHolidayRepository extends JpaRepository<GetHoliday, GetHolid
 	
 	
 	@Modifying
-	@Query(value="update GetHoliday set release = 'Y' where employeeid = ?1 and date = ?2 and timeperiod = ?3 and release = 'Y' ", nativeQuery = true)
+	@Query(value="update GetHoliday set release = 'Y' where employeeid = ?1 and date = ?2 and timeperiod = ?3 ", nativeQuery = true)
 	public void Updaterelease(String employeeid,String date,String timeperiod);
 	
 	@Modifying
