@@ -35,8 +35,8 @@ function change(page) {
 function load(indexPage){
 	   $.ajax({
 		   type:'Get',
-		   //url:'/GetHoliday/QueryAllUnRelease/' + indexPage,
-		   url:'/GetHoliday/queryByPage/' + indexPage,
+		   url:'/GetHoliday/QueryAllUnRelease/' + indexPage,
+		   //url:'/GetHoliday/queryByPage/' + indexPage,
 		   dataType:'JSON',
 		   contentType:'application/json',
 		   success: function(data){

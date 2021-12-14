@@ -61,7 +61,7 @@ public interface GetHolidayRepository extends JpaRepository<GetHoliday, GetHolid
 	 public Page<GetHoliday> QueryAllbyId_N(Pageable pageable,@Param("empid") String empid);
 	
 	@Query(value="select * from GetHoliday where release = 'N' ", nativeQuery = true)
-	 public List<GetHoliday> finAllUnRelease();
+	 public Page<GetHoliday> finAllUnRelease(Pageable pageable);
 	
 
 }

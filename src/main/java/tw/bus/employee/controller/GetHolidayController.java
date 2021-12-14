@@ -137,7 +137,8 @@ public class GetHolidayController {
 	@RequestParam("employeeid") String employeeid,
 	@RequestParam("date") String date,
 	@RequestParam("timeperiod") String timeperiod) {
-		ghService.Updaterelease(employeeid,date,timeperiod);
+		System.out.println(employeeid.substring(0, 6)+"-"+date+"-"+timeperiod);
+		ghService.Updaterelease(employeeid.substring(0, 6),date,timeperiod);
 		return "employee/holidayUpdate";
 	}
 	//假期查詢
@@ -168,7 +169,7 @@ public class GetHolidayController {
 	public List<GetHoliday> processQueryByPage(@PathVariable("pageNo") int pageNo, Model m){
 		int pageSize = 5;
 		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
-		Page<GetHoliday> page = ghService.findAllByPage(pageable);
+		Page<GetHoliday> page = ghService.finAllUnRelease(pageable);
 		m.addAttribute("totalPages", page.getTotalPages());
 		m.addAttribute("totalElements", page.getTotalElements());
 		return page.getContent();
