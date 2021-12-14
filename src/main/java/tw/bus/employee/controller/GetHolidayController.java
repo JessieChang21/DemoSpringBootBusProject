@@ -167,7 +167,7 @@ public class GetHolidayController {
 	@GetMapping("/queryByPage/{pageNo}")
 	@ResponseBody
 	public List<GetHoliday> processQueryByPage(@PathVariable("pageNo") int pageNo, Model m){
-		int pageSize = 5;
+		int pageSize = 10;
 		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
 		Page<GetHoliday> page = ghService.finAllUnRelease(pageable);
 		m.addAttribute("totalPages", page.getTotalPages());
@@ -179,7 +179,7 @@ public class GetHolidayController {
 	@ResponseBody
 	public List<GetHoliday> processQueryAllUnRelease(@PathVariable("pageNo") int pageNo, Model m){
 		System.out.println("開始查詢");
-		int pageSize = 5;
+		int pageSize = 10;
 		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
 		Page<GetHoliday> page = ghService.QueryAllUnRelease(pageable);
 		System.out.println("查詢完成");
@@ -192,7 +192,7 @@ public class GetHolidayController {
 	@ResponseBody
 	public List<GetHoliday> processQueryAllbyId_Y(@SessionAttribute("employee") Employee emp,
 			@PathVariable("pageNo") int pageNo, Model m){
-		int pageSize = 5;
+		int pageSize = 10;
 		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
 		String eid = emp.getId().toString();
 		System.out.println("empid="+eid);
@@ -212,7 +212,7 @@ public class GetHolidayController {
 	@ResponseBody
 	public List<GetHoliday> processQueryAllbyId_N(@SessionAttribute("employee") Employee emp,
 			@PathVariable("pageNo") int pageNo, Model m){
-		int pageSize = 5;
+		int pageSize = 10;
 		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
 		String eid = emp.getId().toString();
 		System.out.println("empid="+eid);
