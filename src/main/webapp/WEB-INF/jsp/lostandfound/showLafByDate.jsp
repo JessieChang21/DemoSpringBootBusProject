@@ -36,13 +36,13 @@ table tr th:last-child, table tr td:last-child { /*設定table右邊邊框*/
 	border-right: 2px solid #eaeaea;
 }
 
-table tr td:first-child, table tr td:nth-child(2), table tr td:nth-child(3),
+table tr td:first-child, table tr td:nth-child(2), table tr td:nth-child(3),table tr td:nth-child(4),
 	table tr td:last-child { /*設定table表格每列底部邊框*/
 	border-bottom: 2px solid #eaeaea;
 }
 
 table tr:last-child td:first-child, table tr:last-child td:nth-child(2),
-	table tr:last-child td:nth-child(3), table tr:last-child td:last-child
+	table tr:last-child td:nth-child(3),td:nth-child(4), table tr:last-child td:last-child
 	{ /!*設定table表格最後一列底部邊框 *!/ border-bottom:2pxsolid#000;
 	
 }
@@ -194,14 +194,16 @@ td{
 	<div id="table_wrap" >
 	<table style="align:center">
 		<tr >
-			<th width='150'><font color='black'>巴士編號</th>
-			<th width='150'><font color='black'>物品名稱</th>
-			<th width='150'><font color='black'>拾獲地點(站別)</th>
-			<th width='150'><font color='black'>拾獲時間</th>
+			<th width='50'><font color='black'>編號</th>
+			<th width='100'><font color='black'>巴士編號</th>
+			<th width='100'><font color='black'>物品名稱</th>
+			<th width='100'><font color='black'>拾獲地點(站別)</th>
+			<th width='100'><font color='black'>拾獲時間</th>
 			
 		</tr>
 		<c:forEach var="laf" items="${list1}">
 			<tr>
+				<td align='center'><font color='black'>${laf.id}</td>
 				<td align='center'><font color='black'>${laf.itbussnumber}</td>
 				<td align='center'><font color='black'>${laf.itname}</td>
 				<td align='center'><font color='black'>${laf.itplace}</td>
