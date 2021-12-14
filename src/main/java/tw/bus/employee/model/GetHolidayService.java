@@ -51,8 +51,8 @@ public class GetHolidayService {
 		return ghResp.findAll(pageable);
 	}
 	
-	public List<GetHoliday> finAllUnRelease(){
-		return ghResp.finAllUnRelease();
+	public Page<GetHoliday> finAllUnRelease(Pageable pageable){
+		return ghResp.finAllUnRelease(pageable);
 	}
 	
 	public GetHoliday insertGetHoliday(GetHoliday gh) {
