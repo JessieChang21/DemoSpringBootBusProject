@@ -11,7 +11,7 @@
 <meta name="keywords" content="">
 <meta charset="UTF-8">
 <title>訂票成功</title>
-<link rel="icon" href="images/bus.svg" type="image/x-icon" />
+<link rel="icon" href="images/bus.svg" type="image/x-icon"/>
 <style type="text/css">
 #banner{
     background-image: url("/images/queryRoutes/tai.jpg");
