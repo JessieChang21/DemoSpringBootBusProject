@@ -339,20 +339,22 @@ option{
 		if(pemail == null){
 			alert('沒有輸入');
 		}else{
-		var params = {"email":pemail}
-		console.log(params);
-		$.ajax({
-	    	   type:'POST',
-	    	   url:'/sendeMail',
-	    	   dataType:'JSON',
-	    	   contentType:'application/json',
-	    	   data:JSON.stringify(params),
-	    	   success: function(data){
-	    		   console.log(data);
-	    		   console.log(data['random']);
-	    		   var checkpassword = prompt('請輸入電子郵箱驗證碼');
-	    		   if(checkpassword != data['random']){
-	    				alert('電子郵箱驗證碼輸入錯誤');
+// 		var params = {"email":pemail}
+// 		console.log(params);
+// 		$.ajax({
+// 	    	   type:'POST',
+// 	    	   url:'/sendeMail',
+// 	    	   dataType:'JSON',
+// 	    	   contentType:'application/json',
+// 	    	   data:JSON.stringify(params),
+// 	    	   success: function(data){
+// 	    		   console.log(data);
+// 	    		   console.log(data['random']);
+// 	    		   var checkpassword = prompt('請輸入電子郵箱驗證碼');
+// 	    		   if(checkpassword != data['random']){
+// 	    				alert('電子郵箱驗證碼輸入錯誤');
+				if(pemail != $('#uemail').val()){
+	    				alert('電子郵箱輸入錯誤');
 	    			}else{
 	    				var newpassword = prompt('請輸入新密碼(至少8位數)');
 	    				if(newpassword.length < 8){
@@ -370,9 +372,9 @@ option{
 	    			}
 	    		   
 	    	   }
-	    	});
+// 	    	});
 		}
-	}
+// 	}
    var slideCount = 0;
    function loaded(){
    	if(($('#frame1').val()) == 1){$('#li1').css('display', '');slideCount+=1};
