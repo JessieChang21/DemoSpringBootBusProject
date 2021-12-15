@@ -136,6 +136,7 @@ public class UpdateMembersController {
 		umembers.setFileName(members.getFileName());
         umembers.setMimeType(members.getMimeType());
         umembers.setMemberImage(members.getMemberImage());
+        umembers.setMemberpwd(members.getMemberpwd());
 		System.out.println("umembers="+umembers);
 		HttpSession session = request.getSession();
 		session.setAttribute("umembers",umembers);
@@ -209,8 +210,12 @@ public class UpdateMembersController {
 	        System.out.println("adressbean.getAdressName()="+adressbean.getAdressName());
 	        members.setAdress(adressbean.getAdressName());
 	        
-	        String encodePwd = new BCryptPasswordEncoder().encode(members.getMemberpwd());
-			members.setMemberpwd(encodePwd);
+	        if(!(umembers.getMemberpwd().toString()).equals(members.getMemberpwd().toString())) {
+	        	System.out.println("umembers.getMemberpwd()="+umembers.getMemberpwd());
+		        System.out.println("members.getMemberpwd()="+members.getMemberpwd());
+		        String encodePwd = new BCryptPasswordEncoder().encode(members.getMemberpwd());
+				members.setMemberpwd(encodePwd);
+				}
 	       
 	        System.out.println("members.getAdress()="+members.getAdress());
 	        System.out.println(members);
