@@ -170,13 +170,13 @@
 		       					   if(i%2==0){
 		       					   var tr = "<tr align='center' class='even'>" + "<td>" + n.routeId + "</td>" +
 		       					            "<td>" + n.tripName + "</td>" + "<td>" + n.area + "</td>"+ "<td>" + dir + "</td>"+
-		       					            "<td>" + "<a href='findrouteinfoShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "詳細路線" +"</a></td>"+
+		       					            "<td>" + "<a href='/routes/findrouteinfoShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "詳細路線" +"</a></td>"+
 		       					            		"<td>" + "<a href='http://localhost:8081/busTimes/findbustimeShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "查詢班表" +"</a></td>"+ "</tr>";
 		       					   table.append(tr);
 		       					   } else {
 		       						   var tr = "<tr align='center' class='odd'>" + "<td>" + n.routeId + "</td>" +
 		       				            "<td>" + n.tripName + "</td>" + "<td>" + n.area + "</td>"+ "<td>" + dir + "</td>"+
-		       				            "<td>" + "<a href='findrouteinfoShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "詳細路線" +"</a></td>"+
+		       				            "<td>" + "<a href='/routes/findrouteinfoShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "詳細路線" +"</a></td>"+
 		       				            		"<td>" + "<a href='http://localhost:8081/busTimes/findbustimeShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "查詢班表" +"</a></td>"+ "</tr>";
 		       				   table.append(tr);
 		       					   }
@@ -233,13 +233,13 @@
 		       					   if(i%2==0){
 		       					   var tr = "<tr align='center' class='even'>" + "<td>" + n.routeId + "</td>" +
 		       					            "<td>" + n.tripName + "</td>" + "<td>" + n.area + "</td>"+ "<td>" + dir + "</td>"+
-		       					            "<td>" + "<a href='findrouteinfoShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "詳細路線" +"</a></td>"+
+		       					            "<td>" + "<a href='/routes/findrouteinfoShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "詳細路線" +"</a></td>"+
 		       					            		"<td>" + "<a href='http://localhost:8081/busTimes/findbustimeShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "查詢班表" +"</a></td>"+ "</tr>";
 		       					   table.append(tr);
 		       					   } else {
 		       						   var tr = "<tr align='center' class='odd'>" + "<td>" + n.routeId + "</td>" +
 		       				            "<td>" + n.tripName + "</td>" + "<td>" + n.area + "</td>"+ "<td>" + dir + "</td>"+
-		       				            "<td>" + "<a href='findrouteinfoShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "詳細路線" +"</a></td>"+
+		       				            "<td>" + "<a href='/routes/findrouteinfoShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "詳細路線" +"</a></td>"+
 		       				            		"<td>" + "<a href='http://localhost:8081/busTimes/findbustimeShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "查詢班表" +"</a></td>"+ "</tr>";
 		       				   table.append(tr);
 		       					   }
@@ -352,13 +352,13 @@
 					   if(i%2==0){
 					   var tr = "<tr align='center' class='even'>" + "<td>" + n.routeId + "</td>" +
 					            "<td>" + n.tripName + "</td>" + "<td>" + n.area + "</td>"+ "<td>" + dir + "</td>"+
-					            "<td>" + "<a href='findrouteinfoShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "詳細路線" +"</a></td>"+
+					            "<td>" + "<a href='/routes/findrouteinfoShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "詳細路線" +"</a></td>"+
 					            		"<td>" + "<a href='http://localhost:8081/busTimes/findbustimeShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "查詢班表" +"</a></td>"+ "</tr>";
 					   table.append(tr);
 					   } else {
 						   var tr = "<tr align='center' class='odd'>" + "<td>" + n.routeId + "</td>" +
 				            "<td>" + n.tripName + "</td>" + "<td>" + n.area + "</td>"+ "<td>" + dir + "</td>"+
-				            "<td>" + "<a href='findrouteinfoShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "詳細路線" +"</a></td>"+
+				            "<td>" + "<a href='/routes/findrouteinfoShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "詳細路線" +"</a></td>"+
 				            		"<td>" + "<a href='http://localhost:8081/busTimes/findbustimeShow.controller?rid=" + n.routeId + "' class='btn btn-primary'>"+ "查詢班表" +"</a></td>"+ "</tr>";
 				   table.append(tr);
 					   }

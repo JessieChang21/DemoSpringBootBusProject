@@ -301,7 +301,7 @@ table tr:last-child td:last-child {
 							$("#"+orderid+"").append(`<button type="button" id="deleteorder" value="`+orderid+`" class="btn btn-danger">刪除此筆訂單</button>`);
 								$("#deleteorder").click(function(){
 									var deleteorderid =$(this).val();
-									alert("確認刪除此筆訂單?");
+// 									alert("確認刪除此筆訂單?");
 									$("#"+deleteorderid+"").remove();
 									
 									alert("訂單編號 "+deleteorderid+" 刪除成功!");
